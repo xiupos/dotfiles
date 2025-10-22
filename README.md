@@ -10,7 +10,7 @@ make
 ## Guake
 
 ```bash
-guake --restore-preferences ./other/guake_prefs
+guake --restore-preferences ~/.dotfiles/other/guake_prefs
 ```
 
 ## SKK
