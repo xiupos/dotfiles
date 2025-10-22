@@ -4,3 +4,6 @@
 [submodule "config/ibus-skk/skk-jisyo-latex-unicode-math"]
 	path = config/ibus-skk/skk-jisyo-latex-unicode-math
 	url = https://github.com/xiupos/skk-jisyo-latex-unicode-math.git
+[submodule "config/libskk/rules/Sapporo"]
+	path = config/libskk/rules/Sapporo
+	url = https://github.com/xiupos/Sapporo
