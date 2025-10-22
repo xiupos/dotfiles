@@ -7,3 +7,6 @@
 [submodule "config/libskk/rules/Sapporo"]
 	path = config/libskk/rules/Sapporo
 	url = https://github.com/xiupos/Sapporo
+[submodule "config/ibus-skk/imas-ime-dic"]
+	path = config/ibus-skk/imas-ime-dic
+	url = https://github.com/maruamyu/imas-ime-dic.git

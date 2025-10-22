@@ -18,3 +18,4 @@ guake --restore-preferences ./other/guake_prefs
 辞書
 
 - `~/.config/ibus-skk/skk-jisyo-latex-unicode-math/SKK-JISYO.latex.unicode-math.utf8`
+- `~/.config/ibus-skk/imas-ime-dic/dist/skk-jisyo.imas.utf8`
