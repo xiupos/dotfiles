@@ -7,6 +7,12 @@ cd .dotfiles
 make
 ```
 
+## Guake
+
+```bash
+guake --restore-preferences ./other/guake_prefs
+```
+
 ## SKK
 
 辞書
