@@ -1,0 +1,7 @@
+[tools]
+bun = "latest"
+deno = "latest"
+node = "latest"
+npm = "latest"
+pnpm = "latest"
+yarn = "latest"

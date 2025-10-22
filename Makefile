@@ -1,7 +1,8 @@
-stow:
-	stow -vt ~ home
-	stow -vt ~/.config config
+all: stow guake
 
-restow:
+stow:
 	stow -Rvt ~ home
 	stow -Rvt ~/.config config
+
+guake:
+	guake --restore-preferences ./other/guake_prefs
