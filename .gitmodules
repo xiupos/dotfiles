@@ -7,3 +7,6 @@
 [submodule "config/libskk/rules/Sapporo"]
 	path = config/libskk/rules/Sapporo
 	url = https://github.com/xiupos/Sapporo
+[submodule "local/share/fcitx5/cskk/skk-jisyo-imasparql"]
+	path = local/share/fcitx5/cskk/skk-jisyo-imasparql
+	url = https://github.com/banjun/skk-jisyo-imasparql.git
