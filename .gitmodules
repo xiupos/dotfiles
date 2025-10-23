@@ -1,12 +1,3 @@
-[submodule "config/ibus-skk/skk-jisyo-latex-unicode-math"]
-	path = config/ibus-skk/skk-jisyo-latex-unicode-math
-	url = https://github.com/xiupos/skk-jisyo-latex-unicode-math.git
-[submodule "config/libskk/rules/Sapporo"]
-	path = config/libskk/rules/Sapporo
-	url = https://github.com/xiupos/Sapporo
-[submodule "config/ibus-skk/imas-ime-dic"]
-	path = config/ibus-skk/imas-ime-dic
-	url = https://github.com/maruamyu/imas-ime-dic.git
 [submodule "home/.tmux/plugins/tpm"]
 	path = home/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
@@ -16,3 +7,6 @@
 [submodule "local/share/fcitx5/cskk/skk-emoji-jisyo"]
 	path = local/share/fcitx5/cskk/skk-emoji-jisyo
 	url = https://github.com/uasi/skk-emoji-jisyo.git
+[submodule "config/libskk/rules/Sapporo"]
+	path = config/libskk/rules/Sapporo
+	url = https://github.com/xiupos/Sapporo
