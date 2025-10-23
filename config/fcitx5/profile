@@ -1,0 +1,16 @@
+[Groups/0]
+# Group Name
+Name="Group 1"
+# Layout
+Default Layout=eu
+# Default Input Method
+DefaultIM=cskk
+
+[Groups/0/Items/0]
+# Name
+Name=cskk
+# Layout
+Layout=eu
+
+[GroupOrder]
+0="Group 1"
