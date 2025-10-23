@@ -1,10 +1,8 @@
-type=file,file=$FCITX_CONFIG_DIR/cskk/user.dict,encoding=UTF-8,mode=readwrite
-type=file,file=$FCITX_CONFIG_DIR/cskk/skk-jisyo-latex-unicode-math/SKK-JISYO.latex.unicode-math.utf8,encoding=UTF-8,mode=readonly
+type=file,file=$FCITX_CONFIG_DIR/user.dict,encoding=utf-8,mode=readwrite
+type=file,file=$FCITX_CONFIG_DIR/skk-jisyo-latex-unicode-math/SKK-JISYO.latex.unicode-math.utf8,encoding=utf-8,mode=readonly
 type=file,file=/usr/share/skk/SKK-JISYO.L,mode=readonly
 type=file,file=/usr/share/skk/SKK-JISYO.jinmei,mode=readonly
 type=file,file=/usr/share/skk/SKK-JISYO.geo,mode=readonly
 type=file,file=/usr/share/skk/SKK-JISYO.station,mode=readonly
 type=file,file=/usr/share/skk/SKK-JISYO.propernoun,mode=readonly
-type=file,file=$FCITX_CONFIG_DIR/cskk/skk-emoji-jisyo/SKK-JISYO.emoji.utf8,encoding=UTF-8,mode=readonly
-type=file,file=$FCITX_CONFIG_DIR/cskk/imas-ime-dic/dist/skk-jisyo.imas.utf8,encoding=UTF-8,mode=readonly
-type=server,host=localhost,port=1178
+type=file,file=$FCITX_CONFIG_DIR/skk-emoji-jisyo/SKK-JISYO.emoji.utf8,encoding=utf-8,mode=readonly
