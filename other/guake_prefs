@@ -33,7 +33,7 @@ window-width=100
 
 [keybindings/local]
 clipboard-copy='disabled'
-clipboard-paste='disabled'
+clipboard-paste='<Primary><Shift>v'
 close-tab='disabled'
 close-terminal='disabled'
 decrease-transparency='disabled'
@@ -52,6 +52,7 @@ next-tab-alt='disabled'
 open-link-under-terminal-cursor='disabled'
 previous-tab='disabled'
 previous-tab-alt='disabled'
+quit='disabled'
 rename-current-tab='disabled'
 search-on-web='disabled'
 search-terminal='disabled'

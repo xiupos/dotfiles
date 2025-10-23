@@ -16,10 +16,3 @@ guake --restore-preferences ~/.dotfiles/other/guake_prefs
 # save prefs
 guake --save-preferences ~/.dotfiles/other/guake_prefs
 ```
-
-## SKK
-
-辞書
-
-- `~/.config/ibus-skk/skk-jisyo-latex-unicode-math/SKK-JISYO.latex.unicode-math.utf8`
-- `~/.config/ibus-skk/imas-ime-dic/dist/skk-jisyo.imas.utf8`
