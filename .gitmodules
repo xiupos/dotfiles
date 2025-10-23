@@ -1,6 +1,3 @@
-[submodule "home/.tmux/plugins/tpm"]
-	path = home/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule "local/share/fcitx5/cskk/skk-jisyo-latex-unicode-math"]
 	path = local/share/fcitx5/cskk/skk-jisyo-latex-unicode-math
 	url = https://github.com/xiupos/skk-jisyo-latex-unicode-math.git
