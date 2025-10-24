@@ -26,16 +26,6 @@ yay -S google-chrome visual-studio-code-bin vim
 
 login [github](https://github.com/)
 
-## setup dotfiles
-
-```bash
-yay -S stow
-git clone --recursive git@github.com:xiupos/dotfiles.git ~/.dotfiles
-make -C ~/.dotfiles
-```
-
-reopen chrome
-
 ## setup git
 
 ```bash
@@ -49,6 +39,16 @@ register the public key to [github](https://github.com/settings/ssh/new)
 # test the key
 ssh git@github.com
 ```
+
+## setup dotfiles
+
+```bash
+yay -S stow
+git clone --recursive git@github.com:xiupos/dotfiles.git ~/.dotfiles
+make -C ~/.dotfiles
+```
+
+reopen chrome
 
 ## setup terminal
 
