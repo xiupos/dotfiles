@@ -1,4 +1,7 @@
-all: stow
+all: local/share/blesh/out/ble.sh stow
+
+local/share/blesh/out/ble.sh:
+	make -C local/share/blesh
 
 stow:
 	stow -vt ~ home

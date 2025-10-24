@@ -5,32 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-colors() {
-	local fgc bgc vals seq0
-
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
-
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
-
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
-}
+# impport ble.sh
+source -- ~/.local/share/blesh/out/ble.sh --attach=none
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
@@ -70,24 +46,14 @@ if ${use_color} ; then
 		fi
 	fi
 
-	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
-	else
-		# PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
-		PS1='\w \[\033[01;32m\]\$\[\033[00m\] '
-	fi
+	PS1='\w \[\033[01;32m\]\$\[\033[00m\] '
 
 	alias ls='ls --color=auto'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
 else
-	if [[ ${EUID} == 0 ]] ; then
-		# show root@ when we don't have colors
-		PS1='\u@\h \W \$ '
-	else
-		PS1='\u@\h \w \$ '
-	fi
+	PS1='\w \$ '
 fi
 
 unset use_color safe_term match_lhs sh
@@ -113,3 +79,36 @@ shopt -s expand_aliases
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
 
+# .env
+[[ -f ~/.env ]] && export $(envsubst < ~/.env)
+
+# browser
+export BROWSER=google-chrome-stable
+
+# report-docker
+# alias pandoc='docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) ghcr.io/xiupos/report-docker -d ~/.report/default/report_lualatex.yaml'
+alias report-docker='pandoc -d ~/.report/default/report_lualatex.yaml'
+# use pandoc directly
+# alias pandoc='docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) ghcr.io/xiupos/report-docker'
+# use to convert only to pdf
+function repo() {
+  report-docker -o ${1%%.*}.pdf $1
+}
+# use to convert only to tex
+function repo-tex() {
+  report-docker -o ${1%%.*}.tex $1
+}
+# update image
+alias repo-update='docker pull ghcr.io/xiupos/report-docker:latest'
+
+# mise
+if [[ -e ~/.local/bin/mise ]]; then
+  eval "$(~/.local/bin/mise activate zsh)"
+fi
+
+# open
+alias open="xdg-open"
+
+
+# attach ble.sh
+[[ ! ${BLE_VERSION-} ]] || ble-attach
