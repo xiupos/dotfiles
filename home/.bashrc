@@ -1,14 +1,23 @@
-#
 # ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# impport ble.sh
-source -- ~/.local/share/blesh/out/ble.sh --attach=none
+# import function
+import() { [[ -r "$1" ]] && . "$@" || echo "bashrc: cannot source '$1'" >&2; }
 
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+# -----------------------------------------------
+
+# ble.sh
+import ~/.local/share/blesh/out/ble.sh --attach=none
+
+# completion
+import /usr/share/bash-completion/bash_completion
+import /usr/share/git/completion/git-completion.bash
+
+# git-prompt
+import /usr/share/git/completion/git-prompt.sh
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -19,6 +28,14 @@ case ${TERM} in
 		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
 		;;
 esac
+
+# git-prompt config
+# GIT_PS1_SHOWDIRTYSTATE=1
+# GIT_PS1_SHOWSTASHSTATE=1
+# GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM=1
+# GIT_PS1_STATESEPARATOR=1
+GIT_PS1_DESCRIBE_STYLE=1
 
 use_color=true
 
@@ -46,14 +63,17 @@ if ${use_color} ; then
 		fi
 	fi
 
-	PS1='\w \[\033[01;32m\]\$\[\033[00m\] '
+	# Enable color for git-prompt
+	# GIT_PS1_SHOWCOLORHINTS=1
+
+	PS1='\w\[\033[36m\]$(__git_ps1 " (%s)") \[\033[01;32m\]\$ \[\033[00m\]'
 
 	alias ls='ls --color=auto'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
 else
-	PS1='\w \$ '
+	PS1='\w$(__git_ps1 " (%s)") \$ '
 fi
 
 unset use_color safe_term match_lhs sh
@@ -81,9 +101,6 @@ shopt -s histappend
 
 # .env
 [[ -f ~/.env ]] && export $(envsubst < ~/.env)
-
-# browser
-export BROWSER=google-chrome-stable
 
 # report-docker
 # alias pandoc='docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) ghcr.io/xiupos/report-docker -d ~/.report/default/report_lualatex.yaml'
