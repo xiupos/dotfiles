@@ -1,10 +1,8 @@
 # dotfiles
 
 ```bash
-cd ~
-git clone --recursive git@github.com:xiupos/dotfiles.git .dotfiles
-cd .dotfiles
-make
+git clone --recursive git@github.com:xiupos/dotfiles.git ~/.dotfiles
+make -C ~/.dotfiles
 ```
 
 ## Guake
