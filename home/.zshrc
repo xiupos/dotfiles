@@ -16,6 +16,9 @@ fi
 # .env
 [[ -f ~/.env ]] && export $(envsubst < ~/.env)
 
+# browser
+export BROWSER=google-chrome-stable
+
 # report-docker
 # alias pandoc='docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) ghcr.io/xiupos/report-docker -d ~/.report/default/report_lualatex.yaml'
 alias report-docker='pandoc -d ~/.report/default/report_lualatex.yaml'

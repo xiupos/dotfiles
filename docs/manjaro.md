@@ -15,7 +15,7 @@ logout & login
 sudo pacman-mirrors --country Japan --api --protocol https && sudo pacman -Syu
 
 # install yay
-sudo pacman -S base-devel yay
+git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 ```
 
 ## browser and editor

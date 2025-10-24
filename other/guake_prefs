@@ -32,7 +32,7 @@ window-tabbar=false
 window-width=100
 
 [keybindings/local]
-clipboard-copy='disabled'
+clipboard-copy='<Primary><Shift>c'
 clipboard-paste='<Primary><Shift>v'
 close-tab='disabled'
 close-terminal='disabled'
