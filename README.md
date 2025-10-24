@@ -14,3 +14,8 @@ guake --restore-preferences ~/.dotfiles/other/guake_prefs
 # save prefs
 guake --save-preferences ~/.dotfiles/other/guake_prefs
 ```
+
+## installbattle
+
+- [manjaro](docs/manjaro.md)
+- [gentoo](docs/gentoo.md)
