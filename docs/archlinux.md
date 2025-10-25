@@ -15,7 +15,7 @@ sudo pacman -S git
 git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 ```
 
-### fonts
+## fonts
 
 ```bash
 yay -S noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
