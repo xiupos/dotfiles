@@ -91,7 +91,13 @@ logout & login
 ### terminals
 
 ```bash
-yay -S tmux xclip 
+yay -S tmux xclip foot
+```
+
+### Network
+
+```bash
+yay -S nfs-utils networkmanager-openconnect networkmanager-openvpn networkmanager-pptp networkmanager-strongswan networkmanager-vpnc network-manager-sstp
 ```
 
 ### power profiles
