@@ -47,12 +47,12 @@ register the public key to [github](https://github.com/settings/ssh/new)
 ssh git@github.com
 ```
 
-## tailescale
+## tailscale
 
 ```bash
 yay -S tailscale
-sudo systemctl enable --now tailescaled
-sudo tailescale login
+sudo systemctl enable --now tailscaled
+sudo tailscale login
 ```
 
 ## dotfiles
@@ -68,8 +68,8 @@ reopen chrome
 ## terminals
 
 ```bash
-yay -S tmux guake bash-completion
-guake --restore-preferences ~/.dotfiles/other/guake_prefs
+yay -S tmux bash-completion
+# guake --restore-preferences ~/.dotfiles/other/guake_prefs
 ```
 
 - https://askubuntu.com/questions/1331707/f12-acting-weird-in-21-04-can-no-longer-toggle-guake
@@ -89,7 +89,7 @@ logout & login
 ### terminals
 
 ```bash
-yay -S tmux xclip guake
+yay -S tmux xclip
 
 gsettings set org.gnome.desktop.input-sources show-all-sources true
 ```
@@ -104,7 +104,7 @@ sudo systemctl enable --now tuned tuned-ppd
 ## gnome extensions
 
 ```bash
-yay -S gnome-shell-extensions gnome-shell-extension-appindicator gnome-shell-extension-arc-menu gnome-shell-extension-dash-to-dock gnome-shell-extension-dash-to-panel gnome-shell-extension-forge gnome-shell-extension-gnome-ui-tune gnome-shell-extension-gsconnect gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-legacy-theme-auto-switcher gnome-shell-extension-space-bar gnome-shell-extension-x11gestures
+yay -S gnome-shell-extensions gnome-shell-extension-appindicator gnome-shell-extension-arc-menu gnome-shell-extension-dash-to-dock gnome-shell-extension-dash-to-panel gnome-shell-extension-forge gnome-shell-extension-gnome-ui-tune gnome-shell-extension-gsconnect gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-legacy-theme-auto-switcher gnome-shell-extension-space-bar gnome-shell-extension-x11gestures gnome-shell-extension-kimpanel-git gnome-browser-connector
 ```
 
 ## docker
@@ -112,6 +112,7 @@ yay -S gnome-shell-extensions gnome-shell-extension-appindicator gnome-shell-ext
 ```bash
 yay -S docker docker-compose docker-buildx
 sudo systemctl enable --now docker
+sudo groupadd -f docker && sudo usermod -aG docker $USER
 ```
 
 ## apps
