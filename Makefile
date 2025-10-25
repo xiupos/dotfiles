@@ -1,4 +1,4 @@
-DIR = bash foot fcitx5 mise git tmux
+DIR = bash fcitx5 foot git mise other tmux
 
 stow: bash/.local/share/blesh/out/ble.sh
 	stow -vt ~ $(DIR)
