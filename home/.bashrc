@@ -33,21 +33,25 @@ alias free='free -m'
 alias more=less
 
 # env
-BROWSER=/usr/bin/xdg-open
 [[ -f ~/.env ]] && export $(envsubst < ~/.env)
 
 # -------------------------------------------------------------------
 
 # git-prompt config (https://wiki.archlinux.org/title/Git#Git_prompt)
+GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
 GIT_PS1_DESCRIBE_STYLE=1
+GIT_PS1_SHOWCOLORHINTS=1
 
-# Change the window title of X terminals
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD/#$HOME/\~}$(__git_ps1 " (%s)")\007"'
+RED="\[\e[1;31m\]"
+GREEN="\[\e[1;32m\]"
+RESET="\[\e[00m\]"
 
-# PS1
-PS1='\w\[\033[36m\]$(__git_ps1 " (%s)") \[\033[01;32m\]\$ \[\033[00m\]'
+GIT_INFO="\$(__git_ps1 \" ${GREEN}\\\uf418${RESET} %s\")"
+DOLLAR=" \$([[ \$? = 0 ]] && echo '${GREEN}' || echo '${RED}')\$${RESET}"
 
+# --- PS1 を組み立てる ---
+PS1="\w${GIT_INFO}${DOLLAR} "
 # -------------------------------------------------------------------
 
 # import ~/.bash.d/*

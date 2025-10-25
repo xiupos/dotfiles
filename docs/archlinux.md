@@ -27,6 +27,7 @@ yay -S noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
 
 ```bash
 yay -S google-chrome visual-studio-code-bin neovim
+echo "BROWSER=google-chrome-stable" >> ~/.env
 ```
 
 login [github](https://github.com/)
@@ -89,9 +90,9 @@ logout & login
 ### terminals
 
 ```bash
-yay -S tmux xclip
+yay -S tmux xclip foot
 
-gsettings set org.gnome.desktop.input-sources show-all-sources true
+systemctl --user enable --now foot-server
 ```
 
 ### power profiles
@@ -104,8 +105,10 @@ sudo systemctl enable --now tuned tuned-ppd
 ## gnome extensions
 
 ```bash
-yay -S gnome-shell-extensions gnome-shell-extension-appindicator gnome-shell-extension-arc-menu gnome-shell-extension-dash-to-dock gnome-shell-extension-dash-to-panel gnome-shell-extension-forge gnome-shell-extension-gnome-ui-tune gnome-shell-extension-gsconnect gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-legacy-theme-auto-switcher gnome-shell-extension-space-bar gnome-shell-extension-x11gestures gnome-shell-extension-kimpanel-git gnome-browser-connector
+yay -S gnome-shell-extensions gnome-shell-extension-appindicator gnome-shell-extension-arc-menu gnome-shell-extension-dash-to-dock gnome-shell-extension-dash-to-panel gnome-shell-extension-forge gnome-shell-extension-gnome-ui-tune gnome-shell-extension-gsconnect gnome-shell-extension-gtk4-desktop-icons-ng gnome-shell-extension-legacy-theme-auto-switcher gnome-shell-extension-space-bar gnome-shell-extension-x11gestures gnome-shell-extension-kimpanel-git gnome-browser-connector gnome-shell-extension-nightthemeswitcher
 ```
+
+- https://extensions.gnome.org/extension/6307/quake-terminal/
 
 ## docker
 
