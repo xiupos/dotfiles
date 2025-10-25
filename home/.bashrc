@@ -55,3 +55,6 @@ PS1='\w\[\033[36m\]$(__git_ps1 " (%s)") \[\033[01;32m\]\$ \[\033[00m\]'
 
 # attach ble.sh
 [[ ! ${BLE_VERSION-} ]] || ble-attach
+
+# unset vars
+unset import-sh
