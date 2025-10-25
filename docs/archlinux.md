@@ -1,4 +1,4 @@
-# #archlinuxinstallbatte メモ
+# \#archlinuxinstallbatte メモ
 
 ## sudo without password
 
