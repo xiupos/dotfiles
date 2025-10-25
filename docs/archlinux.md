@@ -1,4 +1,4 @@
-## #archlinuxinstallbatte メモ
+# #archlinuxinstallbatte メモ
 
 ## sudo without password
 
@@ -88,19 +88,19 @@ gsettings set org.gnome.desktop.input-sources show-all-sources true
 
 logout & login
 
-### terminals
+## terminals
 
 ```bash
 yay -S tmux xclip foot
 ```
 
-### Network
+## Network
 
 ```bash
 yay -S nfs-utils networkmanager-openconnect networkmanager-openvpn networkmanager-pptp networkmanager-strongswan networkmanager-vpnc network-manager-sstp
 ```
 
-### power profiles
+## power profiles
 
 ```bash
 yay -S tuned-ppd
