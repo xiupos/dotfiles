@@ -6,4 +6,3 @@ restow:
 
 delete:
 	make -C src delete
-
