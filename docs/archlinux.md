@@ -69,8 +69,9 @@ reopen chrome
 ## terminals
 
 ```bash
-yay -S tmux bash-completion
-# guake --restore-preferences ~/.dotfiles/other/guake_prefs
+yay -S tmux bash-completion foot
+
+systemctl --user enable --now foot-server
 ```
 
 - https://askubuntu.com/questions/1331707/f12-acting-weird-in-21-04-can-no-longer-toggle-guake
@@ -90,9 +91,7 @@ logout & login
 ### terminals
 
 ```bash
-yay -S tmux xclip foot
-
-systemctl --user enable --now foot-server
+yay -S tmux xclip 
 ```
 
 ### power profiles
@@ -116,6 +115,12 @@ yay -S gnome-shell-extensions gnome-shell-extension-appindicator gnome-shell-ext
 yay -S docker docker-compose docker-buildx
 sudo systemctl enable --now docker
 sudo groupadd -f docker && sudo usermod -aG docker $USER
+```
+
+## mise
+
+```bash
+yay -S mise usage
 ```
 
 ## apps

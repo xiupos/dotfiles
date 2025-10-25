@@ -24,6 +24,7 @@ complete -cf sudo
 
 # aliases
 alias ls='ls --color=auto'
+alias tree='tree -C'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
