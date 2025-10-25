@@ -27,7 +27,6 @@ yay -S noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
 
 ```bash
 yay -S google-chrome visual-studio-code-bin neovim
-echo "BROWSER=google-chrome-stable" >> ~/.env
 ```
 
 login [github](https://github.com/)
@@ -67,7 +66,7 @@ reopen chrome
 ## terminals
 
 ```bash
-yay -S tmux guake
+yay -S tmux guake bash-completion
 guake --restore-preferences ~/.dotfiles/other/guake_prefs
 ```
 
