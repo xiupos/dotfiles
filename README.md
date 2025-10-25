@@ -18,4 +18,5 @@ guake --save-preferences ~/.dotfiles/other/guake_prefs
 ## installbattle
 
 - [manjaro](docs/manjaro.md)
+- [archlinux](docs/archlinux.md)
 - [gentoo](docs/gentoo.md)
