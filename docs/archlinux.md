@@ -50,7 +50,7 @@ ssh git@github.com
 ## tailescale
 
 ```bash
-yay -S tailescale
+yay -S tailscale
 sudo systemctl enable --now tailescaled
 sudo tailescale login
 ```
