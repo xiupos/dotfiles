@@ -1,13 +1,13 @@
-DIR = bash docker fcitx5 foot git mise other tmux
+DIRS := $(shell find . -maxdepth 1 -mindepth 1 -type d -printf "%f ")
 
 stow: bash/.local/share/blesh/out/ble.sh
-	stow -vt ~ $(DIR)
+	stow -vt ~ $(DIRS)
 
 restow: bash/.local/share/blesh/out/ble.sh
-	stow -Rvt ~ $(DIR)
+	stow -Rvt ~ $(DIRS)
 
 delete:
-	stow -Dvt ~ $(DIR)
+	stow -Dvt ~ $(DIRS)
 
 bash/.local/share/blesh/out/ble.sh:
 	make -C bash/.local/share/blesh
