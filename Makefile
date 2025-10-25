@@ -1,14 +1,10 @@
-all: local/share/blesh/out/ble.sh stow
+DIR = bash foot fcitx5 mise git tmux
 
-local/share/blesh/out/ble.sh:
-	make -C local/share/blesh
+stow: bash/.local/share/blesh/out/ble.sh
+	stow -vt ~ $(DIR)
 
-stow:
-	stow -vt ~ home
-	stow -vt ~/.config config
-	stow -vt ~/.local local
+restow: bash/.local/share/blesh/out/ble.sh
+	stow -Rvt ~ $(DIR)
 
-restow:
-	stow -Rvt ~ home
-	stow -Rvt ~/.config config
-	stow -Rvt ~/.local local
+bash/.local/share/blesh/out/ble.sh:
+	make -C bash/.local/share/blesh

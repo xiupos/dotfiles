@@ -1,12 +1,12 @@
-[submodule "local/share/fcitx5/cskk/skk-jisyo-latex-unicode-math"]
-	path = local/share/fcitx5/cskk/skk-jisyo-latex-unicode-math
+[submodule "fcitx5/.local/share/fcitx5/skk-jisyo-latex-unicode-math"]
+	path = fcitx5/.local/share/fcitx5/skk-jisyo-latex-unicode-math
 	url = https://github.com/xiupos/skk-jisyo-latex-unicode-math.git
-[submodule "local/share/fcitx5/cskk/skk-emoji-jisyo"]
-	path = local/share/fcitx5/cskk/skk-emoji-jisyo
+[submodule "fcitx5/.local/share/fcitx5/skk-emoji-jisyo"]
+	path = fcitx5/.local/share/fcitx5/skk-emoji-jisyo
 	url = https://github.com/uasi/skk-emoji-jisyo.git
-[submodule "local/share/fcitx5/cskk/skk-jisyo-imasparql"]
-	path = local/share/fcitx5/cskk/skk-jisyo-imasparql
+[submodule "fcitx5/.local/share/fcitx5/skk-jisyo-imasparql"]
+	path = fcitx5/.local/share/fcitx5/skk-jisyo-imasparql
 	url = https://github.com/banjun/skk-jisyo-imasparql.git
-[submodule "local/share/blesh"]
-	path = local/share/blesh
+[submodule "bash/.local/share/blesh"]
+	path = bash/.local/share/blesh
 	url = https://github.com/akinomyoga/ble.sh.git
