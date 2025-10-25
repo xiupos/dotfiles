@@ -43,12 +43,14 @@ register the public key to [github](https://github.com/settings/ssh/new)
 
 ```bash
 # test the key
-ssh-keygen -R github.com && ssh git@github.com
+# ssh-keygen -R github.com
+ssh git@github.com
 ```
 
 ## tailescale
 
 ```bash
+yay -S tailescale
 sudo systemctl enable --now tailescaled
 sudo tailescale login
 ```
