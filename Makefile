@@ -1,10 +1,8 @@
-DIR = bash docker fcitx5 foot git mise other tmux
+stow:
+	make -C src stow
 
-stow: bash/.local/share/blesh/out/ble.sh
-	stow -vt ~ $(DIR)
+restow:
+	make -C src restow
 
-restow: bash/.local/share/blesh/out/ble.sh
-	stow -Rvt ~ $(DIR)
-
-bash/.local/share/blesh/out/ble.sh:
-	make -C bash/.local/share/blesh
+delete:
+	make -C src delete
