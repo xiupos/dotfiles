@@ -23,6 +23,12 @@ source ${ZIM_HOME}/init.zsh
 
 # -------------------------------------------------------------------
 
+# for zsh-history-substring-search
+bindkey $terminfo[kcuu1] history-substring-search-up
+bindkey $terminfo[kcud1] history-substring-search-down
+
+# -------------------------------------------------------------------
+
 # history
 HISTFILE=~/.zsh_history
 export HISTSIZE=1000
