@@ -42,7 +42,8 @@ alias more=less
 # env
 [[ -f ~/.env ]] && export $(envsubst < ~/.env)
 
-# import ~/.zsh.d/*
+# import ~/.sh.d/* and  ~/.sh.d/*
+[ -d ~/.sh.d ] && for i in ~/.sh.d/*; do import-sh "${i}"; done
 [ -d ~/.zsh.d ] && for i in ~/.zsh.d/*; do import-sh "${i}"; done
 
 # unset vars

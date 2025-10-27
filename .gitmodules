@@ -1,6 +1,3 @@
-[submodule "src/bash/.local/share/blesh"]
-	path = src/bash/.local/share/blesh
-	url = https://github.com/akinomyoga/ble.sh.git
 [submodule "src/fcitx5/.local/share/fcitx5/skk-jisyo-imasparql"]
 	path = src/fcitx5/.local/share/fcitx5/skk-jisyo-imasparql
 	url = https://github.com/banjun/skk-jisyo-imasparql.git
