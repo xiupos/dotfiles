@@ -1,4 +1,4 @@
-DIRS := $(shell find . -maxdepth 1 -mindepth 1 -type d -printf "%f ")
+DIRS := $(patsubst %/,%,$(wildcard */))
 
 stow: bash/.local/share/blesh/out/ble.sh
 	stow -vt ~ $(DIRS)

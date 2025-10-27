@@ -1,0 +1,35 @@
+# ~/.zimrc
+
+# -------------------------------------------------------------------
+# Modules
+
+zmodule environment
+zmodule input
+zmodule utility
+
+# -------------------------------------------------------------------
+# Prompt
+
+# https://github.com/zimfw/git-info
+zmodule git-info
+# https://github.com/zimfw/prompt-pwd
+zmodule prompt-pwd
+# https://github.com/zimfw/gitster
+zmodule gitster
+
+# -------------------------------------------------------------------
+# Completion
+
+# https://github.com/zsh-users/zsh-completions
+zmodule zsh-users/zsh-completions --fpath src
+
+# It must be sourced after other completion modules!
+zmodule completion
+
+# -------------------------------------------------------------------
+# Modules; must be initialized last
+
+# https://github.com/zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-syntax-highlighting
+# https://github.com/zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-autosuggestions

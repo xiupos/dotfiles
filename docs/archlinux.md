@@ -54,6 +54,13 @@ ssh git@github.com
 yay -S tailscale
 sudo systemctl enable --now tailscaled
 sudo tailscale login
+
+sudo systemctl enable --now systemd-resolved
+# https://tailscale.com/kb/1188/linux-dns#networkmanager--systemd-resolved
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+sudo systemctl restart systemd-resolved
+sudo systemctl restart NetworkManager
+sudo systemctl restart tailscaled
 ```
 
 ## dotfiles
@@ -69,8 +76,9 @@ reopen chrome
 ## terminals
 
 ```bash
-yay -S tmux bash-completion foot
+yay -S zsh tmux bash-completion foot
 
+chsh -s $(which zsh)
 systemctl --user enable --now foot-server
 ```
 
