@@ -37,6 +37,7 @@ login [github](https://github.com/)
 ```bash
 yay -S xclip
 ssh-keygen -t ed25519 -C "me@xiupos.net"
+systemctl enable --user --now gcr-ssh-agent
 cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
 ```
 
@@ -76,7 +77,7 @@ reopen chrome
 ## terminals
 
 ```bash
-yay -S zsh tmux bash-completion foot
+yay -S zsh tmux foot xclip
 
 chsh -s $(which zsh)
 systemctl --user enable --now foot-server
@@ -95,12 +96,6 @@ gsettings set org.gnome.desktop.input-sources show-all-sources true
 ```
 
 logout & login
-
-## terminals
-
-```bash
-yay -S tmux xclip foot
-```
 
 ## Network
 
