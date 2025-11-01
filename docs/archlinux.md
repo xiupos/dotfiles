@@ -28,6 +28,7 @@ yay -S noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
 ```bash
 yay -S google-chrome visual-studio-code-bin neovim
 echo "BROWSER=google-chrome-stable" >> ~/.env
+echo "EDITOR=nvim" >> ~/.env
 ```
 
 login [github](https://github.com/)
