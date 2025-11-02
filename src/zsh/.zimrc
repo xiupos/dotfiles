@@ -14,8 +14,6 @@ zmodule utility
 zmodule git-info
 # https://github.com/zimfw/prompt-pwd
 zmodule prompt-pwd
-# https://github.com/romkatv/powerlevel10k
-zmodule romkatv/powerlevel10k
 
 # -------------------------------------------------------------------
 # Completion

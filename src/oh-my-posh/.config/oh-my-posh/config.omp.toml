@@ -1,0 +1,74 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+console_title_template = "{{if .Root}}(Admin){{end}} {{.PWD}}"
+version = 3
+
+[[blocks]]
+alignment = "left"
+type = "prompt"
+
+[[blocks.segments]]
+foreground = "#84a0c6"
+style = "plain"
+template = "{{ .Path }} "
+type = "path"
+
+[blocks.segments.properties]
+style = "full"
+
+[[blocks.segments]]
+style = "plain"
+template = "<#ffffff>on</> {{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} "
+type = "git"
+
+[blocks.segments.properties]
+branch_ahead_icon = "<#88C0D0>⇡ </>"
+branch_behind_icon = "<#88C0D0>⇣ </>"
+fetch_status = true
+fetch_upstream_icon = true
+github_icon = ""
+
+[[blocks.segments]]
+foreground = "#906cff"
+style = "powerline"
+template = "[ {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}] "
+type = "python"
+
+[[blocks.segments]]
+foreground = "#7FD5EA"
+style = "powerline"
+template = "[ {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}] "
+type = "go"
+
+[[blocks.segments]]
+foreground = "#76b367"
+style = "powerline"
+template = "[ {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}] "
+type = "node"
+
+[[blocks.segments]]
+foreground = "#f44336"
+style = "powerline"
+template = "[{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}] "
+type = "ruby"
+
+[[blocks.segments]]
+foreground = "#ea2d2e"
+style = "powerline"
+template = "[ {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}] "
+type = "java"
+
+[[blocks.segments]]
+foreground = "#4063D8"
+style = "powerline"
+template = "  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
+type = "julia"
+
+[[blocks.segments]]
+foreground = "#b4be82"
+foreground_templates = ["{{ if gt .Code 0 }}#BF616A{{ end }} "]
+style = "plain"
+template = "→ "
+type = "status"
+
+[blocks.segments.properties]
+always_enabled = true
