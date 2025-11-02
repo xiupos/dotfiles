@@ -1,0 +1,70 @@
+#!/usr/bin/env perl
+
+# $ENV{'TEXINPUTS'}='./tex//:' . $ENV{'TEXINPUTS'};
+$ENV{'BSTINPUTS'}='./sty//:' . $ENV{'BSTINPUTS'};
+
+# $ENVについては'locate texmf.cnf'で変数名称を確認すること
+# https://ja.overleaf.com/learn/latex/Questions/I_have_a_lot_of_.cls%2C_.sty%2C_.bst_files%2C_and_I_want_to_put_them_in_a_folder_to_keep_my_project_uncluttered._But_my_project_is_not_finding_them_to_compile_correctly
+
+# -----------------------------------------------------------------------------
+# latex options
+
+$latexargs       = '  -shell-escape  -synctex=1  -file-line-error';
+$latexsilentargs = $latexargs. '  -interaction=batchmode';
+# -synctex=1 … プレビュー画面からソースコードの該当箇所に移動できるようにします
+# -shell-escape … 任意の外部コマンドの実行(mintedのpygmentsなど)
+# -halt-on-error … コンパイル中にエラーが発生した場合、コンパイルを終了します
+# -interaction=nonstopmode … コンパイル中にエラーが起きても、ユーザーにどう処理するかの指示を求めずにコンパイルを続行します(-interaction=batchmode)
+# -file-line-error … TeXファイルの何行目でエラーが発生したかを表示します(https://tex.stackexchange.com/questions/258814/what-is-the-difference-between-interaction-nonstopmode-and-halt-on-error)
+
+$args = $latexargs; # $latexsilentargs or $latexsargs
+
+# -----------------------------------------------------------------------------
+# latex
+
+# ここで指定を行わないと自動保管される(defolt値は変更されず-no-shell-escapeで実行される)
+$latex    = 'platex  -synctex=1';
+$uplatex  = 'uplatex  -kanji=utf8  -no-guess-input-enc'.$args;
+$pdflatex = 'pdflatex'.$args;
+$lualatex = 'lualatex'.$args;
+$xelatex  = 'xelatex'.$args;
+
+$lualatex_silent_switch = 'lualatex'. $latexsilentargs;
+# 実行時の-silentオプションを使用した場合に，コンパイルするコマンドの設定
+
+# -----------------------------------------------------------------------------
+# pdf_mode
+
+# $pdf_mode         = 0; # tex -($latex)-> dvi
+$pdf_mode         = 1; # tex -($pdflatex)-> pdf
+# $pdf_mode         = 2; # tex -($latex)-> dvi -($dvips)-> ps -($ps2pdf)-> pdf
+# $pdf_mode         = 3; # tex -($latex)-> dvi -($dvipdf)-> pdf
+# $pdf_mode         = 4; # tex -($lualatex)-> pdf
+# $pdf_mode         = 5; # tex -($xelatex)-> dvi -($xdvipdfmx)-> pdf
+
+# -----------------------------------------------------------------------------
+# BiB
+
+$bibtex    = 'upbibtex';# 'pbibtex';
+$biber     = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
+# –bblencoding=utf8 … bblファイル（参考文献ファイル）の文字コードをUTF-8にします
+# -u … 入力ファイルの文字コードをUTF-8にします
+# -U … 出力ファイルの文字コードをUTF-8にします
+# –output_safechars … ユニコード文字をLaTeXの命令を使ってエンコードした形で出力させます
+
+# -----------------------------------------------------------------------------
+# index
+
+$makeindex = 'upmendex %O -o %D %S';
+
+# -----------------------------------------------------------------------------
+# dvi
+
+# $dvipdf = 'dvipdfmx %O -o %D %S';
+# $dvips  = 'dvips %O -z -f %S | convbkmk -u > %D';
+# $ps2pdf = 'ps2pdf.exe %O %S %D';
+
+# -----------------------------------------------------------------------------
+# previewer
+
+$pdf_previewer = "xdg-open %S";

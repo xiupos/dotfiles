@@ -3,7 +3,7 @@
 
 # report-docker
 # alias report-docker='docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) ghcr.io/xiupos/report-docker -d ~/.report/default/report_lualatex.yaml'
-alias report-docker='pandoc -d ~/.report/default/report_lualatex.yaml'
+alias report-docker='pandoc -d ~/.local/share/report-docker/default/report_lualatex.yaml'
 
 # use to convert only to pdf
 function repo() {
@@ -16,4 +16,4 @@ function repo-tex() {
 }
 
 # update image
-alias repo-update='docker pull ghcr.io/xiupos/report-docker:latest'
+# alias repo-update='docker pull ghcr.io/xiupos/report-docker:latest'
