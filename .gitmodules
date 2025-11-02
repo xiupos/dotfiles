@@ -10,3 +10,6 @@
 [submodule "src/bash/.local/share/blesh"]
 	path = src/bash/.local/share/blesh
 	url = https://github.com/akinomyoga/ble.sh.git
+[submodule "src/tex/.local/share/report-docker"]
+	path = src/tex/.local/share/report-docker
+	url = https://github.com/xiupos/report-docker
