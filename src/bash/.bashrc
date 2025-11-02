@@ -45,7 +45,7 @@ PS1="\w${GIT_INFO}${DOLLAR} "
 # -------------------------------------------------------------------
 
 # env
-[[ -f ~/.env ]] && export $(envsubst < ~/.env)
+[[ -s ~/.env ]] && export $(envsubst < ~/.env)
 
 # import ~/.bash.d/*
 [ -d ~/.bash.d ] && for i in ~/.bash.d/*; do import-sh "${i}"; done

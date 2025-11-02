@@ -6,7 +6,7 @@ import-sh() { [[ -f "$1" ]] && . "$@"; }
 # -------------------------------------------------------------------
 
 # env
-[[ -f ~/.env ]] && export $(envsubst < ~/.env)
+[[ -s ~/.env ]] && export $(envsubst < ~/.env)
 
 # import ~/.sh.d/* and  ~/.sh.d/*
 [ -d ~/.zsh.d ] && for i in ~/.zsh.d/*; do import-sh "${i}"; done
