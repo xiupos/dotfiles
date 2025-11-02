@@ -5,6 +5,9 @@ import-sh() { [[ -f "$1" ]] && . "$@"; }
 
 # -------------------------------------------------------------------
 
+# ble.sh - https://github.com/akinomyoga/ble.sh
+import-sh ~/.local/share/blesh/out/ble.sh --attach=none
+
 # completion
 import-sh /usr/share/bash-completion/bash_completion
 import-sh /usr/share/git/completion/git-completion.bash
@@ -41,22 +44,14 @@ PS1="\w${GIT_INFO}${DOLLAR} "
 
 # -------------------------------------------------------------------
 
-# aliases
-alias ls='ls --color=auto'
-alias tree='tree -C'
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
-alias cp="cp -i"
-alias df='df -h'
-alias free='free -m'
-alias more=less
-
 # env
 [[ -f ~/.env ]] && export $(envsubst < ~/.env)
 
 # import ~/.bash.d/*
 [ -d ~/.bash.d ] && for i in ~/.bash.d/*; do import-sh "${i}"; done
+
+# attach ble.sh
+[[ ! ${BLE_VERSION-} ]] || ble-attach
 
 # unset vars
 unset import-sh
