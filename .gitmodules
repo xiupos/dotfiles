@@ -7,3 +7,6 @@
 [submodule "src/fcitx5/.local/share/fcitx5/skk-jisyo-latex-unicode-math"]
 	path = src/fcitx5/.local/share/fcitx5/skk-jisyo-latex-unicode-math
 	url = https://github.com/xiupos/skk-jisyo-latex-unicode-math.git
+[submodule "src/bash/.local/share/blesh"]
+	path = src/bash/.local/share/blesh
+	url = https://github.com/akinomyoga/ble.sh.git
