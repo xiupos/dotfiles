@@ -21,8 +21,6 @@ template = "<#ffffff>on</> {{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 
 type = "git"
 
 [blocks.segments.properties]
-branch_ahead_icon = "<#88C0D0>⇡ </>"
-branch_behind_icon = "<#88C0D0>⇣ </>"
 fetch_status = true
 fetch_upstream_icon = true
 github_icon = ""

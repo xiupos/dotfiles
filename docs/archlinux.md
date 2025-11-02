@@ -76,7 +76,7 @@ reopen chrome
 ## terminals
 
 ```bash
-yay -S zsh tmux foot xclip
+yay -S zsh oh-my-posh tmux foot xclip
 
 chsh -s $(which zsh)
 systemctl --user enable --now foot-server
