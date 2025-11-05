@@ -1,15 +1,15 @@
-[submodule "src/fcitx5/.local/share/fcitx5/skk-jisyo-imasparql"]
-	path = src/fcitx5/.local/share/fcitx5/skk-jisyo-imasparql
-	url = https://github.com/banjun/skk-jisyo-imasparql.git
-[submodule "src/fcitx5/.local/share/fcitx5/skk-emoji-jisyo"]
-	path = src/fcitx5/.local/share/fcitx5/skk-emoji-jisyo
-	url = https://github.com/uasi/skk-emoji-jisyo.git
-[submodule "src/fcitx5/.local/share/fcitx5/skk-jisyo-latex-unicode-math"]
-	path = src/fcitx5/.local/share/fcitx5/skk-jisyo-latex-unicode-math
-	url = https://github.com/xiupos/skk-jisyo-latex-unicode-math.git
 [submodule "src/bash/.local/share/blesh"]
 	path = src/bash/.local/share/blesh
 	url = https://github.com/akinomyoga/ble.sh.git
 [submodule "src/tex/.local/share/report-docker"]
 	path = src/tex/.local/share/report-docker
 	url = https://github.com/xiupos/report-docker
+[submodule "src/fcitx5/.local/share/fcitx5/cskk/skk-emoji-jisyo"]
+	path = src/fcitx5/.local/share/fcitx5/cskk/skk-emoji-jisyo
+	url = https://github.com/uasi/skk-emoji-jisyo.git
+[submodule "src/fcitx5/.local/share/fcitx5/cskk/skk-jisyo-imasparql"]
+	path = src/fcitx5/.local/share/fcitx5/cskk/skk-jisyo-imasparql
+	url = https://github.com/banjun/skk-jisyo-imasparql.git
+[submodule "src/fcitx5/.local/share/fcitx5/cskk/skk-jisyo-latex-unicode-math"]
+	path = src/fcitx5/.local/share/fcitx5/cskk/skk-jisyo-latex-unicode-math
+	url = https://github.com/xiupos/skk-jisyo-latex-unicode-math.git
