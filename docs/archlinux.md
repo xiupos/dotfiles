@@ -102,6 +102,17 @@ logout & login
 yay -S nfs-utils networkmanager-openconnect networkmanager-openvpn networkmanager-pptp networkmanager-strongswan networkmanager-vpnc network-manager-sstp
 ```
 
+## firmware
+
+[fwupd - ArchWiki](https://wiki.archlinux.org/title/Fwupd)
+
+```bash
+yay -S gnome-firmware
+sudo systemctl enable --now fwupd-refresh.timer
+```
+
+- firmware update: `sudo fwupdmgr update`
+
 ## power profiles
 
 ```bash
