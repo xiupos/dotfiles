@@ -152,6 +152,15 @@ sudo groupadd -f docker && sudo usermod -aG docker $USER
 yay -S mise usage
 ```
 
+## uxplay
+
+```bash
+yay -S uxplay
+
+# start uxplay
+# systemctl --user start uxplay
+```
+
 ## apps
 
 ```bash
