@@ -130,7 +130,6 @@ yay -S \
   gnome-shell-extension-gnome-ui-tune \
   gnome-shell-extension-gsconnect \
   gnome-shell-extension-legacy-theme-auto-switcher \
-  gnome-shell-extension-x11gestures \
   gnome-shell-extension-kimpanel-git \
   gnome-shell-extension-nightthemeswitcher \
   gnome-shell-extension-battery-health-charging-git
@@ -164,6 +163,6 @@ yay -S uxplay
 ## apps
 
 ```bash
-yay -S discord keybase keybase-gui
+yay -S discord keybase keybase-gui devtoolbox
 yay -Rc gnome-tours gnome-software epiphany yelp
 ```
