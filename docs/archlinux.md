@@ -160,9 +160,15 @@ yay -S uxplay
 # systemctl --user start uxplay
 ```
 
+## keybase
+
+```bash
+yay -S keybase-bin keybase-zsh-completion-git
+```
+
 ## apps
 
 ```bash
-yay -S discord keybase keybase-gui devtoolbox
+yay -S discord devtoolbox
 yay -Rc gnome-tours gnome-software epiphany yelp
 ```

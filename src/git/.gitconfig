@@ -1,6 +1,11 @@
 [user]
   name = xiupos
   email = me@xiupos.net
+	signingkey = me@xiupos.net
 
 [init]
   defaultbranch = main
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg
