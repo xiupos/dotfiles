@@ -172,3 +172,10 @@ yay -S keybase-bin keybase-zsh-completion-git
 yay -S discord devtoolbox
 yay -Rc gnome-tours gnome-software epiphany yelp
 ```
+
+## kubectl
+
+```bash
+yay -S kubectl helm
+scp sapporo-2:config > ~/.kube/k0s-config
+```
