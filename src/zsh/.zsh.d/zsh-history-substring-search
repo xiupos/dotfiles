@@ -1,6 +1,0 @@
-# for zsh-history-substring-search
-# https://github.com/zsh-users/zsh-history-substring-search?tab=readme-ov-file#usage
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down

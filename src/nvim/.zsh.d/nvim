@@ -1,4 +1,0 @@
-export EDITOR=nvim
-
-# use emacs keybind in zsh
-bindkey -e
