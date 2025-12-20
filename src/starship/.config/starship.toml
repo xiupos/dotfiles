@@ -11,6 +11,9 @@ $jobs\
 $sudo\
 $username\
 $directory\
+$git_branch\
+$git_commit\
+$git_status\
 $cmd_duration\
 $character"""
 
@@ -19,10 +22,7 @@ $singularity\
 $kubernetes\
 $vcsh\
 $fossil_branch\
-$git_branch\
-$git_commit\
 $git_state\
-$git_status\
 $hg_branch\
 $pijul_channel\
 $docker_context\
@@ -110,11 +110,15 @@ format = '\[[$symbol($version)]($style)\]'
 [c]
 format = '\[[$symbol($version(-$name))]($style)\]'
 
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
 [cmake]
 format = '\[[$symbol($version)]($style)\]'
 
 [cmd_duration]
-format = '\[[⏱ $duration]($style)\]'
+format = '[$duration]($style) '
 
 [cobol]
 format = '\[[$symbol($version)]($style)\]'
@@ -140,12 +144,14 @@ format = '\[[$symbol($version)]($style)\]'
 [deno]
 format = '\[[$symbol($version)]($style)\]'
 
+[directory]
+truncation_length = 1
+truncate_to_repo = true
+use_os_path_sep = true
+fish_style_pwd_dir_length = 1
+
 [direnv]
 format = '\[[$symbol$loaded/$allowed]($style)\]'
-
-[directory]
-truncation_length = 3
-use_os_path_sep = true
 
 [docker_context]
 format = '\[[$symbol$context]($style)\]'
@@ -178,10 +184,10 @@ format = '\[[+$added]($added_style)\]\[[-$deleted]($deleted_style)\]'
 format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
 
 [git_branch]
-format = '\[[$symbol$branch]($style)\]'
+format = '\([$branch]($style)'
 
 [git_commit]
-format = '\[[\($hash$tag\)]($style)\]'
+format = '|[$hash$tag]($style)'
 
 [git_metrics]
 format = '\[[+$added]($added_style)\]\[[-$deleted]($deleted_style)\]'
@@ -190,7 +196,7 @@ format = '\[[+$added]($added_style)\]\[[-$deleted]($deleted_style)\]'
 format = '\[[$state ($progress_current/$progress_total)]($style)\]'
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '[$all_status$ahead_behind]($style)\) '
 
 [gleam]
 format = '\[[$symbol($version)]($style)\]'
