@@ -3,7 +3,7 @@
 ## sudo without password
 
 ```bash
-sudo bash -c "echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers"
+echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
 ```
 
 logout & login
@@ -26,10 +26,13 @@ yay -S noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
 ## browser and editor
 
 ```bash
+yay -S xdg-desktop-portal xdg-desktop-portal-gnome adw-gtk-theme
 yay -S google-chrome visual-studio-code-bin neovim
 ```
 
 login [github](https://github.com/)
+
+- Tweaks: Appearance -> Legacy Applications `Adw-gtk3`
 
 ## GitHub
 
