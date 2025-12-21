@@ -79,9 +79,9 @@ reopen chrome
 ## terminals
 
 ```bash
-yay -S zsh starship tmux foot xclip
+yay -S fish starship tmux foot xclip
 
-chsh -s $(which zsh)
+chsh -s $(which fish)
 systemctl --user enable --now foot-server
 ```
 
@@ -166,13 +166,13 @@ yay -S uxplay
 ## keybase
 
 ```bash
-yay -S keybase-bin keybase-zsh-completion-git
+yay -S keybase
 ```
 
 ## apps
 
 ```bash
-yay -S discord devtoolbox
+yay -S discord
 yay -Rc gnome-tours gnome-software epiphany yelp
 ```
 
@@ -180,5 +180,5 @@ yay -Rc gnome-tours gnome-software epiphany yelp
 
 ```bash
 yay -S kubectl helm
-scp sapporo-2:config > ~/.kube/k0s-config
+# scp sapporo-2:config > ~/.kube/k0s-config
 ```
