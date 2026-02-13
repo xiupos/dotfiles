@@ -1,0 +1,37 @@
+from: markdown+raw_tex
+to: latex
+
+pdf-engine: pdflatex
+listings: true
+number-sections: true
+
+variables:
+  lang: en
+  documentclass: article
+  classoption:
+    - 11pt
+    - a4paper
+    - twocolumn
+  geometry:
+    - includeheadfoot
+    - top=20truemm
+    - bottom=20truemm
+    - right=25truemm
+    - left=25truemm
+  graphics: true
+  linkcolor: blue
+  top-level-division: section
+  indent: true
+
+shift-heading-level-by: -1
+
+filters:
+  - pandoc-crossref
+  - pandoc-unicode-math
+  - include-files.lua
+  - fenced-divs.lua
+  - codeblock.lua
+  - type: citeproc
+
+include-in-header:
+  - ${.}/../includes/article-en-header.sty
