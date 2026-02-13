@@ -1,0 +1,52 @@
+from: markdown+raw_tex
+to: latex
+
+pdf-engine: pdflatex
+listings: true
+number-sections: true
+
+variables:
+  lang: ja
+  documentclass: bxjsarticle
+  classoption:
+    - 11pt
+    - pandoc
+    - a4paper
+    - pdflatex
+    - japaram={jis2004}
+  geometry:
+    - includeheadfoot
+    - top=20truemm
+    - bottom=20truemm
+    - right=25truemm
+    - left=25truemm
+  graphics: true
+  linkcolor: blue
+  top-level-division: section
+  indent: true
+
+shift-heading-level-by: -1
+
+filters:
+  - pandoc-crossref
+  - pandoc-unicode-math
+  - include-files.lua
+  - fenced-divs.lua
+  - codeblock.lua
+  - type: citeproc
+
+include-in-header:
+  - ${.}/../includes/report-ja-header.sty
+
+csl: sist02.csl
+
+metadata:
+  listings: true
+  figureTitle: "図"
+  tableTitle: "表"
+  listingTitle: "コード"
+  figPrefix: "図"
+  eqnPrefix: "式"
+  tblPrefix: "表"
+  lstPrefix: "コード"
+  secPrefix: "セクション"

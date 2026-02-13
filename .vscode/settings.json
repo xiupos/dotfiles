@@ -1,0 +1,8 @@
+{
+  "yaml.schemas": {
+    "https://www.schemastore.org/yamllint.json": [
+      "file:///home/xiupos/.dotfiles/src/pandoc/.local/share/pandoc/defaults/report.yaml",
+      "file:///home/xiupos/.dotfiles/src/pandoc/.local/share/pandoc/defaults/report_lualatex.yaml"
+    ]
+  }
+}

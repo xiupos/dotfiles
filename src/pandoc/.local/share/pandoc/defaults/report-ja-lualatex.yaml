@@ -1,0 +1,58 @@
+from: markdown+raw_tex
+to: latex
+
+pdf-engine: lualatex
+listings: true
+number-sections: true
+
+variables:
+  lang: ja
+  documentclass: ltjsarticle
+  classoption:
+    - 11pt
+    - pandoc
+    - a4paper
+  geometry:
+    - includeheadfoot
+    - top=20truemm
+    - bottom=20truemm
+    - right=25truemm
+    - left=25truemm
+  luatexjapresetoptions:
+    - haranoaji
+    - deluxe
+    - no-math
+  mainfont: STIX Two Text
+  mathfont: STIX Two Math
+  mathfontoptions:
+    - Scale=1.1
+  graphics: true
+  linkcolor: blue
+  top-level-division: section
+  indent: true
+
+shift-heading-level-by: -1
+
+filters:
+  - pandoc-crossref
+  - pandoc-unicode-math
+  - include-files.lua
+  - fenced-divs.lua
+  - codeblock.lua
+  - type: citeproc
+
+include-in-header:
+  - ${.}/../includes/report-ja-lualatex-header.sty
+
+csl: sist02.csl
+
+metadata:
+  listings: true
+  figureTitle: "図"
+  tableTitle: "表"
+  listingTitle: "コード"
+  figPrefix: "図"
+  eqnPrefix: "式"
+  tblPrefix: "表"
+  lstPrefix: "コード"
+  secPrefix: "セクション"
