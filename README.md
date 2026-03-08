@@ -1,18 +1,9 @@
 # dotfiles
 
-```bash
-git clone --recursive git@github.com:xiupos/dotfiles.git ~/.dotfiles
-make -C ~/.dotfiles
-```
-
-## Guake
+Install [Chezmoi](https://www.chezmoi.io/install/).
 
 ```bash
-# load prefs
-guake --restore-preferences ~/.dotfiles/other/guake_prefs
-
-# save prefs
-guake --save-preferences ~/.dotfiles/other/guake_prefs
+chezmoi init --apply xiupos
 ```
 
 ## installbattle
