@@ -1,0 +1,9 @@
+type=file,file=$FCITX_CONFIG_DIR/cskk/user.dict,encoding=utf-8,mode=readwrite
+type=file,file=$FCITX_CONFIG_DIR/cskk/dict/SKK-JISYO.latex.unicode-math.utf8,encoding=utf-8,mode=readonly
+type=file,file=/usr/share/skk/SKK-JISYO.L,mode=readonly
+type=file,file=/usr/share/skk/SKK-JISYO.jinmei,mode=readonly
+type=file,file=/usr/share/skk/SKK-JISYO.geo,mode=readonly
+type=file,file=/usr/share/skk/SKK-JISYO.station,mode=readonly
+type=file,file=/usr/share/skk/SKK-JISYO.propernoun,mode=readonly
+type=file,file=$FCITX_CONFIG_DIR/cskk/dict/SKK-JISYO.im@sparql.all.utf8,encoding=utf-8,mode=readonly
+type=file,file=$FCITX_CONFIG_DIR/cskk/dict/SKK-JISYO.emoji.utf8,encoding=utf-8,mode=readonly

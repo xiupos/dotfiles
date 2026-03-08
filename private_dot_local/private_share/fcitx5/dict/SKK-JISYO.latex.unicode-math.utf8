@@ -1,0 +1,2461 @@
+;; -*- fundamental -*- ; coding: utf-8 -*-
+;; LaTeX Symbol Dictionary using unicode-math
+;; Copyright (c) 2021 TANIGUCHI Masaya
+;; Copyright (c) 2024 xiupos
+;;
+;; Original: https://github.com/latex3/unicode-math/blob/master/unicode-math-table.tex
+;; Copyright (c) 2006-2019  Will Robertson, LPPL "maintainer"
+;; Copyright (c) 2010-2017  Philipp Stephani
+;; Copyright (c) 2011-2017  Joseph Wright
+;; Copyright (c) 2012-2015  Khaled Hosny
+;;
+;; okuri-ari entries.
+;; okuri-nasi entries.
+APLboxquestion /⍰;boxed question mark/
+APLboxupcaret /⍓;boxed up caret/
+APLnotbackslash /⍀;apl functional symbol backslash bar/
+APLnotslash /⌿;solidus, bar through (apl functional symbol slash bar)/
+Angstrom /Å;angstrom capital a, ring/
+Barv /⫧;short down tack with overbar/
+BbbA /𝔸;mathematical double-struck capital a/
+BbbB /𝔹;mathematical double-struck capital b/
+BbbC /ℂ;bbb c, open face c/
+BbbD /𝔻;mathematical double-struck capital d/
+BbbE /𝔼;mathematical double-struck capital e/
+BbbF /𝔽;mathematical double-struck capital f/
+BbbG /𝔾;mathematical double-struck capital g/
+BbbGamma /ℾ;double-struck capital gamma/
+BbbH /ℍ;bbb h, open face h/
+BbbI /𝕀;mathematical double-struck capital i/
+BbbJ /𝕁;mathematical double-struck capital j/
+BbbK /𝕂;mathematical double-struck capital k/
+BbbL /𝕃;mathematical double-struck capital l/
+BbbM /𝕄;mathematical double-struck capital m/
+BbbN /ℕ;bbb n, open face n/
+BbbO /𝕆;mathematical double-struck capital o/
+BbbP /ℙ;bbb p, open face p/
+BbbPi /ℿ;double-struck capital pi/
+BbbQ /ℚ;bbb q, open face q/
+BbbR /ℝ;bbb r, open face r/
+BbbS /𝕊;mathematical double-struck capital s/
+BbbT /𝕋;mathematical double-struck capital t/
+BbbU /𝕌;mathematical double-struck capital u/
+BbbV /𝕍;mathematical double-struck capital v/
+BbbW /𝕎;mathematical double-struck capital w/
+BbbX /𝕏;mathematical double-struck capital x/
+BbbY /𝕐;mathematical double-struck capital y/
+BbbZ /ℤ;bbb z, open face z/
+Bbba /𝕒;mathematical double-struck small a/
+Bbbb /𝕓;mathematical double-struck small b/
+Bbbc /𝕔;mathematical double-struck small c/
+Bbbd /𝕕;mathematical double-struck small d/
+Bbbe /𝕖;mathematical double-struck small e/
+Bbbeight /𝟠;mathematical double-struck digit 8/
+Bbbf /𝕗;mathematical double-struck small f/
+Bbbfive /𝟝;mathematical double-struck digit 5/
+Bbbfour /𝟜;mathematical double-struck digit 4/
+Bbbg /𝕘;mathematical double-struck small g/
+Bbbgamma /ℽ;double-struck small gamma/
+Bbbh /𝕙;mathematical double-struck small h/
+Bbbi /𝕚;mathematical double-struck small i/
+Bbbj /𝕛;mathematical double-struck small j/
+Bbbk /𝕜;mathematical double-struck small k/
+Bbbl /𝕝;mathematical double-struck small l/
+Bbbm /𝕞;mathematical double-struck small m/
+Bbbn /𝕟;mathematical double-struck small n/
+Bbbnine /𝟡;mathematical double-struck digit 9/
+Bbbo /𝕠;mathematical double-struck small o/
+Bbbone /𝟙;mathematical double-struck digit 1/
+Bbbp /𝕡;mathematical double-struck small p/
+Bbbpi /ℼ;double-struck small pi/
+Bbbq /𝕢;mathematical double-struck small q/
+Bbbr /𝕣;mathematical double-struck small r/
+Bbbs /𝕤;mathematical double-struck small s/
+Bbbseven /𝟟;mathematical double-struck digit 7/
+Bbbsix /𝟞;mathematical double-struck digit 6/
+Bbbsum /⅀;double-struck n-ary summation/
+Bbbt /𝕥;mathematical double-struck small t/
+Bbbthree /𝟛;mathematical double-struck digit 3/
+Bbbtwo /𝟚;mathematical double-struck digit 2/
+Bbbu /𝕦;mathematical double-struck small u/
+Bbbv /𝕧;mathematical double-struck small v/
+Bbbw /𝕨;mathematical double-struck small w/
+Bbbx /𝕩;mathematical double-struck small x/
+Bbby /𝕪;mathematical double-struck small y/
+Bbbz /𝕫;mathematical double-struck small z/
+Bbbzero /𝟘;mathematical double-struck digit 0/
+Bumpeq /≎;bumpy equals/
+Cap /⋒;cap doublecap b: double intersection/
+Colon /∷;two colons/
+Coloneq /⩴;double colon equal/
+Cup /⋓;cup doublecup b: double union/
+DDownarrow /⟱;downwards quadruple arrow/
+DashV /⫥;double vertical bar double left turnstile/
+DashVDash /⟚;left and right double turnstile/
+Dashv /⫤;vertical bar double left turnstile/
+Ddownarrow /⤋;downwards triple arrow/
+Doteq /≑;doteqdot doteq r: equals, even dots/
+Downarrow /⇓;down double arrow/
+Equiv /≣;strict equivalence (4 lines)/
+Eulerconst /ℇ;euler constant/
+Exclam /‼;double exclamation mark/
+Finv /Ⅎ;turned capital f/
+Game /⅁;turned sans-serif capital g/
+Gt /⪢;double nested greater-than/
+Hermaphrodite /⚥;male and female sign/
+Im /ℑ;imaginary part/
+Join /⨝;join/
+LLeftarrow /⭅;leftwards quadruple arrow/
+Lbrbrak /⟬;mathematical left white tortoise shell bracket/
+Ldsh /↲;left down angled arrow/
+Leftarrow /⇐;is implied by/
+Leftrightarrow /⇔;left and right double arrow/
+Lleftarrow /⇚;left triple arrow/
+Longleftarrow /⟸;long leftwards double arrow/
+Longleftrightarrow /⟺;long left right double arrow/
+Longmapsfrom /⟽;long leftwards double arrow from bar/
+Longmapsto /⟾;long rightwards double arrow from bar/
+Longrightarrow /⟹;long rightwards double arrow/
+Lparengtr /⦕;double left arc greater-than bracket/
+Lsh /↰;lsh a:/
+Lt /⪡;double nested less-than/
+Lvzigzag /⧚;left double wiggly fence/
+Mapsfrom /⤆;leftwards double arrow from bar/
+Mapsto /⤇;rightwards double arrow from bar/
+Nearrow /⇗;ne pointing double arrow/
+Not /⫬;double stroke not sign/
+Nwarrow /⇖;nw pointing double arrow/
+Otimes /⨷;multiplication sign in double circle/
+Planckconst /ℎ;planck constant/
+Prec /⪻;double precedes/
+PropertyLine /⅊;property line/
+QED /∎;end of proof/
+Question /⁇;double question mark/
+RRightarrow /⭆;rightwards quadruple arrow/
+Rbrbrak /⟭;mathematical right white tortoise shell bracket/
+Rdsh /↳;right down angled arrow/
+Re /ℜ;real part/
+Rightarrow /⇒;implies/
+Rparenless /⦖;double right arc less-than bracket/
+Rrightarrow /⇛;right triple arrow/
+Rsh /↱;rsh a:/
+Rvzigzag /⧛;right double wiggly fence/
+Searrow /⇘;se pointing double arrow/
+Sqcap /⩎;double square intersection/
+Sqcup /⩏;double square union/
+Subset /⋐;double subset/
+Succ /⪼;double succeeds/
+Supset /⋑;double superset/
+Swarrow /⇙;sw pointing double arrow/
+UUparrow /⟰;upwards quadruple arrow/
+Uparrow /⇑;up double arrow/
+Updownarrow /⇕;up and down double arrow/
+Uuparrow /⤊;upwards triple arrow/
+VDash /⊫;double vert, double dash/
+Vbar /⫫;double up tack/
+Vdash /⊩;double vertical, dash/
+Vee /⩔;double logical or/
+Vert /‖;double vertical bar/
+Vvdash /⊪;triple vertical, dash/
+Vvert /⦀;triple vertical bar delimiter/
+Wedge /⩓;double logical and/
+Yup /⅄;turned sans-serif capital y/
+Zbar /Ƶ;impedance (latin capital letter z with stroke)/
+accurrent /⏦;ac current/
+acidfree /♾;permanent paper sign/
+acute /́;acute accent/
+acwcirclearrow /⥀;anticlockwise closed circle arrow/
+acwgapcirclearrow /⟲;anticlockwise gapped circle arrow/
+acwleftarcarrow /⤹;left-side arc anticlockwise arrow/
+acwopencirclearrow /↺;anticlockwise open circle arrow/
+acwoverarcarrow /⤺;top arc anticlockwise arrow/
+acwunderarcarrow /⤻;bottom arc anticlockwise arrow/
+adots /⋰;three dots, ascending/
+aleph /ℵ;aleph, hebrew/
+amalg /⨿;amalgamation or coproduct/
+angdnr /⦟;acute angle/
+angle /∠;angle/
+angles /⦞;angle with s inside/
+angleubar /⦤;angle with underbar/
+annuity /⃧;combining annuity symbol/
+approx /≈;approximate/
+approxeq /≊;approximate, equals/
+approxeqq /⩰;approximately equal or equal to/
+approxident /≋;approximately identical to/
+arabichad /𞻱;arabic mathematical operator hah with dal/
+arabicmaj /𞻰;arabic mathematical operator meem with hah with tatweel/
+arceq /≘;arc, equals; corresponds to/
+assert /⊦;assertion (vertical, short dash)/
+ast /∗;centered asterisk/
+asteq /⩮;equals with asterisk/
+asteraccent /⃰;combining asterisk above/
+astrosun /☉;sun/
+asymp /≍;asymptotically equal to/
+awint /⨑;anticlockwise integration/
+bNot /⫭;reversed double stroke not sign/
+backcong /≌;all equal to/
+backdprime /‶;double reverse prime, not superscripted/
+backprime /‵;reverse prime, not superscripted/
+backsim /∽;reverse similar/
+backsimeq /⋍;reverse similar, equals/
+backslash /\;reverse solidus/
+backtrprime /‷;triple reverse prime, not superscripted/
+bagmember /⋿;z notation bag membership/
+bar /̄;macron/
+barV /⫪;double down tack/
+barcap /⩃;intersection with overbar/
+barcup /⩂;union with overbar/
+bardownharpoonleft /⥡;downwards harpoon with barb left from bar/
+bardownharpoonright /⥝;downwards harpoon with barb right from bar/
+barleftarrow /⇤;leftwards arrow to bar/
+barleftarrowrightarrowbar /↹;leftwards arrow to bar over rightwards arrow to bar/
+barleftharpoondown /⥖;leftwards harpoon with barb down to bar/
+barleftharpoonup /⥒;leftwards harpoon with barb up to bar/
+barovernorthwestarrow /↸;north west arrow to long bar/
+barrightarrowdiamond /⤠;rightwards arrow from bar to black diamond/
+barrightharpoondown /⥟;rightwards harpoon with barb down from bar/
+barrightharpoonup /⥛;rightwards harpoon with barb up from bar/
+baruparrow /⤒;upwards arrow to bar/
+barupharpoonleft /⥘;upwards harpoon with barb left to bar/
+barupharpoonright /⥔;upwards harpoon with barb right to bar/
+barvee /⊽;bar, vee (large vee)/
+barwedge /⊼;bar, wedge (large wedge)/
+bbrktbrk /⎶;bottom square bracket over top square bracket/
+bdtriplevdash /┆;doubly broken vert/
+because /∵;because/
+benzenr /⏣;benzene ring with circle/
+beth /ℶ;beth, hebrew/
+between /≬;between/
+bigblacktriangledown /▼;big down triangle, filled/
+bigblacktriangleup /▲;black up-pointing triangle/
+bigbot /⟘;large up tack/
+bigcap /⋂;intersection operator/
+bigcup /⋃;union operator/
+bigcupdot /⨃;n-ary union operator with dot/
+biginterleave /⫼;large triple vertical bar operator/
+bigodot /⨀;n-ary circled dot operator/
+bigoplus /⨁;n-ary circled plus operator/
+bigotimes /⨂;n-ary circled times operator/
+bigslopedvee /⩗;sloping large or/
+bigslopedwedge /⩘;sloping large and/
+bigsqcap /⨅;n-ary square intersection operator/
+bigsqcup /⨆;n-ary square union operator/
+bigstar /★;star, filled/
+bigtalloblong /⫿;n-ary white vertical bar/
+bigtimes /⨉;n-ary times operator/
+bigtop /⟙;large down tack/
+bigtriangledown /▽;big down triangle, open/
+bigtriangleleft /⨞;large left triangle operator/
+bigtriangleup /△;big up triangle, open/
+biguplus /⨄;n-ary union operator with plus/
+bigvee /⋁;logical or operator/
+bigwedge /⋀;logical and operator/
+bigwhitestar /☆;star, open/
+blackcircledownarrow /⧭;black circle with down arrow/
+blackcircledrightdot /⚈;black circle with white dot right/
+blackcircledtwodots /⚉;black circle with two white dots/
+blackcircleulquadwhite /◕;circle with all but upper left quadrant black/
+blackdiamonddownarrow /⧪;black diamond with down arrow/
+blackhourglass /⧗;black hourglass/
+blackinwhitediamond /◈;white diamond containing black small diamond/
+blackinwhitesquare /▣;white square containing black small square/
+blacklefthalfcircle /◖;left half black circle/
+blackpointerleft /◄;black left-pointing pointer/
+blackpointerright /►;black right-pointing pointer/
+blackrighthalfcircle /◗;right half black circle/
+blacksmiley /☻;black smiling face/
+blacktriangle /▴;up triangle, filled/
+blacktriangledown /▾;down triangle, filled/
+blacktriangleleft /◀;(large) left triangle, filled/
+blacktriangleright /▶;(large) right triangle, filled/
+blanksymbol /␢;blank symbol/
+blkhorzoval /⬬;black horizontal ellipse/
+blkvertoval /⬮;black vertical ellipse/
+blockfull /█;full block/
+blockhalfshaded /▒;undefined/
+blocklefthalf /▌;left half block/
+blocklowhalf /▄;lower half block/
+blockqtrshaded /░;undefined/
+blockrighthalf /▐;right half block/
+blockthreeqtrshaded /▓;undefined/
+blockuphalf /▀;upper half block/
+bot /⊥;bottom/
+botsemicircle /◡;lower half circle/
+bowtie /⋈;bowtie/
+boxast /⧆;squared asterisk/
+boxbar /◫;vertical bar in box/
+boxbox /⧈;squared square/
+boxbslash /⧅;squared falling diagonal slash/
+boxcircle /⧇;squared small circle/
+boxdiag /⧄;squared rising diagonal slash/
+boxdot /⊡;dotsquare boxdot b: small dot in box/
+boxminus /⊟;minus sign in box/
+boxonbox /⧉;two joined squares/
+boxplus /⊞;plus sign in box/
+boxtimes /⊠;multiply sign in box/
+breve /̆;breve/
+bsimilarleftarrow /⭁;reverse tilde operator above leftwards arrow/
+bsimilarrightarrow /⭇;reverse tilde operator above rightwards arrow/
+bsolhsub /⟈;reverse solidus preceding subset/
+btimes /⨲;semidirect product with bottom closed/
+bullseye /◎;bullseye/
+bumpeq /≏;bumpy equals, equals/
+bumpeqq /⪮;equals sign with bumpy above/
+candra /̐;candrabindu (non-spacing)/
+cap /∩;intersection/
+capbarcup /⩉;intersection above bar above union/
+capdot /⩀;intersection with dot/
+capovercup /⩇;intersection above union/
+capwedge /⩄;intersection with logical and/
+caretinsert /‸;caret (insertion mark)/
+carriagereturn /↵;downwards arrow with corner leftward = carriage return/
+ccwundercurvearrow /⤿;lower left semicircular anticlockwise arrow/
+cdot /⋅;small middle dot/
+cdotp /·;centerdot b: middle dot/
+check /̌;caron/
+checkmark /✓;tick, check mark/
+cirE /⧃;circle with two horizontal strokes to the right/
+cirbot /⟟;up tack with circle above/
+circeq /≗;circle, equals/
+circlebottomhalfblack /◒;circle, filled bottom half/
+circledast /⊛;asterisk in circle/
+circledbullet /⦿;circled bullet/
+circledcirc /⊚;small circle in circle/
+circleddash /⊝;hyphen in circle/
+circledequal /⊜;equal in circle/
+circledownarrow /⧬;white circle with down arrow/
+circledparallel /⦷;circled parallel/
+circledrightdot /⚆;white circle with dot right/
+circledstar /✪;circled white star/
+circledtwodots /⚇;white circle with two dots/
+circledvert /⦶;circled vertical bar/
+circledwhitebullet /⦾;circled white bullet/
+circlehbar /⦵;circle with horizontal bar/
+circlelefthalfblack /◐;circle, filled left half [harvey ball]/
+circlellquad /◵;white circle with lower left quadrant/
+circlelrquad /◶;white circle with lower right quadrant/
+circleonleftarrow /⬰;left arrow with small circle/
+circleonrightarrow /⇴;right arrow with small circle/
+circlerighthalfblack /◑;circle, filled right half/
+circletophalfblack /◓;circle, filled top half/
+circleulquad /◴;white circle with upper left quadrant/
+circleurquad /◷;white circle with upper right quadrant/
+circleurquadblack /◔;circle with upper right quadrant black/
+circlevertfill /◍;circle with vertical fill/
+cirfnint /⨐;circulation function/
+cirmid /⫯;vertical line with circle above/
+cirscir /⧂;circle with small circle to the right/
+closedvarcap /⩍;closed intersection with serifs/
+closedvarcup /⩌;closed union with serifs/
+closedvarcupsmashprod /⩐;closed union with serifs and smash product/
+closure /⁐;close up/
+clubsuit /♣;club suit symbol/
+coloneq /≔;colon, equals/
+commaminus /⨩;minus sign with comma above/
+complement /∁;complement sign/
+concavediamond /⟡;white concave-sided diamond/
+concavediamondtickleft /⟢;white concave-sided diamond with leftwards tick/
+concavediamondtickright /⟣;white concave-sided diamond with rightwards tick/
+cong /≅;congruent with/
+congdot /⩭;congruent with dot above/
+conictaper /⌲;conical taper/
+conjquant /⨇;two logical and operator/
+coprod /∐;coproduct operator/
+csub /⫏;closed subset/
+csube /⫑;closed subset or equal to/
+csup /⫐;closed superset/
+csupe /⫒;closed superset or equal to/
+cuberoot /∛;cube root/
+cup /∪;union or logical sum/
+cupbarcap /⩈;union above bar above intersection/
+cupdot /⊍;union, with dot/
+cupleftarrow /⊌;multiset/
+cupovercap /⩆;union above intersection/
+cupvee /⩅;union with logical or/
+curlyeqprec /⋞;curly equals, precedes/
+curlyeqsucc /⋟;curly equals, succeeds/
+curlyvee /⋎;curly logical or/
+curlywedge /⋏;curly logical and/
+curvearrowleft /↶;left curved arrow/
+curvearrowleftplus /⤽;top arc anticlockwise arrow with plus/
+curvearrowright /↷;right curved arrow/
+curvearrowrightminus /⤼;top arc clockwise arrow with minus/
+cwcirclearrow /⥁;clockwise closed circle arrow/
+cwgapcirclearrow /⟳;clockwise gapped circle arrow/
+cwopencirclearrow /↻;clockwise open circle arrow/
+cwrightarcarrow /⤸;right-side arc clockwise arrow/
+cwundercurvearrow /⤾;lower right semicircular clockwise arrow/
+dagger /†;dagger relation/
+daleth /ℸ;daleth, hebrew/
+danger /☡;dangerous bend (caution sign)/
+dashV /⫣;double vertical bar left turnstile/
+dashVdash /⟛;left and right tack/
+dashcolon /∹;excess (-:)/
+dashleftharpoondown /⥫;leftwards harpoon with barb down below long dash/
+dashrightharpoondown /⥭;rightwards harpoon with barb down below long dash/
+dashv /⊣;dash, vertical/
+dbkarrow /⤏;rightwards triple dash arrow/
+ddagger /‡;double dagger relation/
+ddddot /⃜;combining four dots above/
+dddot /⃛;combining three dots above/
+ddot /̈;dieresis/
+ddots /⋱;three dots, descending/
+ddotseq /⩷;equals sign with two dots above and two dots below/
+diagdown /⟍;mathematical falling diagonal/
+diagup /⟋;mathematical rising diagonal/
+diameter /⌀;diameter sign/
+diamondbotblack /⬙;diamond with bottom half black/
+diamondcdot /⟐;white diamond with centred dot/
+diamondleftarrow /⤝;leftwards arrow to black diamond/
+diamondleftarrowbar /⤟;leftwards arrow from bar to black diamond/
+diamondleftblack /⬖;diamond with left half black/
+diamondrightblack /⬗;diamond with right half black/
+diamondsuit /♢;diamond suit symbol/
+diamondtopblack /⬘;diamond with top half black/
+dicei /⚀;die face-1/
+diceii /⚁;die face-2/
+diceiii /⚂;die face-3/
+diceiv /⚃;die face-4/
+dicev /⚄;die face-5/
+dicevi /⚅;die face-6/
+dingasterisk /✽;heavy teardrop-spoked asterisk/
+disin /⋲;element of with long horizontal stroke/
+disjquant /⨈;two logical or operator/
+div /÷;divide sign/
+divideontimes /⋇;division on times/
+divslash /∕;division slash/
+dot /̇;dot above/
+doteq /≐;equals, single dot above/
+dotequiv /⩧;identical with dot above/
+dotminus /∸;minus sign, dot above/
+dotplus /∔;plus sign, dot above/
+dotsim /⩪;tilde operator with dot above/
+dotsminusdots /∺;minus with four dots, geometric properties/
+dottedcircle /◌;dotted circle/
+dottedsquare /⬚;dotted square/
+dottimes /⨰;multiplication sign with dot above/
+doublebarvee /⩢;logical or with double overbar/
+doublebarwedge /⩞;logical and with double overbar/
+doubleplus /⧺;double plus/
+downarrow /↓;downward arrow/
+downarrowbar /⤓;downwards arrow to bar/
+downarrowbarred /⤈;downwards arrow with horizontal stroke/
+downdasharrow /⇣;downwards dashed arrow/
+downdownarrows /⇊;two down arrows/
+downfishtail /⥿;down fish tail/
+downharpoonleft /⇃;down harpoon-left/
+downharpoonleftbar /⥙;downwards harpoon with barb left to bar/
+downharpoonright /⇂;down harpoon-right/
+downharpoonrightbar /⥕;downwards harpoon with barb right to bar/
+downharpoonsleftright /⥥;downwards harpoon with barb left beside downwards harpoon with barb right/
+downrightcurvedarrow /⤵;arrow pointing rightwards then curving downwards/
+downtriangleleftblack /⧨;down-pointing triangle with left half black/
+downtrianglerightblack /⧩;down-pointing triangle with right half black/
+downuparrows /⇵;downwards arrow leftwards of upwards arrow/
+downupharpoonsleftright /⥯;downwards harpoon with barb left beside upwards harpoon with barb right/
+downwhitearrow /⇩;downwards white arrow/
+downzigzagarrow /↯;downwards zigzag arrow/
+dprime /″;double prime or second, not superscripted/
+draftingarrow /➛;right arrow with bold head (drafting)/
+drbkarrow /⤐;rightwards two-headed triple dash arrow/
+droang /̚;left angle above (non-spacing)/
+dsol /⧶;solidus with overbar/
+dsub /⩤;z notation domain antirestriction/
+dualmap /⧟;double-ended multimap/
+egsdot /⪘;slanted equal to or greater-than with dot inside/
+eighthnote /♪;eighth note/
+elinters /⏧;electrical intersection/
+ell /ℓ;cursive small l/
+elsdot /⪗;slanted equal to or less-than with dot inside/
+emptysetoarr /⦳;empty set with right arrow above/
+emptysetoarrl /⦴;empty set with left arrow above/
+emptysetobar /⦱;empty set with overbar/
+emptysetocirc /⦲;empty set with small circle above/
+enclosecircle /⃝;combining enclosing circle/
+enclosediamond /⃟;combining enclosing diamond/
+enclosesquare /⃞;combining enclosing square/
+enclosetriangle /⃤;combining enclosing upward pointing triangle/
+enleadertwodots /‥;double baseline dot (en leader)/
+eparsl /⧣;equals sign and slanted parallel/
+eqcirc /≖;circle on equals sign/
+eqcolon /≕;equals, colon/
+eqdef /≝;equals by definition/
+eqdot /⩦;equals sign with dot below/
+eqeq /⩵;two consecutive equals signs/
+eqeqeq /⩶;three consecutive equals signs/
+eqgtr /⋝;equal-or-greater/
+eqless /⋜;equal-or-less/
+eqqgtr /⪚;double-line equal to or greater-than/
+eqqless /⪙;double-line equal to or less-than/
+eqqplus /⩱;equals sign above plus sign/
+eqqsim /⩳;equals sign above tilde operator/
+eqqslantgtr /⪜;double-line slanted equal to or greater-than/
+eqqslantless /⪛;double-line slanted equal to or less-than/
+eqsim /≂;equals, similar/
+eqslantgtr /⪖;slanted equal to or greater-than/
+eqslantless /⪕;slanted equal to or less-than/
+equal /=;equals sign r:/
+equalleftarrow /⭀;equals sign above leftwards arrow/
+equalparallel /⋕;parallel, equal; equal or parallel/
+equalrightarrow /⥱;equals sign above rightwards arrow/
+equiv /≡;identical with/
+equivDD /⩸;equivalent with four dots above/
+equivVert /⩨;triple horizontal bar with double vertical stroke/
+equivVvert /⩩;triple horizontal bar with triple vertical stroke/
+eqvparsl /⧥;identical to and slanted parallel/
+errbarblackcircle /⧳;error-barred black circle/
+errbarblackdiamond /⧱;error-barred black diamond/
+errbarblacksquare /⧯;error-barred black square/
+errbarcircle /⧲;error-barred white circle/
+errbardiamond /⧰;error-barred white diamond/
+errbarsquare /⧮;error-barred white square/
+euro /€;euro sign/
+exists /∃;at least one exists/
+fallingdotseq /≒;equals, falling dots/
+fbowtie /⧓;black bowtie/
+fcmp /⨾;z notation relational composition/
+fdiagovnearrow /⤯;falling diagonal crossing north east arrow/
+fdiagovrdiag /⤬;falling diagonal crossing rising diagonal/
+female /♀;venus, female/
+fint /⨏;integral average with slash/
+fisheye /◉;fisheye/
+flat /♭;musical flat/
+fltns /⏥;flatness/
+forall /∀;for all/
+forks /⫝̸;forking/
+forksnot /⫝;nonforking/
+forkv /⫙;element of opening downwards/
+fourthroot /∜;fourth root/
+fourvdots /⦙;dotted fence/
+fracslash /⁄;fraction slash/
+frown /⌢;down curve/
+fullouterjoin /⟗;full outer join/
+geq /≥;geq ge r: greater-than-or-equal/
+geqq /≧;greater, double equals/
+geqqslant /⫺;double-line slanted greater-than or equal to/
+geqslant /⩾;greater-than or slanted equal to/
+gescc /⪩;greater-than closed by curve above slanted equal/
+gesdot /⪀;greater-than or slanted equal to with dot inside/
+gesdoto /⪂;greater-than or slanted equal to with dot above/
+gesdotol /⪄;greater-than or slanted equal to with dot above left/
+gesles /⪔;greater-than above slanted equal above less-than above slanted equal/
+gg /≫;much greater than, type 2/
+ggg /⋙;ggg gg gggtr r: triple greater-than/
+gggnest /⫸;stacked very much greater-than/
+gimel /ℷ;gimel, hebrew/
+glE /⪒;greater-than above less-than above double-line equal/
+gla /⪥;greater-than beside less-than/
+gleichstark /⧦;gleich stark/
+glj /⪤;greater-than overlapping less-than/
+gnapprox /⪊;greater-than and not approximate/
+gneq /⪈;greater-than and single-line not equal to/
+gneqq /≩;greater, not double equals/
+gnsim /⋧;greater, not similar/
+grave /̀;grave accent/
+greater />;greater-than sign r:/
+gsime /⪎;greater-than above similar or equal/
+gsiml /⪐;greater-than above similar above less-than/
+gtcc /⪧;greater-than closed by curve/
+gtcir /⩺;greater-than with circle inside/
+gtlpar /⦠;spherical angle opening left/
+gtquest /⩼;greater-than with question mark above/
+gtrapprox /⪆;greater-than or approximate/
+gtrarr /⥸;greater-than above rightwards arrow/
+gtrdot /⋗;greater than, with dot/
+gtreqless /⋛;greater, equals, less/
+gtreqqless /⪌;greater-than above double-line equal above less-than/
+gtrless /≷;greater, less/
+gtrsim /≳;greater, similar/
+harrowextender /⎯;horizontal line extension (used to extend arrows)/
+hat /̂;circumflex accent/
+hatapprox /⩯;almost equal to with circumflex accent/
+heartsuit /♡;heart suit symbol/
+hermitmatrix /⊹;hermitian conjugate matrix/
+hexagon /⎔;horizontal benzene ring [hexagon flat open]/
+hexagonblack /⬣;horizontal black hexagon/
+hknearrow /⤤;north east arrow with hook/
+hknwarrow /⤣;north west arrow with hook/
+hksearrow /⤥;south east arrow with hook/
+hkswarrow /⤦;south west arrow with hook/
+hookleftarrow /↩;left arrow-hooked/
+hookrightarrow /↪;right arrow-hooked/
+horizbar /―;horizontal bar/
+hourglass /⧖;white hourglass/
+house /⌂;house/
+hrectangle /▭;horizontal rectangle, open/
+hrectangleblack /▬;black rectangle/
+hslash /ℏ;hslash - variant planck's over 2pi/
+hyphenbullet /⁃;rectangle, filled (hyphen bullet)/
+hzigzag /〰;zigzag/
+iiiint /⨌;quadruple integral operator/
+iiint /∭;triple integral operator/
+iinfin /⧜;incomplete infinity/
+iint /∬;double integral operator/
+imageof /⊷;image of/
+imath /𝚤;mathematical italic small dotless i/
+in /∈;set membership, variant/
+increment /∆;laplacian (delta; nabla\string^2)/
+infty /∞;infinity/
+int /∫;integral operator/
+intBar /⨎;integral with double stroke/
+intbar /⨍;finite part integral/
+intbottom /⌡;bottom half integral/
+intcap /⨙;integral with intersection/
+intclockwise /∱;clockwise integral/
+intcup /⨚;integral with union/
+intercal /⊺;intercal/
+interleave /⫴;triple vertical bar binary relation/
+intextender /⎮;integral extension/
+intlarhk /⨗;integral with leftwards arrow with hook/
+intprod /⨼;interior product/
+intprodr /⨽;righthand interior product/
+inttop /⌠;top half integral/
+intx /⨘;integral with times sign/
+inversebullet /◘;inverse bullet/
+inversewhitecircle /◙;inverse white circle/
+invlazys /∾;most positive [inverted lazy s]/
+invnot /⌐;reverse not/
+invwhitelowerhalfcircle /◛;lower half inverse white circle/
+invwhiteupperhalfcircle /◚;upper half inverse white circle/
+isinE /⋹;element of with two horizontal strokes/
+isindot /⋵;element of with dot above/
+isinobar /⋷;small element of with overbar/
+isins /⋴;small element of with vertical bar at end of horizontal stroke/
+isinvb /⋸;element of with underbar/
+jmath /𝚥;mathematical italic small dotless j/
+kernelcontraction /∻;homothetic/
+lAngle /⟪;mathematical left double angle bracket/
+lBrace /⦃;left white curly bracket/
+lBrack /⟦;mathematical left white square bracket/
+lParen /⦅;left white parenthesis/
+langle /⟨;mathematical left angle bracket/
+langledot /⦑;left angle bracket with dot/
+laplac /⧠;square with contoured outline/
+lat /⪫;larger than/
+late /⪭;larger than or equal to/
+lbag /⟅;left s-shaped bag delimiter/
+lblkbrbrak /⦗;left black tortoise shell bracket/
+lbrace /{;left curly bracket/
+lbracelend /⎩;left curly bracket lower hook/
+lbracemid /⎨;left curly bracket middle piece/
+lbraceuend /⎧;left curly bracket upper hook/
+lbrack /[;left square bracket/
+lbrackextender /⎢;left square bracket extension/
+lbracklend /⎣;left square bracket lower corner/
+lbracklltick /⦏;left square bracket with tick in bottom corner/
+lbrackubar /⦋;left square bracket with underbar/
+lbrackuend /⎡;left square bracket upper corner/
+lbrackultick /⦍;left square bracket with tick in top corner/
+lbrbrak /❲;light left tortoise shell bracket ornament/
+lceil /⌈;left ceiling/
+lcurvyangle /⧼;left pointing curved angle bracket/
+leftarrow /←;leftarrow gets a: leftward arrow/
+leftarrowapprox /⭊;leftwards arrow above almost equal to/
+leftarrowbackapprox /⭂;leftwards arrow above reverse almost equal to/
+leftarrowbsimilar /⭋;leftwards arrow above reverse tilde operator/
+leftarrowless /⥷;leftwards arrow through less-than/
+leftarrowonoplus /⬲;left arrow with circled plus/
+leftarrowplus /⥆;leftwards arrow with plus below/
+leftarrowshortrightarrow /⥃;leftwards arrow above short rightwards arrow/
+leftarrowsimilar /⥳;leftwards arrow above tilde operator/
+leftarrowsubset /⥺;leftwards arrow through subset/
+leftarrowtail /↢;left arrow-tailed/
+leftarrowtriangle /⇽;leftwards open-headed arrow/
+leftarrowx /⬾;leftwards arrow through x/
+leftbkarrow /⤌;leftwards double dash arrow/
+leftcurvedarrow /⬿;wave arrow pointing directly left/
+leftdasharrow /⇠;leftwards dashed arrow/
+leftdbkarrow /⤎;leftwards triple dash arrow/
+leftdbltail /⤛;leftwards double arrow-tail/
+leftdotarrow /⬸;leftwards arrow with dotted stem/
+leftdowncurvedarrow /⤶;arrow pointing downwards then curving leftwards/
+leftfishtail /⥼;left fish tail/
+leftharpoonaccent /⃐;combining left harpoon above/
+leftharpoondown /↽;left harpoon-down/
+leftharpoondownbar /⥞;leftwards harpoon with barb down from bar/
+leftharpoonsupdown /⥢;leftwards harpoon with barb up above leftwards harpoon with barb down/
+leftharpoonup /↼;left harpoon-up/
+leftharpoonupbar /⥚;leftwards harpoon with barb up from bar/
+leftharpoonupdash /⥪;leftwards harpoon with barb up above long dash/
+leftleftarrows /⇇;two left arrows/
+leftmoon /☾;last quarter moon/
+leftouterjoin /⟕;left outer join/
+leftrightarrow /↔;left and right arrow/
+leftrightarrowcircle /⥈;left right arrow through small circle/
+leftrightarrows /⇆;left arrow over right arrow/
+leftrightarrowtriangle /⇿;left right open-headed arrow/
+leftrightharpoondowndown /⥐;left barb down right barb down harpoon/
+leftrightharpoondownup /⥋;left barb down right barb up harpoon/
+leftrightharpoons /⇋;left harpoon over right/
+leftrightharpoonsdown /⥧;leftwards harpoon with barb down above rightwards harpoon with barb down/
+leftrightharpoonsup /⥦;leftwards harpoon with barb up above rightwards harpoon with barb up/
+leftrightharpoonupdown /⥊;left barb up right barb down harpoon/
+leftrightharpoonupup /⥎;left barb up right barb up harpoon/
+leftrightsquigarrow /↭;left and right arr-wavy/
+leftsquigarrow /⇜;leftwards squiggle arrow/
+lefttail /⤙;leftwards arrow-tail/
+leftthreearrows /⬱;three leftwards arrows/
+leftthreetimes /⋋;left semidirect product/
+leftwavearrow /↜;left arrow-wavy/
+leftwhitearrow /⇦;leftwards white arrow/
+leq /≤;leq le r: less-than-or-equal/
+leqq /≦;less, double equals/
+leqqslant /⫹;double-line slanted less-than or equal to/
+leqslant /⩽;less-than or slanted equal to/
+lescc /⪨;less-than closed by curve above slanted equal/
+lesdot /⩿;less-than or slanted equal to with dot inside/
+lesdoto /⪁;less-than or slanted equal to with dot above/
+lesdotor /⪃;less-than or slanted equal to with dot above right/
+lesges /⪓;less-than above slanted equal above greater-than above slanted equal/
+less /<;less-than sign r:/
+lessapprox /⪅;less-than or approximate/
+lessdot /⋖;less than, with dot/
+lesseqgtr /⋚;less, equals, greater/
+lesseqqgtr /⪋;less-than above double-line equal above greater-than/
+lessgtr /≶;less, greater/
+lesssim /≲;less, similar/
+lfbowtie /⧑;left black bowtie/
+lfloor /⌊;left floor/
+lftimes /⧔;left black times/
+lgE /⪑;less-than above greater-than above double-line equal/
+lgblkcircle /⬤;black large circle/
+lgblksquare /⬛;black large square/
+lgroup /⟮;mathematical left flattened parenthesis/
+lgwhtcircle /◯;large circle/
+lgwhtsquare /⬜;white large square/
+linefeed /↴;rightwards arrow with corner downwards/
+ll /≪;much less than, type 2/
+llangle /⦉;z notation left binding bracket/
+llarc /◟;lower left quadrant circular arc/
+llblacktriangle /◣;lower left triangle, filled/
+llcorner /⌞;lower left corner/
+lll /⋘;ll lll llless r: triple less-than/
+lllnest /⫷;stacked very much less-than/
+llparenthesis /⦇;z notation left image bracket/
+lltriangle /◺;lower left triangle/
+lmoustache /⎰;upper left or lower right curly bracket section/
+lnapprox /⪉;less-than and not approximate/
+lneq /⪇;less-than and single-line not equal to/
+lneqq /≨;less, not double equals/
+lnsim /⋦;less, not similar/
+longdashv /⟞;long right tack/
+longdivision /⟌;long division/
+longleftarrow /⟵;long leftwards arrow/
+longleftrightarrow /⟷;long left right arrow/
+longleftsquigarrow /⬳;long leftwards squiggle arrow/
+longmapsfrom /⟻;long leftwards arrow from bar/
+longmapsto /⟼;long rightwards arrow from bar/
+longrightarrow /⟶;long rightwards arrow/
+longrightsquigarrow /⟿;long rightwards squiggle arrow/
+looparrowleft /↫;left arrow-looped/
+looparrowright /↬;right arrow-looped/
+lowint /⨜;integral with underbar/
+lozengeminus /⟠;lozenge divided by horizontal rule/
+lparen /(;left parenthesis/
+lparenextender /⎜;left parenthesis extension/
+lparenlend /⎝;left parenthesis lower hook/
+lparenless /⦓;left arc less-than bracket/
+lparenuend /⎛;left parenthesis upper hook/
+lrarc /◞;lower right quadrant circular arc/
+lrblacktriangle /◢;lower right triangle, filled/
+lrcorner /⌟;lower right corner/
+lrtriangle /◿;lower right triangle/
+lrtriangleeq /⧡;increases as/
+lsime /⪍;less-than above similar or equal/
+lsimg /⪏;less-than above similar above greater-than/
+lsqhook /⫍;square left open box operator/
+ltcc /⪦;less-than closed by curve/
+ltcir /⩹;less-than with circle inside/
+ltimes /⋉;times sign, left closed/
+ltlarr /⥶;less-than above leftwards arrow/
+ltquest /⩻;less-than with question mark above/
+ltrivb /⧏;left triangle beside vertical bar/
+lvboxline /⎸;left vertical box line/
+lvzigzag /⧘;left wiggly fence/
+male /♂;mars, male/
+maltese /✠;maltese cross/
+mapsdown /↧;maps to, downward/
+mapsfrom /↤;maps to, leftward/
+mapsto /↦;maps to, rightward/
+mapsup /↥;maps to, upward/
+mathampersand /&;ampersand/
+mathatsign /@;commercial at/
+mathcolon /:;colon/
+mathcomma /,;comma/
+mathdollar /$;dollar sign/
+matheth /ð;eth/
+mathexclam /!;exclamation mark/
+mathhyphen /‐;hyphen/
+mathoctothorpe /#;number sign/
+mathparagraph /¶;paragraph symbol/
+mathpercent /%;percent sign/
+mathperiod /.;full stop, period/
+mathplus /+;plus sign b:/
+mathquestion /?;question mark/
+mathratio /∶;ratio/
+mathsection /§;section symbol/
+mathsemicolon /;;semicolon p:/
+mathslash //;solidus/
+mathsterling /£;pound sign/
+mathunderbar /̲;combining low line/
+mathvisiblespace /␣;open box/
+mathyen /¥;yen sign/
+mbfA /𝐀;mathematical bold capital a/
+mbfAlpha /𝚨;mathematical bold capital alpha/
+mbfB /𝐁;mathematical bold capital b/
+mbfBeta /𝚩;mathematical bold capital beta/
+mbfC /𝐂;mathematical bold capital c/
+mbfChi /𝚾;mathematical bold capital chi/
+mbfD /𝐃;mathematical bold capital d/
+mbfDelta /𝚫;mathematical bold capital delta/
+mbfDigamma /𝟊;mathematical bold capital digamma/
+mbfE /𝐄;mathematical bold capital e/
+mbfEpsilon /𝚬;mathematical bold capital epsilon/
+mbfEta /𝚮;mathematical bold capital eta/
+mbfF /𝐅;mathematical bold capital f/
+mbfG /𝐆;mathematical bold capital g/
+mbfGamma /𝚪;mathematical bold capital gamma/
+mbfH /𝐇;mathematical bold capital h/
+mbfI /𝐈;mathematical bold capital i/
+mbfIota /𝚰;mathematical bold capital iota/
+mbfJ /𝐉;mathematical bold capital j/
+mbfK /𝐊;mathematical bold capital k/
+mbfKappa /𝚱;mathematical bold capital kappa/
+mbfL /𝐋;mathematical bold capital l/
+mbfLambda /𝚲;mathematical bold capital lambda/
+mbfM /𝐌;mathematical bold capital m/
+mbfMu /𝚳;mathematical bold capital mu/
+mbfN /𝐍;mathematical bold capital n/
+mbfNu /𝚴;mathematical bold capital nu/
+mbfO /𝐎;mathematical bold capital o/
+mbfOmega /𝛀;mathematical bold capital omega/
+mbfOmicron /𝚶;mathematical bold capital omicron/
+mbfP /𝐏;mathematical bold capital p/
+mbfPhi /𝚽;mathematical bold capital phi/
+mbfPi /𝚷;mathematical bold capital pi/
+mbfPsi /𝚿;mathematical bold capital psi/
+mbfQ /𝐐;mathematical bold capital q/
+mbfR /𝐑;mathematical bold capital r/
+mbfRho /𝚸;mathematical bold capital rho/
+mbfS /𝐒;mathematical bold capital s/
+mbfSigma /𝚺;mathematical bold capital sigma/
+mbfT /𝐓;mathematical bold capital t/
+mbfTau /𝚻;mathematical bold capital tau/
+mbfTheta /𝚯;mathematical bold capital theta/
+mbfU /𝐔;mathematical bold capital u/
+mbfUpsilon /𝚼;mathematical bold capital upsilon/
+mbfV /𝐕;mathematical bold capital v/
+mbfW /𝐖;mathematical bold capital w/
+mbfX /𝐗;mathematical bold capital x/
+mbfXi /𝚵;mathematical bold capital xi/
+mbfY /𝐘;mathematical bold capital y/
+mbfZ /𝐙;mathematical bold capital z/
+mbfZeta /𝚭;mathematical bold capital zeta/
+mbfa /𝐚;mathematical bold small a/
+mbfalpha /𝛂;mathematical bold small alpha/
+mbfb /𝐛;mathematical bold small b/
+mbfbeta /𝛃;mathematical bold small beta/
+mbfc /𝐜;mathematical bold small c/
+mbfchi /𝛘;mathematical bold small chi/
+mbfd /𝐝;mathematical bold small d/
+mbfdelta /𝛅;mathematical bold small delta/
+mbfdigamma /𝟋;mathematical bold small digamma/
+mbfe /𝐞;mathematical bold small e/
+mbfeight /𝟖;mathematical bold digit 8/
+mbfepsilon /𝛜;mathematical bold varepsilon symbol/
+mbfeta /𝛈;mathematical bold small eta/
+mbff /𝐟;mathematical bold small f/
+mbffive /𝟓;mathematical bold digit 5/
+mbffour /𝟒;mathematical bold digit 4/
+mbffrakA /𝕬;mathematical bold fraktur capital a/
+mbffrakB /𝕭;mathematical bold fraktur capital b/
+mbffrakC /𝕮;mathematical bold fraktur capital c/
+mbffrakD /𝕯;mathematical bold fraktur capital d/
+mbffrakE /𝕰;mathematical bold fraktur capital e/
+mbffrakF /𝕱;mathematical bold fraktur capital f/
+mbffrakG /𝕲;mathematical bold fraktur capital g/
+mbffrakH /𝕳;mathematical bold fraktur capital h/
+mbffrakI /𝕴;mathematical bold fraktur capital i/
+mbffrakJ /𝕵;mathematical bold fraktur capital j/
+mbffrakK /𝕶;mathematical bold fraktur capital k/
+mbffrakL /𝕷;mathematical bold fraktur capital l/
+mbffrakM /𝕸;mathematical bold fraktur capital m/
+mbffrakN /𝕹;mathematical bold fraktur capital n/
+mbffrakO /𝕺;mathematical bold fraktur capital o/
+mbffrakP /𝕻;mathematical bold fraktur capital p/
+mbffrakQ /𝕼;mathematical bold fraktur capital q/
+mbffrakR /𝕽;mathematical bold fraktur capital r/
+mbffrakS /𝕾;mathematical bold fraktur capital s/
+mbffrakT /𝕿;mathematical bold fraktur capital t/
+mbffrakU /𝖀;mathematical bold fraktur capital u/
+mbffrakV /𝖁;mathematical bold fraktur capital v/
+mbffrakW /𝖂;mathematical bold fraktur capital w/
+mbffrakX /𝖃;mathematical bold fraktur capital x/
+mbffrakY /𝖄;mathematical bold fraktur capital y/
+mbffrakZ /𝖅;mathematical bold fraktur capital z/
+mbffraka /𝖆;mathematical bold fraktur small a/
+mbffrakb /𝖇;mathematical bold fraktur small b/
+mbffrakc /𝖈;mathematical bold fraktur small c/
+mbffrakd /𝖉;mathematical bold fraktur small d/
+mbffrake /𝖊;mathematical bold fraktur small e/
+mbffrakf /𝖋;mathematical bold fraktur small f/
+mbffrakg /𝖌;mathematical bold fraktur small g/
+mbffrakh /𝖍;mathematical bold fraktur small h/
+mbffraki /𝖎;mathematical bold fraktur small i/
+mbffrakj /𝖏;mathematical bold fraktur small j/
+mbffrakk /𝖐;mathematical bold fraktur small k/
+mbffrakl /𝖑;mathematical bold fraktur small l/
+mbffrakm /𝖒;mathematical bold fraktur small m/
+mbffrakn /𝖓;mathematical bold fraktur small n/
+mbffrako /𝖔;mathematical bold fraktur small o/
+mbffrakp /𝖕;mathematical bold fraktur small p/
+mbffrakq /𝖖;mathematical bold fraktur small q/
+mbffrakr /𝖗;mathematical bold fraktur small r/
+mbffraks /𝖘;mathematical bold fraktur small s/
+mbffrakt /𝖙;mathematical bold fraktur small t/
+mbffraku /𝖚;mathematical bold fraktur small u/
+mbffrakv /𝖛;mathematical bold fraktur small v/
+mbffrakw /𝖜;mathematical bold fraktur small w/
+mbffrakx /𝖝;mathematical bold fraktur small x/
+mbffraky /𝖞;mathematical bold fraktur small y/
+mbffrakz /𝖟;mathematical bold fraktur small z/
+mbfg /𝐠;mathematical bold small g/
+mbfgamma /𝛄;mathematical bold small gamma/
+mbfh /𝐡;mathematical bold small h/
+mbfi /𝐢;mathematical bold small i/
+mbfiota /𝛊;mathematical bold small iota/
+mbfitA /𝑨;mathematical bold italic capital a/
+mbfitAlpha /𝜜;mathematical bold italic capital alpha/
+mbfitB /𝑩;mathematical bold italic capital b/
+mbfitBeta /𝜝;mathematical bold italic capital beta/
+mbfitC /𝑪;mathematical bold italic capital c/
+mbfitChi /𝜲;mathematical bold italic capital chi/
+mbfitD /𝑫;mathematical bold italic capital d/
+mbfitDelta /𝜟;mathematical bold italic capital delta/
+mbfitE /𝑬;mathematical bold italic capital e/
+mbfitEpsilon /𝜠;mathematical bold italic capital epsilon/
+mbfitEta /𝜢;mathematical bold italic capital eta/
+mbfitF /𝑭;mathematical bold italic capital f/
+mbfitG /𝑮;mathematical bold italic capital g/
+mbfitGamma /𝜞;mathematical bold italic capital gamma/
+mbfitH /𝑯;mathematical bold italic capital h/
+mbfitI /𝑰;mathematical bold italic capital i/
+mbfitIota /𝜤;mathematical bold italic capital iota/
+mbfitJ /𝑱;mathematical bold italic capital j/
+mbfitK /𝑲;mathematical bold italic capital k/
+mbfitKappa /𝜥;mathematical bold italic capital kappa/
+mbfitL /𝑳;mathematical bold italic capital l/
+mbfitLambda /𝜦;mathematical bold italic capital lambda/
+mbfitM /𝑴;mathematical bold italic capital m/
+mbfitMu /𝜧;mathematical bold italic capital mu/
+mbfitN /𝑵;mathematical bold italic capital n/
+mbfitNu /𝜨;mathematical bold italic capital nu/
+mbfitO /𝑶;mathematical bold italic capital o/
+mbfitOmega /𝜴;mathematical bold italic capital omega/
+mbfitOmicron /𝜪;mathematical bold italic capital omicron/
+mbfitP /𝑷;mathematical bold italic capital p/
+mbfitPhi /𝜱;mathematical bold italic capital phi/
+mbfitPi /𝜫;mathematical bold italic capital pi/
+mbfitPsi /𝜳;mathematical bold italic capital psi/
+mbfitQ /𝑸;mathematical bold italic capital q/
+mbfitR /𝑹;mathematical bold italic capital r/
+mbfitRho /𝜬;mathematical bold italic capital rho/
+mbfitS /𝑺;mathematical bold italic capital s/
+mbfitSigma /𝜮;mathematical bold italic capital sigma/
+mbfitT /𝑻;mathematical bold italic capital t/
+mbfitTau /𝜯;mathematical bold italic capital tau/
+mbfitTheta /𝜣;mathematical bold italic capital theta/
+mbfitU /𝑼;mathematical bold italic capital u/
+mbfitUpsilon /𝜰;mathematical bold italic capital upsilon/
+mbfitV /𝑽;mathematical bold italic capital v/
+mbfitW /𝑾;mathematical bold italic capital w/
+mbfitX /𝑿;mathematical bold italic capital x/
+mbfitXi /𝜩;mathematical bold italic capital xi/
+mbfitY /𝒀;mathematical bold italic capital y/
+mbfitZ /𝒁;mathematical bold italic capital z/
+mbfitZeta /𝜡;mathematical bold italic capital zeta/
+mbfita /𝒂;mathematical bold italic small a/
+mbfitalpha /𝜶;mathematical bold italic small alpha/
+mbfitb /𝒃;mathematical bold italic small b/
+mbfitbeta /𝜷;mathematical bold italic small beta/
+mbfitc /𝒄;mathematical bold italic small c/
+mbfitchi /𝝌;mathematical bold italic small chi/
+mbfitd /𝒅;mathematical bold italic small d/
+mbfitdelta /𝜹;mathematical bold italic small delta/
+mbfite /𝒆;mathematical bold italic small e/
+mbfitepsilon /𝝐;mathematical bold italic varepsilon symbol/
+mbfiteta /𝜼;mathematical bold italic small eta/
+mbfitf /𝒇;mathematical bold italic small f/
+mbfitg /𝒈;mathematical bold italic small g/
+mbfitgamma /𝜸;mathematical bold italic small gamma/
+mbfith /𝒉;mathematical bold italic small h/
+mbfiti /𝒊;mathematical bold italic small i/
+mbfitiota /𝜾;mathematical bold italic small iota/
+mbfitj /𝒋;mathematical bold italic small j/
+mbfitk /𝒌;mathematical bold italic small k/
+mbfitkappa /𝜿;mathematical bold italic small kappa/
+mbfitl /𝒍;mathematical bold italic small l/
+mbfitlambda /𝝀;mathematical bold italic small lambda/
+mbfitm /𝒎;mathematical bold italic small m/
+mbfitmu /𝝁;mathematical bold italic small mu/
+mbfitn /𝒏;mathematical bold italic small n/
+mbfitnabla /𝜵;mathematical bold italic nabla/
+mbfitnu /𝝂;mathematical bold italic small nu/
+mbfito /𝒐;mathematical bold italic small o/
+mbfitomega /𝝎;mathematical bold italic small omega/
+mbfitomicron /𝝄;mathematical bold italic small omicron/
+mbfitp /𝒑;mathematical bold italic small p/
+mbfitpartial /𝝏;mathematical bold italic partial differential/
+mbfitphi /𝝓;mathematical bold italic phi symbol/
+mbfitpi /𝝅;mathematical bold italic small pi/
+mbfitpsi /𝝍;mathematical bold italic small psi/
+mbfitq /𝒒;mathematical bold italic small q/
+mbfitr /𝒓;mathematical bold italic small r/
+mbfitrho /𝝆;mathematical bold italic small rho/
+mbfits /𝒔;mathematical bold italic small s/
+mbfitsansA /𝘼;mathematical sans-serif bold italic capital a/
+mbfitsansAlpha /𝞐;mathematical sans-serif bold italic capital alpha/
+mbfitsansB /𝘽;mathematical sans-serif bold italic capital b/
+mbfitsansBeta /𝞑;mathematical sans-serif bold italic capital beta/
+mbfitsansC /𝘾;mathematical sans-serif bold italic capital c/
+mbfitsansChi /𝞦;mathematical sans-serif bold italic capital chi/
+mbfitsansD /𝘿;mathematical sans-serif bold italic capital d/
+mbfitsansDelta /𝞓;mathematical sans-serif bold italic capital delta/
+mbfitsansE /𝙀;mathematical sans-serif bold italic capital e/
+mbfitsansEpsilon /𝞔;mathematical sans-serif bold italic capital epsilon/
+mbfitsansEta /𝞖;mathematical sans-serif bold italic capital eta/
+mbfitsansF /𝙁;mathematical sans-serif bold italic capital f/
+mbfitsansG /𝙂;mathematical sans-serif bold italic capital g/
+mbfitsansGamma /𝞒;mathematical sans-serif bold italic capital gamma/
+mbfitsansH /𝙃;mathematical sans-serif bold italic capital h/
+mbfitsansI /𝙄;mathematical sans-serif bold italic capital i/
+mbfitsansIota /𝞘;mathematical sans-serif bold italic capital iota/
+mbfitsansJ /𝙅;mathematical sans-serif bold italic capital j/
+mbfitsansK /𝙆;mathematical sans-serif bold italic capital k/
+mbfitsansKappa /𝞙;mathematical sans-serif bold italic capital kappa/
+mbfitsansL /𝙇;mathematical sans-serif bold italic capital l/
+mbfitsansLambda /𝞚;mathematical sans-serif bold italic capital lambda/
+mbfitsansM /𝙈;mathematical sans-serif bold italic capital m/
+mbfitsansMu /𝞛;mathematical sans-serif bold italic capital mu/
+mbfitsansN /𝙉;mathematical sans-serif bold italic capital n/
+mbfitsansNu /𝞜;mathematical sans-serif bold italic capital nu/
+mbfitsansO /𝙊;mathematical sans-serif bold italic capital o/
+mbfitsansOmega /𝞨;mathematical sans-serif bold italic capital omega/
+mbfitsansOmicron /𝞞;mathematical sans-serif bold italic capital omicron/
+mbfitsansP /𝙋;mathematical sans-serif bold italic capital p/
+mbfitsansPhi /𝞥;mathematical sans-serif bold italic capital phi/
+mbfitsansPi /𝞟;mathematical sans-serif bold italic capital pi/
+mbfitsansPsi /𝞧;mathematical sans-serif bold italic capital psi/
+mbfitsansQ /𝙌;mathematical sans-serif bold italic capital q/
+mbfitsansR /𝙍;mathematical sans-serif bold italic capital r/
+mbfitsansRho /𝞠;mathematical sans-serif bold italic capital rho/
+mbfitsansS /𝙎;mathematical sans-serif bold italic capital s/
+mbfitsansSigma /𝞢;mathematical sans-serif bold italic capital sigma/
+mbfitsansT /𝙏;mathematical sans-serif bold italic capital t/
+mbfitsansTau /𝞣;mathematical sans-serif bold italic capital tau/
+mbfitsansTheta /𝞗;mathematical sans-serif bold italic capital theta/
+mbfitsansU /𝙐;mathematical sans-serif bold italic capital u/
+mbfitsansUpsilon /𝞤;mathematical sans-serif bold italic capital upsilon/
+mbfitsansV /𝙑;mathematical sans-serif bold italic capital v/
+mbfitsansW /𝙒;mathematical sans-serif bold italic capital w/
+mbfitsansX /𝙓;mathematical sans-serif bold italic capital x/
+mbfitsansXi /𝞝;mathematical sans-serif bold italic capital xi/
+mbfitsansY /𝙔;mathematical sans-serif bold italic capital y/
+mbfitsansZ /𝙕;mathematical sans-serif bold italic capital z/
+mbfitsansZeta /𝞕;mathematical sans-serif bold italic capital zeta/
+mbfitsansa /𝙖;mathematical sans-serif bold italic small a/
+mbfitsansalpha /𝞪;mathematical sans-serif bold italic small alpha/
+mbfitsansb /𝙗;mathematical sans-serif bold italic small b/
+mbfitsansbeta /𝞫;mathematical sans-serif bold italic small beta/
+mbfitsansc /𝙘;mathematical sans-serif bold italic small c/
+mbfitsanschi /𝟀;mathematical sans-serif bold italic small chi/
+mbfitsansd /𝙙;mathematical sans-serif bold italic small d/
+mbfitsansdelta /𝞭;mathematical sans-serif bold italic small delta/
+mbfitsanse /𝙚;mathematical sans-serif bold italic small e/
+mbfitsansepsilon /𝟄;mathematical sans-serif bold italic varepsilon symbol/
+mbfitsanseta /𝞰;mathematical sans-serif bold italic small eta/
+mbfitsansf /𝙛;mathematical sans-serif bold italic small f/
+mbfitsansg /𝙜;mathematical sans-serif bold italic small g/
+mbfitsansgamma /𝞬;mathematical sans-serif bold italic small gamma/
+mbfitsansh /𝙝;mathematical sans-serif bold italic small h/
+mbfitsansi /𝙞;mathematical sans-serif bold italic small i/
+mbfitsansiota /𝞲;mathematical sans-serif bold italic small iota/
+mbfitsansj /𝙟;mathematical sans-serif bold italic small j/
+mbfitsansk /𝙠;mathematical sans-serif bold italic small k/
+mbfitsanskappa /𝞳;mathematical sans-serif bold italic small kappa/
+mbfitsansl /𝙡;mathematical sans-serif bold italic small l/
+mbfitsanslambda /𝞴;mathematical sans-serif bold italic small lambda/
+mbfitsansm /𝙢;mathematical sans-serif bold italic small m/
+mbfitsansmu /𝞵;mathematical sans-serif bold italic small mu/
+mbfitsansn /𝙣;mathematical sans-serif bold italic small n/
+mbfitsansnabla /𝞩;mathematical sans-serif bold italic nabla/
+mbfitsansnu /𝞶;mathematical sans-serif bold italic small nu/
+mbfitsanso /𝙤;mathematical sans-serif bold italic small o/
+mbfitsansomega /𝟂;mathematical sans-serif bold italic small omega/
+mbfitsansomicron /𝞸;mathematical sans-serif bold italic small omicron/
+mbfitsansp /𝙥;mathematical sans-serif bold italic small p/
+mbfitsanspartial /𝟃;mathematical sans-serif bold italic partial differential/
+mbfitsansphi /𝟇;mathematical sans-serif bold italic phi symbol/
+mbfitsanspi /𝞹;mathematical sans-serif bold italic small pi/
+mbfitsanspsi /𝟁;mathematical sans-serif bold italic small psi/
+mbfitsansq /𝙦;mathematical sans-serif bold italic small q/
+mbfitsansr /𝙧;mathematical sans-serif bold italic small r/
+mbfitsansrho /𝞺;mathematical sans-serif bold italic small rho/
+mbfitsanss /𝙨;mathematical sans-serif bold italic small s/
+mbfitsanssigma /𝞼;mathematical sans-serif bold italic small sigma/
+mbfitsanst /𝙩;mathematical sans-serif bold italic small t/
+mbfitsanstau /𝞽;mathematical sans-serif bold italic small tau/
+mbfitsanstheta /𝞱;mathematical sans-serif bold italic small theta/
+mbfitsansu /𝙪;mathematical sans-serif bold italic small u/
+mbfitsansupsilon /𝞾;mathematical sans-serif bold italic small upsilon/
+mbfitsansv /𝙫;mathematical sans-serif bold italic small v/
+mbfitsansvarTheta /𝞡;mathematical sans-serif bold italic capital theta symbol/
+mbfitsansvarepsilon /𝞮;mathematical sans-serif bold italic small varepsilon/
+mbfitsansvarkappa /𝟆;mathematical sans-serif bold italic kappa symbol/
+mbfitsansvarphi /𝞿;mathematical sans-serif bold italic small phi/
+mbfitsansvarpi /𝟉;mathematical sans-serif bold italic pi symbol/
+mbfitsansvarrho /𝟈;mathematical sans-serif bold italic rho symbol/
+mbfitsansvarsigma /𝞻;mathematical sans-serif bold italic small final sigma/
+mbfitsansvartheta /𝟅;mathematical sans-serif bold italic theta symbol/
+mbfitsansw /𝙬;mathematical sans-serif bold italic small w/
+mbfitsansx /𝙭;mathematical sans-serif bold italic small x/
+mbfitsansxi /𝞷;mathematical sans-serif bold italic small xi/
+mbfitsansy /𝙮;mathematical sans-serif bold italic small y/
+mbfitsansz /𝙯;mathematical sans-serif bold italic small z/
+mbfitsanszeta /𝞯;mathematical sans-serif bold italic small zeta/
+mbfitsigma /𝝈;mathematical bold italic small sigma/
+mbfitt /𝒕;mathematical bold italic small t/
+mbfittau /𝝉;mathematical bold italic small tau/
+mbfittheta /𝜽;mathematical bold italic small theta/
+mbfitu /𝒖;mathematical bold italic small u/
+mbfitupsilon /𝝊;mathematical bold italic small upsilon/
+mbfitv /𝒗;mathematical bold italic small v/
+mbfitvarTheta /𝜭;mathematical bold italic capital theta symbol/
+mbfitvarepsilon /𝜺;mathematical bold italic small varepsilon/
+mbfitvarkappa /𝝒;mathematical bold italic kappa symbol/
+mbfitvarphi /𝝋;mathematical bold italic small phi/
+mbfitvarpi /𝝕;mathematical bold italic pi symbol/
+mbfitvarrho /𝝔;mathematical bold italic rho symbol/
+mbfitvarsigma /𝝇;mathematical bold italic small final sigma/
+mbfitvartheta /𝝑;mathematical bold italic theta symbol/
+mbfitw /𝒘;mathematical bold italic small w/
+mbfitx /𝒙;mathematical bold italic small x/
+mbfitxi /𝝃;mathematical bold italic small xi/
+mbfity /𝒚;mathematical bold italic small y/
+mbfitz /𝒛;mathematical bold italic small z/
+mbfitzeta /𝜻;mathematical bold italic small zeta/
+mbfj /𝐣;mathematical bold small j/
+mbfk /𝐤;mathematical bold small k/
+mbfkappa /𝛋;mathematical bold small kappa/
+mbfl /𝐥;mathematical bold small l/
+mbflambda /𝛌;mathematical bold small lambda/
+mbfm /𝐦;mathematical bold small m/
+mbfmu /𝛍;mathematical bold small mu/
+mbfn /𝐧;mathematical bold small n/
+mbfnabla /𝛁;mathematical bold nabla/
+mbfnine /𝟗;mathematical bold digit 9/
+mbfnu /𝛎;mathematical bold small nu/
+mbfo /𝐨;mathematical bold small o/
+mbfomega /𝛚;mathematical bold small omega/
+mbfomicron /𝛐;mathematical bold small omicron/
+mbfone /𝟏;mathematical bold digit 1/
+mbfp /𝐩;mathematical bold small p/
+mbfpartial /𝛛;mathematical bold partial differential/
+mbfphi /𝛟;mathematical bold phi symbol/
+mbfpi /𝛑;mathematical bold small pi/
+mbfpsi /𝛙;mathematical bold small psi/
+mbfq /𝐪;mathematical bold small q/
+mbfr /𝐫;mathematical bold small r/
+mbfrho /𝛒;mathematical bold small rho/
+mbfs /𝐬;mathematical bold small s/
+mbfsansA /𝗔;mathematical sans-serif bold capital a/
+mbfsansAlpha /𝝖;mathematical sans-serif bold capital alpha/
+mbfsansB /𝗕;mathematical sans-serif bold capital b/
+mbfsansBeta /𝝗;mathematical sans-serif bold capital beta/
+mbfsansC /𝗖;mathematical sans-serif bold capital c/
+mbfsansChi /𝝬;mathematical sans-serif bold capital chi/
+mbfsansD /𝗗;mathematical sans-serif bold capital d/
+mbfsansDelta /𝝙;mathematical sans-serif bold capital delta/
+mbfsansE /𝗘;mathematical sans-serif bold capital e/
+mbfsansEpsilon /𝝚;mathematical sans-serif bold capital epsilon/
+mbfsansEta /𝝜;mathematical sans-serif bold capital eta/
+mbfsansF /𝗙;mathematical sans-serif bold capital f/
+mbfsansG /𝗚;mathematical sans-serif bold capital g/
+mbfsansGamma /𝝘;mathematical sans-serif bold capital gamma/
+mbfsansH /𝗛;mathematical sans-serif bold capital h/
+mbfsansI /𝗜;mathematical sans-serif bold capital i/
+mbfsansIota /𝝞;mathematical sans-serif bold capital iota/
+mbfsansJ /𝗝;mathematical sans-serif bold capital j/
+mbfsansK /𝗞;mathematical sans-serif bold capital k/
+mbfsansKappa /𝝟;mathematical sans-serif bold capital kappa/
+mbfsansL /𝗟;mathematical sans-serif bold capital l/
+mbfsansLambda /𝝠;mathematical sans-serif bold capital lambda/
+mbfsansM /𝗠;mathematical sans-serif bold capital m/
+mbfsansMu /𝝡;mathematical sans-serif bold capital mu/
+mbfsansN /𝗡;mathematical sans-serif bold capital n/
+mbfsansNu /𝝢;mathematical sans-serif bold capital nu/
+mbfsansO /𝗢;mathematical sans-serif bold capital o/
+mbfsansOmega /𝝮;mathematical sans-serif bold capital omega/
+mbfsansOmicron /𝝤;mathematical sans-serif bold capital omicron/
+mbfsansP /𝗣;mathematical sans-serif bold capital p/
+mbfsansPhi /𝝫;mathematical sans-serif bold capital phi/
+mbfsansPi /𝝥;mathematical sans-serif bold capital pi/
+mbfsansPsi /𝝭;mathematical sans-serif bold capital psi/
+mbfsansQ /𝗤;mathematical sans-serif bold capital q/
+mbfsansR /𝗥;mathematical sans-serif bold capital r/
+mbfsansRho /𝝦;mathematical sans-serif bold capital rho/
+mbfsansS /𝗦;mathematical sans-serif bold capital s/
+mbfsansSigma /𝝨;mathematical sans-serif bold capital sigma/
+mbfsansT /𝗧;mathematical sans-serif bold capital t/
+mbfsansTau /𝝩;mathematical sans-serif bold capital tau/
+mbfsansTheta /𝝝;mathematical sans-serif bold capital theta/
+mbfsansU /𝗨;mathematical sans-serif bold capital u/
+mbfsansUpsilon /𝝪;mathematical sans-serif bold capital upsilon/
+mbfsansV /𝗩;mathematical sans-serif bold capital v/
+mbfsansW /𝗪;mathematical sans-serif bold capital w/
+mbfsansX /𝗫;mathematical sans-serif bold capital x/
+mbfsansXi /𝝣;mathematical sans-serif bold capital xi/
+mbfsansY /𝗬;mathematical sans-serif bold capital y/
+mbfsansZ /𝗭;mathematical sans-serif bold capital z/
+mbfsansZeta /𝝛;mathematical sans-serif bold capital zeta/
+mbfsansa /𝗮;mathematical sans-serif bold small a/
+mbfsansalpha /𝝰;mathematical sans-serif bold small alpha/
+mbfsansb /𝗯;mathematical sans-serif bold small b/
+mbfsansbeta /𝝱;mathematical sans-serif bold small beta/
+mbfsansc /𝗰;mathematical sans-serif bold small c/
+mbfsanschi /𝞆;mathematical sans-serif bold small chi/
+mbfsansd /𝗱;mathematical sans-serif bold small d/
+mbfsansdelta /𝝳;mathematical sans-serif bold small delta/
+mbfsanse /𝗲;mathematical sans-serif bold small e/
+mbfsanseight /𝟴;mathematical sans-serif bold digit 8/
+mbfsansepsilon /𝞊;mathematical sans-serif bold varepsilon symbol/
+mbfsanseta /𝝶;mathematical sans-serif bold small eta/
+mbfsansf /𝗳;mathematical sans-serif bold small f/
+mbfsansfive /𝟱;mathematical sans-serif bold digit 5/
+mbfsansfour /𝟰;mathematical sans-serif bold digit 4/
+mbfsansg /𝗴;mathematical sans-serif bold small g/
+mbfsansgamma /𝝲;mathematical sans-serif bold small gamma/
+mbfsansh /𝗵;mathematical sans-serif bold small h/
+mbfsansi /𝗶;mathematical sans-serif bold small i/
+mbfsansiota /𝝸;mathematical sans-serif bold small iota/
+mbfsansj /𝗷;mathematical sans-serif bold small j/
+mbfsansk /𝗸;mathematical sans-serif bold small k/
+mbfsanskappa /𝝹;mathematical sans-serif bold small kappa/
+mbfsansl /𝗹;mathematical sans-serif bold small l/
+mbfsanslambda /𝝺;mathematical sans-serif bold small lambda/
+mbfsansm /𝗺;mathematical sans-serif bold small m/
+mbfsansmu /𝝻;mathematical sans-serif bold small mu/
+mbfsansn /𝗻;mathematical sans-serif bold small n/
+mbfsansnabla /𝝯;mathematical sans-serif bold nabla/
+mbfsansnine /𝟵;mathematical sans-serif bold digit 9/
+mbfsansnu /𝝼;mathematical sans-serif bold small nu/
+mbfsanso /𝗼;mathematical sans-serif bold small o/
+mbfsansomega /𝞈;mathematical sans-serif bold small omega/
+mbfsansomicron /𝝾;mathematical sans-serif bold small omicron/
+mbfsansone /𝟭;mathematical sans-serif bold digit 1/
+mbfsansp /𝗽;mathematical sans-serif bold small p/
+mbfsanspartial /𝞉;mathematical sans-serif bold partial differential/
+mbfsansphi /𝞍;mathematical sans-serif bold phi symbol/
+mbfsanspi /𝝿;mathematical sans-serif bold small pi/
+mbfsanspsi /𝞇;mathematical sans-serif bold small psi/
+mbfsansq /𝗾;mathematical sans-serif bold small q/
+mbfsansr /𝗿;mathematical sans-serif bold small r/
+mbfsansrho /𝞀;mathematical sans-serif bold small rho/
+mbfsanss /𝘀;mathematical sans-serif bold small s/
+mbfsansseven /𝟳;mathematical sans-serif bold digit 7/
+mbfsanssigma /𝞂;mathematical sans-serif bold small sigma/
+mbfsanssix /𝟲;mathematical sans-serif bold digit 6/
+mbfsanst /𝘁;mathematical sans-serif bold small t/
+mbfsanstau /𝞃;mathematical sans-serif bold small tau/
+mbfsanstheta /𝝷;mathematical sans-serif bold small theta/
+mbfsansthree /𝟯;mathematical sans-serif bold digit 3/
+mbfsanstwo /𝟮;mathematical sans-serif bold digit 2/
+mbfsansu /𝘂;mathematical sans-serif bold small u/
+mbfsansupsilon /𝞄;mathematical sans-serif bold small upsilon/
+mbfsansv /𝘃;mathematical sans-serif bold small v/
+mbfsansvarTheta /𝝧;mathematical sans-serif bold capital theta symbol/
+mbfsansvarepsilon /𝝴;mathematical sans-serif bold small varepsilon/
+mbfsansvarkappa /𝞌;mathematical sans-serif bold kappa symbol/
+mbfsansvarphi /𝞅;mathematical sans-serif bold small phi/
+mbfsansvarpi /𝞏;mathematical sans-serif bold pi symbol/
+mbfsansvarrho /𝞎;mathematical sans-serif bold rho symbol/
+mbfsansvarsigma /𝞁;mathematical sans-serif bold small final sigma/
+mbfsansvartheta /𝞋;mathematical sans-serif bold theta symbol/
+mbfsansw /𝘄;mathematical sans-serif bold small w/
+mbfsansx /𝘅;mathematical sans-serif bold small x/
+mbfsansxi /𝝽;mathematical sans-serif bold small xi/
+mbfsansy /𝘆;mathematical sans-serif bold small y/
+mbfsansz /𝘇;mathematical sans-serif bold small z/
+mbfsanszero /𝟬;mathematical sans-serif bold digit 0/
+mbfsanszeta /𝝵;mathematical sans-serif bold small zeta/
+mbfscrA /𝓐;mathematical bold script capital a/
+mbfscrB /𝓑;mathematical bold script capital b/
+mbfscrC /𝓒;mathematical bold script capital c/
+mbfscrD /𝓓;mathematical bold script capital d/
+mbfscrE /𝓔;mathematical bold script capital e/
+mbfscrF /𝓕;mathematical bold script capital f/
+mbfscrG /𝓖;mathematical bold script capital g/
+mbfscrH /𝓗;mathematical bold script capital h/
+mbfscrI /𝓘;mathematical bold script capital i/
+mbfscrJ /𝓙;mathematical bold script capital j/
+mbfscrK /𝓚;mathematical bold script capital k/
+mbfscrL /𝓛;mathematical bold script capital l/
+mbfscrM /𝓜;mathematical bold script capital m/
+mbfscrN /𝓝;mathematical bold script capital n/
+mbfscrO /𝓞;mathematical bold script capital o/
+mbfscrP /𝓟;mathematical bold script capital p/
+mbfscrQ /𝓠;mathematical bold script capital q/
+mbfscrR /𝓡;mathematical bold script capital r/
+mbfscrS /𝓢;mathematical bold script capital s/
+mbfscrT /𝓣;mathematical bold script capital t/
+mbfscrU /𝓤;mathematical bold script capital u/
+mbfscrV /𝓥;mathematical bold script capital v/
+mbfscrW /𝓦;mathematical bold script capital w/
+mbfscrX /𝓧;mathematical bold script capital x/
+mbfscrY /𝓨;mathematical bold script capital y/
+mbfscrZ /𝓩;mathematical bold script capital z/
+mbfscra /𝓪;mathematical bold script small a/
+mbfscrb /𝓫;mathematical bold script small b/
+mbfscrc /𝓬;mathematical bold script small c/
+mbfscrd /𝓭;mathematical bold script small d/
+mbfscre /𝓮;mathematical bold script small e/
+mbfscrf /𝓯;mathematical bold script small f/
+mbfscrg /𝓰;mathematical bold script small g/
+mbfscrh /𝓱;mathematical bold script small h/
+mbfscri /𝓲;mathematical bold script small i/
+mbfscrj /𝓳;mathematical bold script small j/
+mbfscrk /𝓴;mathematical bold script small k/
+mbfscrl /𝓵;mathematical bold script small l/
+mbfscrm /𝓶;mathematical bold script small m/
+mbfscrn /𝓷;mathematical bold script small n/
+mbfscro /𝓸;mathematical bold script small o/
+mbfscrp /𝓹;mathematical bold script small p/
+mbfscrq /𝓺;mathematical bold script small q/
+mbfscrr /𝓻;mathematical bold script small r/
+mbfscrs /𝓼;mathematical bold script small s/
+mbfscrt /𝓽;mathematical bold script small t/
+mbfscru /𝓾;mathematical bold script small u/
+mbfscrv /𝓿;mathematical bold script small v/
+mbfscrw /𝔀;mathematical bold script small w/
+mbfscrx /𝔁;mathematical bold script small x/
+mbfscry /𝔂;mathematical bold script small y/
+mbfscrz /𝔃;mathematical bold script small z/
+mbfseven /𝟕;mathematical bold digit 7/
+mbfsigma /𝛔;mathematical bold small sigma/
+mbfsix /𝟔;mathematical bold digit 6/
+mbft /𝐭;mathematical bold small t/
+mbftau /𝛕;mathematical bold small tau/
+mbftheta /𝛉;mathematical bold small theta/
+mbfthree /𝟑;mathematical bold digit 3/
+mbftwo /𝟐;mathematical bold digit 2/
+mbfu /𝐮;mathematical bold small u/
+mbfupsilon /𝛖;mathematical bold small upsilon/
+mbfv /𝐯;mathematical bold small v/
+mbfvarTheta /𝚹;mathematical bold capital theta symbol/
+mbfvarepsilon /𝛆;mathematical bold small varepsilon/
+mbfvarkappa /𝛞;mathematical bold kappa symbol/
+mbfvarphi /𝛗;mathematical bold small phi/
+mbfvarpi /𝛡;mathematical bold pi symbol/
+mbfvarrho /𝛠;mathematical bold rho symbol/
+mbfvarsigma /𝛓;mathematical bold small final sigma/
+mbfvartheta /𝛝;mathematical bold theta symbol/
+mbfw /𝐰;mathematical bold small w/
+mbfx /𝐱;mathematical bold small x/
+mbfxi /𝛏;mathematical bold small xi/
+mbfy /𝐲;mathematical bold small y/
+mbfz /𝐳;mathematical bold small z/
+mbfzero /𝟎;mathematical bold digit 0/
+mbfzeta /𝛇;mathematical bold small zeta/
+mdblkcircle /⚫;medium black circle/
+mdblkdiamond /⬥;black medium diamond/
+mdblklozenge /⬧;black medium lozenge/
+mdblksquare /◼;black medium square/
+mdlgblkcircle /●;circle, filled/
+mdlgblkdiamond /◆;black diamond/
+mdlgblklozenge /⧫;black lozenge/
+mdlgblksquare /■;square, filled/
+mdlgwhtcircle /○;medium large circle/
+mdlgwhtdiamond /◇;white diamond; diamond, open/
+mdlgwhtlozenge /◊;lozenge or total mark/
+mdlgwhtsquare /□;square, open/
+mdsmblkcircle /⦁;z notation spot/
+mdsmblksquare /◾;black medium small square/
+mdsmwhtcircle /⚬;medium small white circle/
+mdsmwhtsquare /◽;white medium small square/
+mdwhtcircle /⚪;medium white circle/
+mdwhtdiamond /⬦;white medium diamond/
+mdwhtlozenge /⬨;white medium lozenge/
+mdwhtsquare /◻;white medium square/
+measangledltosw /⦯;measured angle with open arm ending in arrow pointing left and down/
+measangledrtose /⦮;measured angle with open arm ending in arrow pointing right and down/
+measangleldtosw /⦫;measured angle with open arm ending in arrow pointing down and left/
+measanglelutonw /⦩;measured angle with open arm ending in arrow pointing up and left/
+measanglerdtose /⦪;measured angle with open arm ending in arrow pointing down and right/
+measanglerutone /⦨;measured angle with open arm ending in arrow pointing up and right/
+measangleultonw /⦭;measured angle with open arm ending in arrow pointing left and up/
+measangleurtone /⦬;measured angle with open arm ending in arrow pointing right and up/
+measeq /≞;measured by (m over equals)/
+measuredangle /∡;angle-measured/
+measuredangleleft /⦛;measured angle opening left/
+measuredrightangle /⊾;right angle-measured [with arc]/
+medblackstar /⭑;black medium star/
+medwhitestar /⭐;white medium star/
+mfrakA /𝔄;mathematical fraktur capital a/
+mfrakB /𝔅;mathematical fraktur capital b/
+mfrakC /ℭ;black-letter capital c/
+mfrakD /𝔇;mathematical fraktur capital d/
+mfrakE /𝔈;mathematical fraktur capital e/
+mfrakF /𝔉;mathematical fraktur capital f/
+mfrakG /𝔊;mathematical fraktur capital g/
+mfrakH /ℌ;frak h, upper case h/
+mfrakJ /𝔍;mathematical fraktur capital j/
+mfrakK /𝔎;mathematical fraktur capital k/
+mfrakL /𝔏;mathematical fraktur capital l/
+mfrakM /𝔐;mathematical fraktur capital m/
+mfrakN /𝔑;mathematical fraktur capital n/
+mfrakO /𝔒;mathematical fraktur capital o/
+mfrakP /𝔓;mathematical fraktur capital p/
+mfrakQ /𝔔;mathematical fraktur capital q/
+mfrakS /𝔖;mathematical fraktur capital s/
+mfrakT /𝔗;mathematical fraktur capital t/
+mfrakU /𝔘;mathematical fraktur capital u/
+mfrakV /𝔙;mathematical fraktur capital v/
+mfrakW /𝔚;mathematical fraktur capital w/
+mfrakX /𝔛;mathematical fraktur capital x/
+mfrakY /𝔜;mathematical fraktur capital y/
+mfrakZ /ℨ;frak z, upper case z/
+mfraka /𝔞;mathematical fraktur small a/
+mfrakb /𝔟;mathematical fraktur small b/
+mfrakc /𝔠;mathematical fraktur small c/
+mfrakd /𝔡;mathematical fraktur small d/
+mfrake /𝔢;mathematical fraktur small e/
+mfrakf /𝔣;mathematical fraktur small f/
+mfrakg /𝔤;mathematical fraktur small g/
+mfrakh /𝔥;mathematical fraktur small h/
+mfraki /𝔦;mathematical fraktur small i/
+mfrakj /𝔧;mathematical fraktur small j/
+mfrakk /𝔨;mathematical fraktur small k/
+mfrakl /𝔩;mathematical fraktur small l/
+mfrakm /𝔪;mathematical fraktur small m/
+mfrakn /𝔫;mathematical fraktur small n/
+mfrako /𝔬;mathematical fraktur small o/
+mfrakp /𝔭;mathematical fraktur small p/
+mfrakq /𝔮;mathematical fraktur small q/
+mfrakr /𝔯;mathematical fraktur small r/
+mfraks /𝔰;mathematical fraktur small s/
+mfrakt /𝔱;mathematical fraktur small t/
+mfraku /𝔲;mathematical fraktur small u/
+mfrakv /𝔳;mathematical fraktur small v/
+mfrakw /𝔴;mathematical fraktur small w/
+mfrakx /𝔵;mathematical fraktur small x/
+mfraky /𝔶;mathematical fraktur small y/
+mfrakz /𝔷;mathematical fraktur small z/
+mho /℧;conductance/
+mid /∣;mid r:/
+midbarvee /⩝;logical or with horizontal dash/
+midbarwedge /⩜;ogical and with horizontal dash/
+midcir /⫰;vertical line with circle below/
+minus /−;minus sign/
+minusdot /⨪;minus sign with dot below/
+minusfdots /⨫;minus sign with falling dots/
+minusrdots /⨬;minus sign with rising dots/
+mitA /𝐴;mathematical italic capital a/
+mitAlpha /𝛢;mathematical italic capital alpha/
+mitB /𝐵;mathematical italic capital b/
+mitBbbD /ⅅ;double-struck italic capital d/
+mitBbbd /ⅆ;double-struck italic small d/
+mitBbbe /ⅇ;double-struck italic small e/
+mitBbbi /ⅈ;double-struck italic small i/
+mitBbbj /ⅉ;double-struck italic small j/
+mitBeta /𝛣;mathematical italic capital beta/
+mitC /𝐶;mathematical italic capital c/
+mitChi /𝛸;mathematical italic capital chi/
+mitD /𝐷;mathematical italic capital d/
+mitDelta /𝛥;mathematical italic capital delta/
+mitE /𝐸;mathematical italic capital e/
+mitEpsilon /𝛦;mathematical italic capital epsilon/
+mitEta /𝛨;mathematical italic capital eta/
+mitF /𝐹;mathematical italic capital f/
+mitG /𝐺;mathematical italic capital g/
+mitGamma /𝛤;mathematical italic capital gamma/
+mitH /𝐻;mathematical italic capital h/
+mitI /𝐼;mathematical italic capital i/
+mitIota /𝛪;mathematical italic capital iota/
+mitJ /𝐽;mathematical italic capital j/
+mitK /𝐾;mathematical italic capital k/
+mitKappa /𝛫;mathematical italic capital kappa/
+mitL /𝐿;mathematical italic capital l/
+mitLambda /𝛬;mathematical italic capital lambda/
+mitM /𝑀;mathematical italic capital m/
+mitMu /𝛭;mathematical italic capital mu/
+mitN /𝑁;mathematical italic capital n/
+mitNu /𝛮;mathematical italic capital nu/
+mitO /𝑂;mathematical italic capital o/
+mitOmega /𝛺;mathematical italic capital omega/
+mitOmicron /𝛰;mathematical italic capital omicron/
+mitP /𝑃;mathematical italic capital p/
+mitPhi /𝛷;mathematical italic capital phi/
+mitPi /𝛱;mathematical italic capital pi/
+mitPsi /𝛹;mathematical italic capital psi/
+mitQ /𝑄;mathematical italic capital q/
+mitR /𝑅;mathematical italic capital r/
+mitRho /𝛲;mathematical italic capital rho/
+mitS /𝑆;mathematical italic capital s/
+mitSigma /𝛴;mathematical italic capital sigma/
+mitT /𝑇;mathematical italic capital t/
+mitTau /𝛵;mathematical italic capital tau/
+mitTheta /𝛩;mathematical italic capital theta/
+mitU /𝑈;mathematical italic capital u/
+mitUpsilon /𝛶;mathematical italic capital upsilon/
+mitV /𝑉;mathematical italic capital v/
+mitW /𝑊;mathematical italic capital w/
+mitX /𝑋;mathematical italic capital x/
+mitXi /𝛯;mathematical italic capital xi/
+mitY /𝑌;mathematical italic capital y/
+mitZ /𝑍;mathematical italic capital z/
+mitZeta /𝛧;mathematical italic capital zeta/
+mita /𝑎;mathematical italic small a/
+mitalpha /𝛼;mathematical italic small alpha/
+mitb /𝑏;mathematical italic small b/
+mitbeta /𝛽;mathematical italic small beta/
+mitc /𝑐;mathematical italic small c/
+mitchi /𝜒;mathematical italic small chi/
+mitd /𝑑;mathematical italic small d/
+mitdelta /𝛿;mathematical italic small delta/
+mite /𝑒;mathematical italic small e/
+mitepsilon /𝜖;mathematical italic varepsilon symbol/
+miteta /𝜂;mathematical italic small eta/
+mitf /𝑓;mathematical italic small f/
+mitg /𝑔;mathematical italic small g/
+mitgamma /𝛾;mathematical italic small gamma/
+miti /𝑖;mathematical italic small i/
+mitiota /𝜄;mathematical italic small iota/
+mitj /𝑗;mathematical italic small j/
+mitk /𝑘;mathematical italic small k/
+mitkappa /𝜅;mathematical italic small kappa/
+mitl /𝑙;mathematical italic small l/
+mitlambda /𝜆;mathematical italic small lambda/
+mitm /𝑚;mathematical italic small m/
+mitmu /𝜇;mathematical italic small mu/
+mitn /𝑛;mathematical italic small n/
+mitnabla /𝛻;mathematical italic nabla/
+mitnu /𝜈;mathematical italic small nu/
+mito /𝑜;mathematical italic small o/
+mitomega /𝜔;mathematical italic small omega/
+mitomicron /𝜊;mathematical italic small omicron/
+mitp /𝑝;mathematical italic small p/
+mitpartial /𝜕;mathematical italic partial differential/
+mitphi /𝜙;mathematical italic phi symbol/
+mitpi /𝜋;mathematical italic small pi/
+mitpsi /𝜓;mathematical italic small psi/
+mitq /𝑞;mathematical italic small q/
+mitr /𝑟;mathematical italic small r/
+mitrho /𝜌;mathematical italic small rho/
+mits /𝑠;mathematical italic small s/
+mitsansA /𝘈;mathematical sans-serif italic capital a/
+mitsansB /𝘉;mathematical sans-serif italic capital b/
+mitsansC /𝘊;mathematical sans-serif italic capital c/
+mitsansD /𝘋;mathematical sans-serif italic capital d/
+mitsansE /𝘌;mathematical sans-serif italic capital e/
+mitsansF /𝘍;mathematical sans-serif italic capital f/
+mitsansG /𝘎;mathematical sans-serif italic capital g/
+mitsansH /𝘏;mathematical sans-serif italic capital h/
+mitsansI /𝘐;mathematical sans-serif italic capital i/
+mitsansJ /𝘑;mathematical sans-serif italic capital j/
+mitsansK /𝘒;mathematical sans-serif italic capital k/
+mitsansL /𝘓;mathematical sans-serif italic capital l/
+mitsansM /𝘔;mathematical sans-serif italic capital m/
+mitsansN /𝘕;mathematical sans-serif italic capital n/
+mitsansO /𝘖;mathematical sans-serif italic capital o/
+mitsansP /𝘗;mathematical sans-serif italic capital p/
+mitsansQ /𝘘;mathematical sans-serif italic capital q/
+mitsansR /𝘙;mathematical sans-serif italic capital r/
+mitsansS /𝘚;mathematical sans-serif italic capital s/
+mitsansT /𝘛;mathematical sans-serif italic capital t/
+mitsansU /𝘜;mathematical sans-serif italic capital u/
+mitsansV /𝘝;mathematical sans-serif italic capital v/
+mitsansW /𝘞;mathematical sans-serif italic capital w/
+mitsansX /𝘟;mathematical sans-serif italic capital x/
+mitsansY /𝘠;mathematical sans-serif italic capital y/
+mitsansZ /𝘡;mathematical sans-serif italic capital z/
+mitsansa /𝘢;mathematical sans-serif italic small a/
+mitsansb /𝘣;mathematical sans-serif italic small b/
+mitsansc /𝘤;mathematical sans-serif italic small c/
+mitsansd /𝘥;mathematical sans-serif italic small d/
+mitsanse /𝘦;mathematical sans-serif italic small e/
+mitsansf /𝘧;mathematical sans-serif italic small f/
+mitsansg /𝘨;mathematical sans-serif italic small g/
+mitsansh /𝘩;mathematical sans-serif italic small h/
+mitsansi /𝘪;mathematical sans-serif italic small i/
+mitsansj /𝘫;mathematical sans-serif italic small j/
+mitsansk /𝘬;mathematical sans-serif italic small k/
+mitsansl /𝘭;mathematical sans-serif italic small l/
+mitsansm /𝘮;mathematical sans-serif italic small m/
+mitsansn /𝘯;mathematical sans-serif italic small n/
+mitsanso /𝘰;mathematical sans-serif italic small o/
+mitsansp /𝘱;mathematical sans-serif italic small p/
+mitsansq /𝘲;mathematical sans-serif italic small q/
+mitsansr /𝘳;mathematical sans-serif italic small r/
+mitsanss /𝘴;mathematical sans-serif italic small s/
+mitsanst /𝘵;mathematical sans-serif italic small t/
+mitsansu /𝘶;mathematical sans-serif italic small u/
+mitsansv /𝘷;mathematical sans-serif italic small v/
+mitsansw /𝘸;mathematical sans-serif italic small w/
+mitsansx /𝘹;mathematical sans-serif italic small x/
+mitsansy /𝘺;mathematical sans-serif italic small y/
+mitsansz /𝘻;mathematical sans-serif italic small z/
+mitsigma /𝜎;mathematical italic small sigma/
+mitt /𝑡;mathematical italic small t/
+mittau /𝜏;mathematical italic small tau/
+mittheta /𝜃;mathematical italic small theta/
+mitu /𝑢;mathematical italic small u/
+mitupsilon /𝜐;mathematical italic small upsilon/
+mitv /𝑣;mathematical italic small v/
+mitvarTheta /𝛳;mathematical italic capital theta symbol/
+mitvarepsilon /𝜀;mathematical italic small varepsilon/
+mitvarkappa /𝜘;mathematical italic kappa symbol/
+mitvarphi /𝜑;mathematical italic small phi/
+mitvarpi /𝜛;mathematical italic pi symbol/
+mitvarrho /𝜚;mathematical italic rho symbol/
+mitvarsigma /𝜍;mathematical italic small final sigma/
+mitvartheta /𝜗;mathematical italic theta symbol/
+mitw /𝑤;mathematical italic small w/
+mitx /𝑥;mathematical italic small x/
+mitxi /𝜉;mathematical italic small xi/
+mity /𝑦;mathematical italic small y/
+mitz /𝑧;mathematical italic small z/
+mitzeta /𝜁;mathematical italic small zeta/
+mlcp /⫛;transversal intersection/
+models /⊧;models (vertical, short double dash)/
+modtwosum /⨊;modulo two sum/
+mp /∓;minus-or-plus sign/
+msansA /𝖠;mathematical sans-serif capital a/
+msansB /𝖡;mathematical sans-serif capital b/
+msansC /𝖢;mathematical sans-serif capital c/
+msansD /𝖣;mathematical sans-serif capital d/
+msansE /𝖤;mathematical sans-serif capital e/
+msansF /𝖥;mathematical sans-serif capital f/
+msansG /𝖦;mathematical sans-serif capital g/
+msansH /𝖧;mathematical sans-serif capital h/
+msansI /𝖨;mathematical sans-serif capital i/
+msansJ /𝖩;mathematical sans-serif capital j/
+msansK /𝖪;mathematical sans-serif capital k/
+msansL /𝖫;mathematical sans-serif capital l/
+msansM /𝖬;mathematical sans-serif capital m/
+msansN /𝖭;mathematical sans-serif capital n/
+msansO /𝖮;mathematical sans-serif capital o/
+msansP /𝖯;mathematical sans-serif capital p/
+msansQ /𝖰;mathematical sans-serif capital q/
+msansR /𝖱;mathematical sans-serif capital r/
+msansS /𝖲;mathematical sans-serif capital s/
+msansT /𝖳;mathematical sans-serif capital t/
+msansU /𝖴;mathematical sans-serif capital u/
+msansV /𝖵;mathematical sans-serif capital v/
+msansW /𝖶;mathematical sans-serif capital w/
+msansX /𝖷;mathematical sans-serif capital x/
+msansY /𝖸;mathematical sans-serif capital y/
+msansZ /𝖹;mathematical sans-serif capital z/
+msansa /𝖺;mathematical sans-serif small a/
+msansb /𝖻;mathematical sans-serif small b/
+msansc /𝖼;mathematical sans-serif small c/
+msansd /𝖽;mathematical sans-serif small d/
+msanse /𝖾;mathematical sans-serif small e/
+msanseight /𝟪;mathematical sans-serif digit 8/
+msansf /𝖿;mathematical sans-serif small f/
+msansfive /𝟧;mathematical sans-serif digit 5/
+msansfour /𝟦;mathematical sans-serif digit 4/
+msansg /𝗀;mathematical sans-serif small g/
+msansh /𝗁;mathematical sans-serif small h/
+msansi /𝗂;mathematical sans-serif small i/
+msansj /𝗃;mathematical sans-serif small j/
+msansk /𝗄;mathematical sans-serif small k/
+msansl /𝗅;mathematical sans-serif small l/
+msansm /𝗆;mathematical sans-serif small m/
+msansn /𝗇;mathematical sans-serif small n/
+msansnine /𝟫;mathematical sans-serif digit 9/
+msanso /𝗈;mathematical sans-serif small o/
+msansone /𝟣;mathematical sans-serif digit 1/
+msansp /𝗉;mathematical sans-serif small p/
+msansq /𝗊;mathematical sans-serif small q/
+msansr /𝗋;mathematical sans-serif small r/
+msanss /𝗌;mathematical sans-serif small s/
+msansseven /𝟩;mathematical sans-serif digit 7/
+msanssix /𝟨;mathematical sans-serif digit 6/
+msanst /𝗍;mathematical sans-serif small t/
+msansthree /𝟥;mathematical sans-serif digit 3/
+msanstwo /𝟤;mathematical sans-serif digit 2/
+msansu /𝗎;mathematical sans-serif small u/
+msansv /𝗏;mathematical sans-serif small v/
+msansw /𝗐;mathematical sans-serif small w/
+msansx /𝗑;mathematical sans-serif small x/
+msansy /𝗒;mathematical sans-serif small y/
+msansz /𝗓;mathematical sans-serif small z/
+msanszero /𝟢;mathematical sans-serif digit 0/
+mscrA /𝒜;mathematical script capital a/
+mscrB /ℬ;bernoulli function (script capital b)/
+mscrC /𝒞;mathematical script capital c/
+mscrD /𝒟;mathematical script capital d/
+mscrE /ℰ;scr e, script letter e/
+mscrF /ℱ;scr f, script letter f/
+mscrG /𝒢;mathematical script capital g/
+mscrH /ℋ;hamiltonian (script capital h)/
+mscrI /ℐ;scr i, script letter i/
+mscrJ /𝒥;mathematical script capital j/
+mscrK /𝒦;mathematical script capital k/
+mscrL /ℒ;lagrangian (script capital l)/
+mscrM /ℳ;physics m-matrix (script capital m)/
+mscrN /𝒩;mathematical script capital n/
+mscrO /𝒪;mathematical script capital o/
+mscrP /𝒫;mathematical script capital p/
+mscrQ /𝒬;mathematical script capital q/
+mscrR /ℛ;scr r, script letter r/
+mscrS /𝒮;mathematical script capital s/
+mscrT /𝒯;mathematical script capital t/
+mscrU /𝒰;mathematical script capital u/
+mscrV /𝒱;mathematical script capital v/
+mscrW /𝒲;mathematical script capital w/
+mscrX /𝒳;mathematical script capital x/
+mscrY /𝒴;mathematical script capital y/
+mscrZ /𝒵;mathematical script capital z/
+mscra /𝒶;mathematical script small a/
+mscrb /𝒷;mathematical script small b/
+mscrc /𝒸;mathematical script small c/
+mscrd /𝒹;mathematical script small d/
+mscre /ℯ;scr e, script letter e/
+mscrf /𝒻;mathematical script small f/
+mscrg /ℊ;scr g, script letter g/
+mscrh /𝒽;mathematical script small h/
+mscri /𝒾;mathematical script small i/
+mscrj /𝒿;mathematical script small j/
+mscrk /𝓀;mathematical script small k/
+mscrl /𝓁;mathematical script small l/
+mscrm /𝓂;mathematical script small m/
+mscrn /𝓃;mathematical script small n/
+mscro /ℴ;order of (script small o)/
+mscrp /𝓅;mathematical script small p/
+mscrq /𝓆;mathematical script small q/
+mscrr /𝓇;mathematical script small r/
+mscrs /𝓈;mathematical script small s/
+mscrt /𝓉;mathematical script small t/
+mscru /𝓊;mathematical script small u/
+mscrv /𝓋;mathematical script small v/
+mscrw /𝓌;mathematical script small w/
+mscrx /𝓍;mathematical script small x/
+mscry /𝓎;mathematical script small y/
+mscrz /𝓏;mathematical script small z/
+mttA /𝙰;mathematical monospace capital a/
+mttB /𝙱;mathematical monospace capital b/
+mttC /𝙲;mathematical monospace capital c/
+mttD /𝙳;mathematical monospace capital d/
+mttE /𝙴;mathematical monospace capital e/
+mttF /𝙵;mathematical monospace capital f/
+mttG /𝙶;mathematical monospace capital g/
+mttH /𝙷;mathematical monospace capital h/
+mttI /𝙸;mathematical monospace capital i/
+mttJ /𝙹;mathematical monospace capital j/
+mttK /𝙺;mathematical monospace capital k/
+mttL /𝙻;mathematical monospace capital l/
+mttM /𝙼;mathematical monospace capital m/
+mttN /𝙽;mathematical monospace capital n/
+mttO /𝙾;mathematical monospace capital o/
+mttP /𝙿;mathematical monospace capital p/
+mttQ /𝚀;mathematical monospace capital q/
+mttR /𝚁;mathematical monospace capital r/
+mttS /𝚂;mathematical monospace capital s/
+mttT /𝚃;mathematical monospace capital t/
+mttU /𝚄;mathematical monospace capital u/
+mttV /𝚅;mathematical monospace capital v/
+mttW /𝚆;mathematical monospace capital w/
+mttX /𝚇;mathematical monospace capital x/
+mttY /𝚈;mathematical monospace capital y/
+mttZ /𝚉;mathematical monospace capital z/
+mtta /𝚊;mathematical monospace small a/
+mttb /𝚋;mathematical monospace small b/
+mttc /𝚌;mathematical monospace small c/
+mttd /𝚍;mathematical monospace small d/
+mtte /𝚎;mathematical monospace small e/
+mtteight /𝟾;mathematical monospace digit 8/
+mttf /𝚏;mathematical monospace small f/
+mttfive /𝟻;mathematical monospace digit 5/
+mttfour /𝟺;mathematical monospace digit 4/
+mttg /𝚐;mathematical monospace small g/
+mtth /𝚑;mathematical monospace small h/
+mtti /𝚒;mathematical monospace small i/
+mttj /𝚓;mathematical monospace small j/
+mttk /𝚔;mathematical monospace small k/
+mttl /𝚕;mathematical monospace small l/
+mttm /𝚖;mathematical monospace small m/
+mttn /𝚗;mathematical monospace small n/
+mttnine /𝟿;mathematical monospace digit 9/
+mtto /𝚘;mathematical monospace small o/
+mttone /𝟷;mathematical monospace digit 1/
+mttp /𝚙;mathematical monospace small p/
+mttq /𝚚;mathematical monospace small q/
+mttr /𝚛;mathematical monospace small r/
+mtts /𝚜;mathematical monospace small s/
+mttseven /𝟽;mathematical monospace digit 7/
+mttsix /𝟼;mathematical monospace digit 6/
+mttt /𝚝;mathematical monospace small t/
+mttthree /𝟹;mathematical monospace digit 3/
+mtttwo /𝟸;mathematical monospace digit 2/
+mttu /𝚞;mathematical monospace small u/
+mttv /𝚟;mathematical monospace small v/
+mttw /𝚠;mathematical monospace small w/
+mttx /𝚡;mathematical monospace small x/
+mtty /𝚢;mathematical monospace small y/
+mttz /𝚣;mathematical monospace small z/
+mttzero /𝟶;mathematical monospace digit 0/
+multimap /⊸;multimap a:/
+multimapinv /⟜;left multimap/
+mupAlpha /Α;capital alpha, greek/
+mupBeta /Β;capital beta, greek/
+mupChi /Χ;capital chi, greek/
+mupDelta /Δ;capital delta, greek/
+mupEpsilon /Ε;capital epsilon, greek/
+mupEta /Η;capital eta, greek/
+mupGamma /Γ;capital gamma, greek/
+mupIota /Ι;capital iota, greek/
+mupKappa /Κ;capital kappa, greek/
+mupLambda /Λ;capital lambda, greek/
+mupMu /Μ;capital mu, greek/
+mupNu /Ν;capital nu, greek/
+mupOmega /Ω;capital omega, greek/
+mupOmicron /Ο;capital omicron, greek/
+mupPhi /Φ;capital phi, greek/
+mupPi /Π;capital pi, greek/
+mupPsi /Ψ;capital psi, greek/
+mupRho /Ρ;capital rho, greek/
+mupSigma /Σ;capital sigma, greek/
+mupTau /Τ;capital tau, greek/
+mupTheta /Θ;capital theta, greek/
+mupUpsilon /Υ;capital upsilon, greek/
+mupXi /Ξ;capital xi, greek/
+mupZeta /Ζ;capital zeta, greek/
+mupalpha /α;small alpha, greek/
+mupbeta /β;small beta, greek/
+mupchi /χ;small chi, greek/
+mupdelta /δ;small delta, greek/
+mupepsilon /ϵ;greek lunate varepsilon symbol/
+mupeta /η;small eta, greek/
+mupgamma /γ;small gamma, greek/
+mupiota /ι;small iota, greek/
+mupkappa /κ;small kappa, greek/
+muplambda /λ;small lambda, greek/
+mupmu /μ;small mu, greek/
+mupnu /ν;small nu, greek/
+mupomega /ω;small omega, greek/
+mupomicron /ο;small omicron, greek/
+mupphi /ϕ;straightphi - small phi, greek/
+muppi /π;small pi, greek/
+muppsi /ψ;small psi, greek/
+muprho /ρ;small rho, greek/
+mupsigma /σ;small sigma, greek/
+muptau /τ;small tau, greek/
+muptheta /θ;straight theta, small theta, greek/
+mupupsilon /υ;small upsilon, greek/
+mupvarTheta /ϴ;greek capital theta symbol/
+mupvarepsilon /ε;rounded small varepsilon, greek/
+mupvarkappa /ϰ;rounded small kappa, greek/
+mupvarphi /φ;curly or open small phi, greek/
+mupvarpi /ϖ;rounded small pi (pomega), greek/
+mupvarrho /ϱ;rounded small rho, greek/
+mupvarsigma /ς;terminal sigma, greek/
+mupvartheta /ϑ;vartheta - curly or open theta/
+mupxi /ξ;small xi, greek/
+mupzeta /ζ;small zeta, greek/
+nHdownarrow /⇟;downwards arrow with double stroke/
+nHuparrow /⇞;upwards arrow with double stroke/
+nLeftarrow /⇍;not implied by/
+nLeftrightarrow /⇎;not left and right double arrows/
+nRightarrow /⇏;not implies/
+nVDash /⊯;not double vert, double dash/
+nVdash /⊮;not double vertical, dash/
+nVleftarrow /⇺;leftwards arrow with double vertical stroke/
+nVleftarrowtail /⬺;leftwards arrow with tail with double vertical stroke/
+nVleftrightarrow /⇼;left right arrow with double vertical stroke/
+nVrightarrow /⇻;rightwards arrow with double vertical stroke/
+nVrightarrowtail /⤕;rightwards arrow with tail with double vertical stroke/
+nVtwoheadleftarrow /⬵;leftwards two-headed arrow with double vertical stroke/
+nVtwoheadleftarrowtail /⬽;leftwards two-headed arrow with tail with double vertical stroke/
+nVtwoheadrightarrow /⤁;rightwards two-headed arrow with double vertical stroke/
+nVtwoheadrightarrowtail /⤘;rightwards two-headed arrow with tail with double vertical stroke/
+nabla /∇;nabla, del, hamilton operator/
+napprox /≉;not approximate/
+nasymp /≭;not asymptotically equal to/
+natural /♮;music natural/
+ncong /≇;not congruent with/
+ne /≠;ne neq r: not equal/
+nearrow /↗;ne pointing arrow/
+neg /¬;neg lnot not sign/
+neovnwarrow /⤱;north east arrow crossing north west arrow/
+neovsearrow /⤮;north east arrow crossing south east arrow/
+nequiv /≢;not identical with/
+neswarrow /⤢;north east and south west arrow/
+neuter /⚲;neuter/
+nexists /∄;negated exists/
+ngeq /≱;not greater-than-or-equal/
+ngtr /≯;not greater-than/
+ngtrless /≹;not greater, less/
+ngtrsim /≵;not greater, similar/
+nhVvert /⫵;triple vertical bar with horizontal stroke/
+nhpar /⫲;parallel with horizontal stroke/
+ni /∋;contains, variant/
+niobar /⋾;small contains with overbar/
+nis /⋼;small contains with vertical bar at end of horizontal stroke/
+nisd /⋺;contains with long horizontal stroke/
+nleftarrow /↚;not left arrow/
+nleftrightarrow /↮;not left and right arrow/
+nleq /≰;not less-than-or-equal/
+nless /≮;not less-than/
+nlessgtr /≸;not less, greater/
+nlesssim /≴;not less, similar/
+nmid /∤;negated mid/
+nni /∌;negated contains, variant/
+notaccent /̸;combining long solidus overlay/
+notin /∉;negated set membership/
+nparallel /∦;not parallel/
+npolint /⨔;line integration not including the pole/
+nprec /⊀;not precedes/
+npreccurlyeq /⋠;not precedes, curly equals/
+nrightarrow /↛;not right arrow/
+nsim /≁;not similar/
+nsime /≄;not similar, equals/
+nsimeq /≄;not similar, equals (alias)/
+nsqsubseteq /⋢;not, square subset, equals/
+nsqsupseteq /⋣;not, square superset, equals/
+nsubset /⊄;not subset, variant [slash negation]/
+nsubseteq /⊈;not subset, equals/
+nsucc /⊁;not succeeds/
+nsucccurlyeq /⋡;not succeeds, curly equals/
+nsupset /⊅;not superset, variant [slash negation]/
+nsupseteq /⊉;not superset, equals/
+ntrianglelefteq /⋬;not left triangle, equals/
+ntrianglerighteq /⋭;not right triangle, equals/
+nvDash /⊭;not vertical, double dash/
+nvLeftarrow /⤂;leftwards double arrow with vertical stroke/
+nvLeftrightarrow /⤄;left right double arrow with vertical stroke/
+nvRightarrow /⤃;rightwards double arrow with vertical stroke/
+nvartriangleleft /⋪;not left triangle/
+nvartriangleright /⋫;not right triangle/
+nvdash /⊬;not vertical, dash/
+nvinfty /⧞;infinity negated with vertical bar/
+nvleftarrow /⇷;leftwards arrow with vertical stroke/
+nvleftarrowtail /⬹;leftwards arrow with tail with vertical stroke/
+nvleftrightarrow /⇹;left right arrow with vertical stroke/
+nvrightarrow /⇸;rightwards arrow with vertical stroke/
+nvrightarrowtail /⤔;rightwards arrow with tail with vertical stroke/
+nvtwoheadleftarrow /⬴;leftwards two-headed arrow with vertical stroke/
+nvtwoheadleftarrowtail /⬼;leftwards two-headed arrow with tail with vertical stroke/
+nvtwoheadrightarrow /⤀;rightwards two-headed arrow with vertical stroke/
+nvtwoheadrightarrowtail /⤗;rightwards two-headed arrow with tail with vertical stroke/
+nwarrow /↖;nw pointing arrow/
+nwovnearrow /⤲;north west arrow crossing north east arrow/
+nwsearrow /⤡;north west and south east arrow/
+obar /⌽;circle with vertical bar/
+obot /⦺;circle divided by horizontal bar and top half divided by vertical bar/
+obrbrak /⏠;top tortoise shell bracket (mathematical use)/
+obslash /⦸;circled reverse solidus/
+ocirc /̊;ring/
+ocommatopright /̕;combining comma above right/
+odiv /⨸;circled division sign/
+odot /⊙;middle dot in circle/
+odotslashdot /⦼;circled anticlockwise-rotated division sign/
+ogreaterthan /⧁;circled greater-than/
+oiiint /∰;triple contour integral operator/
+oiint /∯;double contour integral operator/
+oint /∮;contour integral operator/
+ointctrclockwise /∳;contour integral, anticlockwise/
+olcross /⦻;circle with superimposed x/
+olessthan /⧀;circled less-than/
+ominus /⊖;minus sign in circle/
+operp /⦹;circled perpendicular/
+oplus /⊕;plus sign in circle/
+opluslhrim /⨭;plus sign in left half circle/
+oplusrhrim /⨮;plus sign in right half circle/
+origof /⊶;original of/
+oslash /⊘;solidus in circle/
+otimes /⊗;multiply sign in circle/
+otimeshat /⨶;circled multiplication sign with circumflex accent/
+otimeslhrim /⨴;multiplication sign in left half circle/
+otimesrhrim /⨵;multiplication sign in right half circle/
+oturnedcomma /̒;combining turned comma above/
+overbar /̅;overbar embellishment/
+overbrace /⏞;top curly bracket (mathematical use)/
+overbracket /⎴;top square bracket/
+overleftarrow /⃖;combining left arrow above/
+overleftharpoon /⃐;combining left harpoon above/
+overleftrightarrow /⃡;combining left right arrow above/
+overparen /⏜;top parenthesis (mathematical use)/
+overrightarrow /⃗;combining left arrow above/
+overrightharpoon /⃑;combining right harpoon above/
+ovhook /̉;combining hook above/
+parallel /∥;parallel/
+parallelogram /▱;parallelogram, open/
+parallelogramblack /▰;black parallelogram/
+parsim /⫳;parallel with tilde operator/
+partial /∂;partial differential/
+partialmeetcontraction /⪣;double less-than with underbar/
+pentagon /⬠;white pentagon/
+pentagonblack /⬟;black pentagon/
+perp /⟂;perpendicular/
+perps /⫡;perpendicular with s/
+pitchfork /⋔;pitchfork/
+plusdot /⨥;plus sign with dot below/
+pluseqq /⩲;plus sign above equals sign/
+plushat /⨣;plus sign with circumflex accent above/
+plussim /⨦;plus sign with tilde below/
+plussubtwo /⨧;plus sign with subscript two/
+plustrif /⨨;plus sign with black triangle/
+pm /±;plus-or-minus sign/
+pointint /⨕;integral around a point operator/
+postalmark /〒;postal mark/
+prec /≺;precedes/
+precapprox /⪷;precedes above almost equal to/
+preccurlyeq /≼;precedes, curly equals/
+preceq /⪯;precedes above single-line equals sign/
+preceqq /⪳;precedes above equals sign/
+precnapprox /⪹;precedes above not almost equal to/
+precneq /⪱;precedes above single-line not equal to/
+precneqq /⪵;precedes above not equal to/
+precnsim /⋨;precedes, not similar/
+precsim /≾;precedes, similar/
+prime /′;prime or minute, not superscripted/
+prod /∏;product operator/
+profline /⌒;profile of a line/
+profsurf /⌓;profile of a surface/
+propto /∝;is proportional to/
+prurel /⊰;element precedes under relation/
+pullback /⟓;lower right corner with dot/
+pushout /⟔;upper left corner with dot/
+qprime /⁗;quadruple prime, not superscripted/
+quarternote /♩;music note (sung text sign)/
+questeq /≟;equal with questionmark/
+rAngle /⟫;mathematical right double angle bracket/
+rBrace /⦄;right white curly bracket/
+rBrack /⟧;mathematical right white square bracket/
+rParen /⦆;right white parenthesis/
+rangle /⟩;mathematical right angle bracket/
+rangledot /⦒;right angle bracket with dot/
+rangledownzigzagarrow /⍼;right angle with downwards zigzag arrow/
+rbag /⟆;right s-shaped bag delimiter/
+rblkbrbrak /⦘;right black tortoise shell bracket/
+rbrace /};right curly bracket/
+rbracelend /⎭;right curly bracket lower hook/
+rbracemid /⎬;right curly bracket middle piece/
+rbraceuend /⎫;right curly bracket upper hook/
+rbrack /];right square bracket/
+rbrackextender /⎥;right square bracket extension/
+rbracklend /⎦;right square bracket lower corner/
+rbracklrtick /⦎;right square bracket with tick in bottom corner/
+rbrackubar /⦌;right square bracket with underbar/
+rbrackuend /⎤;right square bracket upper corner/
+rbrackurtick /⦐;right square bracket with tick in top corner/
+rbrbrak /❳;light right tortoise shell bracket ornament/
+rceil /⌉;right ceiling/
+rcurvyangle /⧽;right pointing curved angle bracket/
+rdiagovfdiag /⤫;rising diagonal crossing falling diagonal/
+rdiagovsearrow /⤰;rising diagonal crossing south east arrow/
+revangle /⦣;reversed angle/
+revangleubar /⦥;reversed angle with underbar/
+revemptyset /⦰;reversed empty set/
+reversesolidus /⧵;reverse solidus/
+revnmid /⫮;does not divide with reversed negation slash/
+rfbowtie /⧒;right black bowtie/
+rfloor /⌋;right floor/
+rftimes /⧕;right black times/
+rgroup /⟯;mathematical right flattened parenthesis/
+rightangle /∟;right (90 degree) angle/
+rightanglemdot /⦝;measured right angle with dot/
+rightanglesqr /⦜;right angle variant with square/
+rightarrow /→;rightarrow to a: rightward arrow/
+rightarrowapprox /⥵;rightwards arrow above almost equal to/
+rightarrowbackapprox /⭈;rightwards arrow above reverse almost equal to/
+rightarrowbar /⇥;rightwards arrow to bar/
+rightarrowbsimilar /⭌;righttwards arrow above reverse tilde operator/
+rightarrowdiamond /⤞;rightwards arrow to black diamond/
+rightarrowgtr /⭃;rightwards arrow through greater-than/
+rightarrowonoplus /⟴;right arrow with circled plus/
+rightarrowplus /⥅;rightwards arrow with plus below/
+rightarrowshortleftarrow /⥂;rightwards arrow above short leftwards arrow/
+rightarrowsimilar /⥴;rightwards arrow above tilde operator/
+rightarrowsupset /⭄;rightwards arrow through subset/
+rightarrowtail /↣;right arrow-tailed/
+rightarrowtriangle /⇾;rightwards open-headed arrow/
+rightarrowx /⥇;rightwards arrow through x/
+rightbkarrow /⤍;rightwards double dash arrow/
+rightcurvedarrow /⤳;wave arrow pointing directly right/
+rightdasharrow /⇢;rightwards dashed arrow/
+rightdbltail /⤜;rightwards double arrow-tail/
+rightdotarrow /⤑;rightwards arrow with dotted stem/
+rightdowncurvedarrow /⤷;arrow pointing downwards then curving rightwards/
+rightfishtail /⥽;right fish tail/
+rightharpoonaccent /⃑;combining right harpoon above/
+rightharpoondown /⇁;right harpoon-down/
+rightharpoondownbar /⥗;rightwards harpoon with barb down to bar/
+rightharpoonsupdown /⥤;rightwards harpoon with barb up above rightwards harpoon with barb down/
+rightharpoonup /⇀;right harpoon-up/
+rightharpoonupbar /⥓;rightwards harpoon with barb up to bar/
+rightharpoonupdash /⥬;rightwards harpoon with barb up above long dash/
+rightimply /⥰;right double arrow with rounded head/
+rightleftarrows /⇄;right arrow over left arrow/
+rightleftharpoons /⇌;right harpoon over left/
+rightleftharpoonsdown /⥩;rightwards harpoon with barb down above leftwards harpoon with barb down/
+rightleftharpoonsup /⥨;rightwards harpoon with barb up above leftwards harpoon with barb up/
+rightmoon /☽;first quarter moon/
+rightouterjoin /⟖;right outer join/
+rightpentagon /⭔;white right-pointing pentagon/
+rightpentagonblack /⭓;black right-pointing pentagon/
+rightrightarrows /⇉;two right arrows/
+rightsquigarrow /⇝;rightwards squiggle arrow/
+righttail /⤚;rightwards arrow-tail/
+rightthreearrows /⇶;three rightwards arrows/
+rightthreetimes /⋌;right semidirect product/
+rightwavearrow /↝;right arrow-wavy/
+rightwhitearrow /⇨;rightwards white arrow/
+ringplus /⨢;plus sign with small circle above/
+risingdotseq /≓;equals, rising dots/
+rmoustache /⎱;upper right or lower left curly bracket section/
+rparen /);right parenthesis/
+rparenextender /⎟;right parenthesis extension/
+rparengtr /⦔;right arc greater-than bracket/
+rparenlend /⎠;right parenthesis lower hook/
+rparenuend /⎞;right parenthesis upper hook/
+rppolint /⨒;line integration with rectangular path around pole/
+rrangle /⦊;z notation right binding bracket/
+rrparenthesis /⦈;z notation right image bracket/
+rsolbar /⧷;reverse solidus with horizontal stroke/
+rsqhook /⫎;square right open box operator/
+rsub /⩥;z notation range antirestriction/
+rtimes /⋊;times sign, right closed/
+rtriltri /⧎;right triangle above left triangle/
+ruledelayed /⧴;rule-delayed/
+rvboxline /⎹;right vertical box line/
+rvzigzag /⧙;right wiggly fence/
+sansLmirrored /⅃;reversed sans-serif capital l/
+sansLturned /⅂;turned sans-serif capital l/
+scpolint /⨓;line integration with semicircular path around pole/
+scurel /⊱;succeeds under relation/
+searrow /↘;se pointing arrow/
+seovnearrow /⤭;south east arrow crossing north east arrow/
+setminus /∖;set minus (cf. reverse solidus)/
+sharp /♯;musical sharp/
+shortdowntack /⫟;short down tack/
+shortlefttack /⫞;short left tack/
+shortrightarrowleftarrow /⥄;short rightwards arrow above leftwards arrow/
+shortuptack /⫠;short up tack/
+shuffle /⧢;shuffle product/
+sim /∼;similar/
+sime /≃;similar, equals (alias)/
+simeq /≃;similar, equals/
+simgE /⪠;similar above greater-than above equals sign/
+simgtr /⪞;similar or greater-than/
+similarleftarrow /⭉;tilde operator above leftwards arrow/
+similarrightarrow /⥲;tilde operator above rightwards arrow/
+simlE /⪟;similar above less-than above equals sign/
+simless /⪝;similar or less-than/
+simminussim /⩬;similar minus similar/
+simneqq /≆;similar, not equals [vert only for 9573 entity]/
+simplus /⨤;plus sign with tilde above/
+simrdots /⩫;tilde operator with rising dots/
+sinewave /∿;sine wave/
+smallblacktriangleleft /◂;left triangle, filled/
+smallblacktriangleright /▸;right triangle, filled/
+smallin /∊;set membership (small set membership)/
+smallni /∍;ni owns r: contains (small contains as member)/
+smalltriangleleft /◃;left triangle, open/
+smalltriangleright /▹;right triangle, open/
+smashtimes /⨳;smash product/
+smblkcircle /•;bullet b: round bullet, filled/
+smblkdiamond /⬩;black small diamond/
+smblklozenge /⬪;black small lozenge/
+smblksquare /▪;blacksquare - sq bullet, filled/
+smeparsl /⧤;equals sign and slanted parallel with tilde above/
+smile /⌣;up curve/
+smt /⪪;smaller than/
+smte /⪬;smaller than or equal to/
+smwhitestar /⭒;white small star/
+smwhtcircle /◦;white bullet/
+smwhtdiamond /⋄;white diamond/
+smwhtlozenge /⬫;white small lozenge/
+smwhtsquare /▫;white small square/
+spadesuit /♠;spades suit symbol/
+sphericalangle /∢;angle-spherical/
+sphericalangleup /⦡;spherical angle opening up/
+sqcap /⊓;square intersection/
+sqcup /⊔;square union/
+sqint /⨖;quaternion integral operator/
+sqlozenge /⌑;square lozenge/
+sqrt /√;radical/
+sqrtbottom /⎷;radical symbol bottom/
+sqsubset /⊏;square subset/
+sqsubseteq /⊑;square subset, equals/
+sqsubsetneq /⋤;square subset, not equals/
+sqsupset /⊐;square superset/
+sqsupseteq /⊒;square superset, equals/
+sqsupsetneq /⋥;square superset, not equals/
+squarebotblack /⬓;square with bottom half black/
+squarecrossfill /▩;square with diagonal crosshatch fill/
+squarehfill /▤;square, horizontal rule filled/
+squarehvfill /▦;square with orthogonal crosshatch fill/
+squareleftblack /◧;square, filled left half/
+squarellblack /⬕;square with lower left diagonal half black/
+squarellquad /◱;white square with lower left quadrant/
+squarelrblack /◪;square, filled bottom right corner/
+squarelrquad /◲;white square with lower right quadrant/
+squareneswfill /▨;square, ne-to-sw rule filled/
+squarenwsefill /▧;square, nw-to-se rule filled/
+squarerightblack /◨;square, filled right half/
+squaretopblack /⬒;square with top half black/
+squareulblack /◩;square, filled top left corner/
+squareulquad /◰;white square with upper left quadrant/
+squareurblack /⬔;square with upper right diagonal half black/
+squareurquad /◳;white square with upper right quadrant/
+squarevfill /▥;square, vertical rule filled/
+squoval /▢;white square with rounded corners/
+sslash /⫽;double solidus operator/
+star /⋆;small star, filled, low/
+stareq /≛;star equals/
+strns /⏤;straightness/
+subedot /⫃;subset of or equal to with dot above/
+submult /⫁;subset with multiplication sign below/
+subrarr /⥹;subset above rightwards arrow/
+subset /⊂;subset or is implied by/
+subsetapprox /⫉;subset of above almost equal to/
+subsetcirc /⟃;open subset/
+subsetdot /⪽;subset with dot/
+subseteq /⊆;subset, equals/
+subseteqq /⫅;subset of above equals sign/
+subsetneq /⊊;subset, not equals/
+subsetneqq /⫋;subset of above not equal to/
+subsetplus /⪿;subset with plus sign below/
+subsim /⫇;subset of above tilde operator/
+subsub /⫕;subset above subset/
+subsup /⫓;subset above superset/
+succ /≻;succeeds/
+succapprox /⪸;succeeds above almost equal to/
+succcurlyeq /≽;succeeds, curly equals/
+succeq /⪰;succeeds above single-line equals sign/
+succeqq /⪴;succeeds above equals sign/
+succnapprox /⪺;succeeds above not almost equal to/
+succneq /⪲;succeeds above single-line not equal to/
+succneqq /⪶;succeeds above not equal to/
+succnsim /⋩;succeeds, not similar/
+succsim /≿;succeeds, similar/
+sum /∑;summation operator/
+sumbottom /⎳;summation bottom/
+sumint /⨋;summation with integral/
+sumtop /⎲;summation top/
+sun /☼;white sun with rays/
+supdsub /⫘;superset beside and joined by dash with subset/
+supedot /⫄;superset of or equal to with dot above/
+suphsol /⟉;superset preceding solidus/
+suphsub /⫗;superset beside subset/
+suplarr /⥻;superset above leftwards arrow/
+supmult /⫂;superset with multiplication sign below/
+supset /⊃;superset or implies/
+supsetapprox /⫊;superset of above almost equal to/
+supsetcirc /⟄;open superset/
+supsetdot /⪾;superset with dot/
+supseteq /⊇;superset, equals/
+supseteqq /⫆;superset of above equals sign/
+supsetneq /⊋;superset, not equals/
+supsetneqq /⫌;superset of above not equal to/
+supsetplus /⫀;superset with plus sign below/
+supsim /⫈;superset of above tilde operator/
+supsub /⫔;superset above subset/
+supsup /⫖;superset above superset/
+surd /√;radical/
+swarrow /↙;sw pointing arrow/
+talloblong /⫾;white vertical bar/
+therefore /∴;therefore/
+thermod /⧧;thermodynamic/
+threedangle /⟀;three dimensional angle/
+threedotcolon /⫶;triple colon operator/
+threeunderdot /⃨;combining triple underdot/
+tieconcat /⁀;character tie, z notation sequence concatenation/
+tieinfty /⧝;tie over infinity/
+tilde /̃;tilde/
+times /×;multiply sign/
+timesbar /⨱;multiplication sign with underbar/
+tminus /⧿;miny/
+toea /⤨;north east arrow and south east arrow/
+tona /⤧;north west arrow and north east arrow/
+top /⊤;top/
+topbot /⌶;top and bottom/
+topcir /⫱;down tack with circle below/
+topfork /⫚;pitchfork with tee top/
+topsemicircle /◠;upper half circle/
+tosa /⤩;south east arrow and south west arrow/
+towa /⤪;south west arrow and north west arrow/
+tplus /⧾;tiny/
+trapezium /⏢;white trapezium/
+trianglecdot /◬;triangle with centered dot/
+triangledown /▿;down triangle, open/
+triangleleft /◁;(large) left triangle, open; z notation domain restriction/
+triangleleftblack /◭;up-pointing triangle with left half black/
+trianglelefteq /⊴;left triangle, equals/
+triangleminus /⨺;minus sign in triangle/
+triangleodot /⧊;triangle with dot above/
+triangleplus /⨹;plus sign in triangle/
+triangleq /≜;triangle, equals/
+triangleright /▷;(large) right triangle, open; z notation range restriction/
+trianglerightblack /◮;up-pointing triangle with right half black/
+trianglerighteq /⊵;right triangle, equals/
+triangles /⧌;s in triangle/
+triangleserifs /⧍;triangle with serifs at bottom/
+triangletimes /⨻;multiplication sign in triangle/
+triangleubar /⧋;triangle with underbar/
+tripleplus /⧻;triple plus/
+trprime /‴;triple prime (not superscripted)/
+trslash /⫻;triple solidus binary relation/
+turnangle /⦢;turned angle/
+turnediota /℩;turned iota/
+turnednot /⌙;turned not sign/
+twocaps /⩋;intersection beside and joined with intersection/
+twocups /⩊;union beside and joined with union/
+twoheaddownarrow /↡;down two-headed arrow/
+twoheadleftarrow /↞;left two-headed arrow/
+twoheadleftarrowtail /⬻;leftwards two-headed arrow with tail/
+twoheadleftdbkarrow /⬷;leftwards two-headed triple-dash arrow/
+twoheadmapsfrom /⬶;leftwards two-headed arrow from bar/
+twoheadmapsto /⤅;rightwards two-headed arrow from bar/
+twoheadrightarrow /↠;right two-headed arrow/
+twoheadrightarrowtail /⤖;rightwards two-headed arrow with tail/
+twoheaduparrow /↟;up two-headed arrow/
+twoheaduparrowcircle /⥉;upwards two-headed arrow from small circle/
+twolowline /‗;double low line (spacing)/
+twonotes /♫;beamed eighth notes/
+typecolon /⦂;z notation type colon/
+ubrbrak /⏡;bottom tortoise shell bracket (mathematical use)/
+ularc /◜;upper left quadrant circular arc/
+ulblacktriangle /◤;upper left triangle, filled/
+ulcorner /⌜;upper left corner/
+ultriangle /◸;upper left triangle/
+uminus /⩁;union with minus sign/
+underbrace /⏟;bottom curly bracket (mathematical use)/
+underbracket /⎵;bottom square bracket/
+underleftarrow /⃮;combining left arrow below/
+underleftharpoondown /⃭;combining leftwards harpoon with barb downwards/
+underleftrightarrow /͍;underleftrightarrow accent/
+underparen /⏝;bottom parenthesis (mathematical use)/
+underrightarrow /⃯;combining right arrow below/
+underrightharpoondown /⃬;combining rightwards harpoon with barb downwards/
+unicodecdots /⋯;three dots, centered/
+unicodeellipsis /…;ellipsis (horizontal)/
+upDigamma /Ϝ;capital digamma/
+upand /⅋;turned ampersand/
+uparrow /↑;upward arrow/
+uparrowbarred /⤉;upwards arrow with horizontal stroke/
+uparrowoncircle /⦽;up arrow through circle/
+upbackepsilon /϶;greek reversed lunate epsilon symbol/
+updasharrow /⇡;upwards dashed arrow/
+updigamma /ϝ;old greek small letter digamma/
+updownarrow /↕;up and down arrow/
+updownarrowbar /↨;up down arrow with base (perpendicular)/
+updownarrows /⇅;up arrow, down arrow/
+updownharpoonleftleft /⥑;up barb left down barb left harpoon/
+updownharpoonleftright /⥍;up barb left down barb right harpoon/
+updownharpoonrightleft /⥌;up barb right down barb left harpoon/
+updownharpoonrightright /⥏;up barb right down barb right harpoon/
+updownharpoonsleftright /⥮;upwards harpoon with barb left beside downwards harpoon with barb right/
+upfishtail /⥾;up fish tail/
+upharpoonleft /↿;up harpoon-left/
+upharpoonleftbar /⥠;upwards harpoon with barb left from bar/
+upharpoonright /↾;upharpoonright restriction a: up harpoon-right/
+upharpoonrightbar /⥜;upwards harpoon with barb right from bar/
+upharpoonsleftright /⥣;upwards harpoon with barb left beside upwards harpoon with barb right/
+upin /⟒;element of opening upwards/
+upint /⨛;integral with overbar/
+uplus /⊎;plus sign in union/
+uprightcurvearrow /⤴;arrow pointing rightwards then curving upwards/
+upuparrows /⇈;two up arrows/
+upwhitearrow /⇧;upwards white arrow/
+urarc /◝;upper right quadrant circular arc/
+urblacktriangle /◥;upper right triangle, filled/
+urcorner /⌝;upper right corner/
+urtriangle /◹;upper right triangle/
+vBar /⫨;short up tack with underbar/
+vBarv /⫩;short up tack above short down tack/
+vDash /⊨;vertical, double dash/
+vDdash /⫢;vertical bar triple right turnstile/
+varVdash /⫦;long dash from left member of double vertical/
+varbarwedge /⌅;barwedge b: logical and, bar above [projective (bar over small wedge)]/
+varcarriagereturn /⏎;return symbol/
+varclubsuit /♧;club, white (card suit)/
+vardiamondsuit /♦;filled diamond (card suit)/
+vardoublebarwedge /⌆;doublebarwedge b: logical and, double bar above [perspective (double bar over small wedge)]/
+varheartsuit /♥;filled heart (card suit)/
+varhexagon /⬡;white hexagon/
+varhexagonblack /⬢;black hexagon/
+varhexagonlrbonds /⌬;six carbon ring, corner down, double bonds lower right etc/
+varisinobar /⋶;element of with overbar/
+varisins /⋳;element of with vertical bar at end of horizontal stroke/
+varlrtriangle /⊿;right triangle/
+varniobar /⋽;contains with overbar/
+varnis /⋻;contains with vertical bar at end of horizontal stroke/
+varnothing /∅;circle, slash/
+varointclockwise /∲;contour integral, clockwise/
+varspadesuit /♤;spade, white (card suit)/
+varstar /✶;six pointed black star/
+vartriangle /▵;triangle - up triangle, open/
+vartriangleleft /⊲;left triangle, open, variant/
+vartriangleright /⊳;right triangle, open, variant/
+varveebar /⩡;small vee with underbar/
+vbraceextender /⎪;curly bracket extension/
+vbrtri /⧐;vertical bar beside right triangle/
+vdash /⊢;vertical, dash/
+vdots /⋮;vertical ellipsis/
+vec /⃗;combining right arrow above/
+vectimes /⨯;vector or cross product/
+vee /∨;vee lor b: logical or/
+veebar /⊻;logical or, bar below (large vee); exclusive disjunction/
+veedot /⟇;or with dot inside/
+veedoublebar /⩣;logical or with double underbar/
+veeeq /≚;logical or, equals/
+veemidvert /⩛;logical or with middle stem/
+veeodot /⩒;logical or with dot above/
+veeonvee /⩖;two intersecting logical or/
+veeonwedge /⩙;logical or overlapping logical and/
+vert /|;vertical bar/
+vertoverlay /⃒;combining long vertical line overlay/
+viewdata /⌗;viewdata square/
+vlongdash /⟝;long left tack/
+vrectangle /▯;rectangle, white (vertical)/
+vrectangleblack /▮;black vertical rectangle/
+vysmblkcircle /∙;bullet operator/
+vysmblksquare /⬝;black very small square/
+vysmwhtcircle /∘;composite function (small circle)/
+vysmwhtsquare /⬞;white very small square/
+vzigzag /⦚;vertical zigzag line/
+wedge /∧;wedge land b: logical and/
+wedgebar /⩟;logical and with underbar/
+wedgedot /⟑;and with dot/
+wedgedoublebar /⩠;logical and with double underbar/
+wedgemidvert /⩚;logical and with middle stem/
+wedgeodot /⩑;logical and with dot above/
+wedgeonwedge /⩕;two intersecting logical and/
+wedgeq /≙;corresponds to (wedge, equals)/
+whitearrowupfrombar /⇪;upwards white arrow from bar/
+whiteinwhitetriangle /⟁;white triangle containing small white triangle/
+whitepointerleft /◅;white left-pointing pointer/
+whitepointerright /▻;white right-pointing pointer/
+whitesquaretickleft /⟤;white square with leftwards tick/
+whitesquaretickright /⟥;white square with rightwards tick/
+whthorzoval /⬭;white horizontal ellipse/
+whtvertoval /⬯;white vertical ellipse/
+wideangledown /⦦;oblique angle opening up/
+wideangleup /⦧;oblique angle opening down/
+widebreve /̆;stretchy breve/
+widebridgeabove /⃩;combining wide bridge above/
+widecheck /̌;stretchy caron/
+widehat /̂;circumflex accent/
+wideoverbar /̅;stretchy overbar embellishment/
+widetilde /̃;tilde/
+wideutilde /̰;under tilde accent (multiple characters and non-spacing)/
+wp /℘;weierstrass p/
+wr /≀;wreath product/
+xbsol /⧹;big reverse solidus/
+xsol /⧸;big solidus/
+zcmp /⨟;z notation schema composition/
+zpipe /⨠;z notation schema piping/
+zproject /⨡;z notation schema projection/

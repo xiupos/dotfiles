@@ -1,1 +1,0 @@
-set -Ux JULIA_NUM_THREADS auto

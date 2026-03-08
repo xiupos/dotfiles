@@ -1,0 +1,2 @@
+set -Ux JULIA_NUM_THREADS auto
+set -Ux JULIA_HEAP_SIZE_HINT 50%
