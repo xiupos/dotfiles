@@ -1,7 +1,7 @@
 standalone: true
 
 from: markdown+raw_tex
-to: pdf
+to: latex
 pdf-engine: pdflatex
 
 variables:
@@ -31,3 +31,4 @@ filters:
   - include-files.lua
   - fenced-divs.lua
   - codeblock.lua
+  - url-encode.lua
