@@ -1,0 +1,57 @@
+% math and physics
+\usepackage{mathtools, amsthm, bm, mathrsfs}
+\AtBeginDocument{\usepackage{physics}}
+\usepackage{siunitx, mhchem}
+\numberwithin{equation}{section}
+
+% tikz and graphics
+\usepackage{tikz, pgfplots, braids}
+\usepackage{tikz-cd, amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-feynhand}
+\usetikzlibrary{decorations.pathreplacing, decorations.markings, decorations.pathmorphing, calc, arrows.meta, arrows, shapes, positioning, calligraphy, intersections, shapes.arrows}
+
+% layout
+\usepackage{tcolorbox, longtable, booktabs, subfig, caption, multicol, pdfpages}
+\usepackage{mdframed, colortbl, sidecap}
+\renewcommand{\baselinestretch}{1.08}
+\providecommand{\inhibitglue}{}
+\flushbottom
+
+% amsthm
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+% code block
+\usepackage{listings}
+\lstset{
+  frame=tb, aboveskip=3mm, belowskip=3mm, showstringspaces=false,
+  columns=flexible, basicstyle={\small\ttfamily}, numbers=left,
+  numberstyle=\tiny\color{gray}, keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen}, stringstyle=\color{mauve},
+  breaklines=true, breakatwhitespace=true, tabsize=3
+}
+
+% macro
+\newcommand{\slashed}[1]{{\displaystyle{\not}{#1}}}
+\AtBeginDocument{
+  \NewCommandCopy{\origtilde}{\~}
+  \NewCommandCopy{\orighat}{\^}
+  \NewCommandCopy{\origbar}{\=}
+  \NewCommandCopy{\origdot}{\.}
+  \NewCommandCopy{\origddot}{\"}
+
+  \DeclareRobustCommand{\~}[1]{\ifmmode\tilde{#1}\else\origtilde{#1}\fi}
+  \DeclareRobustCommand{\^}[1]{\ifmmode\hat{#1}\else\orighat{#1}\fi}
+  \DeclareRobustCommand{\=}[1]{\ifmmode\bar{#1}\else\origbar{#1}\fi}
+  \DeclareRobustCommand{\.}[1]{\ifmmode\dot{#1}\else\origdot{#1}\fi}
+  \DeclareRobustCommand{\"}[1]{\ifmmode\ddot{#1}\else\origddot{#1}\fi}
+}
+
+% unicode replacement
+\usepackage{newunicodechar}
+\newunicodechar{†}{\ifmmode\dagger\else\textdagger\fi}
+\newunicodechar{⊗}{\otimes}
+\newunicodechar{⨁}{\bigoplus}

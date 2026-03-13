@@ -1,8 +1,25 @@
 standalone: true
 
 from: markdown+raw_tex
-to: latex
+to: pdf
 pdf-engine: pdflatex
+
+variables:
+  lang: en-GB
+  documentclass: article
+  classoption: [a4paper, 12pt]
+  geometry:
+    - margin=20mm
+    - footskip=10mm
+    - hscale=0.76
+    - hmarginratio=1:1
+  graphics: true
+  linkcolor: blue
+  top-level-division: section
+  indent: true
+
+include-in-header:
+  - ${.}/../includes/common.sty
 
 number-sections: true
 shift-heading-level-by: -1
@@ -14,51 +31,3 @@ filters:
   - include-files.lua
   - fenced-divs.lua
   - codeblock.lua
-
-variables:
-  lang: en-GB
-  documentclass: article
-  classoption: [a4paper, 12pt]
-  geometry:
-    - includeheadfoot
-    - headheight=10pt
-    - hscale=0.76
-    - hmarginratio=1:1
-    - vscale=0.83
-    - vmarginratio=1:1
-  graphics: true
-  linkcolor: blue
-  top-level-division: section
-  indent: true
-
-  header-includes: | #latex
-    % math and physics
-    \usepackage{mathtools, amsthm, bm}
-    \AtBeginDocument{\providecommand{\proofname}{Proof}}
-    \AtBeginDocument{\usepackage{physics}}
-    \usepackage{siunitx, mhchem}
-    \usepackage{tikz-cd, amscd}
-    \usepackage[all]{xy}
-    \usepackage{tikz-feynhand}
-
-    % layout
-    \usepackage{tcolorbox, longtable, booktabs, subfig, caption, multicol, pdfpages}
-
-    % code block
-    \usepackage{listings}
-    \lstset{
-      frame=tb, aboveskip=3mm, belowskip=3mm, showstringspaces=false,
-      columns=flexible, basicstyle={\small\ttfamily}, numbers=left,
-      numberstyle=\tiny\color{gray}, keywordstyle=\color{blue},
-      commentstyle=\color{dkgreen}, stringstyle=\color{mauve},
-      breaklines=true, breakatwhitespace=true, tabsize=3
-    }
-
-    % macro
-    \usepackage{mathcommand}
-    \newmathcommand{\slashed}[1]{{\displaystyle{\not}{#1}}}
-    \renewmathcommand{\~}{\tilde}
-    \renewmathcommand{\^}{\hat}
-    \renewmathcommand{\=}{\bar}
-    \renewmathcommand{\.}{\dot}
-    \renewmathcommand{\"}{\ddot}

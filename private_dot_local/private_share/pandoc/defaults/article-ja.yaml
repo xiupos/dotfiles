@@ -16,3 +16,6 @@ metadata:
   tblPrefix: 表
   lstPrefix: コード
   secPrefix: セクション
+
+include-in-header:
+  - ${.}/../includes/amsthm-ja.sty
