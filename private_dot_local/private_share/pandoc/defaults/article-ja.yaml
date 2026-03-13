@@ -4,7 +4,7 @@ defaults:
 variables:
   lang: ja
   documentclass: bxjsarticle
-  classoption: [a4paper, 12pt, pandoc, pdflatex, ja=standard]
+  classoption: [a4paper, 12pt, pandoc, pdflatex]
 
 metadata:
   listings: true
