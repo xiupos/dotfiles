@@ -6,6 +6,9 @@ variables:
   documentclass: bxjsarticle
   classoption: [a4paper, 12pt, pandoc, pdflatex]
 
+include-in-header:
+  - ${.}/../includes/amsthm-ja.sty
+
 metadata:
   listings: true
   figureTitle: 図
@@ -16,6 +19,3 @@ metadata:
   tblPrefix: 表
   lstPrefix: コード
   secPrefix: セクション
-
-include-in-header:
-  - ${.}/../includes/amsthm-ja.sty
