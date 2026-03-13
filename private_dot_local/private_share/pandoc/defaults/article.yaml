@@ -1,0 +1,31 @@
+standalone: true
+
+from: markdown+raw_tex
+to: latex
+pdf-engine: pdflatex
+
+variables:
+  lang: en-GB
+  documentclass: article
+  classoption: [a4paper, 12pt]
+  geometry: [includeheadfoot, vmargin=20truemm, hmargin=25truemm]
+  graphics: true
+  linkcolor: blue
+  top-level-division: section
+  indent: true
+
+include-in-header:
+  - ${.}/../includes/common.sty
+
+number-sections: true
+shift-heading-level-by: -1
+listings: true
+filters:
+  - pandoc-crossref
+  - pandoc-unicode-math
+  - include-files.lua
+  - fenced-divs.lua
+  - codeblock.lua
+  - type: citeproc
+
+csl: sist02.csl

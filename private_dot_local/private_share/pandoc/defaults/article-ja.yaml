@@ -1,0 +1,18 @@
+defaults:
+  - article
+
+variables:
+  lang: ja
+  documentclass: bxjsarticle
+  classoption: [a4paper, 12pt, pandoc, pdflatex, ja=standard]
+
+metadata:
+  listings: true
+  figureTitle: 図
+  tableTitle: 表
+  listingTitle: コード
+  figPrefix: 図
+  eqnPrefix: 式
+  tblPrefix: 表
+  lstPrefix: コード
+  secPrefix: セクション
