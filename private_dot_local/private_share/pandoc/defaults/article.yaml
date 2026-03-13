@@ -37,7 +37,8 @@ variables:
     \AtBeginDocument{\providecommand{\proofname}{Proof}}
     \AtBeginDocument{\usepackage{physics}}
     \usepackage{siunitx, mhchem}
-    \usepackage{tikz-cd, xy, amscd}
+    \usepackage{tikz-cd, amscd}
+    \usepackage[all]{xy}
     \usepackage{tikz-feynhand}
 
     % layout
