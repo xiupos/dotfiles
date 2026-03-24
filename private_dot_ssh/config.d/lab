@@ -5,3 +5,4 @@ Host higgs3
 Host hpc01
   Hostname 133.50.142.32
   User s-miyamoto
+  LogLevel ERROR
