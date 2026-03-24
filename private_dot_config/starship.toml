@@ -368,7 +368,7 @@ format = '\[[$time]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [username]
-format = '\[[$user]($style)\]'
+format = '\[[$user]($style)\] '
 
 [vagrant]
 format = '\[[$symbol($version)]($style)\]'
