@@ -1,3 +1,7 @@
 Host higgs3
   Hostname higgs3.sci.hokudai.ac.jp
   User particle
+
+Host hpc01
+  Hostname 133.50.142.32
+  User s-miyamoto
