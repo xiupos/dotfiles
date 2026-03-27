@@ -1,4 +1,5 @@
 [tools]
+btop = "latest"
 bun = "latest"
 deno = "latest"
 node = "latest"
