@@ -3,8 +3,33 @@ btop = "latest"
 bun = "latest"
 deno = "latest"
 fastfetch = "latest"
+neovim = "latest"
 node = "latest"
 npm = "latest"
 pnpm = "latest"
 uv = "latest"
 yarn = "latest"
+
+[env]
+BROWSER = "google-chrome-stable"
+EDITOR = "vim"
+# Julia
+JULIA_NUM_THREADS = "auto"
+JULIA_HEAP_SIZE_HINT = "50%"
+# TeX
+TEXMFHOME = "~/.local/share/texmf"
+# History for bash
+HISTCONTROL = "ignoredups:erasedups"
+
+[shell_alias]
+ls = "ls --color=auto"
+tree = "tree -C"
+grep = "grep --colour=auto"
+egrep = "egrep --colour=auto"
+fgrep = "fgrep --colour=auto"
+cp = "cp -i"
+df = "df -h"
+free = "free -m"
+open = "xdg-open"
+# Pluto.jl
+pluto = "julia -e 'import Pluto; Pluto.run(auto_reload_from_file = true)'"
