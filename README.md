@@ -1,6 +1,6 @@
 # dotfiles
 
-Install [Chezmoi](https://www.chezmoi.io/install/).
+Install [Mise](https://mise.jdx.dev/installing-mise.html) and [Chezmoi](https://www.chezmoi.io/install/).
 
 ```bash
 chezmoi init --apply xiupos
@@ -9,10 +9,8 @@ chezmoi init --apply xiupos
 ## remote
 
 ```bash
-mkdir -p $HOME/.local/bin
-
-# install starship
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --bin-dir $HOME/.local/bin
+# install mise
+curl https://mise.run | sh
 
 # install chezmoi
 sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply xiupos
