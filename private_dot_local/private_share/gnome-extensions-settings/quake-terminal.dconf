@@ -1,0 +1,10 @@
+[/]
+always-on-top=true
+animation-time=0
+auto-hide-window=false
+horizontal-size=90
+render-on-current-monitor=true
+render-on-primary-monitor=false
+skip-taskbar=true
+terminal-id='footclient.desktop'
+terminal-shortcut=['F12']
