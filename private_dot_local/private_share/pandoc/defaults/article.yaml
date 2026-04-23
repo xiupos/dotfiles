@@ -26,8 +26,8 @@ shift-heading-level-by: -1
 listings: true
 # cite-method: biblatex
 filters:
-  - pandoc-crossref
   - pandoc-unicode-math
+  - pandoc-crossref
   # - zotero.lua
   - include-files.lua
   - fenced-divs.lua

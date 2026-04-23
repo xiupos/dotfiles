@@ -1,5 +1,5 @@
 % math and physics
-\usepackage{mathtools, amsthm, bm, mathrsfs}
+\usepackage{mathtools, amsthm, bm, mathrsfs, arydshln}
 \AtBeginDocument{\usepackage{physics}}
 \usepackage{siunitx, mhchem}
 \numberwithin{equation}{section}
@@ -40,6 +40,8 @@
 
 % macro
 \newcommand{\slashed}[1]{{\displaystyle{\not}{#1}}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
 \AtBeginDocument{
   \NewCommandCopy{\origtilde}{\~}
   \NewCommandCopy{\orighat}{\^}
@@ -59,3 +61,4 @@
 \newunicodechar{†}{\ifmmode\dagger\else\textdagger\fi}
 \newunicodechar{⊗}{\otimes}
 \newunicodechar{⨁}{\bigoplus}
+\newunicodechar{ℓ}{\ell}
