@@ -4,11 +4,11 @@ Name="Group 1"
 # Layout
 Default Layout=eu
 # Default Input Method
-DefaultIM=cskk
+DefaultIM=skk
 
 [Groups/0/Items/0]
 # Name
-Name=cskk
+Name=skk
 # Layout
 Layout=eu
 

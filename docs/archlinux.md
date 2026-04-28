@@ -91,7 +91,7 @@ systemctl --user enable --now foot-server
 
 ```bash
 # install fcitx5-cskk
-yay -S fcitx5-im fcitx5-cskk skk-jisyo
+yay -S fcitx5-im fcitx5-skk skk-jisyo
 
 # set key layout
 gsettings set org.gnome.desktop.input-sources show-all-sources true
