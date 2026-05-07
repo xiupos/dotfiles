@@ -30,11 +30,15 @@
     },
     "nixos": {
       "command": "uvx",
-      "args": ["mcp-nixos"]
+      "args": [
+        "mcp-nixos"
+      ]
     },
     "arch-linux": {
       "command": "uvx",
-      "args": ["arch-ops-server"]
+      "args": [
+        "arch-ops-server"
+      ]
     },
     "github": {
       "command": "docker",
@@ -42,9 +46,12 @@
         "run",
         "-i",
         "--rm",
-        "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
-        "-e", "GITHUB_READ_ONLY=1",
-        "-e", "GITHUB_LOCKDOWN_MODE=1",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "-e",
+        "GITHUB_READ_ONLY=1",
+        "-e",
+        "GITHUB_LOCKDOWN_MODE=1",
         "ghcr.io/github/github-mcp-server"
       ],
       "env": {
@@ -53,7 +60,9 @@
     },
     "grafana": {
       "command": "uvx",
-      "args": ["mcp-grafana"],
+      "args": [
+        "mcp-grafana"
+      ],
       "env": {
         "GRAFANA_URL": "https://monitor.tail7b2934.ts.net/"
       }
@@ -68,6 +77,16 @@
     "coworkScheduledTasksEnabled": true,
     "ccdScheduledTasksEnabled": true,
     "sidebarMode": "chat",
-    "coworkWebSearchEnabled": true
+    "coworkWebSearchEnabled": true,
+    "epitaxyPrefs": {
+      "starred-local-code-sessions": [],
+      "starred-cowork-spaces": [],
+      "starred-session-groups": [],
+      "dframe-local-slice": {
+        "pinnedOrder": [],
+        "customGroupAssignments": {},
+        "customGroupOrder": {}
+      }
+    }
   }
 }

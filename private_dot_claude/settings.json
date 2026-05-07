@@ -1,0 +1,20 @@
+{
+  "theme": "auto",
+  "effortLevel": "high",
+  "model": "sonnet",
+  "env": {
+    "MAX_THINKING_TOKENS": "10000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+  "autoCompact": true,
+  "permissions": {
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.key)",
+      "Read(**/*.pem)"
+    ]
+  }
+}

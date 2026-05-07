@@ -5,4 +5,4 @@ docs/**
 
 .gitignore
 
-.chezmoidata/secrets-example.yaml
+.chezmoidata/secrets-example.env.yaml
