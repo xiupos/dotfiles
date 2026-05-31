@@ -13,7 +13,7 @@ chezmoi init --apply xiupos
 
 ```bash
 # install mise
-curl https://mise.run | sh
+curl https://mise.run | sh && mise i
 
 # install starship
 curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir ~/.local/bin --yes
