@@ -13,13 +13,16 @@ chezmoi init --apply xiupos
 
 ```bash
 # install mise
-curl https://mise.run | sh && mise i
+curl https://mise.run | sh
 
 # install starship
 curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir ~/.local/bin --yes
 
 # install chezmoi
-sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply xiupos
+sh -c "$(curl -fsLS https://chezmoi.io/getlb)" -- init --apply xiupos
+
+# install dependencies
+mise i
 ```
 
 ## installbattle
