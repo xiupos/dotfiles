@@ -78,6 +78,37 @@ fi
 [[ "$IMG_FMT" == "JPEG" || "$IMG_FMT" == "PNG" ]] || die "No format selected."
 
 # ---------------------------------------------------------------------------
+# Page direction selection
+# ---------------------------------------------------------------------------
+
+PAGE_DIR=""
+if command -v zenity &>/dev/null; then
+    PAGE_DIR=$(zenity --list \
+        --title="PDF→EPUB: Page Direction" \
+        --text="Select page progression direction:" \
+        --radiolist \
+        --column="" --column="Direction" --column="Usage" \
+        FALSE "RTL" "Right-to-left (Japanese manga, Arabic)" \
+        TRUE  "LTR" "Left-to-right (Western books)" \
+        --width=420 --height=200 2>/dev/null) || die "Cancelled."
+elif command -v yad &>/dev/null; then
+    PAGE_DIR=$(yad --list \
+        --title="PDF→EPUB: Page Direction" \
+        --text="Select page progression direction:" \
+        --radiolist \
+        --column="" --column="Direction" --column="Usage" \
+        FALSE "RTL" "Right-to-left (Japanese manga, Arabic)" \
+        TRUE  "LTR" "Left-to-right (Western books)" \
+        --width=420 --height=200 2>/dev/null \
+        | cut -d'|' -f2) || die "Cancelled."
+else
+    PAGE_DIR="LTR"
+    notify "PDF→EPUB" "zenity/yad not found; defaulting to LTR."
+fi
+
+[[ "$PAGE_DIR" == "RTL" || "$PAGE_DIR" == "LTR" ]] || die "No direction selected."
+
+# ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
 
@@ -179,6 +210,7 @@ python3 - \
     "$VIEWPORT_W" \
     "$VIEWPORT_H" \
     "$MEDIA_TYPE" \
+    "$PAGE_DIR" \
     "${IMAGES[@]}" \
 <<'PYEOF'
 import sys, os, zipfile, uuid, datetime
@@ -189,7 +221,8 @@ title       = sys.argv[3]
 vw          = int(sys.argv[4])
 vh          = int(sys.argv[5])
 media_type  = sys.argv[6]
-image_paths = sys.argv[7:]
+page_dir    = sys.argv[7].lower()  # "rtl" or "ltr"
+image_paths = sys.argv[8:]
 
 book_id   = str(uuid.uuid4())
 book_uid  = f"urn:uuid:{book_id}"
@@ -239,7 +272,7 @@ OPF = f'''\
     <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
 {manifest_items}
   </manifest>
-  <spine toc="ncx">
+  <spine toc="ncx" page-progression-direction="{page_dir}">
 {spine_items}
   </spine>
 </package>'''
