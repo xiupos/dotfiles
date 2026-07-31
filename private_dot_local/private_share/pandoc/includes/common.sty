@@ -55,14 +55,3 @@
   \DeclareRobustCommand{\.}[1]{\ifmmode\dot{#1}\else\origdot{#1}\fi}
   \DeclareRobustCommand{\"}[1]{\ifmmode\ddot{#1}\else\origddot{#1}\fi}
 }
-
-% unicode replacement
-\usepackage{newunicodechar}
-\newunicodechar{†}{\ifmmode\dagger\else\textdagger\fi}
-\newunicodechar{⊗}{\otimes}
-\newunicodechar{⊕}{\oplus}
-\newunicodechar{ℓ}{\ell}
-\newunicodechar{⊊}{\subsetneq}
-\newunicodechar{⊋}{\supsetneq}
-\newunicodechar{⊔}{\sqcup}
-\newunicodechar{⊓}{\sqcap}
