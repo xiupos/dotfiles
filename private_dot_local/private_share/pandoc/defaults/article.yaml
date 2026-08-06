@@ -3,6 +3,11 @@ defaults:
 
 variables:
   documentclass: article
+  geometry:
+    - margin=20mm
+    - footskip=10mm
+    - hscale=0.76
+    - hmarginratio=1:1
 
 top-level-division: section
 

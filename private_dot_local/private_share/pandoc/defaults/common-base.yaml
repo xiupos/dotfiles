@@ -7,11 +7,6 @@ pdf-engine: pdflatex
 variables:
   lang: en-GB
   classoption: [a4paper, 12pt]
-  geometry:
-    - margin=20mm
-    - footskip=10mm
-    - hscale=0.76
-    - hmarginratio=1:1
   graphics: true
   linkcolor: blue
   indent: true
@@ -27,6 +22,6 @@ filters:
   - fenced-divs.lua
   - codeblock.lua
   - url-encode.lua
-  - numbered.lua
+  # - numbered.lua
 
 csl: JHEP
