@@ -13,3 +13,4 @@ top-level-division: section
 
 include-in-header:
   - ${.}/../includes/common.sty
+  - ${.}/../includes/article.sty
