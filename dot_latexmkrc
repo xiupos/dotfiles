@@ -45,7 +45,15 @@ $pdf_mode         = 1; # tex -($pdflatex)-> pdf
 # -----------------------------------------------------------------------------
 # BiB
 
-$bibtex    = 'upbibtex';# 'pbibtex';
+# bibtexuはICUベースでUTF-8を直接扱えるため、pdflatexでの和文文献(bst)処理に使う
+# (upbibtexはuplatex専用の内部エンコーディングを前提としており、pdflatexとは組み合わせられない)
+#
+# bibtexuは警告のみ(必須フィールド欠如など)でも終了コード非ゼロを返すため、
+# そのままだとlatexmkが「エラーが起きた」と誤認して以降の再実行を拒否してしまう。
+# 出力に"error messag"が含まれる場合のみ失敗として扱うようラップする。
+$bibtex    = 'out="$(bibtexu %O %S 2>&1)"; printf "%s\n" "$out"; printf "%s" "$out" | grep -qi "error messag" && exit 1; exit 0';
+$bibtex_silent_switch = '';
+# bibtexuは-terse(classic bibtexの静音オプション)を認識せず落ちるため無効化
 $biber     = 'biber %O --bblencoding=utf8 -u -U --output_safechars %B';
 # –bblencoding=utf8 … bblファイル（参考文献ファイル）の文字コードをUTF-8にします
 # -u … 入力ファイルの文字コードをUTF-8にします

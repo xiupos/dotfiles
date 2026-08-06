@@ -54,6 +54,7 @@ ENTRY
     report
     collaboration
     url
+    langid
   }
   {}
   { label }
@@ -70,7 +71,41 @@ FUNCTION {init.state.consts}
   #5 'after.block :=
 }
 
-STRINGS { s t ref z }
+STRINGS { s t ref z lastchar }
+
+FUNCTION {langid.is.japanese}
+{ langid missing$
+    { #0 }
+    { langid "japanese" = }
+  if$
+}
+
+%% add.period$ の和文版: 「.」「!」「?」「。」で終わっていなければ「。」を付ける
+%% (この時点では独自定義の or 関数がまだ使えないため if$ をネストする)
+FUNCTION {add.period.ja}
+{ 's :=
+  s text.length$ #0 =
+    { s }
+    { s #-1 #1 substring$ 'lastchar :=
+      lastchar "." =
+        { s }
+        { lastchar "!" =
+            { s }
+            { lastchar "?" =
+                { s }
+                { lastchar "。" =
+                    { s }
+                    { s "。" * }
+                  if$
+                }
+              if$
+            }
+          if$
+        }
+      if$
+    }
+  if$
+}
 
 FUNCTION {output.nonnull}
 {
@@ -139,7 +174,11 @@ FUNCTION {blank.sep}
 FUNCTION {fin.entry}
 { output.state after.quoted.block =
     'skip$
-    'add.period$
+    { langid.is.japanese
+        { add.period.ja }
+        { add.period$ }
+      if$
+    }
   if$
   write$
   newline$
@@ -215,10 +254,15 @@ FUNCTION {field.or.null}
   if$
 }
 
+%% 和文文献(langid=japanese)はイタリック(\emph)の代わりに『』で囲む
 FUNCTION {emphasize}
 { duplicate$ empty$
     { pop$ "" }
-    { "\emph{" swap$ * "}" * }
+    { langid.is.japanese
+        { "『" swap$ * "』" * }
+        { "\emph{" swap$ * "}" * }
+      if$
+    }
   if$
 }
 
@@ -270,8 +314,13 @@ FUNCTION {remove.spaces}
 
 INTEGERS { nameptr namesleft numnames }
 
+%% 和文は姓名を省略しないフルネームで(欧文はイニシャル)
 FUNCTION {forname.format.string}
-{ "{f.}" }
+{ langid.is.japanese
+    { "{ff}" }
+    { "{f.}" }
+  if$
+}
 
 FUNCTION {surname.format.string}
 { "{vv~}{ll}" }
@@ -279,16 +328,28 @@ FUNCTION {surname.format.string}
 FUNCTION {jnrname.format.string}
 { "{, jj}" }
 
+%% 和文は「姓名」の順で区切りなし、欧文は従来通り「First~Last」
+FUNCTION {format.one.name}
+{ langid.is.japanese
+    { s nameptr surname.format.string format.name$
+      s nameptr forname.format.string format.name$ *
+      s nameptr jnrname.format.string format.name$ *
+    }
+    { s nameptr forname.format.string format.name$ remove.spaces
+      duplicate$ empty$ 'skip$ { "~" * } if$
+      s nameptr surname.format.string format.name$ *
+      s nameptr jnrname.format.string format.name$ *
+    }
+  if$
+}
+
 FUNCTION {format.names}
 { 's :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr forname.format.string format.name$ remove.spaces
-      duplicate$ empty$ 'skip$ { "~" * } if$
-      s nameptr surname.format.string format.name$ *
-      s nameptr jnrname.format.string format.name$ *
+    { format.one.name
       't :=
       nameptr #1 >
 	{ namesleft #1 >
@@ -376,7 +437,11 @@ FUNCTION {format.editors}
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { "\emph{" title "t" change.case$ * "}, " * }
+    { langid.is.japanese
+        { "『" title * "』, " * }
+        { "\emph{" title "t" change.case$ * "}, " * }
+      if$
+    }
   if$
 }
 
@@ -497,14 +562,22 @@ FUNCTION {format.number.series}
 { volume empty$
     { number empty$
 	{ series field.or.null }
-	{ output.state mid.sentence =
-	    { "no.~" }
-	    { "No.~" }
-	  if$
-	  number *
-	  series empty$
-	    { "there's a number but no series in " cite$ * warning$ }
-	    { " in " * series * }
+	{ langid.is.japanese
+	    { series empty$
+		{ "there's a number but no series in " cite$ * warning$ }
+		{ series " " * number * }
+	      if$
+	    }
+	    { output.state mid.sentence =
+		{ "no.~" }
+		{ "No.~" }
+	      if$
+	      number *
+	      series empty$
+		{ "there's a number but no series in " cite$ * warning$ }
+		{ " in " * series * }
+	      if$
+	    }
 	  if$
 	}
       if$

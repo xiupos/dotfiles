@@ -1,0 +1,10 @@
+citeproc: false
+cite-method: natbib
+pdf-engine: latexmk
+
+variables:
+  natbiboptions: "numbers,sort&compress"
+  biblio-style: JHEP
+
+include-after-body:
+  - ${.}/../includes/zotero-bibliography.tex

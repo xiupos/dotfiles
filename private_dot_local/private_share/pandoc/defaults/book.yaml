@@ -2,9 +2,11 @@ defaults:
   - common-base
 
 variables:
-  documentclass: article
+  documentclass: book
 
-top-level-division: section
+top-level-division: chapter
+toc: true
 
 include-in-header:
   - ${.}/../includes/common.sty
+  - ${.}/../includes/book.sty

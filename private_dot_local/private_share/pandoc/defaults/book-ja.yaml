@@ -1,10 +1,10 @@
 defaults:
-  - article
+  - book
   - common-lang-ja
 
 variables:
   lang: ja
-  documentclass: bxjsarticle
+  documentclass: bxjsbook
   classoption: [a4paper, 12pt, pandoc, pdflatex]
 
 csl: sist02-for-JHEP

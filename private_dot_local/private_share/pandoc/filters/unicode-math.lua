@@ -63,12 +63,12 @@
 
 local symbols = {
   -- Symbols
-  ["$"] = "\\mathdollar",
-  ["("] = "\\lparen",
-  [")"] = "\\rparen",
-  ["["] = "\\lbrack",
-  ["]"] = "\\rbrack",
-  ["|"] = "\\vert",
+  -- ["$"] = "\\mathdollar",
+  -- ["("] = "\\lparen",
+  -- [")"] = "\\rparen",
+  -- ["["] = "\\lbrack",
+  -- ["]"] = "\\rbrack",
+  -- ["|"] = "\\vert",
   ["£"] = "\\mathsterling",
   ["§"] = "\\mathsection",
   ["¬"] = "\\neg",

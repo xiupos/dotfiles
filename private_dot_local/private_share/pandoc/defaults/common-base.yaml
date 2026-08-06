@@ -1,0 +1,32 @@
+standalone: true
+
+from: markdown+raw_tex
+to: latex
+pdf-engine: pdflatex
+
+variables:
+  lang: en-GB
+  classoption: [a4paper, 12pt]
+  geometry:
+    - margin=20mm
+    - footskip=10mm
+    - hscale=0.76
+    - hmarginratio=1:1
+  graphics: true
+  linkcolor: blue
+  indent: true
+
+number-sections: true
+shift-heading-level-by: -1
+listings: true
+citeproc: true
+filters:
+  - unicode-math.lua
+  - pandoc-crossref
+  - include-files.lua
+  - fenced-divs.lua
+  - codeblock.lua
+  - url-encode.lua
+  - numbered.lua
+
+csl: JHEP
