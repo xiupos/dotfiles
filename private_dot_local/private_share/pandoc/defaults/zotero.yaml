@@ -1,4 +1,3 @@
-citeproc: false
 cite-method: natbib
 pdf-engine: latexmk
 
