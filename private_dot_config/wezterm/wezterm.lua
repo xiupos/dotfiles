@@ -1,6 +1,18 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+-- shell / term
+config.default_prog = {'/usr/bin/tmux'}
+config.term = 'xterm-256color'
+
+-- bell
+config.audible_bell = 'Disabled'
+config.visual_bell = {
+    fade_in_duration_ms = 75,
+    fade_out_duration_ms = 75,
+    target = 'CursorColor'
+}
+
 -- window
 config.initial_cols = 70
 config.initial_rows = 25
@@ -11,8 +23,8 @@ config.window_padding = {
     bottom = 0
 }
 -- TODO: dim window for non-active windows
-border_width = '0.1cell'
-border_color = '#c4d472'
+border_width = '2px'
+border_color = 'rgba(196, 212, 114, 0.8)'
 config.window_frame = {
     border_left_width = border_width,
     border_right_width = border_width,
@@ -24,7 +36,7 @@ config.window_frame = {
     border_top_color = border_color
 }
 config.window_decorations = 'RESIZE'
-config.hide_tab_bar_if_only_one_tab = true
+config.enable_tab_bar = false
 config.inactive_pane_hsb = {
     saturation = 0.9,
     brightness = 0.8
@@ -38,7 +50,7 @@ config.scrollback_lines = 500000
 
 -- font
 config.font = wezterm.font 'Juisee NF'
-config.font_size = 11.5
+config.font_size = 12
 
 -- colors
 config.window_background_opacity = 0.8
@@ -52,16 +64,22 @@ config.colors = {
 }
 
 -- keys
+-- TODO: semi-transparent for full screen
 config.keys = {{
     key = "F11",
-    action = wezterm.action_callback(function(window)
-        local old_dim = window:get_dimensions()
-        window:maximize()
-        local new_dim = window:get_dimensions()
-        if (old_dim.pixel_width == new_dim.pixel_width) and (old_dim.pixel_height == new_dim.pixel_height) then
-            window:restore()
-        end
-    end)
+    action = wezterm.action.ToggleFullScreen
+}, {
+    key = "f",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.Search 'CurrentSelectionOrEmptyString'
 }}
+
+-- search-mode keybindings
+config.key_tables = {
+    search_mode = {
+        {key = 'p', mods = 'CTRL', action = wezterm.action.CopyMode 'PriorMatch'},
+        {key = 'n', mods = 'CTRL', action = wezterm.action.CopyMode 'NextMatch'}
+    }
+}
 
 return config
