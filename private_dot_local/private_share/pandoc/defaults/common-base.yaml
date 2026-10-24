@@ -23,5 +23,6 @@ filters:
   - codeblock.lua
   - url-encode.lua
   # - numbered.lua
+  - dedupe-table-label.lua
 
 csl: JHEP

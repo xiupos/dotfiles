@@ -1,14 +1,10 @@
 {
-  "theme": "auto",
-  "effortLevel": "high",
-  "model": "sonnet",
   "env": {
     "MAX_THINKING_TOKENS": "10000",
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50",
     "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
   },
-  "autoCompact": true,
   "permissions": {
     "deny": [
       "Read(**/.env)",
@@ -16,5 +12,20 @@
       "Read(**/*.key)",
       "Read(**/*.pem)"
     ]
+  },
+  "model": "sonnet",
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "theme": "auto",
+  "autoCompact": true,
+  "enabledPlugins": {
+    "codex@openai-codex": true
   }
 }
