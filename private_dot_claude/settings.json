@@ -13,7 +13,7 @@
       "Read(**/*.pem)"
     ]
   },
-  "model": "sonnet",
+  "model": "opus",
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {

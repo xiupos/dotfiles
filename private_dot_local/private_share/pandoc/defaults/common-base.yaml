@@ -15,10 +15,10 @@ number-sections: true
 shift-heading-level-by: -1
 listings: true
 filters:
+  - include-files.lua
   - unicode-math.lua
   - pandoc-crossref
   - citeproc
-  - include-files.lua
   - fenced-divs.lua
   - codeblock.lua
   - url-encode.lua
