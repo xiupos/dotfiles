@@ -17,6 +17,7 @@ listings: true
 filters:
   - include-files.lua
   - unicode-math.lua
+  - space-after-cite.lua
   - pandoc-crossref
   - citeproc
   - fenced-divs.lua
