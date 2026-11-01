@@ -14,10 +14,11 @@ variables:
 number-sections: true
 shift-heading-level-by: -1
 listings: true
+metadata:
+  cref: true
 filters:
   - include-files.lua
   - unicode-math.lua
-  - space-after-cite.lua
   - pandoc-crossref
   - citeproc
   - fenced-divs.lua
