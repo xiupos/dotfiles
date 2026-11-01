@@ -5,6 +5,6 @@ defaults:
 variables:
   lang: ja
   documentclass: bxjsarticle
-  classoption: [a4paper, 12pt, pandoc, pdflatex]
+  classoption: [a4paper, 12pt, pandoc, pdflatex, label-section=modern]
 
 csl: sist02-for-JHEP

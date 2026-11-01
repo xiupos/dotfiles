@@ -1,0 +1,33 @@
+%%% START OF cleveref-ja.sty
+
+% cleveref の日本語化
+% \Crefname も与える (既定の先頭大文字化は和文でエラーになる)
+\newcommand*\crefjaname[2]{\crefname{#1}{#2}{#2}\Crefname{#1}{#2}{#2}}
+% 章・節は名前を空にして番号の書式に「第~N~章」を丸ごと入れる
+% (複数参照でも「第 1 章と第 2 章」になる)
+\newcommand*\crefjalabel[3]{\crefjaname{#1}{}\creflabelformat{#1}{#2~##2##1##3~#3}}
+
+\AddToHook{package/cleveref/after}{%
+  \crefjaname{figure}{図}%
+  \crefjaname{table}{表}%
+  \crefjaname{equation}{式}%
+  \crefjaname{listing}{コード}%
+  \crefjaname{appendix}{付録}%
+  \crefjaname{subappendix}{付録}%
+  \crefjalabel{chapter}{第}{章}%
+  \crefjalabel{section}{第}{節}%
+  \crefjalabel{subsection}{第}{節}%
+  \crefjalabel{subsubsection}{第}{節}%
+}
+
+\AtBeginDocument{%
+  \renewcommand\crefpairconjunction{と}%
+  \renewcommand\crefmiddleconjunction{, }%
+  \renewcommand\creflastconjunction{, および}%
+  \renewcommand\crefrangeconjunction{から}%
+  \renewcommand\crefpairgroupconjunction{と}%
+  \renewcommand\crefmiddlegroupconjunction{, }%
+  \renewcommand\creflastgroupconjunction{, および}%
+}
+
+%%% END OF cleveref-ja.sty

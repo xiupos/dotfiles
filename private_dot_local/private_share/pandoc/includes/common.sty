@@ -40,7 +40,11 @@
 }
 
 % cleveref
-\AtBeginDocument{\usepackage{cleveref}}
+\AddToHook{begindocument/before}{\usepackage{cleveref}}
+\AddToHook{package/cleveref/after}{\creflabelformat{equation}{#2#1#3}}
+\AddToHook{cmd/appendix/after}{%
+  \ifdefined\chapter \crefalias{chapter}{appendix}\crefalias{section}{subappendix}%
+  \else \crefalias{section}{appendix}\crefalias{subsection}{subappendix}\fi}
 
 % macro
 \newcommand{\slashed}[1]{{\displaystyle{\not}{#1}}}
