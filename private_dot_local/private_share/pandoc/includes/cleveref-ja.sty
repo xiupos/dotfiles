@@ -3,9 +3,18 @@
 % cleveref の日本語化
 % \Crefname も与える (既定の先頭大文字化は和文でエラーになる)
 \newcommand*\crefjaname[2]{\crefname{#1}{#2}{#2}\Crefname{#1}{#2}{#2}}
-% 章・節は名前を空にして番号の書式に「第~N~章」を丸ごと入れる
-% (複数参照でも「第 1 章と第 2 章」になる)
-\newcommand*\crefjalabel[3]{\crefjaname{#1}{}\creflabelformat{#1}{#2~##2##1##3~#3}}
+% 章・節は書式を丸ごと定義する: 第 1 章と第 2 章, 第 1 章から第 3 章
+% (区切りの語は和文に挟まれるので空きなし. 番号に挟まれる図・表・式用の区切りは下で定義)
+\newcommand*\crefjalabel[3]{\crefjalabelfor{cref}{#1}{#2}{#3}\crefjalabelfor{Cref}{#1}{#2}{#3}}
+\newcommand*\crefjalabelfor[4]{%
+  \csname#1format\endcsname{#2}{#3~##2##1##3~#4}%
+  \csname#1rangeformat\endcsname{#2}{#3~##3##1##4~#4から#3~##5##2##6~#4}%
+  \csname#1multiformat\endcsname{#2}{#3~##2##1##3~#4}{と#3~##2##1##3~#4}%
+    {, #3~##2##1##3~#4}{, および#3~##2##1##3~#4}%
+  \csname#1rangemultiformat\endcsname{#2}{#3~##3##1##4~#4から#3~##5##2##6~#4}%
+    {と#3~##3##1##4~#4から#3~##5##2##6~#4}{, #3~##3##1##4~#4から#3~##5##2##6~#4}%
+    {, および#3~##3##1##4~#4から#3~##5##2##6~#4}%
+}
 
 \AddToHook{package/cleveref/after}{%
   \crefjaname{figure}{図}%
@@ -21,10 +30,10 @@
 }
 
 \AtBeginDocument{%
-  \renewcommand\crefpairconjunction{と}%
+  \renewcommand\crefpairconjunction{\jathinspace と\jathinspace}%
   \renewcommand\crefmiddleconjunction{, }%
-  \renewcommand\creflastconjunction{, および}%
-  \renewcommand\crefrangeconjunction{から}%
+  \renewcommand\creflastconjunction{, および\jathinspace}%
+  \renewcommand\crefrangeconjunction{\jathinspace から\jathinspace}%
   \renewcommand\crefpairgroupconjunction{と}%
   \renewcommand\crefmiddlegroupconjunction{, }%
   \renewcommand\creflastgroupconjunction{, および}%
