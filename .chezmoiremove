@@ -1,0 +1,12 @@
+# moved to ~/.config/shell
+.bash.d/bin.sh
+.bash.d/cargo.sh
+.bash.d/dircolors.sh
+.bash.d/gpg-agent.sh
+.bash.d/mise.sh
+.bash.d/starship.sh
+.zsh.d/bin.zsh
+.zsh.d/cargo.zsh
+.zsh.d/gpg-agent.zsh
+.zsh.d/mise.zsh
+.zsh.d/starship.zsh

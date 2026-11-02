@@ -1,0 +1,666 @@
+#compdef verylup
+
+autoload -U is-at-least
+
+_verylup() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_verylup_commands" \
+"*::: :->verylup" \
+&& ret=0
+    case $state in
+    (verylup)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-command-$line[1]:"
+        case $line[1] in
+            (show)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" : \
+'--pkg=[Toolchain package path for offline installation]:PKG:_files' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(install)
+_arguments "${_arguments_options[@]}" : \
+'--pkg=[Toolchain package path for offline installation]:PKG:_files' \
+'--debug[Debug build for local install]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':target:_default' \
+&& ret=0
+;;
+(uninstall)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':target:_default' \
+&& ret=0
+;;
+(default)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':target:_default' \
+&& ret=0
+;;
+(override)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_verylup__subcmd__override_commands" \
+"*::: :->override" \
+&& ret=0
+
+    case $state in
+    (override)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-override-command-$line[1]:"
+        case $line[1] in
+            (list)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(set)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':target:_default' \
+&& ret=0
+;;
+(unset)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_verylup__subcmd__override__subcmd__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-override-help-command-$line[1]:"
+        case $line[1] in
+            (list)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(set)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(unset)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(setup)
+_arguments "${_arguments_options[@]}" : \
+'--pkg=[Toolchain package path for offline installation]:PKG:_files' \
+'--toolchain=[Specify a toolchain to install at setup]:TOOLCHAIN:_default' \
+'--offline[Offline mode]' \
+'--no-self-update[Disable self-update]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(completion)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':shell:(bash elvish fish powershell zsh)' \
+':command:(verylup veryl)' \
+&& ret=0
+;;
+(config)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_verylup__subcmd__config_commands" \
+"*::: :->config" \
+&& ret=0
+
+    case $state in
+    (config)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-config-command-$line[1]:"
+        case $line[1] in
+            (show)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(set)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':key:_default' \
+':value:_default' \
+&& ret=0
+;;
+(unset)
+_arguments "${_arguments_options[@]}" : \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':key:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_verylup__subcmd__config__subcmd__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-config-help-command-$line[1]:"
+        case $line[1] in
+            (show)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(set)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(unset)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_verylup__subcmd__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-help-command-$line[1]:"
+        case $line[1] in
+            (show)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(install)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(uninstall)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(default)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(override)
+_arguments "${_arguments_options[@]}" : \
+":: :_verylup__subcmd__help__subcmd__override_commands" \
+"*::: :->override" \
+&& ret=0
+
+    case $state in
+    (override)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-help-override-command-$line[1]:"
+        case $line[1] in
+            (list)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(set)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(unset)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(setup)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(completion)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(config)
+_arguments "${_arguments_options[@]}" : \
+":: :_verylup__subcmd__help__subcmd__config_commands" \
+"*::: :->config" \
+&& ret=0
+
+    case $state in
+    (config)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:verylup-help-config-command-$line[1]:"
+        case $line[1] in
+            (show)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(set)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(unset)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_verylup_commands] )) ||
+_verylup_commands() {
+    local commands; commands=(
+'show:Show installed toolchains' \
+'update:Update Veryl toolchains and verylup' \
+'install:Install or update a given toolchain' \
+'uninstall:Uninstall a given toolchain' \
+'default:Set a given toolchain as default' \
+'override:Modify toolchain overrides for directories' \
+'setup:Setup Veryl toolchain' \
+'completion:Generate tab-completion scripts for your shell' \
+'config:Modify verylup configuration' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'verylup commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__completion_commands] )) ||
+_verylup__subcmd__completion_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup completion commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config_commands] )) ||
+_verylup__subcmd__config_commands() {
+    local commands; commands=(
+'show:Show the current configuration' \
+'set:Modify an entry of the configuration' \
+'unset:Remove an entry of the configuration' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'verylup config commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__help_commands] )) ||
+_verylup__subcmd__config__subcmd__help_commands() {
+    local commands; commands=(
+'show:Show the current configuration' \
+'set:Modify an entry of the configuration' \
+'unset:Remove an entry of the configuration' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'verylup config help commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__help__subcmd__help_commands] )) ||
+_verylup__subcmd__config__subcmd__help__subcmd__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup config help help commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__help__subcmd__set_commands] )) ||
+_verylup__subcmd__config__subcmd__help__subcmd__set_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup config help set commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__help__subcmd__show_commands] )) ||
+_verylup__subcmd__config__subcmd__help__subcmd__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup config help show commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__help__subcmd__unset_commands] )) ||
+_verylup__subcmd__config__subcmd__help__subcmd__unset_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup config help unset commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__set_commands] )) ||
+_verylup__subcmd__config__subcmd__set_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup config set commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__show_commands] )) ||
+_verylup__subcmd__config__subcmd__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup config show commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__config__subcmd__unset_commands] )) ||
+_verylup__subcmd__config__subcmd__unset_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup config unset commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__default_commands] )) ||
+_verylup__subcmd__default_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup default commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help_commands] )) ||
+_verylup__subcmd__help_commands() {
+    local commands; commands=(
+'show:Show installed toolchains' \
+'update:Update Veryl toolchains and verylup' \
+'install:Install or update a given toolchain' \
+'uninstall:Uninstall a given toolchain' \
+'default:Set a given toolchain as default' \
+'override:Modify toolchain overrides for directories' \
+'setup:Setup Veryl toolchain' \
+'completion:Generate tab-completion scripts for your shell' \
+'config:Modify verylup configuration' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'verylup help commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__completion_commands] )) ||
+_verylup__subcmd__help__subcmd__completion_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help completion commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__config_commands] )) ||
+_verylup__subcmd__help__subcmd__config_commands() {
+    local commands; commands=(
+'show:Show the current configuration' \
+'set:Modify an entry of the configuration' \
+'unset:Remove an entry of the configuration' \
+    )
+    _describe -t commands 'verylup help config commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__config__subcmd__set_commands] )) ||
+_verylup__subcmd__help__subcmd__config__subcmd__set_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help config set commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__config__subcmd__show_commands] )) ||
+_verylup__subcmd__help__subcmd__config__subcmd__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help config show commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__config__subcmd__unset_commands] )) ||
+_verylup__subcmd__help__subcmd__config__subcmd__unset_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help config unset commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__default_commands] )) ||
+_verylup__subcmd__help__subcmd__default_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help default commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__help_commands] )) ||
+_verylup__subcmd__help__subcmd__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help help commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__install_commands] )) ||
+_verylup__subcmd__help__subcmd__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help install commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__override_commands] )) ||
+_verylup__subcmd__help__subcmd__override_commands() {
+    local commands; commands=(
+'list:List directory toolchain overrides' \
+'set:Set the override toolchain for a directory' \
+'unset:Remove the override toolchain for a directory' \
+    )
+    _describe -t commands 'verylup help override commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__override__subcmd__list_commands] )) ||
+_verylup__subcmd__help__subcmd__override__subcmd__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help override list commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__override__subcmd__set_commands] )) ||
+_verylup__subcmd__help__subcmd__override__subcmd__set_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help override set commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__override__subcmd__unset_commands] )) ||
+_verylup__subcmd__help__subcmd__override__subcmd__unset_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help override unset commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__setup_commands] )) ||
+_verylup__subcmd__help__subcmd__setup_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help setup commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__show_commands] )) ||
+_verylup__subcmd__help__subcmd__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help show commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__uninstall_commands] )) ||
+_verylup__subcmd__help__subcmd__uninstall_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help uninstall commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__help__subcmd__update_commands] )) ||
+_verylup__subcmd__help__subcmd__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup help update commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__install_commands] )) ||
+_verylup__subcmd__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup install commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override_commands] )) ||
+_verylup__subcmd__override_commands() {
+    local commands; commands=(
+'list:List directory toolchain overrides' \
+'set:Set the override toolchain for a directory' \
+'unset:Remove the override toolchain for a directory' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'verylup override commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__help_commands] )) ||
+_verylup__subcmd__override__subcmd__help_commands() {
+    local commands; commands=(
+'list:List directory toolchain overrides' \
+'set:Set the override toolchain for a directory' \
+'unset:Remove the override toolchain for a directory' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'verylup override help commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__help__subcmd__help_commands] )) ||
+_verylup__subcmd__override__subcmd__help__subcmd__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup override help help commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__help__subcmd__list_commands] )) ||
+_verylup__subcmd__override__subcmd__help__subcmd__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup override help list commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__help__subcmd__set_commands] )) ||
+_verylup__subcmd__override__subcmd__help__subcmd__set_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup override help set commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__help__subcmd__unset_commands] )) ||
+_verylup__subcmd__override__subcmd__help__subcmd__unset_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup override help unset commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__list_commands] )) ||
+_verylup__subcmd__override__subcmd__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup override list commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__set_commands] )) ||
+_verylup__subcmd__override__subcmd__set_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup override set commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__override__subcmd__unset_commands] )) ||
+_verylup__subcmd__override__subcmd__unset_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup override unset commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__setup_commands] )) ||
+_verylup__subcmd__setup_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup setup commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__show_commands] )) ||
+_verylup__subcmd__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup show commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__uninstall_commands] )) ||
+_verylup__subcmd__uninstall_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup uninstall commands' commands "$@"
+}
+(( $+functions[_verylup__subcmd__update_commands] )) ||
+_verylup__subcmd__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'verylup update commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_verylup" ]; then
+    _verylup "$@"
+else
+    compdef _verylup verylup
+fi

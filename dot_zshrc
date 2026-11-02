@@ -1,0 +1,42 @@
+typeset -U path fpath
+
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt share_history hist_ignore_all_dups hist_ignore_space hist_reduce_blanks
+setopt autocd extendedglob interactive_comments no_beep
+
+# antidote - https://github.com/mattmc3/antidote
+has_fzf() { (( $+commands[fzf] )) }
+zstyle ':antidote:bundle' use-friendly-names on
+if [[ -r ~/.local/share/antidote/antidote.zsh ]]; then
+  source ~/.local/share/antidote/antidote.zsh
+  antidote load
+fi
+
+# completion
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit && compinit
+zmodload zsh/complist
+zstyle ':completion:*' menu yes select interactive
+zstyle ':completion:*' select-prompt '%S%m  %p%s'
+zstyle ':completion:*' list-prompt '%S%m  %p%s'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' use-cache on
+
+# keybindings
+bindkey -e
+bindkey '^[[Z' reverse-menu-complete
+bindkey -M menuselect '^I' down-line-or-history
+bindkey -M menuselect '^[[Z' up-line-or-history
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^F' autosuggest-accept
+
+# import ~/.config/shell/*.sh, ~/.zsh.d/*.zsh
+for f in ~/.config/shell/*.sh(N) ~/.zsh.d/*.zsh(N); do source $f; done
+unset f

@@ -1,0 +1,550 @@
+#compdef veryl
+
+autoload -U is-at-least
+
+_veryl() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_veryl_commands" \
+"*::: :->veryl" \
+&& ret=0
+    case $state in
+    (veryl)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:veryl-command-$line[1]:"
+        case $line[1] in
+            (new)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+':path:_files' \
+&& ret=0
+;;
+(init)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'::path:_files' \
+&& ret=0
+;;
+(fmt)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--check[Run fmt in check mode]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(check)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(build)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--check[Run build in check mode]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(clean)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(publish)
+_arguments "${_arguments_options[@]}" : \
+'--bump=[Bump version]:BUMP:((major\:"Increment majoir version"
+minor\:"Increment minor version"
+patch\:"Increment patch version"))' \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(migrate)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--check[Run fmt in check mode]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(doc)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(metadata)
+_arguments "${_arguments_options[@]}" : \
+'--format=[output format]:FORMAT:(pretty json)' \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+&& ret=0
+;;
+(dump)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--syntax-tree[output syntex tree]' \
+'--symbol-table[output symbol table]' \
+'--namespace-table[output namespace table]' \
+'--type-dag[output type dag]' \
+'--file-dag[output file dag]' \
+'--attribute-table[output attribute table]' \
+'--unsafe-table[output unsafe table]' \
+'--ir[output IR]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(test)
+_arguments "${_arguments_options[@]}" : \
+'-t+[Test name filter (substring match)]:TEST:_default' \
+'--test=[Test name filter (substring match)]:TEST:_default' \
+'--sim=[Simulator]:SIM:((verilator\:"Verilator"
+vcs\:"Synopsys VCS"
+dsim\:"Altair DSim"
+vivado\:"AMD Vivado Simulator"))' \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--wave[Dump waveform]' \
+'--disable-jit[Disable JIT compilation for native tests]' \
+'--disable-ff-opt[Disable FF classification optimization (force all always_ff variables to FF)]' \
+'--ignored[Run only ignored tests]' \
+'--include-ignored[Run both ignored and non-ignored tests]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(synth)
+_arguments "${_arguments_options[@]}" : \
+'--top=[Top module name (overrides \`synth.top\` in Veryl.toml; otherwise inferred from the first user module)]:TOP:_default' \
+'--timing-paths=[Number of worst-delay endpoints to report when dumping timing (overrides \`synth.timing_paths\` in Veryl.toml)]:TIMING_PATHS:_default' \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--dump-ir[Dump the gate-level IR (netlist of gates and flip-flops)]' \
+'--dump-timing[Dump the critical path trace]' \
+'--dump-area[Dump the per-cell-kind area breakdown]' \
+'--dump-power[Dump the power estimate (leakage + dynamic breakdown)]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Target files:_files' \
+&& ret=0
+;;
+(translate)
+_arguments "${_arguments_options[@]}" : \
+'--completion=[Generate tab-completion]:COMPLETION:(bash elvish fish powershell zsh)' \
+'--stdout[Write the result to stdout instead of writing files. Useful for piping or redirecting to a non-default path]' \
+'--strict[Fail if any unsupported constructs are encountered]' \
+'--no-format[Skip the Veryl formatter pass and emit the raw translator output]' \
+'--quiet[No output printed to stdout]' \
+'--verbose[Use verbose output]' \
+'--trace[Use trace output]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'-V[Print version]' \
+'--version[Print version]' \
+'*::files -- Input SystemVerilog files. Each `foo.sv` produces a sibling `foo.veryl`:_files' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_veryl__subcmd__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:veryl-help-command-$line[1]:"
+        case $line[1] in
+            (new)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(init)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(fmt)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(check)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(build)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(clean)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(publish)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(migrate)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(doc)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(metadata)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(dump)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(test)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(synth)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(translate)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_veryl_commands] )) ||
+_veryl_commands() {
+    local commands; commands=(
+'new:Create a new project' \
+'init:Create a new project in an existing directory' \
+'fmt:Format the current project' \
+'check:Analyze the current project' \
+'build:Build the target codes corresponding to the current project' \
+'clean:Clean-up the current project' \
+'update:Update dependencies' \
+'publish:Publish the current project' \
+'migrate:Migrate breaking changes from the previous version' \
+'doc:Build the document corresponding to the current project' \
+'metadata:Dump metadata of the current packege' \
+'dump:Dump debug info' \
+'test:Execute tests' \
+'synth:Synthesize to a simple gate-level netlist and report area / critical path' \
+'translate:Translate SystemVerilog files into Veryl source' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'veryl commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__build_commands] )) ||
+_veryl__subcmd__build_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl build commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__check_commands] )) ||
+_veryl__subcmd__check_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl check commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__clean_commands] )) ||
+_veryl__subcmd__clean_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl clean commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__doc_commands] )) ||
+_veryl__subcmd__doc_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl doc commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__dump_commands] )) ||
+_veryl__subcmd__dump_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl dump commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__fmt_commands] )) ||
+_veryl__subcmd__fmt_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl fmt commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help_commands] )) ||
+_veryl__subcmd__help_commands() {
+    local commands; commands=(
+'new:Create a new project' \
+'init:Create a new project in an existing directory' \
+'fmt:Format the current project' \
+'check:Analyze the current project' \
+'build:Build the target codes corresponding to the current project' \
+'clean:Clean-up the current project' \
+'update:Update dependencies' \
+'publish:Publish the current project' \
+'migrate:Migrate breaking changes from the previous version' \
+'doc:Build the document corresponding to the current project' \
+'metadata:Dump metadata of the current packege' \
+'dump:Dump debug info' \
+'test:Execute tests' \
+'synth:Synthesize to a simple gate-level netlist and report area / critical path' \
+'translate:Translate SystemVerilog files into Veryl source' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'veryl help commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__build_commands] )) ||
+_veryl__subcmd__help__subcmd__build_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help build commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__check_commands] )) ||
+_veryl__subcmd__help__subcmd__check_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help check commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__clean_commands] )) ||
+_veryl__subcmd__help__subcmd__clean_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help clean commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__doc_commands] )) ||
+_veryl__subcmd__help__subcmd__doc_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help doc commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__dump_commands] )) ||
+_veryl__subcmd__help__subcmd__dump_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help dump commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__fmt_commands] )) ||
+_veryl__subcmd__help__subcmd__fmt_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help fmt commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__help_commands] )) ||
+_veryl__subcmd__help__subcmd__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help help commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__init_commands] )) ||
+_veryl__subcmd__help__subcmd__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help init commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__metadata_commands] )) ||
+_veryl__subcmd__help__subcmd__metadata_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help metadata commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__migrate_commands] )) ||
+_veryl__subcmd__help__subcmd__migrate_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help migrate commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__new_commands] )) ||
+_veryl__subcmd__help__subcmd__new_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help new commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__publish_commands] )) ||
+_veryl__subcmd__help__subcmd__publish_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help publish commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__synth_commands] )) ||
+_veryl__subcmd__help__subcmd__synth_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help synth commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__test_commands] )) ||
+_veryl__subcmd__help__subcmd__test_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help test commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__translate_commands] )) ||
+_veryl__subcmd__help__subcmd__translate_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help translate commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__help__subcmd__update_commands] )) ||
+_veryl__subcmd__help__subcmd__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl help update commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__init_commands] )) ||
+_veryl__subcmd__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl init commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__metadata_commands] )) ||
+_veryl__subcmd__metadata_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl metadata commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__migrate_commands] )) ||
+_veryl__subcmd__migrate_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl migrate commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__new_commands] )) ||
+_veryl__subcmd__new_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl new commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__publish_commands] )) ||
+_veryl__subcmd__publish_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl publish commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__synth_commands] )) ||
+_veryl__subcmd__synth_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl synth commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__test_commands] )) ||
+_veryl__subcmd__test_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl test commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__translate_commands] )) ||
+_veryl__subcmd__translate_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl translate commands' commands "$@"
+}
+(( $+functions[_veryl__subcmd__update_commands] )) ||
+_veryl__subcmd__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'veryl update commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_veryl" ]; then
+    _veryl "$@"
+else
+    compdef _veryl veryl
+fi

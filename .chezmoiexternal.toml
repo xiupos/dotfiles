@@ -39,3 +39,11 @@
     url = "https://github.com/yuru7/juisee/releases/download/v0.2.0/Juisee_NF_v0.2.0.zip"
     stripComponents = 1
     include = ["*/*.ttf"]
+
+# zsh plugin manager
+# → dot_zshrc, dot_zsh_plugins.txt
+[".local/share/antidote"]
+    type = "git-repo"
+    url = "https://github.com/mattmc3/antidote.git"
+    refreshPeriod = "720h"
+    clone.args = ["--depth=1"]
