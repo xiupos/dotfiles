@@ -1,0 +1,36 @@
+# SKK 辞書
+# → .local/share/fcitx5/skk/dictionary_list
+[".local/share/fcitx5/skk/dict/SKK-JISYO.im@sparql.all.utf8"]
+    type = "file"
+    url = "https://github.com/banjun/skk-jisyo-imasparql/raw/refs/heads/m@ster/SKK-JISYO.im@sparql.all.utf8"
+    refreshPeriod = "720h"
+[".local/share/fcitx5/skk/dict/SKK-JISYO.emoji.utf8"]
+    type = "file"
+    url = "https://github.com/uasi/skk-emoji-jisyo/raw/refs/heads/master/SKK-JISYO.emoji.utf8"
+    refreshPeriod = "720h"
+[".local/share/fcitx5/skk/dict/SKK-JISYO.latex.unicode-math.utf8"]
+    type = "file"
+    url = "https://github.com/xiupos/skk-jisyo-latex-unicode-math/raw/refs/heads/master/SKK-JISYO.latex.unicode-math.utf8"
+    refreshPeriod = "720h"
+
+# pdfLaTeX (bxcjkjatype) 用の和文 TTF
+# → .local/share/pandoc/includes/font-ja.sty
+[".local/share/texmf/fonts/truetype/bizud/BIZUDMincho-Regular.ttf"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/google/fonts/main/ofl/bizudmincho/BIZUDMincho-Regular.ttf"
+    refreshPeriod = "720h"
+[".local/share/texmf/fonts/truetype/bizud/BIZUDGothic-Regular.ttf"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/google/fonts/main/ofl/bizudgothic/BIZUDGothic-Regular.ttf"
+    refreshPeriod = "720h"
+[".local/share/texmf/fonts/truetype/bizud/BIZUDGothic-Bold.ttf"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/google/fonts/main/ofl/bizudgothic/BIZUDGothic-Bold.ttf"
+    refreshPeriod = "720h"
+
+# Pandoc filters
+# → .local/share/pandoc/defaults/common-base.yaml
+[".local/share/pandoc/filters/include-files.lua"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/pandoc-ext/include-files/refs/heads/main/include-files.lua"
+    refreshPeriod = "720h"

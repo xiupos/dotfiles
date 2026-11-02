@@ -1,0 +1,12 @@
+%%% START OF font-ja.sty
+
+% pdfLaTeX (bxcjkjatype) で BIZ UD明朝・ゴシックを使う。
+% TTF は .chezmoiexternal.toml で TEXMFHOME に配置する。
+\ifdefined\setminchofont
+  \setminchofont{BIZUDMincho-Regular.ttf}
+  \setboldminchofont{BIZUDGothic-Bold.ttf} % 太字はゴシックにする
+  \setgothicfont{BIZUDGothic-Regular.ttf}
+  \setboldgothicfont{BIZUDGothic-Bold.ttf}
+\fi
+
+%%% END OF font-ja.sty

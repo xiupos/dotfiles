@@ -12,6 +12,7 @@ metadata:
 include-in-header:
   - ${.}/../includes/amsthm-ja.sty
   - ${.}/../includes/cleveref-ja.sty
+  - ${.}/../includes/font-ja.sty
 
 filters:
   - ja-spacing.lua
