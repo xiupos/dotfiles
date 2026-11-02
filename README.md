@@ -23,6 +23,7 @@ exec bash
 ```
 
 - if ssh login doesn't load `~/.bashrc`: `echo '. ~/.bashrc' >> ~/.bash_profile`
+- if zsh is installed: `exec zsh` (plugins are cloned on first start)
 
 ## installbattle
 

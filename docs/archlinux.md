@@ -191,11 +191,12 @@ login [github](https://github.com/)
 ## terminals
 
 ```bash
-yay -S fish sheldon tmux-git foot wezterm
+yay -S zsh tmux-git foot wezterm
 
-chsh -s $(which fish)
+chsh -s $(which zsh)
 ```
 
+- zsh plugins: antidote (chezmoi), cloned on first start
 - starship, neovim: mise
 - foot server: `~/.config/autostart/foot-server.desktop`
 
