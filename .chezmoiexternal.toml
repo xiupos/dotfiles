@@ -18,7 +18,7 @@
 [".local/share/texmf/fonts/truetype/SourceHanSerifJP"]
     type = "archive"
     url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSerifJP.zip"
-    include = ["SourceHanSerifJP-Regular.ttf"]
+    include = ["SourceHanSerifJP-Regular.ttf", "SourceHanSerifJP-Medium.ttf"]
 [".local/share/texmf/fonts/truetype/SourceHanSansJP"]
     type = "archive"
     url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSansJP.zip"

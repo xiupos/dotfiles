@@ -1,6 +1,19 @@
 %%% START OF book.sty
 
-% book class では式番号を chapter 単位にする
 \numberwithin{equation}{chapter}
+
+% bxjsbook の柱のページ番号は \textbf で、pandoc モードでは japaram の strong に従う。
+% strong の設定に関わらず元の太字 (\bfseries) にする
+\makeatletter
+\@ifclassloaded{bxjsbook}{%
+  \RequirePackage{etoolbox}
+  \patchcmd{\ps@headings}{\textbf{\thepage}}{{\bfseries\thepage}}{}{}
+  \patchcmd{\ps@headings}{\textbf{\thepage}}{{\bfseries\thepage}}{}{}
+  \patchcmd{\ps@plainhead}{\textbf{\thepage}}{{\bfseries\thepage}}{}{}
+  \patchcmd{\ps@plainhead}{\textbf{\thepage}}{{\bfseries\thepage}}{}{}
+  \let\ps@plain\ps@plainhead
+  \pagestyle{headings}
+}{}
+\makeatother
 
 %%% END OF book.sty

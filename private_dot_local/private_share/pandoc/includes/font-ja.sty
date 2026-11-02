@@ -1,12 +1,14 @@
 %%% START OF font-ja.sty
 
-% pdfLaTeX (bxcjkjatype) で源ノ明朝・源ノ角ゴシック (Source Han TrueType) を使う。
-% TTF は .chezmoiexternal.toml で TEXMFHOME に配置する。
 \ifdefined\setminchofont
+  % 源ノ明朝・源ノ角ゴシック (Source Han TrueType)
   \setminchofont{SourceHanSerifJP-Regular.ttf}
-  \setboldminchofont{SourceHanSansJP-Medium.ttf} % 太字はゴシックにする
+  \setboldminchofont{SourceHanSerifJP-Medium.ttf}
   \setgothicfont{SourceHanSansJP-Regular.ttf}
   \setboldgothicfont{SourceHanSansJP-Medium.ttf}
+  \usepackage[semibold,scale=1.05]{sourcesans}
+  \DeclareFontShape{C70}{gt}{semibold}{n}{<->CJKssub*gt/bx/n}{\CJKnormal}
+  \DeclareFontShape{C70}{mc}{semibold}{n}{<->CJKssub*mc/bx/n}{\CJKnormal}
 \fi
 
 %%% END OF font-ja.sty

@@ -5,6 +5,6 @@ defaults:
 variables:
   lang: ja
   documentclass: bxjsbook
-  classoption: [a4paper, 12pt, pandoc, pdflatex]
+  classoption: [a4paper, 12pt, pandoc, pdflatex, "japaram={strong=boldsans}"]
 
 csl: sist02-for-JHEP
