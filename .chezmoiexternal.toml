@@ -15,18 +15,18 @@
 
 # pdfLaTeX (bxcjkjatype) 用の和文 TTF
 # → .local/share/pandoc/includes/font-ja.sty
-[".local/share/texmf/fonts/truetype/bizud/BIZUDMincho-Regular.ttf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/google/fonts/main/ofl/bizudmincho/BIZUDMincho-Regular.ttf"
-    refreshPeriod = "720h"
-[".local/share/texmf/fonts/truetype/bizud/BIZUDGothic-Regular.ttf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/google/fonts/main/ofl/bizudgothic/BIZUDGothic-Regular.ttf"
-    refreshPeriod = "720h"
-[".local/share/texmf/fonts/truetype/bizud/BIZUDGothic-Bold.ttf"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/google/fonts/main/ofl/bizudgothic/BIZUDGothic-Bold.ttf"
-    refreshPeriod = "720h"
+[".local/share/texmf/fonts/truetype/source-han/SourceHanSerifJP-Regular.ttf"]
+    type = "archive-file"
+    url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSerifJP.zip"
+    path = "SourceHanSerifJP-Regular.ttf"
+[".local/share/texmf/fonts/truetype/source-han/SourceHanSansJP-Regular.ttf"]
+    type = "archive-file"
+    url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSansJP.zip"
+    path = "SourceHanSansJP-Regular.ttf"
+[".local/share/texmf/fonts/truetype/source-han/SourceHanSansJP-Medium.ttf"]
+    type = "archive-file"
+    url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSansJP.zip"
+    path = "SourceHanSansJP-Medium.ttf"
 
 # Pandoc filters
 # → .local/share/pandoc/defaults/common-base.yaml
