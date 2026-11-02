@@ -2,7 +2,6 @@
 
 Requires:
 - [Mise](https://mise.jdx.dev/installing-mise.html)
-- [Starship](https://starship.rs/)
 - [Chezmoi](https://www.chezmoi.io/install/)
 
 ```bash
@@ -11,16 +10,19 @@ chezmoi init --apply xiupos
 
 ## remote
 
+no root, Linux + systemd
+
 ```bash
 # install mise
 curl https://mise.run | sh
 
-# install starship
-curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir ~/.local/bin --yes
+# install chezmoi (also runs `mise install`)
+sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- -b ~/.local/bin init --apply xiupos
 
-# install chezmoi
-sh -c "$(curl -fsLS https://chezmoi.io/getlb)" -- init --apply xiupos
+exec bash
 ```
+
+- if ssh login doesn't load `~/.bashrc`: `echo '. ~/.bashrc' >> ~/.bash_profile`
 
 ## installbattle
 

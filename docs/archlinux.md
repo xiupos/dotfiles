@@ -169,6 +169,10 @@ yay -S gdm-settings
 
 ```bash
 yay -S fcitx5-im fcitx5-skk
+
+mkdir -p ~/.config/environment.d
+printf '%s\n' GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx 'QT_IM_MODULES="wayland;fcitx;ibus"' XMODIFIERS=@im=fcitx \
+  > ~/.config/environment.d/10-fcitx.conf
 ```
 
 - show all input sources: chezmoi (dconf)
@@ -202,7 +206,7 @@ yay -S chezmoi mise usage
 chezmoi init --apply xiupos
 ```
 
-- `mise install`, user services (gcr-ssh-agent, syncthing): chezmoi
+- `mise install`, gcr-ssh-agent: chezmoi
 - switch to ssh after [GitHub](#github): `chezmoi git -- remote set-url origin git@github.com:xiupos/dotfiles.git`
 
 reopen chrome
@@ -230,6 +234,7 @@ logout & login
 ```bash
 yay -S discord steam obsidian zotero syncthing
 yay -Rc gnome-tour gnome-software epiphany yelp
+systemctl --user enable --now syncthing
 ```
 
 ## keybase

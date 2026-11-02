@@ -15,18 +15,14 @@
 
 # pdfLaTeX (bxcjkjatype) 用の和文 TTF
 # → private_dot_local/private_share/pandoc/includes/font-ja.sty
-[".local/share/texmf/fonts/truetype/source-han/SourceHanSerifJP-Regular.ttf"]
-    type = "archive-file"
+[".local/share/texmf/fonts/truetype/SourceHanSerifJP"]
+    type = "archive"
     url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSerifJP.zip"
-    path = "SourceHanSerifJP-Regular.ttf"
-[".local/share/texmf/fonts/truetype/source-han/SourceHanSansJP-Regular.ttf"]
-    type = "archive-file"
+    include = ["SourceHanSerifJP-Regular.ttf"]
+[".local/share/texmf/fonts/truetype/SourceHanSansJP"]
+    type = "archive"
     url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSansJP.zip"
-    path = "SourceHanSansJP-Regular.ttf"
-[".local/share/texmf/fonts/truetype/source-han/SourceHanSansJP-Medium.ttf"]
-    type = "archive-file"
-    url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSansJP.zip"
-    path = "SourceHanSansJP-Medium.ttf"
+    include = ["SourceHanSansJP-Regular.ttf", "SourceHanSansJP-Medium.ttf"]
 
 # Pandoc filters
 # → private_dot_local/private_share/pandoc/defaults/common-base.yaml
