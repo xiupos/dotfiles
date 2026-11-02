@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# hash: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
+
+export PATH="${HOME}/.local/bin:${PATH}"
+
+if ! command -v mise &>/dev/null; then
+  echo "mise not found, skipping." >&2
+  exit 0
+fi
+
+mise install --yes

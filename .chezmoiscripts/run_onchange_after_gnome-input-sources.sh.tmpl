@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# hash: {{ include "private_dot_local/private_share/gnome-settings/input-sources.dconf" | sha256sum }}
+
+if ! command -v dconf &>/dev/null; then
+  echo "dconf not found, skipping." >&2
+  exit 0
+fi
+
+dconf load /org/gnome/desktop/input-sources/ \
+  < "${HOME}/.local/share/gnome-settings/input-sources.dconf"

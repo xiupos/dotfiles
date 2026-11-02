@@ -1,109 +1,55 @@
 # \#archlinuxinstallbatte メモ
 
+## install
+
+archinstall
+
+- disk: btrfs on LUKS + LVM, snapper (root, home; timeline/cleanup timers)
+- boot: systemd-boot + UKI, mkinitcpio (`encrypt lvm2`)
+- swap: zram-generator
+- desktop: gnome, gdm
+- audio: pipewire
+- graphics: all open-source drivers (intel, amd, nouveau)
+- network: networkmanager, iwd, bluez (enabled)
+- misc: hostname, locale, keymap, timesyncd, mirrorlist, `sudoers.d/00_$USER`
+- packages: git vim nano htop wget openssh smartmontools
+
 ## sudo without password
 
 ```bash
 echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
 ```
 
-logout & login
+## multilib
+
+uncomment `[multilib]` in `/etc/pacman.conf`
+
+```bash
+sudo pacman -Syu
+```
 
 ## yay
 
 ```bash
-sudo pacman -S git
 git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 ```
 
-## fonts
+## zram
 
 ```bash
-yay -S noto-fonts noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
+printf '[zram0]\nzram-size = ram * 2\n' | sudo tee /etc/systemd/zram-generator.conf
 ```
 
-- https://github.com/yuru7/juisee
-
-## browser and editor
+## thinkpad
 
 ```bash
-yay -S xdg-desktop-portal xdg-desktop-portal-gnome adw-gtk-theme
-yay -S google-chrome visual-studio-code-bin neovim
+yay -S thinkfan
+echo 'options thinkpad_acpi fan_control=1' | sudo tee /etc/modprobe.d/thinkpad_acpi.conf
+sudo systemctl enable thinkfan thinkfan-sleep thinkfan-wakeup
 ```
 
-login [github](https://github.com/)
-
-- Tweaks: Appearance -> Legacy Applications `Adw-gtk3`
-
-## GitHub
-
-```bash
-yay -S xclip
-ssh-keygen -t ed25519 -C "me@xiupos.net"
-systemctl enable --user --now gcr-ssh-agent
-cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
-```
-
-register the public key to [github](https://github.com/settings/ssh/new)
-
-```bash
-# test the key
-# ssh-keygen -R github.com
-ssh git@github.com
-```
-
-## tailscale
-
-```bash
-yay -S tailscale
-sudo systemctl enable --now tailscaled
-sudo tailscale login
-
-sudo systemctl enable --now systemd-resolved
-# https://tailscale.com/kb/1188/linux-dns#networkmanager--systemd-resolved
-sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-sudo systemctl restart systemd-resolved
-sudo systemctl restart NetworkManager
-sudo systemctl restart tailscaled
-```
-
-## dotfiles
-
-```bash
-yay -S stow
-git clone --recursive git@github.com:xiupos/dotfiles.git ~/.dotfiles
-make -C ~/.dotfiles
-```
-
-reopen chrome
-
-## terminals
-
-```bash
-yay -S fish starship tmux foot xclip
-
-chsh -s $(which fish)
-systemctl --user enable --now foot-server
-```
-
-- https://askubuntu.com/questions/1331707/f12-acting-weird-in-21-04-can-no-longer-toggle-guake
-
-## im
-
-```bash
-# install fcitx5-cskk
-yay -S fcitx5-im fcitx5-skk skk-jisyo
-
-# set key layout
-gsettings set org.gnome.desktop.input-sources show-all-sources true
-```
-
-logout & login
-
-## Network
-
-```bash
-yay -S nfs-utils networkmanager-openconnect networkmanager-openvpn networkmanager-pptp networkmanager-strongswan networkmanager-vpnc network-manager-sstp
-```
+- fan curve: `/etc/thinkfan.conf`
+- lid close: `HandleLidSwitch=ignore` in `/etc/systemd/logind.conf`
 
 ## firmware
 
@@ -123,6 +69,77 @@ yay -S tuned-ppd
 sudo systemctl enable --now tuned tuned-ppd
 ```
 
+## Network
+
+```bash
+# nfs
+yay -S nfs-utils
+```
+
+## tailscale
+
+```bash
+yay -S tailscale
+sudo systemctl enable --now tailscaled
+sudo tailscale login
+
+sudo systemctl enable --now systemd-resolved
+# https://tailscale.com/kb/1188/linux-dns#networkmanager--systemd-resolved
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+sudo systemctl restart systemd-resolved
+sudo systemctl restart NetworkManager
+sudo systemctl restart tailscaled
+```
+
+## printer
+
+```bash
+# generic drivers
+yay -S foomatic-db foomatic-db-engine foomatic-db-ppds
+
+# epson
+yay -S epson-inkjet-printer-escpr2 epson-laser-printer-lp-s8180
+
+# print to pdf
+yay -S cups-pdf
+
+sudo systemctl enable --now cups avahi-daemon
+sudo usermod -aG printadmin $USER
+```
+
+## docker
+
+```bash
+yay -S docker docker-compose docker-buildx
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+```
+
+## nix
+
+```bash
+yay -S nix
+echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf
+sudo systemctl enable --now nix-daemon
+```
+
+## yubikey
+
+```bash
+yay -S yubikey-manager yubico-authenticator pcsc-tools
+sudo systemctl enable --now pcscd.socket
+```
+
+reboot
+
+## fonts
+
+```bash
+yay -S noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
+```
+
+- [Juisee](https://github.com/yuru7/juisee): chezmoi external
+
 ## gnome extensions
 
 ```bash
@@ -130,28 +147,95 @@ yay -S \
   gnome-browser-connector \
   gnome-shell-extensions \
   gnome-shell-extension-appindicator \
-  gnome-shell-extension-gnome-ui-tune \
+  gnome-shell-extension-gnome-ui-tune-git \
   gnome-shell-extension-gsconnect \
-  gnome-shell-extension-legacy-theme-auto-switcher \
   gnome-shell-extension-kimpanel-git \
+  gnome-shell-extension-legacy-theme-auto-switcher-git \
   gnome-shell-extension-nightthemeswitcher \
+  gnome-shell-extension-space-bar-git \
   gnome-shell-extension-battery-health-charging-git
 ```
 
 - https://extensions.gnome.org/extension/6307/quake-terminal/
+- battery health charging: run the extension's installer (polkit rule)
 
-## docker
+## gdm
 
 ```bash
-yay -S docker docker-compose docker-buildx
-sudo systemctl enable --now docker
-sudo groupadd -f docker && sudo usermod -aG docker $USER
+yay -S gdm-settings
 ```
 
-## mise
+## im
 
 ```bash
-yay -S mise usage
+yay -S fcitx5-im fcitx5-skk
+```
+
+- show all input sources: chezmoi (dconf)
+
+## browser and editor
+
+```bash
+yay -S adw-gtk-theme
+yay -S google-chrome brave-bin visual-studio-code-bin
+```
+
+login [github](https://github.com/)
+
+- Tweaks: Appearance -> Legacy Applications `Adw-gtk3`
+
+## terminals
+
+```bash
+yay -S fish sheldon tmux-git foot wezterm
+
+chsh -s $(which fish)
+```
+
+- starship, neovim: mise
+- foot server: `~/.config/autostart/foot-server.desktop`
+
+## dotfiles
+
+```bash
+yay -S chezmoi mise usage
+chezmoi init --apply xiupos
+```
+
+- `mise install`, user services (gcr-ssh-agent, syncthing): chezmoi
+- switch to ssh after [GitHub](#github): `chezmoi git -- remote set-url origin git@github.com:xiupos/dotfiles.git`
+
+reopen chrome
+
+## GitHub
+
+```bash
+yay -S xclip github-cli
+ssh-keygen -t ed25519 -C "me@xiupos.net"
+cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
+```
+
+register the public key to [github](https://github.com/settings/ssh/new)
+
+```bash
+# test the key
+# ssh-keygen -R github.com
+ssh git@github.com
+```
+
+logout & login
+
+## apps
+
+```bash
+yay -S discord steam obsidian zotero syncthing
+yay -Rc gnome-tour gnome-software epiphany yelp
+```
+
+## keybase
+
+```bash
+yay -S keybase
 ```
 
 ## uxplay
@@ -163,22 +247,12 @@ yay -S uxplay
 # systemctl --user start uxplay
 ```
 
-## keybase
-
-```bash
-yay -S keybase
-```
-
-## apps
-
-```bash
-yay -S discord
-yay -Rc gnome-tours gnome-software epiphany yelp
-```
-
 ## kubectl
 
 ```bash
-yay -S kubectl helm
-# scp sapporo-2:config > ~/.kube/k0s-config
+yay -S kubernetes-tools helm k0sctl kubectl-cnpg
 ```
+
+## texlive
+
+- [texlive](texlive.md)

@@ -20,9 +20,6 @@ curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir ~/.local/bin --yes
 
 # install chezmoi
 sh -c "$(curl -fsLS https://chezmoi.io/getlb)" -- init --apply xiupos
-
-# install dependencies
-mise i
 ```
 
 ## installbattle

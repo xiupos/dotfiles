@@ -1,5 +1,5 @@
 # SKK 辞書
-# → .local/share/fcitx5/skk/dictionary_list
+# → private_dot_local/private_share/fcitx5/skk/dictionary_list
 [".local/share/fcitx5/skk/dict/SKK-JISYO.im@sparql.all.utf8"]
     type = "file"
     url = "https://github.com/banjun/skk-jisyo-imasparql/raw/refs/heads/m@ster/SKK-JISYO.im@sparql.all.utf8"
@@ -14,7 +14,7 @@
     refreshPeriod = "720h"
 
 # pdfLaTeX (bxcjkjatype) 用の和文 TTF
-# → .local/share/pandoc/includes/font-ja.sty
+# → private_dot_local/private_share/pandoc/includes/font-ja.sty
 [".local/share/texmf/fonts/truetype/source-han/SourceHanSerifJP-Regular.ttf"]
     type = "archive-file"
     url = "https://github.com/Pal3love/Source-Han-TrueType/releases/download/2.005-2.003-1.002-R/SourceHanSerifJP.zip"
@@ -29,8 +29,17 @@
     path = "SourceHanSansJP-Medium.ttf"
 
 # Pandoc filters
-# → .local/share/pandoc/defaults/common-base.yaml
+# → private_dot_local/private_share/pandoc/defaults/common-base.yaml
 [".local/share/pandoc/filters/include-files.lua"]
     type = "file"
     url = "https://raw.githubusercontent.com/pandoc-ext/include-files/refs/heads/main/include-files.lua"
     refreshPeriod = "720h"
+
+# Juisee (Nerd Fonts)
+# → private_dot_config/foot/foot.ini
+# → private_dot_config/wezterm/wezterm.lua
+[".local/share/fonts/Juisee"]
+    type = "archive"
+    url = "https://github.com/yuru7/juisee/releases/download/v0.2.0/Juisee_NF_v0.2.0.zip"
+    stripComponents = 1
+    include = ["*/*.ttf"]
