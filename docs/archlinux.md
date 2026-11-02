@@ -207,6 +207,7 @@ chezmoi init --apply xiupos
 ```
 
 - `mise install`, gcr-ssh-agent: chezmoi
+- cli tools (gh, pandoc, ...): mise
 - switch to ssh after [GitHub](#github): `chezmoi git -- remote set-url origin git@github.com:xiupos/dotfiles.git`
 
 reopen chrome
@@ -214,7 +215,7 @@ reopen chrome
 ## GitHub
 
 ```bash
-yay -S xclip github-cli
+yay -S xclip
 ssh-keygen -t ed25519 -C "me@xiupos.net"
 cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
 ```
@@ -250,12 +251,6 @@ yay -S uxplay
 
 # start uxplay
 # systemctl --user start uxplay
-```
-
-## kubectl
-
-```bash
-yay -S kubernetes-tools helm k0sctl kubectl-cnpg
 ```
 
 ## texlive

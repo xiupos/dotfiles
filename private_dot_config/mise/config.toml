@@ -1,35 +1,57 @@
 [tools]
-btop = "latest"
+# shell / editor
+neovim = "latest"
+starship = "latest"
+
+# runtimes
 bun = "latest"
 deno = "latest"
-fastfetch = "latest"
-neovim = "latest"
 node = "latest"
 pnpm = "latest"
-starship = "latest"
 uv = "latest"
 yarn = "latest"
+
+# cli
+btop = "latest"
+claude = "latest"
+fastfetch = "latest"
+gh = "latest"
+just = "latest"
+rclone = "latest"
+yt-dlp = "latest"
+
+# secrets
+age = "latest"
+sops = "latest"
+
+# pandoc-crossref is built against a specific pandoc; bump together
+pandoc = "3.13"
+"github:lierdakil/pandoc-crossref" = "0.3.26a"
 
 [env]
 BROWSER = "google-chrome-stable"
 EDITOR = "vim"
-# Julia
-JULIA_NUM_THREADS = "auto"
-JULIA_HEAP_SIZE_HINT = "50%"
-# TeX
-TEXMFHOME = "~/.local/share/texmf"
-# History for bash
+
+# bash
 HISTCONTROL = "ignoredups:erasedups"
 
+# julia
+JULIA_HEAP_SIZE_HINT = "50%"
+JULIA_NUM_THREADS = "auto"
+
+# tex
+TEXMFHOME = "{{env.HOME}}/.local/share/texmf"
+
 [shell_alias]
-ls = "ls --color=auto"
-tree = "tree -C"
+# color
 grep = "grep --colour=auto"
-egrep = "egrep --colour=auto"
-fgrep = "fgrep --colour=auto"
+ls = "ls --color=auto"
+
+# human-readable / safe
 cp = "cp -i"
 df = "df -h"
 free = "free -m"
+
+# misc
 open = "xdg-open"
-# Pluto.jl
 pluto = "julia -e 'import Pluto; Pluto.run(auto_reload_from_file = true)'"
