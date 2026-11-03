@@ -55,3 +55,4 @@ free = "free -m"
 # misc
 open = "xdg-open"
 pluto = "julia -e 'import Pluto; Pluto.run(auto_reload_from_file = true)'"
+pbcopy = "xclip -selection clipboard"
