@@ -5,9 +5,6 @@ import-sh() { [[ -f "$1" ]] && . "$@"; }
 
 # -------------------------------------------------------------------
 
-# ble.sh - https://github.com/akinomyoga/ble.sh
-import-sh ~/.local/share/blesh/out/ble.sh --attach=none
-
 # completion
 import-sh /usr/share/bash-completion/bash_completion
 import-sh /usr/share/git/completion/git-completion.bash
@@ -49,9 +46,6 @@ PS1="\w${GIT_INFO}${DOLLAR} "
 
 # import ~/.config/shell/*.sh, ~/.bash.d/*
 for i in ~/.config/shell/*.sh ~/.bash.d/*; do import-sh "${i}"; done
-
-# attach ble.sh
-[[ ! ${BLE_VERSION-} ]] || ble-attach
 
 # unset vars
 unset -f import-sh

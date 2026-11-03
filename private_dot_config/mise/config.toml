@@ -12,7 +12,7 @@ uv = "latest"
 yarn = "latest"
 
 # cli
-btop = "latest"
+"github:aristocratos/btop" = "latest"
 claude = "latest"
 fastfetch = "latest"
 gh = "latest"
