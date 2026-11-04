@@ -18,6 +18,7 @@ fastfetch = "latest"
 gh = "latest"
 just = "latest"
 rclone = "latest"
+typst = "latest"
 yt-dlp = "latest"
 
 # secrets
