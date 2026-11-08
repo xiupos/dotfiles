@@ -107,6 +107,13 @@ sudo systemctl enable --now cups avahi-daemon
 sudo usermod -aG printadmin $USER
 ```
 
+## scanner
+
+```bash
+# driverless (eSCL/WSD) network scanner
+yay -S sane-airscan simple-scan
+```
+
 ## docker
 
 ```bash
@@ -136,6 +143,7 @@ reboot
 
 ```bash
 yay -S noto-fonts-extra noto-fonts-cjk noto-fonts-emoji
+yay -S tex-gyre-fonts tex-gyre-math-fonts
 ```
 
 - [Juisee](https://github.com/yuru7/juisee): chezmoi external
