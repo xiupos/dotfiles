@@ -98,7 +98,7 @@ sudo systemctl restart tailscaled
 yay -S foomatic-db foomatic-db-engine foomatic-db-ppds
 
 # epson
-yay -S epson-inkjet-printer-escpr2 epson-laser-printer-lp-s8180
+yay -S epson-laser-printer-lp-s8180
 
 # print to pdf
 yay -S cups-pdf
