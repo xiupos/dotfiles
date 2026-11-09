@@ -19,6 +19,7 @@ gh = "latest"
 just = "latest"
 rclone = "latest"
 typst = "latest"
+usage = "latest"
 yt-dlp = "latest"
 
 # secrets

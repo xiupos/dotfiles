@@ -216,7 +216,7 @@ chsh -s $(which zsh)
 ## dotfiles
 
 ```bash
-yay -S chezmoi mise usage
+yay -S chezmoi mise
 chezmoi init --apply xiupos
 ```
 
