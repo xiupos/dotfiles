@@ -105,6 +105,11 @@ yay -S cups-browsed
 
 sudo systemctl enable --now cups avahi-daemon cups-browsed
 sudo usermod -aG printadmin $USER
+
+# let avahi publish mDNS, resolved only resolves .local
+sudo mkdir -p /etc/systemd/resolved.conf.d
+printf '[Resolve]\nMulticastDNS=resolve\n' | sudo tee /etc/systemd/resolved.conf.d/mdns.conf
+sudo systemctl restart systemd-resolved avahi-daemon
 ```
 
 ## scanner
