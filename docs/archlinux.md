@@ -97,13 +97,13 @@ sudo systemctl restart tailscaled
 # generic drivers
 yay -S foomatic-db foomatic-db-engine foomatic-db-ppds
 
-# epson
-yay -S epson-laser-printer-lp-s8180
-
 # print to pdf
 yay -S cups-pdf
 
-sudo systemctl enable --now cups avahi-daemon
+# network printers
+yay -S cups-browsed
+
+sudo systemctl enable --now cups avahi-daemon cups-browsed
 sudo usermod -aG printadmin $USER
 ```
 
