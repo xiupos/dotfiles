@@ -42,13 +42,7 @@ printf '[zram0]\nzram-size = ram * 2\n' | sudo tee /etc/systemd/zram-generator.c
 
 ## thinkpad
 
-```bash
-yay -S thinkfan
-echo 'options thinkpad_acpi fan_control=1' | sudo tee /etc/modprobe.d/thinkpad_acpi.conf
-sudo systemctl enable thinkfan thinkfan-sleep thinkfan-wakeup
-```
-
-- fan curve: `/etc/thinkfan.conf`
+- fan: leave it to EC firmware (`level auto`); no thinkfan, since the EC `CPU` sensor can freeze after resume and keep the fan off
 - lid close: `HandleLidSwitch=ignore` in `/etc/systemd/logind.conf`
 
 ## firmware
