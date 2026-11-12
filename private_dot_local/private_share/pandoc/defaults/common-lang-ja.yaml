@@ -14,5 +14,5 @@ include-in-header:
   - ${.}/../includes/cleveref-ja.sty
   - ${.}/../includes/font-ja.sty
 
-filters:
-  - ja-spacing.lua
+# filters:
+#   - ja-spacing.lua
