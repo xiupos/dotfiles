@@ -198,7 +198,7 @@ login [github](https://github.com/)
 ## terminals
 
 ```bash
-yay -S zsh tmux-git foot wezterm
+yay -S zsh tmux-git foot
 
 chsh -s $(which zsh)
 ```
