@@ -26,7 +26,7 @@ if ! command -v npm &>/dev/null; then echo "npm not found, skipping." >&2; exit 
 mkdir -p "$CACHE"
 prepared=0
 for name in $(node -p 'require(process.argv[1]).workspaces.join(" ")' "$ROOT/package.json"); do
-  h="$(hash "$name" shared package.json package-lock.json tsconfig.base.json)"
+  h="$(hash "$name" package.json package-lock.json tsconfig.base.json)"
   if [[ "${1:-}" != --force && "$(cat "$CACHE/$name.sha256" 2>/dev/null)" == "$h" ]]; then
     echo "$name: up to date" >&2
     continue

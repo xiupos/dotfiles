@@ -5,7 +5,7 @@
 --
 -- Figures are left to pandoc-crossref for numbering, so this filter must run
 -- before it (and before unicode-math.lua, so that math in caption attributes
--- is converted too). Spec: vscode-extensions/tikz/SPEC.md in the dotfiles.
+-- is converted too). Spec: vscode-extensions/pandoc-preview/README.md in the dotfiles.
 
 local function raw(text)
   return pandoc.RawBlock("latex", text)

@@ -2,13 +2,17 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "nodenext",
-    "lib": ["ES2022"],
-    "types": ["node", "vscode"],
+    "lib": [
+      "ES2022"
+    ],
+    "types": [
+      "node",
+      "vscode"
+    ],
     "strict": true,
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "erasableSyntaxOnly": true,
     "skipLibCheck": true
-  },
-  "include": ["src", "test"]
+  }
 }

@@ -1,6 +1,0 @@
-**
-!dist/extension.cjs
-!media/**
-!package.json
-!README.md
-!LICENSE

@@ -4,8 +4,7 @@
   "type": "module",
   "description": "xiupos's personal VS Code extensions (installed by chezmoi via scripts/install.sh)",
   "workspaces": [
-    "tikz",
-    "pandoc-figure"
+    "pandoc-preview"
   ],
   "scripts": {
     "build": "npm run build --workspaces",

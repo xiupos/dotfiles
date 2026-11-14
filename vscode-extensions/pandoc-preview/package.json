@@ -1,8 +1,8 @@
 {
-  "name": "tikz",
-  "displayName": "TikZ Markdown Preview",
-  "description": "Render ```tikz code blocks in the built-in Markdown preview with real pdflatex (Pandoc-compatible figure syntax).",
-  "version": "0.1.2",
+  "name": "pandoc-preview",
+  "displayName": "Pandoc Preview",
+  "description": "Make the built-in Markdown preview closer to Pandoc output: ```tikz figures rendered with pdflatex, and images alone in a paragraph shown as figures with Markdown captions.",
+  "version": "0.2.0",
   "publisher": "xiupos",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/xiupos/dotfiles.git",
-    "directory": "vscode-extensions/tikz"
+    "directory": "vscode-extensions/pandoc-preview"
   },
   "engines": {
     "vscode": "^1.100.0"
@@ -25,7 +25,7 @@
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": "limited",
-      "description": "TikZ figures are compiled with pdflatex only in trusted workspaces.",
+      "description": "TikZ figures are compiled with pdflatex only in trusted workspaces; image figures work everywhere.",
       "restrictedConfigurations": [
         "tikz.path.pdflatex",
         "tikz.path.pdftocairo",
@@ -57,7 +57,7 @@
       }
     ],
     "configuration": {
-      "title": "TikZ",
+      "title": "Pandoc Preview (TikZ)",
       "properties": {
         "tikz.preamble.files": {
           "type": "array",
@@ -127,6 +127,6 @@
     "build": "esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node20 --external:vscode --outfile=dist/extension.cjs --log-level=warning",
     "typecheck": "tsc -p .",
     "test": "node --test test/*.test.ts",
-    "package": "npm run build && vsce package --no-dependencies --skip-license -o dist/tikz.vsix"
+    "package": "npm run build && vsce package --no-dependencies --skip-license -o dist/pandoc-preview.vsix"
   }
 }

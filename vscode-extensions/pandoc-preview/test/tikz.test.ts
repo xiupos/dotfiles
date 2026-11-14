@@ -4,8 +4,8 @@ import * as os from "node:os";
 import * as path from "node:path";
 import { test } from "node:test";
 import MarkdownIt from "markdown-it";
-import { parseInfo } from "../../shared/pandoc-attrs.ts";
-import { tikzPlugin, type TikzBlock } from "../src/markdown.ts";
+import { parseInfo } from "../src/attrs.ts";
+import { tikzPlugin, type TikzBlock } from "../src/tikz.ts";
 import { buildPreamble, compile, Formats } from "../src/tex.ts";
 
 const fixtures = path.join(import.meta.dirname, "fixtures");

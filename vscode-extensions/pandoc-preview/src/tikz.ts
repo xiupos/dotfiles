@@ -1,6 +1,6 @@
 // markdown-it: hand ```tikz fences to `render`. No vscode dependency.
 
-import { parseInfo } from "../../shared/pandoc-attrs.ts";
+import { parseInfo } from "./attrs.ts";
 
 export interface TikzBlock {
   code: string;

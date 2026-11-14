@@ -6,10 +6,7 @@
 
 | 拡張 | 内容 |
 |---|---|
-| `tikz/` | ` ```tikz ` を pdflatex で描いてプレビューに出す（Pandoc フィルタと記法を共有） |
-| `pandoc-figure/` | 段落に1つだけの画像を、alt をキャプションにした図として出す（Pandoc の implicit_figures） |
-
-`shared/pandoc-attrs.ts` は Pandoc の属性 `{#id .class key=value}` の解釈で、両方の拡張が使う。
+| `pandoc-preview/` | プレビューを Pandoc の出力に近づける：` ```tikz ` を pdflatex で描いた図に、段落に1つだけの画像をキャプション付きの図にする |
 
 ## 守ること
 
@@ -46,7 +43,7 @@
 ## 拡張を追加する手順
 
 1. `<name>/` に `package.json`（`publisher: xiupos`、`main: ./dist/extension.cjs`、`activationEvents` 必須、
-   scripts の `build` / `typecheck` / `test` / `package`）、`tsconfig.json`、`.vscodeignore`、`src/`、`test/` を置く。`pandoc-figure/` が手本。
+   scripts の `build` / `typecheck` / `test` / `package`）、`tsconfig.json`、`.vscodeignore`、`src/`、`test/` を置く。`pandoc-preview/` が手本。
    `package` は `dist/<name>.vsix` を作ること（`install.sh` がそれを入れる）。
 2. ルートの `package.json` の `workspaces` に足して `npm install`。
 3. `<name>/CLAUDE.md` に固有のルールを書き、上の表に1行足す。

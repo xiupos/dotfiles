@@ -8,7 +8,7 @@
 // - `{...}` right after an image is read as Pandoc attributes and removed from the text:
 //   width/height become CSS sizes, .class a class, #id the id of the figure (or image).
 
-import { parseAttrs, type Attr } from "../../shared/pandoc-attrs.ts";
+import { parseAttrs, type Attr } from "./attrs.ts";
 
 /** Pandoc sizes: px, cm, mm, in, inch or %; no unit means px. */
 function cssSize(v: string | undefined): string | undefined {
