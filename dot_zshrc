@@ -18,6 +18,8 @@ fi
 # completion
 fpath=(~/.zfunc $fpath)
 autoload -Uz compinit && compinit
+# claude has no completion script; parse its --help
+compdef _gnu_generic claude
 zmodload zsh/complist
 zstyle ':completion:*' menu yes select interactive
 zstyle ':completion:*' select-prompt '%S%m  %p%s'

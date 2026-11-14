@@ -58,3 +58,6 @@ free = "free -m"
 open = "xdg-open"
 pluto = "julia -e 'import Pluto; Pluto.run(auto_reload_from_file = true)'"
 pbcopy = "xclip -selection clipboard"
+
+# claude (university account, separate login/quota)
+claude-univ = "CLAUDE_CONFIG_DIR=$HOME/.claude-univ claude"
