@@ -1,0 +1,125 @@
+{
+  "name": "tikz",
+  "displayName": "TikZ Markdown Preview",
+  "description": "Render ```tikz code blocks in the built-in Markdown preview with real pdflatex (Pandoc-compatible figure syntax).",
+  "version": "0.1.0",
+  "publisher": "xiupos",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiupos/dotfiles.git",
+    "directory": "vscode-extensions/tikz"
+  },
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "TikZ figures are compiled with pdflatex only in trusted workspaces.",
+      "restrictedConfigurations": [
+        "tikz.path.pdflatex",
+        "tikz.path.pdftocairo",
+        "tikz.preamble.files",
+        "tikz.preamble.extra"
+      ]
+    }
+  },
+  "contributes": {
+    "markdown.markdownItPlugins": true,
+    "markdown.previewStyles": [
+      "./media/preview.css"
+    ],
+    "commands": [
+      {
+        "command": "tikz.clearCache",
+        "title": "Clear Rendered Figure Cache",
+        "category": "TikZ"
+      },
+      {
+        "command": "tikz.rebuildFormat",
+        "title": "Rebuild Preamble Format",
+        "category": "TikZ"
+      },
+      {
+        "command": "tikz.showLog",
+        "title": "Show Log",
+        "category": "TikZ"
+      }
+    ],
+    "configuration": {
+      "title": "TikZ",
+      "properties": {
+        "tikz.preamble.files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "~/.local/share/pandoc/includes/common.sty",
+            "~/.local/share/pandoc/includes/font-ja.sty"
+          ],
+          "markdownDescription": "Files `\\input` into the preview preamble, in order. `~`, `${workspaceFolder}` and paths relative to the workspace folder are accepted. Override in workspace settings to add project-specific `.sty` files."
+        },
+        "tikz.preamble.extra": {
+          "type": "string",
+          "default": "",
+          "editPresentation": "multilineText",
+          "markdownDescription": "Extra LaTeX appended to the preview preamble."
+        },
+        "tikz.preamble.japanese": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Load `bxcjkjatype` so that Japanese text in figures compiles with pdflatex (needed by `font-ja.sty`)."
+        },
+        "tikz.preview.adaptToTheme": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Draw black as the preview text color and white as the background color, so figures follow dark themes."
+        },
+        "tikz.render.delay": {
+          "type": "number",
+          "default": 500,
+          "minimum": 0,
+          "markdownDescription": "Milliseconds to wait after the last edit of a figure before compiling it."
+        },
+        "tikz.render.timeout": {
+          "type": "number",
+          "default": 20000,
+          "minimum": 1000,
+          "markdownDescription": "Milliseconds after which a pdflatex run is killed."
+        },
+        "tikz.render.concurrency": {
+          "type": "number",
+          "default": 2,
+          "minimum": 1,
+          "markdownDescription": "Maximum number of figures compiled at the same time."
+        },
+        "tikz.path.pdflatex": {
+          "type": "string",
+          "default": "pdflatex",
+          "markdownDescription": "Path to `pdflatex`."
+        },
+        "tikz.path.pdftocairo": {
+          "type": "string",
+          "default": "pdftocairo",
+          "markdownDescription": "Path to `pdftocairo` (poppler)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "typecheck": "tsc -p . && tsc -p test",
+    "test": "npm run build && node esbuild.mjs --tests && node out/test/runTest.js",
+    "package": "npm run build && vsce package --no-dependencies --allow-missing-repository -o dist/tikz.vsix"
+  }
+}

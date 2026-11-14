@@ -1,0 +1,82 @@
+/* TikZ figures in the built-in Markdown preview. */
+
+.tikz-figure {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.tikz-figure .tikz-body {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+
+.tikz-figure svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.tikz-figure figcaption {
+  margin-top: 0.4em;
+  font-size: 0.95em;
+}
+
+.tikz-figure figcaption > p {
+  margin: 0.2em 0;
+}
+
+/* Theme adaptation: pdftocairo writes black and white as rgb(...) attributes. */
+.tikz-adapt svg {
+  fill: currentColor;
+}
+.tikz-adapt [fill="rgb(0%, 0%, 0%)"] {
+  fill: currentColor;
+}
+.tikz-adapt [stroke="rgb(0%, 0%, 0%)"] {
+  stroke: currentColor;
+}
+.tikz-adapt [fill="rgb(100%, 100%, 100%)"] {
+  fill: var(--vscode-editor-background, #fff);
+}
+.tikz-adapt [stroke="rgb(100%, 100%, 100%)"] {
+  stroke: var(--vscode-editor-background, #fff);
+}
+
+/* Previous result kept while re-rendering. */
+.tikz-stale {
+  opacity: 0.4;
+}
+
+.tikz-placeholder {
+  display: inline-block;
+  padding: 1em 2em;
+  border: 1px dashed var(--vscode-editorWidget-border, #8888);
+  border-radius: 4px;
+  opacity: 0.7;
+  font-size: 0.9em;
+}
+
+.tikz-error {
+  text-align: left;
+  margin: 0.5em auto;
+  max-width: 100%;
+  border: 1px solid var(--vscode-inputValidation-errorBorder, #e51400);
+  border-radius: 4px;
+  padding: 0.5em 0.8em;
+  font-size: 0.85em;
+}
+.tikz-error .tikz-error-title {
+  font-weight: bold;
+  color: var(--vscode-errorForeground, #e51400);
+}
+.tikz-error pre {
+  margin: 0.4em 0 0;
+  white-space: pre-wrap;
+  background: none;
+  padding: 0;
+}
+
+.tikz-untrusted pre {
+  text-align: left;
+}
