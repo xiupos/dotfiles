@@ -8,7 +8,8 @@
 - `src/markdown.ts`：markdown-it への組み込み（`fence` の差し替え、`renderer.render` の包み）。
 - `src/preamble.ts`：プレビュー用プリアンブル。`src/tex.ts`：pdflatex / pdftocairo、フォーマットのダンプ、ログの解析。
 - `src/renderer.ts`：キャッシュと debounce 付きのキュー。`src/svg.ts`：id の接頭辞。`media/preview.css`：見た目とテーマ対応。
-- `src/extension.ts`：VS Code とつなぐ部分（設定、Diagnostics、コマンド、HTML）。`vscode` を使うのはここだけ。
+- `src/html.ts`：プレビューの HTML（図、キャプション、エラーの枠）。
+- `src/extension.ts`：VS Code とつなぐ部分（設定、Diagnostics、コマンド）。`vscode` を使うのはここだけ。
 
 ## 守ること
 

@@ -30,9 +30,6 @@ export function ensureHeadless(): void {
   }
 }
 
-/** Electron flags that keep VSCodium on X11 (i.e. on the virtual display). */
-export const headlessFlags = ["--ozone-platform=x11", "--no-sandbox", "--disable-gpu"];
-
 export function codiumPath(): string {
   if (process.env.CODIUM) return process.env.CODIUM;
   return execFileSync(path.join(extRoot, "..", "scripts", "fetch-codium.sh"), { encoding: "utf8" }).trim();
@@ -58,10 +55,19 @@ export function makeWorkspace(settings: Record<string, unknown> = {}): string {
   return ws;
 }
 
-export function launchArgs(opts: { workspaceTrust?: boolean } = {}): string[] {
+/**
+ * VSCodium arguments: X11 only (i.e. the virtual display), fresh user data and
+ * extensions directories, optional user settings.
+ */
+export function launchArgs(opts: { workspaceTrust?: boolean; userSettings?: Record<string, unknown> } = {}): string[] {
   const userData = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-user-"));
   const extDir = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-exts-"));
-  const args = [...headlessFlags, "--user-data-dir", userData, "--extensions-dir", extDir, "--skip-welcome", "--skip-release-notes"];
+  if (opts.userSettings) {
+    fs.mkdirSync(path.join(userData, "User"));
+    fs.writeFileSync(path.join(userData, "User", "settings.json"), JSON.stringify(opts.userSettings, null, 2));
+  }
+  const args = ["--ozone-platform=x11", "--no-sandbox", "--disable-gpu", "--disable-updates", "--skip-welcome", "--skip-release-notes"];
+  args.push("--user-data-dir", userData, "--extensions-dir", extDir);
   if (!opts.workspaceTrust) args.push("--disable-workspace-trust");
   return args;
 }

@@ -1,15 +1,46 @@
 import * as path from "path";
 import * as vscode from "vscode";
+import { captionHtml, errorHtml, figureHtml, FigureState, placeholderHtml, staleHtml, untrustedHtml } from "./html";
 import { Host, MarkdownIt, TikzBlock, tikzPlugin } from "./markdown";
 import { buildPreamble, Preamble, PreambleError } from "./preamble";
 import { ResultCache, Scheduler } from "./renderer";
 import { prepareSvg } from "./svg";
-import { compile, Formats, RenderResult, TexConfig, TexError } from "./tex";
-import { escapeHtml, sha256 } from "./util";
+import { compile, Formats, TexConfig, TexError } from "./tex";
+import { sha256 } from "./util";
 
+interface Settings {
+  tex: TexConfig;
+  preamble: { files: string[]; extra: string; japanese: boolean };
+  adaptToTheme: boolean;
+  scale: number;
+  delay: number;
+}
+
+function settingsFor(doc: vscode.Uri | undefined): Settings {
+  const c = vscode.workspace.getConfiguration("tikz", doc);
+  return {
+    tex: {
+      pdflatex: c.get("path.pdflatex", "pdflatex"),
+      pdftocairo: c.get("path.pdftocairo", "pdftocairo"),
+      timeout: c.get("render.timeout", 20000),
+    },
+    preamble: {
+      files: c.get("preamble.files", []),
+      extra: c.get("preamble.extra", ""),
+      japanese: c.get("preamble.japanese", true),
+    },
+    adaptToTheme: c.get("preview.adaptToTheme", true),
+    scale: c.get("preview.scale", 1.3),
+    delay: c.get("render.delay", 500),
+  };
+}
+
+/** Per top-level render of one document (stored in the markdown-it env). */
 interface RenderState {
+  doc: vscode.Uri | undefined;
   index: number;
   diags: vscode.Diagnostic[];
+  settings: Settings;
   preamble?: Preamble | PreambleError;
 }
 
@@ -30,23 +61,21 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
 
   const cache = new ResultCache(path.join(storage, "svg"));
   const formats = new Formats(path.join(storage, "fmt"), log);
+  /** Last successful SVG per figure slot, shown faded while re-rendering. */
   const lastGood = new Map<string, string>();
   let notifiedMissing = false;
 
   let refreshTimer: NodeJS.Timeout | undefined;
   const refresh = () => {
-    if (refreshTimer) clearTimeout(refreshTimer);
-    refreshTimer = setTimeout(() => {
-      refreshTimer = undefined;
-      void vscode.commands.executeCommand("markdown.preview.refresh");
-    }, 100);
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(() => void vscode.commands.executeCommand("markdown.preview.refresh"), 100);
   };
 
   const scheduler = new Scheduler(
     cache,
-    () => vscode.workspace.getConfiguration("tikz").get<number>("render.concurrency", 2),
+    () => vscode.workspace.getConfiguration("tikz").get("render.concurrency", 2),
     (_key, r) => {
-      if (!r.ok && r.transient && !notifiedMissing && r.errors[0]?.message.startsWith("command not found")) {
+      if (!r.ok && r.transient === "missing-command" && !notifiedMissing) {
         notifiedMissing = true;
         void vscode.window.showErrorMessage(`TikZ: ${r.errors[0].message}`);
       }
@@ -54,106 +83,74 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
     },
   );
 
-  const texConfig = (scope: vscode.Uri | undefined): TexConfig => {
-    const c = vscode.workspace.getConfiguration("tikz", scope);
-    return {
-      pdflatex: c.get<string>("path.pdflatex", "pdflatex"),
-      pdftocairo: c.get<string>("path.pdftocairo", "pdftocairo"),
-      timeout: c.get<number>("render.timeout", 20000),
-    };
-  };
-
   const workspaceFolder = (doc: vscode.Uri | undefined): string | undefined =>
     (doc && vscode.workspace.getWorkspaceFolder(doc)?.uri.fsPath) ?? vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
 
-  const preambleFor = (doc: vscode.Uri | undefined): Preamble => {
-    const c = vscode.workspace.getConfiguration("tikz", doc);
-    return buildPreamble(
-      {
-        files: c.get<string[]>("preamble.files", []),
-        extra: c.get<string>("preamble.extra", ""),
-        japanese: c.get<boolean>("preamble.japanese", true),
-      },
-      workspaceFolder(doc),
-    );
+  const newState = (env: any): RenderState => {
+    const doc = env?.currentDocument instanceof vscode.Uri ? env.currentDocument : undefined;
+    return { doc, index: 0, diags: [], settings: settingsFor(doc) };
+  };
+  const stateOf = (env: any): RenderState => (env.__tikz ??= newState(env));
+
+  const preambleOf = (st: RenderState): Preamble | PreambleError => {
+    if (!st.preamble) {
+      try {
+        st.preamble = buildPreamble(st.settings.preamble, workspaceFolder(st.doc));
+      } catch (e) {
+        st.preamble = e instanceof PreambleError ? e : new PreambleError(String(e));
+      }
+    }
+    return st.preamble;
   };
 
-  const docOf = (env: any): vscode.Uri | undefined => (env?.currentDocument instanceof vscode.Uri ? env.currentDocument : undefined);
+  const renderFigure = (block: TikzBlock, env: any, md: MarkdownIt): string => {
+    const st = stateOf(env);
+    const { doc, settings } = st;
+    const slot = `${doc?.toString() ?? "<string>"}#${st.index++}`;
+    const fig = (state: FigureState, body: string) => figureHtml(block, state, body, captionHtml(block, env, md), settings.adaptToTheme);
 
-  const stateOf = (env: any): RenderState => (env.__tikz ??= { index: 0, diags: [] });
+    if (!vscode.workspace.isTrusted) return fig("untrusted", untrustedHtml(block.code));
+
+    const preamble = preambleOf(st);
+    if (preamble instanceof PreambleError) {
+      const e = { message: preamble.message, excerpt: "" };
+      st.diags.push(diagnostic(block, e));
+      return fig("error", errorHtml([e]));
+    }
+
+    const key = sha256(version, preamble.hash, block.code);
+    const result = cache.get(key);
+    if (result?.ok) {
+      const svg = prepareSvg(result.svg, `tikz-${key.slice(0, 10)}`, settings.scale);
+      lastGood.set(slot, svg);
+      return fig("ok", svg);
+    }
+    const stale = staleHtml(lastGood.get(slot));
+    if (result) {
+      for (const e of result.errors) st.diags.push(diagnostic(block, e));
+      return fig("error", errorHtml(result.errors, block) + stale);
+    }
+
+    const dirs = [workspaceFolder(doc), doc?.scheme === "file" ? path.dirname(doc.fsPath) : undefined].filter((d): d is string => !!d);
+    scheduler.request(slot, key, settings.delay, () => compile(block.code, preamble, formats, settings.tex, { dirs }, log));
+    return fig("pending", stale || placeholderHtml);
+  };
 
   const host: Host = {
     beginRender(env) {
-      env.__tikz = { index: 0, diags: [] } satisfies RenderState;
+      env.__tikz = newState(env);
     },
     endRender(env) {
-      const doc = docOf(env);
-      if (doc && vscode.workspace.isTrusted) diagnostics.set(doc, stateOf(env).diags);
+      const { doc, diags } = stateOf(env);
+      if (doc && vscode.workspace.isTrusted) diagnostics.set(doc, diags);
     },
-    renderFigure(block, env, md) {
-      const st = stateOf(env);
-      const doc = docOf(env);
-      const slot = `${doc?.toString() ?? "<string>"}#${st.index++}`;
-      const caption = renderCaption(block, env, md);
-      const adapt = vscode.workspace.getConfiguration("tikz", doc).get<boolean>("preview.adaptToTheme", true);
-      const scale = vscode.workspace.getConfiguration("tikz", doc).get<number>("preview.scale", 1.3);
-      const fig = (state: string, body: string) =>
-        `<figure class="tikz-figure code-line${adapt ? " tikz-adapt" : ""}" data-line="${block.fenceLine}" data-tikz-state="${state}"${block.id ? ` id="${escapeHtml(block.id)}"` : ""}>` +
-        `<div class="tikz-body">${body}</div>${caption}</figure>\n`;
-
-      if (!vscode.workspace.isTrusted) {
-        return fig("untrusted", `<div class="tikz-untrusted"><div class="tikz-placeholder">TikZ: not rendered in an untrusted workspace</div><pre><code>${escapeHtml(block.code)}</code></pre></div>`);
-      }
-
-      if (!st.preamble) {
-        try {
-          st.preamble = preambleFor(doc);
-        } catch (e) {
-          st.preamble = e instanceof PreambleError ? e : new PreambleError(String(e));
-        }
-      }
-      if (st.preamble instanceof PreambleError) {
-        st.diags.push(diag(block, { message: st.preamble.message, excerpt: "" }));
-        return fig("error", errorBox([{ message: st.preamble.message, excerpt: "" }]));
-      }
-      const preamble = st.preamble;
-
-      const key = sha256(version, preamble.hash, block.code);
-      const prefix = `tikz-${key.slice(0, 10)}`;
-      const stale = () => {
-        const prev = lastGood.get(slot);
-        return prev ? `<div class="tikz-stale">${prev}</div>` : "";
-      };
-      const result = cache.get(key);
-      if (result?.ok) {
-        const svg = prepareSvg(result.svg, prefix, scale);
-        lastGood.set(slot, svg);
-        return fig("ok", svg);
-      }
-      if (result && !result.ok) {
-        for (const e of result.errors) st.diags.push(diag(block, e));
-        return fig("error", errorBox(result.errors, block) + stale());
-      }
-
-      const delay = vscode.workspace.getConfiguration("tikz", doc).get<number>("render.delay", 500);
-      const dirs = [workspaceFolder(doc), doc?.scheme === "file" ? path.dirname(doc.fsPath) : undefined].filter((d): d is string => !!d);
-      const cfg = texConfig(doc);
-      scheduler.request(slot, key, delay, () => compile(block.code, preamble, formats, cfg, { dirs }, log));
-      return fig("pending", stale() || `<div class="tikz-placeholder">Rendering TikZ…</div>`);
-    },
-  };
-
-  const diag = (block: TikzBlock, e: TexError): vscode.Diagnostic => {
-    const line = e.codeLine !== undefined ? block.codeLine + e.codeLine : block.fenceLine;
-    const d = new vscode.Diagnostic(new vscode.Range(line, 0, line, Number.MAX_SAFE_INTEGER), e.message, vscode.DiagnosticSeverity.Error);
-    d.source = "tikz";
-    return d;
+    renderFigure,
   };
 
   context.subscriptions.push(
     out,
     diagnostics,
-    vscode.commands.registerCommand("tikz.clearCache", async () => {
+    vscode.commands.registerCommand("tikz.clearCache", () => {
       scheduler.cancelAll();
       cache.clear();
       lastGood.clear();
@@ -174,7 +171,7 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
       notifiedMissing = false;
       refresh();
     }),
-    vscode.workspace.onDidGrantWorkspaceTrust(() => refresh()),
+    vscode.workspace.onDidGrantWorkspaceTrust(refresh),
     vscode.workspace.onDidCloseTextDocument((d) => diagnostics.delete(d.uri)),
     { dispose: () => scheduler.cancelAll() },
   );
@@ -191,47 +188,12 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
   };
 }
 
-function renderCaption(block: TikzBlock, env: any, md: MarkdownIt): string {
-  if (!block.caption?.trim()) return "";
-  const html = md.renderInline(block.caption, env);
-  const clean = String(html)
-    // Line numbers inside the caption refer to the caption source, not the document.
-    .replace(/ data-line="\d+"/g, "")
-    // Other plugins (e.g. the built-in Mermaid one) emit per-render markers with fixed ids.
-    .replace(/<span id="markdown-mermaid"[^>]*><\/span>/g, "")
-    .trim();
-  return `<figcaption>${clean}</figcaption>`;
-}
-
-function errorBox(errors: TexError[], block?: TikzBlock): string {
-  return errors
-    .map((e) => {
-      const excerpt = cleanExcerpt(e, block);
-      return (
-        `<div class="tikz-error"><div class="tikz-error-title">TikZ: ${escapeHtml(e.message)}</div>` +
-        (excerpt ? `<pre>${escapeHtml(excerpt)}</pre>` : "") +
-        `</div>`
-      );
-    })
-    .join("");
-}
-
-/**
- * Drop the line repeated in the title and TeX's boilerplate, and rewrite
- * `l.<n>` to the line number in the Markdown file.
- */
-function cleanExcerpt(e: TexError, block?: TikzBlock): string {
-  const lines = e.excerpt.split("\n");
-  if (lines[0]?.replace(/^!\s*/, "") === e.message) lines.shift();
-  return lines
-    .filter((l) => !/^(See the .* documentation for explanation\.|Type {1,2}H <return> {1,2}for immediate help\.|\s*\.\.\.\s*)$/.test(l))
-    .map((l) => (block && e.codeLine !== undefined ? l.replace(/^l\.\d+/, `l.${block.codeLine + e.codeLine + 1}`) : l))
-    .join("\n")
-    .replace(/\n{2,}/g, "\n")
-    .trim();
+/** A diagnostic on the Markdown line of the error, or on the fence if it cannot be mapped. */
+function diagnostic(block: TikzBlock, e: TexError): vscode.Diagnostic {
+  const line = e.codeLine !== undefined ? block.codeLine + e.codeLine : block.fenceLine;
+  const d = new vscode.Diagnostic(new vscode.Range(line, 0, line, Number.MAX_SAFE_INTEGER), e.message, vscode.DiagnosticSeverity.Error);
+  d.source = "tikz";
+  return d;
 }
 
 export function deactivate(): void {}
-
-// Re-export for tests that exercise the pure modules through the bundle.
-export type { RenderResult };

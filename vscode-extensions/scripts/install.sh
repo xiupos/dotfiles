@@ -13,6 +13,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+. "${ROOT}/scripts/lib.sh"
 CACHE="${XDG_CACHE_HOME:-${HOME}/.cache}/vscode-extensions"
 BUILD="${CACHE}/build"
 FORCE=0
@@ -57,9 +58,9 @@ prepare_build() {
   [[ ${prepared} -eq 1 ]] && return
   echo "preparing build directory ${BUILD}" >&2
   mkdir -p "${BUILD}"
-  # Copy sources (not node_modules/dist/out/.cache); keep the build's own node_modules.
-  (cd "${ROOT}" && find . \( -name node_modules -o -name dist -o -name out -o -name .cache -o -name screenshots -o -name '*.vsix' \) -prune \
-    -o -type f -print0 | tar --null -T - -cf -) | tar -xf - -C "${BUILD}"
+  # Replace the sources with the current ones; keep the build's own node_modules.
+  find "${BUILD}" -mindepth 1 -maxdepth 1 ! -name node_modules -exec rm -rf {} +
+  (cd "${ROOT}" && source_files . | tar --null -T - -cf -) | tar -xf - -C "${BUILD}"
   (cd "${BUILD}" && npm ci --omit=dev --no-audit --no-fund --loglevel=error)
   prepared=1
 }
@@ -84,9 +85,6 @@ for name in "${names[@]}"; do
   fi
 
   prepare_build
-  rm -rf "${BUILD:?}/${name}"
-  (cd "${ROOT}" && find "${name}" \( -name node_modules -o -name dist -o -name out -o -name .cache -o -name screenshots -o -name '*.vsix' \) -prune \
-    -o -type f -print0 | tar --null -T - -cf -) | tar -xf - -C "${BUILD}"
   echo "${id}@${version}: packaging" >&2
   if ! (cd "${BUILD}/${name}" && npm run --silent package); then
     echo "${id}: packaging failed" >&2

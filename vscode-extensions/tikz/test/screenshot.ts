@@ -3,10 +3,9 @@
 // Opens each fixture (Markdown files open straight into the preview via
 // workbench.editorAssociations) in a light and a dark theme.
 import * as fs from "fs";
-import * as os from "os";
 import * as path from "path";
 import { _electron as electron, Frame, Page } from "playwright-core";
-import { codiumPath, ensureHeadless, extRoot, headlessFlags, makeWorkspace } from "./workspace";
+import { codiumPath, ensureHeadless, extRoot, launchArgs, makeWorkspace } from "./workspace";
 
 const THEMES = [
   { name: "light", id: "Default Light Modern" },
@@ -21,9 +20,10 @@ async function previewFrame(page: Page, file: string, timeout = 60000): Promise<
       try {
         const st = await f.evaluate(() => {
           const figs = [...document.querySelectorAll(".tikz-figure")];
-          return { n: figs.length, pending: figs.filter((e) => e.getAttribute("data-tikz-state") === "pending").length, title: document.querySelector("h1")?.textContent ?? "" };
+          // Previews of other tabs stay loaded but hidden (zero height).
+          return { visible: window.innerHeight > 0, n: figs.length, pending: figs.filter((e) => e.getAttribute("data-tikz-state") === "pending").length };
         });
-        if (st.n > 0 && st.pending === 0) return f;
+        if (st.visible && st.n > 0 && st.pending === 0) return f;
       } catch {
         // Frame detached or not scriptable yet.
       }
@@ -41,24 +41,18 @@ async function main() {
 
   for (const theme of THEMES) {
     const ws = makeWorkspace();
-    const userData = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-shot-user-"));
-    const extDir = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-shot-exts-"));
-    fs.mkdirSync(path.join(userData, "User"), { recursive: true });
-    fs.writeFileSync(
-      path.join(userData, "User", "settings.json"),
-      JSON.stringify({
-        "workbench.colorTheme": theme.id,
-        "workbench.editorAssociations": { "*.md": "vscode.markdown.preview.editor" },
-        "workbench.startupEditor": "none",
-        "workbench.tips.enabled": false,
-        "window.titleBarStyle": "custom",
-        "chat.disableAIFeatures": true,
-      }),
-    );
+    const userSettings = {
+      "workbench.colorTheme": theme.id,
+      "workbench.editorAssociations": { "*.md": "vscode.markdown.preview.editor" },
+      "workbench.startupEditor": "none",
+      "workbench.tips.enabled": false,
+      "window.titleBarStyle": "custom",
+      "chat.disableAIFeatures": true,
+    };
     const app = await electron.launch({
       executablePath: exe,
       env: { ...process.env } as Record<string, string>,
-      args: [ws, ...headlessFlags, "--disable-workspace-trust", "--skip-welcome", "--skip-release-notes", "--disable-updates", "--user-data-dir", userData, "--extensions-dir", extDir, `--extensionDevelopmentPath=${extRoot}`],
+      args: [ws, ...launchArgs({ userSettings }), `--extensionDevelopmentPath=${extRoot}`],
       timeout: 60000,
     });
     try {

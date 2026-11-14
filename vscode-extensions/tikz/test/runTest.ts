@@ -14,7 +14,6 @@ function runUntrusted(exe: string, ws: string): Promise<void> {
   const args = [
     ws,
     ...launchArgs({ workspaceTrust: true }),
-    "--disable-updates",
     "--no-cached-data",
     `--extensionTestsPath=${extensionTestsPath}`,
     `--extensionDevelopmentPath=${extRoot}`,

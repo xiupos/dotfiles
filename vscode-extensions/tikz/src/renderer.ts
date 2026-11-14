@@ -3,7 +3,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import type { RenderResult } from "./tex";
+import { failure, type RenderResult } from "./tex";
 
 export class ResultCache {
   private mem = new Map<string, RenderResult>();
@@ -77,7 +77,7 @@ export class Scheduler {
    * A newer request for the same slot replaces an older one that has not started.
    */
   request(slot: string, key: string, delay: number, job: Job): void {
-    if (this.inflight.has(key) || this.queue.some((q) => q.key === key)) return;
+    if (this.isScheduled(key)) return;
     const p = this.pending.get(slot);
     if (p) {
       if (p.key === key) return;
@@ -85,11 +85,16 @@ export class Scheduler {
     }
     const timer = setTimeout(() => {
       this.pending.delete(slot);
-      if (this.cache.get(key) || this.inflight.has(key) || this.queue.some((q) => q.key === key)) return this.settle();
+      if (this.cache.get(key) || this.isScheduled(key)) return this.settle();
       this.queue.push({ key, job });
       this.pump();
     }, delay);
     this.pending.set(slot, { key, timer });
+  }
+
+  /** Queued or compiling. */
+  private isScheduled(key: string): boolean {
+    return this.inflight.has(key) || this.queue.some((q) => q.key === key);
   }
 
   private pump(): void {
@@ -99,7 +104,7 @@ export class Scheduler {
       this.inflight.add(key);
       this.compiled++;
       job()
-        .catch((e): RenderResult => ({ ok: false, transient: true, errors: [{ message: String(e?.message ?? e), excerpt: "" }] }))
+        .catch((e) => failure(String(e?.message ?? e), "error"))
         .then((r) => {
           this.cache.set(key, r);
           this.onDone(key, r);

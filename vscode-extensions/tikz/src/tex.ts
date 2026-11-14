@@ -21,14 +21,14 @@ export interface TexError {
   excerpt: string;
 }
 
-export type RenderResult =
-  | { ok: true; svg: string }
-  | {
-      ok: false;
-      errors: TexError[];
-      /** Not worth persisting (timeout, missing command): retried after restart or config change. */
-      transient?: boolean;
-    };
+/** Failures that are not persisted, but retried after a restart or a configuration change. */
+export type TransientReason = "missing-command" | "timeout" | "error";
+
+export type RenderResult = { ok: true; svg: string } | { ok: false; errors: TexError[]; transient?: TransientReason };
+
+export function failure(message: string, transient?: TransientReason, excerpt = ""): RenderResult {
+  return { ok: false, transient, errors: [{ message, excerpt }] };
+}
 
 export type Logger = (msg: string) => void;
 
@@ -103,8 +103,13 @@ export function parseLog(log: string, codeStartTexLine: number, codeLines: numbe
   return errors;
 }
 
-function missing(cmd: string, setting: string): RenderResult {
-  return { ok: false, transient: true, errors: [{ message: `command not found: ${cmd} (setting ${setting})`, excerpt: "" }] };
+/** The failure of a run that could not start or did not finish, if any. */
+function runFailure(r: RunResult, cmd: string, setting: string, timeout: number): RenderResult | undefined {
+  if (r.spawnError) {
+    return r.spawnError.code === "ENOENT" ? failure(`command not found: ${cmd} (setting ${setting})`, "missing-command") : failure(r.spawnError.message, "error");
+  }
+  if (r.timedOut) return failure(`${path.basename(cmd)} timed out after ${timeout} ms (setting tikz.render.timeout)`, "timeout");
+  return undefined;
 }
 
 /** Formats dumped with mylatexformat, keyed by preamble + pdflatex version. */
@@ -193,21 +198,19 @@ export async function compile(code: string, preamble: Preamble, formats: Formats
     if (fmt) args.push(`-fmt=${fmt}`);
     args.push("fig.tex");
     const r = await run(cfg.pdflatex, args, { cwd: tmp, env: texEnv([...opts.dirs, ...preamble.dirs]), timeout: cfg.timeout });
-    if (r.spawnError) return r.spawnError.code === "ENOENT" ? missing(cfg.pdflatex, "tikz.path.pdflatex") : { ok: false, transient: true, errors: [{ message: r.spawnError.message, excerpt: "" }] };
-    if (r.timedOut) return { ok: false, transient: true, errors: [{ message: `pdflatex timed out after ${cfg.timeout} ms (setting tikz.render.timeout)`, excerpt: "" }] };
+    const rf = runFailure(r, cfg.pdflatex, "tikz.path.pdflatex", cfg.timeout);
+    if (rf) return rf;
     const texLog = await fs.promises.readFile(path.join(tmp, "fig.log"), "utf8").catch(() => "");
     log(`pdflatex ${fmt ? "(format)" : "(full preamble)"} exit ${r.code} in ${Date.now() - t0} ms`);
     if (r.code !== 0 || !fs.existsSync(path.join(tmp, "fig.pdf"))) {
       const errors = parseLog(texLog, codeStartTexLine, codeLines);
-      if (errors.length === 0) {
-        const tail = (texLog || r.output).split("\n").slice(-20).join("\n");
-        errors.push({ message: `pdflatex failed (exit ${r.code})`, excerpt: tail });
-      }
-      return { ok: false, errors };
+      if (errors.length > 0) return { ok: false, errors };
+      return failure(`pdflatex failed (exit ${r.code})`, undefined, (texLog || r.output).split("\n").slice(-20).join("\n"));
     }
     const c = await run(cfg.pdftocairo, ["-svg", "fig.pdf", "fig.svg"], { cwd: tmp, timeout: cfg.timeout });
-    if (c.spawnError) return c.spawnError.code === "ENOENT" ? missing(cfg.pdftocairo, "tikz.path.pdftocairo") : { ok: false, transient: true, errors: [{ message: c.spawnError.message, excerpt: "" }] };
-    if (c.code !== 0) return { ok: false, transient: c.timedOut, errors: [{ message: `pdftocairo failed (exit ${c.code})`, excerpt: c.output.trim() }] };
+    const cf = runFailure(c, cfg.pdftocairo, "tikz.path.pdftocairo", cfg.timeout);
+    if (cf) return cf;
+    if (c.code !== 0) return failure(`pdftocairo failed (exit ${c.code})`, undefined, c.output.trim());
     const svg = await fs.promises.readFile(path.join(tmp, "fig.svg"), "utf8");
     return { ok: true, svg };
   } finally {
