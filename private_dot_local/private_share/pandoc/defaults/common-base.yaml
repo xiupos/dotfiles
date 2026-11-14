@@ -19,11 +19,11 @@ metadata:
 
 filters:
   - include-files.lua
+  - tikz.lua  # before unicode-math.lua and pandoc-crossref
   - unicode-math.lua
   - pandoc-crossref
   - citeproc
   - fenced-divs.lua
-  - codeblock.lua
   - url-encode.lua
   # - numbered.lua
   - dedupe-table-label.lua
