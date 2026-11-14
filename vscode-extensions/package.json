@@ -3,7 +3,8 @@
   "private": true,
   "description": "xiupos's personal VS Code extensions (installed by chezmoi via scripts/install.sh)",
   "workspaces": [
-    "tikz"
+    "tikz",
+    "pandoc-figure"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
