@@ -5,6 +5,7 @@
   "version": "0.1.2",
   "publisher": "xiupos",
   "private": true,
+  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,7 +18,7 @@
   "categories": [
     "Other"
   ],
-  "main": "./dist/extension.js",
+  "main": "./dist/extension.cjs",
   "activationEvents": [
     "onLanguage:markdown"
   ],
@@ -123,9 +124,9 @@
     }
   },
   "scripts": {
-    "build": "node esbuild.mjs",
-    "typecheck": "tsc -p . && tsc -p test",
-    "test": "../scripts/test-integration.sh tikz",
+    "build": "esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node20 --external:vscode --outfile=dist/extension.cjs --log-level=warning",
+    "typecheck": "tsc -p .",
+    "test": "node --test test/*.test.ts",
     "package": "npm run build && vsce package --no-dependencies --skip-license -o dist/tikz.vsix"
   }
 }

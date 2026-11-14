@@ -1,12 +1,6 @@
-// Pandoc-style attribute parsing for fence info strings and fenced divs.
-//
-//   tikz                          -> classes [tikz]
-//   tikz {#fig:a}                 -> classes [tikz], id fig:a
-//   {.tikz #fig:a caption="..."}  -> classes [tikz], id fig:a, caption
-//
-// Quoted values follow Pandoc: a backslash before ASCII punctuation is an
-// escape (\" -> ", \\ -> \, \$ -> $); any other backslash is kept, so
-// caption="$\alpha$" stays "$\alpha$".
+// Pandoc attributes: `{#id .class key=value key="quoted value"}`.
+// In quoted values a backslash escapes ASCII punctuation only (as in pandoc),
+// so caption="$\alpha$" keeps its backslash.
 
 export interface Attr {
   id: string;
@@ -14,78 +8,28 @@ export interface Attr {
   attrs: Record<string, string>;
 }
 
-const PUNCT = /[!-/:-@[-`{-~]/;
+const ITEM = /\s*(?:#([^\s{}]+)|\.([^\s{}]+)|([\w:.-]+)=(?:"((?:\\.|[^"\\])*)"|'((?:\\.|[^'\\])*)'|([^\s"']+)))/y;
+const unescape = (s: string) => s.replace(/\\([!-/:-@[-`{-~])/g, "$1");
 
-function unescape(s: string): string {
-  let out = "";
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === "\\" && i + 1 < s.length && PUNCT.test(s[i + 1])) {
-      out += s[++i];
-    } else {
-      out += s[i];
-    }
-  }
-  return out;
-}
-
-/** Parse the inside of `{...}`. Returns undefined if it is not valid. */
-export function parseAttrBlock(src: string): Attr | undefined {
-  const attr: Attr = { id: "", classes: [], attrs: {} };
-  let i = 0;
-  const n = src.length;
-  while (i < n) {
-    while (i < n && /\s/.test(src[i])) i++;
-    if (i >= n) break;
-    const c = src[i];
-    if (c === "#" || c === ".") {
-      let j = i + 1;
-      while (j < n && !/[\s{}]/.test(src[j])) j++;
-      const name = src.slice(i + 1, j);
-      if (!name) return undefined;
-      if (c === "#") attr.id = name;
-      else attr.classes.push(name);
-      i = j;
-      continue;
-    }
-    const m = /^([A-Za-z_][\w:.-]*)=/.exec(src.slice(i));
+/** The inside of `{...}`, or undefined if it is not valid. */
+export function parseAttrs(src: string): Attr | undefined {
+  const a: Attr = { id: "", classes: [], attrs: {} };
+  ITEM.lastIndex = 0;
+  while (src.slice(ITEM.lastIndex).trim()) {
+    const m = ITEM.exec(src);
     if (!m) return undefined;
-    const key = m[1];
-    i += m[0].length;
-    let value: string;
-    if (src[i] === '"' || src[i] === "'") {
-      const q = src[i];
-      let j = i + 1;
-      while (j < n && src[j] !== q) j += src[j] === "\\" ? 2 : 1;
-      if (j >= n) return undefined;
-      value = unescape(src.slice(i + 1, j));
-      i = j + 1;
-    } else {
-      let j = i;
-      while (j < n && !/\s/.test(src[j])) j++;
-      value = src.slice(i, j);
-      i = j;
-    }
-    attr.attrs[key] = value;
+    if (m[1]) a.id = m[1];
+    else if (m[2]) a.classes.push(m[2]);
+    else a.attrs[m[3]] = m[6] ?? unescape(m[4] ?? m[5]);
   }
-  return attr;
+  return a;
 }
 
-/** Parse a fence info string (`tikz`, `tikz {#id}`, `{.tikz ...}`). */
+/** A fence info string: `tikz`, `tikz {#id}` or `{.tikz #id ...}`. */
 export function parseInfo(info: string): Attr | undefined {
-  const s = info.trim();
-  if (!s) return undefined;
-  if (s.startsWith("{")) {
-    if (!s.endsWith("}")) return undefined;
-    return parseAttrBlock(s.slice(1, -1));
-  }
-  const m = /^([^\s{]+)\s*(?:\{(.*)\})?\s*$/.exec(s);
-  if (!m) return { id: "", classes: [s.split(/\s+/)[0]], attrs: {} };
-  const rest = m[2] !== undefined ? parseAttrBlock(m[2]) : { id: "", classes: [], attrs: {} };
-  if (!rest) return undefined;
-  return { ...rest, classes: [m[1], ...rest.classes] };
-}
-
-/** The Lua filter treats a block as TikZ when its *first* class is `tikz`. */
-export function isTikz(attr: Attr | undefined): attr is Attr {
-  return !!attr && attr.classes[0] === "tikz";
+  const m = /^\s*([^\s{]*)\s*(?:\{(.*)\})?\s*$/.exec(info);
+  const a = m && (m[2] !== undefined ? parseAttrs(m[2]) : { id: "", classes: [], attrs: {} });
+  if (!a) return undefined;
+  if (m[1]) a.classes.unshift(m[1]);
+  return a;
 }

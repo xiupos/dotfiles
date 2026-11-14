@@ -1,12 +1,14 @@
-// pdflatex / pdftocairo invocation, format dumping and log parsing.
-// No vscode dependency.
+// The preview preamble, its format dump, and pdflatex -> pdftocairo. No vscode dependency.
 
-import { spawn } from "child_process";
-import * as fs from "fs";
-import * as os from "os";
-import * as path from "path";
-import type { Preamble } from "./preamble";
-import { sha256 } from "./util";
+import { spawn } from "node:child_process";
+import * as crypto from "node:crypto";
+import * as fs from "node:fs";
+import * as os from "node:os";
+import * as path from "node:path";
+
+export const sha256 = (...parts: string[]) => crypto.createHash("sha256").update(parts.map((p) => `${p.length}:${p}`).join("")).digest("hex");
+
+export type Log = (msg: string) => void;
 
 export interface TexConfig {
   pdflatex: string;
@@ -14,206 +16,175 @@ export interface TexConfig {
   timeout: number;
 }
 
-export interface TexError {
-  /** 0-based line within the figure code, if the error points into it. */
-  codeLine?: number;
-  message: string;
-  excerpt: string;
+export type RenderResult =
+  | { ok: true; svg: string }
+  /** `transient` failures are not written to disk and are retried after a configuration change. */
+  | { ok: false; message: string; detail: string; transient?: "missing-command" | "timeout" | "error" };
+
+const fail = (message: string, detail = "", transient?: "missing-command" | "timeout" | "error"): RenderResult => ({ ok: false, message, detail, transient });
+
+// ---- preamble
+
+export interface PreambleConfig {
+  files: string[];
+  extra: string;
+  japanese: boolean;
 }
 
-/** Failures that are not persisted, but retried after a restart or a configuration change. */
-export type TransientReason = "missing-command" | "timeout" | "error";
-
-export type RenderResult = { ok: true; svg: string } | { ok: false; errors: TexError[]; transient?: TransientReason };
-
-export function failure(message: string, transient?: TransientReason, excerpt = ""): RenderResult {
-  return { ok: false, transient, errors: [{ message, excerpt }] };
+export interface Preamble {
+  /** Up to (not including) \begin{document}. */
+  text: string;
+  /** Of `text` and the contents of the \input files. */
+  hash: string;
+  /** Directories of the \input files, for TEXINPUTS. */
+  dirs: string[];
 }
 
-export type Logger = (msg: string) => void;
+/** Close to the head of Pandoc's LaTeX template for -d article-ja / book-ja. */
+export function buildPreamble(cfg: PreambleConfig, workspace: string | undefined): Preamble {
+  const lines = [
+    "\\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}",
+    "\\documentclass[border=2pt]{standalone}", // no [tikz]: it would drop non-tikzpicture content such as \xymatrix
+    "\\usepackage{xcolor}",
+    "\\usepackage{amsmath,amssymb}",
+    "\\usepackage[T1]{fontenc}",
+    "\\usepackage{lmodern}",
+  ];
+  if (cfg.japanese) lines.push("\\usepackage[whole]{bxcjkjatype}");
+  const contents: string[] = [];
+  const dirs = new Set<string>();
+  for (const f of cfg.files) {
+    let p = f.replace(/\$\{workspaceFolder\}/g, workspace ?? "").replace(/^~(?=\/|$)/, os.homedir());
+    if (!path.isAbsolute(p) && workspace) p = path.join(workspace, p);
+    if (!path.isAbsolute(p) || !fs.existsSync(p)) throw new Error(`preamble file not found: ${p}`);
+    contents.push(fs.readFileSync(p, "utf8"));
+    dirs.add(path.dirname(p));
+    lines.push(`\\input{${p}}`);
+  }
+  if (cfg.extra.trim()) lines.push(cfg.extra.trimEnd());
+  const text = lines.join("\n") + "\n";
+  return { text, hash: sha256(text, ...contents), dirs: [...dirs] };
+}
 
-interface RunResult {
+// ---- processes
+
+interface Run {
   code: number | null;
   output: string;
   timedOut: boolean;
-  spawnError?: NodeJS.ErrnoException;
+  error?: NodeJS.ErrnoException;
 }
 
-function run(cmd: string, args: string[], opts: { cwd: string; env?: NodeJS.ProcessEnv; timeout: number }): Promise<RunResult> {
+function run(cmd: string, args: string[], cwd: string, timeout: number, dirs: string[] = []): Promise<Run> {
+  // TEXINPUTS: a trailing separator keeps the default search path. max_print_line: no wrapped log lines.
+  const env = { ...process.env, TEXINPUTS: [...dirs, process.env.TEXINPUTS ?? ""].join(path.delimiter) + path.delimiter, max_print_line: "10000" };
   return new Promise((resolve) => {
-    let output = "";
-    let timedOut = false;
-    let child;
-    try {
-      child = spawn(cmd, args, { cwd: opts.cwd, env: opts.env, stdio: ["ignore", "pipe", "pipe"] });
-    } catch (e) {
-      resolve({ code: null, output, timedOut, spawnError: e as NodeJS.ErrnoException });
-      return;
-    }
-    const timer = setTimeout(() => {
-      timedOut = true;
-      child.kill("SIGKILL");
-    }, opts.timeout);
-    child.stdout.on("data", (d) => (output += d));
-    child.stderr.on("data", (d) => (output += d));
-    child.on("error", (e) => {
-      clearTimeout(timer);
-      resolve({ code: null, output, timedOut, spawnError: e });
-    });
-    child.on("close", (code) => {
-      clearTimeout(timer);
-      resolve({ code, output, timedOut });
-    });
+    const r: Run = { code: null, output: "", timedOut: false };
+    const child = spawn(cmd, args, { cwd, env, stdio: ["ignore", "pipe", "pipe"] });
+    const timer = setTimeout(() => ((r.timedOut = true), child.kill("SIGKILL")), timeout);
+    child.stdout.on("data", (d) => (r.output += d));
+    child.stderr.on("data", (d) => (r.output += d));
+    child.on("error", (e) => (clearTimeout(timer), resolve({ ...r, error: e })));
+    child.on("close", (code) => (clearTimeout(timer), resolve({ ...r, code })));
   });
 }
 
-function texEnv(dirs: string[]): NodeJS.ProcessEnv {
-  const prev = process.env.TEXINPUTS;
-  // A trailing empty entry keeps the default search path.
-  const texinputs = [...dirs, prev ?? ""].join(path.delimiter);
-  return { ...process.env, TEXINPUTS: texinputs.endsWith(path.delimiter) ? texinputs : texinputs + path.delimiter, max_print_line: "10000" };
+/** The failure of a run that did not start or did not finish. */
+function runFailure(r: Run, cmd: string, setting: string, timeout: number): RenderResult | undefined {
+  if (r.error?.code === "ENOENT") return fail(`command not found: ${cmd} (setting ${setting})`, "", "missing-command");
+  if (r.error) return fail(r.error.message, "", "error");
+  if (r.timedOut) return fail(`${path.basename(cmd)} timed out after ${timeout} ms (setting tikz.render.timeout)`, "", "timeout");
 }
 
-/** Extract `! ...` errors and their context from a TeX log. */
-export function parseLog(log: string, codeStartTexLine: number, codeLines: number): TexError[] {
+const BOILERPLATE = /^(See the .* documentation for explanation\.|Type {1,2}H <return> {1,2}for immediate help\.|\s*\.\.\.\s*|\s*)$/;
+
+/** The first `! ...` error of a TeX log, with its context up to the `l.<n>` line. */
+export function texError(log: string): { message: string; detail: string } | undefined {
   const lines = log.split(/\r?\n/);
-  const errors: TexError[] = [];
-  for (let i = 0; i < lines.length; i++) {
-    const l = lines[i];
-    if (!l.startsWith("!") || /^!\s+==> Fatal error/.test(l)) continue;
-    const excerpt = [l];
-    let texLine: number | undefined;
-    for (let j = i + 1; j < lines.length && j < i + 16; j++) {
-      excerpt.push(lines[j]);
-      const m = /^l\.(\d+)/.exec(lines[j]);
-      if (m) {
-        texLine = Number(m[1]);
-        if (j + 1 < lines.length && lines[j + 1].trim()) excerpt.push(lines[j + 1]);
-        break;
-      }
-    }
-    let codeLine: number | undefined;
-    if (texLine !== undefined) {
-      const k = texLine - codeStartTexLine;
-      if (k >= 0 && k < codeLines) codeLine = k;
-    }
-    errors.push({ codeLine, message: l.replace(/^!\s*/, ""), excerpt: excerpt.join("\n").trimEnd() });
-    i += excerpt.length - 1;
-  }
-  return errors;
+  const i = lines.findIndex((l) => l.startsWith("!") && !/^!\s+==> Fatal error/.test(l));
+  if (i < 0) return undefined;
+  const end = lines.findIndex((l, j) => j > i && /^l\.\d+/.test(l));
+  const context = lines.slice(i + 1, end < 0 ? i + 8 : end + 2).filter((l) => !BOILERPLATE.test(l));
+  return { message: lines[i].replace(/^!\s*/, ""), detail: context.join("\n") };
 }
 
-/** The failure of a run that could not start or did not finish, if any. */
-function runFailure(r: RunResult, cmd: string, setting: string, timeout: number): RenderResult | undefined {
-  if (r.spawnError) {
-    return r.spawnError.code === "ENOENT" ? failure(`command not found: ${cmd} (setting ${setting})`, "missing-command") : failure(r.spawnError.message, "error");
-  }
-  if (r.timedOut) return failure(`${path.basename(cmd)} timed out after ${timeout} ms (setting tikz.render.timeout)`, "timeout");
-  return undefined;
-}
+// ---- format dump
 
-/** Formats dumped with mylatexformat, keyed by preamble + pdflatex version. */
+/** Preambles dumped with mylatexformat, keyed by preamble + pdflatex version. */
 export class Formats {
-  private versions = new Map<string, Promise<string>>();
+  dir: string;
+  log: Log;
   private dumps = new Map<string, Promise<string | undefined>>();
+  private version?: Promise<string>;
 
-  constructor(private dir: string, private log: Logger) {}
-
-  private version(cfg: TexConfig): Promise<string> {
-    let v = this.versions.get(cfg.pdflatex);
-    if (!v) {
-      v = run(cfg.pdflatex, ["--version"], { cwd: os.tmpdir(), timeout: 10000 }).then((r) => r.output.split("\n")[0] ?? "");
-      this.versions.set(cfg.pdflatex, v);
-    }
-    return v;
+  constructor(dir: string, log: Log) {
+    this.dir = dir;
+    this.log = log;
   }
 
-  /** Path of the format without `.fmt`, or undefined if dumping failed. */
+  /** The format path without `.fmt`, or undefined if it cannot be dumped. */
   async get(preamble: Preamble, cfg: TexConfig): Promise<string | undefined> {
-    const key = sha256(preamble.hash, await this.version(cfg)).slice(0, 32);
-    let p = this.dumps.get(key);
-    if (!p) {
-      p = this.dump(key, preamble, cfg);
-      this.dumps.set(key, p);
-    }
-    return p;
+    this.version ??= run(cfg.pdflatex, ["--version"], os.tmpdir(), 10000).then((r) => r.output.split("\n")[0]);
+    const key = sha256(preamble.hash, await this.version).slice(0, 32);
+    if (!this.dumps.has(key)) this.dumps.set(key, this.dump(key, preamble, cfg));
+    return this.dumps.get(key);
   }
 
   private async dump(key: string, preamble: Preamble, cfg: TexConfig): Promise<string | undefined> {
     const target = path.join(this.dir, key);
     if (fs.existsSync(target + ".fmt")) return target;
-    await fs.promises.mkdir(this.dir, { recursive: true });
-    const tmp = await fs.promises.mkdtemp(path.join(os.tmpdir(), "tikz-fmt-"));
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-fmt-"));
     try {
-      await fs.promises.writeFile(path.join(tmp, "preamble.tex"), preamble.text + "\\begin{document}\\end{document}\n");
-      const t0 = Date.now();
-      const r = await run(
-        cfg.pdflatex,
-        ["-ini", "-interaction=nonstopmode", "-halt-on-error", "-no-shell-escape", `-jobname=${key}`, "&pdflatex", "mylatexformat.ltx", "preamble.tex"],
-        { cwd: tmp, env: texEnv(preamble.dirs), timeout: Math.max(cfg.timeout, 60000) },
-      );
-      const fmt = path.join(tmp, key + ".fmt");
-      if (r.code !== 0 || !fs.existsSync(fmt)) {
-        const why = r.spawnError ? r.spawnError.message : r.timedOut ? "timed out" : `exit ${r.code}`;
-        const log = await fs.promises.readFile(path.join(tmp, key + ".log"), "utf8").catch(() => "");
-        const errs = parseLog(log, 0, 0).map((e) => e.excerpt).join("\n");
-        this.log(`format dump failed (${why}); falling back to loading the preamble every time\n${errs}`);
+      // mylatexformat stops at \begin{document}; without it the run ends in "Emergency stop".
+      fs.writeFileSync(path.join(tmp, "preamble.tex"), preamble.text + "\\begin{document}\\end{document}\n");
+      const args = ["-ini", "-interaction=nonstopmode", "-halt-on-error", "-no-shell-escape", `-jobname=${key}`, "&pdflatex", "mylatexformat.ltx", "preamble.tex"];
+      const r = await run(cfg.pdflatex, args, tmp, Math.max(cfg.timeout, 60000), preamble.dirs);
+      if (r.code !== 0) {
+        const e = texError(fs.existsSync(path.join(tmp, key + ".log")) ? fs.readFileSync(path.join(tmp, key + ".log"), "utf8") : r.output);
+        this.log(`format dump failed, loading the preamble every time: ${e?.message ?? r.error?.message ?? `exit ${r.code}`}`);
         return undefined;
       }
-      await fs.promises.copyFile(fmt, target + ".fmt.tmp");
-      await fs.promises.rename(target + ".fmt.tmp", target + ".fmt");
-      this.log(`format dumped in ${Date.now() - t0} ms: ${target}.fmt`);
+      fs.mkdirSync(this.dir, { recursive: true });
+      fs.copyFileSync(path.join(tmp, key + ".fmt"), target + ".fmt");
+      this.log(`format dumped: ${target}.fmt`);
       return target;
     } finally {
-      await fs.promises.rm(tmp, { recursive: true, force: true });
+      fs.rmSync(tmp, { recursive: true, force: true });
     }
   }
 
-  async clear(): Promise<void> {
+  clear(): void {
     this.dumps.clear();
-    this.versions.clear();
-    await fs.promises.rm(this.dir, { recursive: true, force: true });
+    this.version = undefined;
+    fs.rmSync(this.dir, { recursive: true, force: true });
   }
 }
 
-export interface CompileOptions {
-  /** Extra TEXINPUTS directories (Markdown file dir, workspace folder). */
-  dirs: string[];
-}
+// ---- compile
 
-export async function compile(code: string, preamble: Preamble, formats: Formats, cfg: TexConfig, opts: CompileOptions, log: Logger): Promise<RenderResult> {
+export async function compile(code: string, preamble: Preamble, formats: Formats, cfg: TexConfig, dirs: string[]): Promise<RenderResult> {
   const fmt = await formats.get(preamble, cfg);
-  const body = code.endsWith("\n") ? code : code + "\n";
-  const codeLines = body.split("\n").length - 1;
-  // With a format, the preamble is already loaded and the file starts at \begin{document}.
-  const head = fmt ? "" : preamble.text;
-  const src = head + "\\begin{document}\n" + body + "\\end{document}\n";
-  const codeStartTexLine = (fmt ? 0 : preamble.lines) + 2;
-
-  const tmp = await fs.promises.mkdtemp(path.join(os.tmpdir(), "tikz-"));
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-"));
   try {
-    await fs.promises.writeFile(path.join(tmp, "fig.tex"), src);
+    // With a format the preamble is already loaded.
+    fs.writeFileSync(path.join(tmp, "fig.tex"), (fmt ? "" : preamble.text) + `\\begin{document}\n${code.trimEnd()}\n\\end{document}\n`);
+    const args = ["-interaction=nonstopmode", "-halt-on-error", "-no-shell-escape", ...(fmt ? [`-fmt=${fmt}`] : []), "fig.tex"];
     const t0 = Date.now();
-    const args = ["-interaction=nonstopmode", "-halt-on-error", "-no-shell-escape"];
-    if (fmt) args.push(`-fmt=${fmt}`);
-    args.push("fig.tex");
-    const r = await run(cfg.pdflatex, args, { cwd: tmp, env: texEnv([...opts.dirs, ...preamble.dirs]), timeout: cfg.timeout });
+    const r = await run(cfg.pdflatex, args, tmp, cfg.timeout, [...dirs, ...preamble.dirs]);
+    formats.log(`pdflatex ${fmt ? "(format)" : "(full preamble)"}: exit ${r.code} in ${Date.now() - t0} ms`);
     const rf = runFailure(r, cfg.pdflatex, "tikz.path.pdflatex", cfg.timeout);
     if (rf) return rf;
-    const texLog = await fs.promises.readFile(path.join(tmp, "fig.log"), "utf8").catch(() => "");
-    log(`pdflatex ${fmt ? "(format)" : "(full preamble)"} exit ${r.code} in ${Date.now() - t0} ms`);
     if (r.code !== 0 || !fs.existsSync(path.join(tmp, "fig.pdf"))) {
-      const errors = parseLog(texLog, codeStartTexLine, codeLines);
-      if (errors.length > 0) return { ok: false, errors };
-      return failure(`pdflatex failed (exit ${r.code})`, undefined, (texLog || r.output).split("\n").slice(-20).join("\n"));
+      const log = fs.existsSync(path.join(tmp, "fig.log")) ? fs.readFileSync(path.join(tmp, "fig.log"), "utf8") : r.output;
+      const e = texError(log);
+      return e ? fail(e.message, e.detail) : fail(`pdflatex failed (exit ${r.code})`, log.split("\n").slice(-20).join("\n"));
     }
-    const c = await run(cfg.pdftocairo, ["-svg", "fig.pdf", "fig.svg"], { cwd: tmp, timeout: cfg.timeout });
+    const c = await run(cfg.pdftocairo, ["-svg", "fig.pdf", "fig.svg"], tmp, cfg.timeout);
     const cf = runFailure(c, cfg.pdftocairo, "tikz.path.pdftocairo", cfg.timeout);
     if (cf) return cf;
-    if (c.code !== 0) return failure(`pdftocairo failed (exit ${c.code})`, undefined, c.output.trim());
-    const svg = await fs.promises.readFile(path.join(tmp, "fig.svg"), "utf8");
-    return { ok: true, svg };
+    if (c.code !== 0) return fail(`pdftocairo failed (exit ${c.code})`, c.output.trim());
+    return { ok: true, svg: fs.readFileSync(path.join(tmp, "fig.svg"), "utf8") };
   } finally {
-    await fs.promises.rm(tmp, { recursive: true, force: true });
+    fs.rmSync(tmp, { recursive: true, force: true });
   }
 }

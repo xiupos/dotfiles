@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-# hash: {{ output "bash" (joinPath .chezmoi.sourceDir "vscode-extensions/scripts/source-hash.sh") | trim }}
-
-if ! command -v npm &>/dev/null && ! command -v mise &>/dev/null; then
-  echo "npm not found, skipping." >&2
-  exit 0
-fi
+# hash: {{ output "bash" (joinPath .chezmoi.sourceDir "vscode-extensions/scripts/install.sh") "--hash" | trim }}
 
 "{{ .chezmoi.sourceDir }}/vscode-extensions/scripts/install.sh"

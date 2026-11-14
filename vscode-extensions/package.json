@@ -1,6 +1,7 @@
 {
   "name": "vscode-extensions",
   "private": true,
+  "type": "module",
   "description": "xiupos's personal VS Code extensions (installed by chezmoi via scripts/install.sh)",
   "workspaces": [
     "tikz",
@@ -9,7 +10,7 @@
   "scripts": {
     "build": "npm run build --workspaces",
     "typecheck": "npm run typecheck --workspaces",
-    "test": "npm test --workspaces --if-present"
+    "test": "npm test --workspaces"
   },
   "//": "dependencies = what scripts/install.sh needs to build and package (npm ci --omit=dev). devDependencies = type checking and tests only.",
   "dependencies": {
@@ -17,12 +18,9 @@
     "esbuild": "0.28.2"
   },
   "devDependencies": {
-    "@types/mocha": "10.0.10",
     "@types/node": "26.6.6",
     "@types/vscode": "1.100.0",
-    "@vscode/test-electron": "3.1.0",
-    "mocha": "12.0.3",
-    "playwright-core": "1.65.1",
+    "markdown-it": "15.0.3",
     "typescript": "7.0.2"
   },
   "allowScripts": {

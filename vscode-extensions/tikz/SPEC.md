@@ -51,7 +51,7 @@ pdflatex で描いた SVG にする。記法は両者で共通。
 | `error` | エラーの枠 + 直前の SVG を薄く |
 | `untrusted` | 「TikZ: not rendered in an untrusted workspace」+ ソース |
 
-「同じブロック」は文書の URI と、何番目の tikz ブロックかで決める。
+「同じブロック」は文書の URI とフェンスの行で決める（上に行を足すと別のブロックとして扱われる）。
 
 **テーマ**：`tikz.preview.adaptToTheme` がオンなら、CSS で `fill` / `stroke` が黒（`rgb(0%, 0%, 0%)`）と色指定なしの要素を
 `currentColor`、白を `var(--vscode-editor-background)` にする。SVG は書き換えない。薄い塗りの上の黒文字はダークで読みにくくなる。
@@ -71,13 +71,11 @@ pdflatex で描いた SVG にする。記法は両者で共通。
 6. 描画が終わったら、100 ms の debounce をかけて `markdown.preview.refresh` を1回呼ぶ。
 
 VS Code はトークンを文書のバージョンごとにキャッシュするので、結果の参照は render の段階（`renderer.rules.fence`）で行う。
-描画の開始と終了は `md.renderer.render` を包んで知る（`renderInline` による入れ子は数えない）。
 実行時の依存は Node の標準モジュールのみ。
 
 ## 5. エラー
 
-- **プレビュー**：ログの `!` 行から `l.<n>` 行までを枠で出す。見出しと重複する行、TeX の定型文は除き、`l.<n>` は Markdown の行番号（1 始まり）に直す。
-- **Problems**：Diagnostics（source `tikz`）を Markdown の行に出す。換算できないエラーはフェンスの行。直れば消え、文書を閉じても消える。
+- ログの最初の `!` 行を見出しに、`l.<n>` 行までを枠で出す（TeX の定型文は除く。行番号は TeX のファイルのもの）。
 - プリアンブルのファイルがなければ各ブロックにエラー。コマンドが見つからなければ一度だけ通知。
 - 出力チャネル「TikZ」に、ダンプ、所要時間、エラーを出す。
 
@@ -121,5 +119,4 @@ div 形式（`::: {#fig:x}` で囲む書き方。caption 属性で足りるた�
 ## 9. テスト
 
 - `test/fixtures/`：Pandoc と拡張で共有するサンプル（`syntax.md`、`samples.md`、`error.md`）。
-- `scripts/test-integration.sh tikz`：VSCodium で `markdown.api.render` の HTML と Diagnostics を検査する。
-- `scripts/screenshot.sh tikz`：実際のプレビューをライト・ダークで撮る。
+- `npm test`：記法の解釈、markdown-it への組み込み、`test/fixtures/` を実際に pdflatex で描けることとエラーの検出。

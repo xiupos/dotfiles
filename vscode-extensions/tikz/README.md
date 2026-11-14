@@ -34,7 +34,7 @@ Pandoc（`~/.local/share/pandoc/filters/tikz.lua`）と同じ記法で、キャ�
 
 - 入力が止まって 0.5 秒ほどで描き直す。描き直している間は、直前の図を薄く表示する。
 - 結果は拡張の保存領域（globalStorage）にキャッシュされる。同じ図は二度コンパイルしない。
-- エラーはプレビューに枠で表示し、Problems パネルにも出る（行番号は Markdown ファイルの行）。
+- エラーはプレビューに枠で表示する（TeX のログの該当部分）。
 - ダークテーマでは、図の黒を文字色に、白を背景色に置き換える。薄い色で塗った上の黒文字は読みにくくなるので、
   気になるときは `tikz.preview.adaptToTheme` をオフにする。
 - 信頼されていないワークスペースでは描画しない。
@@ -82,5 +82,5 @@ Pandoc（`~/.local/share/pandoc/filters/tikz.lua`）と同じ記法で、キャ�
 ## インストールと開発
 
 `chezmoi apply` で `.chezmoiscripts/run_onchange_after_vscode-extensions.sh.tmpl` が
-`vscode-extensions/scripts/install.sh` を呼び、`code`、`codium`、VS Code Server に入れる。
+`vscode-extensions/scripts/install.sh` を呼び、`code` と `codium` に入れる。
 仕様は [SPEC.md](SPEC.md)、開発のルールは [CLAUDE.md](CLAUDE.md) と [../CLAUDE.md](../CLAUDE.md)。

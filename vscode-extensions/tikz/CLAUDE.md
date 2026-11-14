@@ -4,12 +4,10 @@
 
 ## 構成
 
-- `../shared/pandoc-attrs.ts`：Pandoc の属性の解釈（pandoc-figure と共通）。
-- `src/markdown.ts`：markdown-it への組み込み（`fence` の差し替え、`renderer.render` の包み）。
-- `src/preamble.ts`：プレビュー用プリアンブル。`src/tex.ts`：pdflatex / pdftocairo、フォーマットのダンプ、ログの解析。
-- `src/renderer.ts`：キャッシュと debounce 付きのキュー。`src/svg.ts`：id の接頭辞。`media/preview.css`：見た目とテーマ対応。
-- `src/html.ts`：プレビューの HTML（図、キャプション、エラーの枠）。
-- `src/extension.ts`：VS Code とつなぐ部分（設定、Diagnostics、コマンド）。`vscode` を使うのはここだけ。
+- `src/markdown.ts`：` ```tikz ` のフェンスを描画関数に渡す markdown-it のプラグイン。
+- `src/tex.ts`：プリアンブル、フォーマットのダンプ、pdflatex → pdftocairo、ログからのエラーの抜き出し。
+- `src/cache.ts`：結果のキャッシュ（メモリとディスク）と、debounce・同時実行数つきのキュー。
+- `src/extension.ts`：VS Code とつなぐ部分（設定、HTML、コマンド）。`vscode` を使うのはここだけ。`media/preview.css`：見た目とテーマ対応。
 
 ## 守ること
 
@@ -22,11 +20,10 @@
     `--data-dir` だけだと defaults の継承先がホームから読まれる。`XDG_DATA_HOME` を変えたまま `mise exec` を呼ぶと mise がツールを入れ直す。
   - ラベルなしの ` ```tikz ` の出力（`\begin{figure}\centering … \end{figure}`）は変えない。既存の文書が使っている。
 - `test/fixtures/` は Pandoc と拡張のテストで共有する。dotfiles は公開リポジトリなので、未公開の原稿をコピーしない。
-- テストのプリアンブルは chezmoi **ソース**の `pandoc/includes/` を使う（`test/workspace.ts` の `tikzWorkspace`）。ホームの適用済みのコピーに依存しない。
+- テストのプリアンブルは chezmoi **ソース**の `pandoc/includes/` を使う。ホームの適用済みのコピーに依存しない。
 - キャッシュの参照は render の段階で行う（VS Code はトークンを文書のバージョンごとにキャッシュするため、parse の段階では古くなる）。
 - 拡張のバージョンはキャッシュのキーに入っている。描画結果が変わる変更（プリアンブルの組み立て、コンパイル方法）をしたら `version` を上げる。
 
 ## 検証
 
-- 普段：`../scripts/test-integration.sh tikz`（`npm test` でも同じ）。型検査は `npm run typecheck`。
-- 節目：`../scripts/screenshot.sh tikz` で `screenshots/` に撮り、ライト・ダーク、エラー表示、キャプションを目で確かめる。
+`npm test`（約 5 秒。pdflatex で `test/fixtures/` を描く）と `npm run typecheck`。VS Code の中で確かめる手順は `../CLAUDE.md`。

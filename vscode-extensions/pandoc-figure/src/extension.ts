@@ -1,8 +1,8 @@
-import { figurePlugin, MarkdownIt } from "./figure";
+import { figurePlugin } from "./figure.ts";
 
 export function activate() {
   return {
-    extendMarkdownIt(md: MarkdownIt) {
+    extendMarkdownIt(md: any) {
       figurePlugin(md);
       return md;
     },

@@ -8,4 +8,4 @@
 - 「図になる条件」は Pandoc に合わせる。変えるときは `test/fixtures/figures.md` を
   `pandoc -t native` に通し、`Figure` になる画像が拡張の判定と一致することを確かめる。
 - 属性の解釈は `../shared/pandoc-attrs.ts`（tikz と共通）。
-- 検証：`../scripts/test-integration.sh pandoc-figure`、節目に `../scripts/screenshot.sh pandoc-figure`。
+- 検証：`npm test` と `npm run typecheck`。
