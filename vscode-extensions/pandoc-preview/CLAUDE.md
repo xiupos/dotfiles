@@ -5,8 +5,7 @@
 ## 構成
 
 - `src/extension.ts`：VS Code とつなぐ部分（設定、TikZ の図の HTML、コマンド）。`vscode` を使うのはここだけ。
-- `src/attrs.ts`：Pandoc の属性 `{#id .class key=value}` の解釈。
-- `src/tikz.ts`：` ```tikz ` のフェンスを描画関数に渡す markdown-it のプラグイン。
+- `src/tikz.ts`：` ```tikz ` のフェンスを描画関数に渡す markdown-it のプラグインと、Pandoc の属性 `{#id .class key=value}` の解釈。
 - `src/tex.ts`：プリアンブル、フォーマットのダンプ、pdflatex → pdftocairo、ログからのエラーの抜き出し。
 - `src/cache.ts`：結果のキャッシュ（メモリと globalStorage）と、debounce・同時実行数つきのキュー。
 - `src/figure.ts`：画像の図の markdown-it のプラグイン（core rule で決めて `meta` に書き、renderer で `<figure>` にする）。

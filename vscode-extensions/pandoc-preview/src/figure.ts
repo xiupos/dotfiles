@@ -7,7 +7,7 @@
 //   Images in tight list items (Pandoc: Plain, not Para) and in links stay inline.
 // - Pandoc attributes `{...}` right after an image are removed from the text (unused here).
 
-import { parseAttrs } from "./attrs.ts";
+import { parseAttrs } from "./tikz.ts";
 
 export function figurePlugin(md: any): void {
   md.core.ruler.after("inline", "pandoc_figure", (state: any) => {

@@ -4,8 +4,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 import { test } from "node:test";
 import MarkdownIt from "markdown-it";
-import { parseInfo } from "../src/attrs.ts";
-import { tikzPlugin, type TikzBlock } from "../src/tikz.ts";
+import { tikzFence, tikzPlugin, type TikzBlock } from "../src/tikz.ts";
 import { buildPreamble, compile, Formats } from "../src/tex.ts";
 
 const fixtures = path.join(import.meta.dirname, "fixtures");
@@ -22,13 +21,10 @@ function blocks(file: string): TikzBlock[] {
 }
 
 test("fence info strings are read like Pandoc", () => {
-  assert.deepEqual(parseInfo("tikz {#fig:a}"), { id: "fig:a", classes: ["tikz"], attrs: {} });
-  assert.deepEqual(parseInfo('{.tikz #fig:a caption="a $\\alpha$ \\"q\\" \\\\ b"}'), {
-    id: "fig:a",
-    classes: ["tikz"],
-    attrs: { caption: 'a $\\alpha$ "q" \\ b' },
-  });
-  assert.equal(parseInfo("{.foo .tikz}")?.classes[0], "foo");
+  assert.deepEqual(tikzFence("tikz {#fig:a}"), { caption: undefined });
+  assert.deepEqual(tikzFence('{.tikz #fig:a caption="a $\\alpha$ \\"q\\" \\\\ b"}'), { caption: 'a $\\alpha$ "q" \\ b' });
+  assert.equal(tikzFence("{.foo .tikz}"), undefined);
+  assert.equal(tikzFence("python"), undefined);
 });
 
 test("tikz fences reach the renderer with caption and line", () => {
