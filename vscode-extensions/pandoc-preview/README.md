@@ -58,15 +58,14 @@ VS Code 標準の Markdown プレビューを、Pandoc（`-d article-ja` / `-d b
 ## 画像の図
 
 ```md
-![曲線．$x(τ)$ は **パラメータ** $τ$ で表される．](img/curve.svg){#fig:curve width=50%}
+![曲線．$x(τ)$ は **パラメータ** $τ$ で表される．](img/curve.svg){#fig:curve}
 ```
 
 - 段落に画像が1つだけで alt が空でなければ図にして、alt を Markdown としてキャプションに描く（Pandoc の implicit_figures）。
   文中の画像、alt が空の画像、リンクの中の画像、詰まったリストの中の画像は図にしない。
-- 画像の直後の `{...}` は Pandoc の属性として読み、本文から消す。`width` / `height`（`px`、`cm`、`mm`、`in`、`%`。単位なしは `px`）は表示の大きさ、
-  `.class` は画像のクラス、`#id` は図（文中の画像なら画像）の id になる。
+- 画像の直後の `{#fig:x}` などの Pandoc の属性は、本文から消す（プレビューでは使わない）。
 
 ## やらないこと
 
-図番号・参照の解決、PNG / PDF への書き出し、` ```{=latex} ` の中の TikZ のプレビュー、TikZ の `width=` 属性、subfig、
+図番号・参照の解決、PNG / PDF への書き出し、` ```{=latex} ` の中の TikZ のプレビュー、subfig、
 `::: {#fig:x}` で囲む書き方（`caption` 属性で足りる）。

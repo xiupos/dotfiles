@@ -12,14 +12,14 @@ const figures = [...html.matchAll(/<figure[^>]*>[\s\S]*?<\/figure>/g)].map((m) =
 
 test("an image alone in a paragraph becomes a figure with a Markdown caption", () => {
   assert.equal(figures.length, 2);
-  assert.match(figures[0], /^<figure class="pandoc-figure" id="fig:curve"><img [^>]*style="width: 50%"/);
+  assert.match(figures[0], /^<figure class="pandoc-figure"><img /);
   assert.match(figures[0], /<figcaption>曲線．.*<strong>パラメータ<\/strong>/);
   assert.match(figures[1], /<figcaption>キャプションだけの図<\/figcaption>/);
 });
 
-test("attributes are applied and removed from the text", () => {
-  assert.doesNotMatch(html, /\{#fig|\{width/);
-  assert.match(html, /文中の画像 <img [^>]*style="width: 24px"[^>]*> は図にならず/);
+test("attributes are removed from the text, other braces are kept", () => {
+  assert.doesNotMatch(html, /\{#fig|\{\.icon| id=| class="icon"/);
+  assert.match(html, /文中の画像 <img [^>]*> は図にならず，属性は消える．<img [^>]*>\{属性ではない\} の括弧は残る/);
 });
 
 test("empty alt, linked images and tight lists stay inline (as in Pandoc)", () => {

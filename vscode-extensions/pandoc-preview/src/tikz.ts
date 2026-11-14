@@ -4,7 +4,6 @@ import { parseInfo } from "./attrs.ts";
 
 export interface TikzBlock {
   code: string;
-  id: string;
   /** Inline Markdown from the `caption` attribute. */
   caption?: string;
   /** 0-based line of the opening fence. */
@@ -17,6 +16,6 @@ export function tikzPlugin(md: any, render: (block: TikzBlock, env: any) => stri
     const t = tokens[idx];
     const a = parseInfo(t.info);
     if (a?.classes[0] !== "tikz" || !t.map) return fence(tokens, idx, options, env, self);
-    return render({ code: t.content, id: a.id, caption: a.attrs.caption, line: t.map[0] }, env ?? {});
+    return render({ code: t.content, caption: a.attrs.caption, line: t.map[0] }, env ?? {});
   };
 }

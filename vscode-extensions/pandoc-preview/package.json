@@ -2,7 +2,7 @@
   "name": "pandoc-preview",
   "displayName": "Pandoc Preview",
   "description": "Make the built-in Markdown preview closer to Pandoc output: ```tikz figures rendered with pdflatex, and images alone in a paragraph shown as figures with Markdown captions.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "xiupos",
   "private": true,
   "type": "module",

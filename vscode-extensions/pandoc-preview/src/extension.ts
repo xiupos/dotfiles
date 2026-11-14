@@ -58,8 +58,8 @@ export function activate(context: vscode.ExtensionContext) {
           .replace(/<span id="markdown-mermaid"[^>]*><\/span>/g, "")}</figcaption>` // marker the built-in Mermaid plugin adds to every render
       : "";
     const figure = (state: string, body: string) =>
-      `<figure class="tikz-figure code-line${c.get("preview.adaptToTheme", true) ? " tikz-adapt" : ""}" data-line="${block.line}" data-tikz-state="${state}"` +
-      `${block.id ? ` id="${esc(block.id)}"` : ""}><div class="tikz-body">${body}</div>${caption}</figure>\n`;
+      `<figure class="tikz-figure code-line${c.get("preview.adaptToTheme", true) ? " tikz-adapt" : ""}" data-line="${block.line}" data-tikz-state="${state}">` +
+      `<div class="tikz-body">${body}</div>${caption}</figure>\n`;
 
     if (!vscode.workspace.isTrusted) {
       return figure("untrusted", `<div class="tikz-placeholder">TikZ: not rendered in an untrusted workspace</div><pre><code>${esc(block.code)}</code></pre>`);

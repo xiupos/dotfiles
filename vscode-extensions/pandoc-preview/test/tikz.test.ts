@@ -31,11 +31,11 @@ test("fence info strings are read like Pandoc", () => {
   assert.equal(parseInfo("{.foo .tikz}")?.classes[0], "foo");
 });
 
-test("tikz fences reach the renderer with id, caption and line", () => {
+test("tikz fences reach the renderer with caption and line", () => {
   const bs = blocks("syntax.md");
   assert.deepEqual(
-    bs.map((b) => [b.id, b.line]),
-    [["fig:circle", 5], ["fig:cd", 14], ["fig:nocap", 21], ["", 30]],
+    bs.map((b) => b.line),
+    [5, 14, 21, 30],
   );
   assert.match(bs[1].caption ?? "", /^可換図式．\$h \\circ f/);
   assert.match(bs[0].code, /^\\begin\{tikzpicture\}/);
