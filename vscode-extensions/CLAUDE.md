@@ -20,12 +20,17 @@
 - **統合テスト**（普段はこれで回す）：`scripts/test-integration.sh [拡張名] [trusted|untrusted]`
   - VSCodium を `scripts/fetch-codium.sh` が**バージョン固定の URL** から `.cache/` に取得する（最新版の問い合わせはしない）。
     上げるときは `VERSION` を手で書き換える。
-  - `xvfb-run` の下で起動。`--no-sandbox --disable-gpu`、`--user-data-dir` と `--extensions-dir` は毎回新しい一時ディレクトリ。
+  - **VSCodium をユーザーの画面に出さない。** ユーザーは Wayland で作業しており、Electron は `WAYLAND_DISPLAY` があると
+    `xvfb-run` の下でも実画面に出る。スクリプトは `WAYLAND_DISPLAY` と `ELECTRON_OZONE_PLATFORM_HINT` を外して
+    `xvfb-run` で起動し、VSCodium には `--ozone-platform=x11` を付ける。`runTest.js` / `screenshot.js` は
+    `xvfb-run` の外で直接起動すると中止する（`test/workspace.ts` の `ensureHeadless`）。必ずスクリプト経由で実行する。
+  - `--no-sandbox --disable-gpu`、`--user-data-dir` と `--extensions-dir` は毎回新しい一時ディレクトリ。
     D-Bus、GPU、Fontconfig の警告は無視してよい。
   - `@vscode/test-electron` は常に `--disable-workspace-trust` を付けるので、Workspace Trust を確かめるテストは
     VSCodium を直接起動する（`tikz/test/runTest.ts` の `runUntrusted`）。
   - プレビューに渡る HTML は `vscode.commands.executeCommand('markdown.api.render', document)` で文字列として取れる。
-- **スクリーンショット**（節目ごと。1回に数十秒かかる）：`node <拡張>/out/test/screenshot.js`（Playwright の `_electron.launch`）。
+- **スクリーンショット**（節目ごと。1回に1分ほどかかる）：`scripts/screenshot.sh <拡張> [出力先]`（Playwright の `_electron.launch`）。
+  既定の出力先は `<拡張>/screenshots/`（git では無視）。
   撮った PNG は Read で目で確かめる。
 - 最終確認はユーザーが手元の VS Code 本体で行う。
 

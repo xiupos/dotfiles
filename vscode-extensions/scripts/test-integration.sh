@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Run the integration tests of one extension (default: all) in VSCodium
-# under a virtual X server.
+# on a virtual X server (never on the real screen: Wayland is unset and
+# VSCodium is forced to X11).
 #   scripts/test-integration.sh [extension] [trusted|untrusted]
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -14,5 +15,6 @@ exts=("${1:-}")
 for ext in "${exts[@]}"; do
   echo "=== ${ext}"
   (cd "${ext}" && npm run build --silent && node esbuild.mjs --tests \
-    && xvfb-run -a node out/test/runTest.js "${2:-}")
+    && env -u WAYLAND_DISPLAY -u ELECTRON_OZONE_PLATFORM_HINT \
+      xvfb-run -a -s "-screen 0 1600x1200x24 -nolisten tcp" node out/test/runTest.js ${2:+"$2"})
 done

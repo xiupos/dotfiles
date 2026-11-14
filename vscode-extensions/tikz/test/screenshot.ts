@@ -1,12 +1,12 @@
 // Screenshots of the real Markdown preview in VSCodium (Playwright _electron).
-//   xvfb-run -a -s "-screen 0 1600x1200x24" node out/test/screenshot.js [outDir]
+//   scripts/screenshot.sh tikz [outDir]   (runs this under xvfb-run)
 // Opens each fixture (Markdown files open straight into the preview via
 // workbench.editorAssociations) in a light and a dark theme.
 import * as fs from "fs";
 import * as os from "os";
 import * as path from "path";
 import { _electron as electron, Frame, Page } from "playwright-core";
-import { codiumPath, extRoot, makeWorkspace } from "./workspace";
+import { codiumPath, ensureHeadless, extRoot, headlessFlags, makeWorkspace } from "./workspace";
 
 const THEMES = [
   { name: "light", id: "Default Light Modern" },
@@ -34,7 +34,8 @@ async function previewFrame(page: Page, file: string, timeout = 60000): Promise<
 }
 
 async function main() {
-  const outDir = path.resolve(process.argv[2] ?? path.join(extRoot, "screenshots"));
+  ensureHeadless();
+  const outDir = path.resolve(process.argv[2] || path.join(extRoot, "screenshots"));
   fs.mkdirSync(outDir, { recursive: true });
   const exe = codiumPath();
 
@@ -56,7 +57,8 @@ async function main() {
     );
     const app = await electron.launch({
       executablePath: exe,
-      args: [ws, "--no-sandbox", "--disable-gpu", "--disable-workspace-trust", "--skip-welcome", "--skip-release-notes", "--disable-updates", "--user-data-dir", userData, "--extensions-dir", extDir, `--extensionDevelopmentPath=${extRoot}`],
+      env: { ...process.env } as Record<string, string>,
+      args: [ws, ...headlessFlags, "--disable-workspace-trust", "--skip-welcome", "--skip-release-notes", "--disable-updates", "--user-data-dir", userData, "--extensions-dir", extDir, `--extensionDevelopmentPath=${extRoot}`],
       timeout: 60000,
     });
     try {

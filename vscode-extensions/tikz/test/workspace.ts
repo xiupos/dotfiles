@@ -16,6 +16,23 @@ export const extRoot = (() => {
 export const chezmoiRoot = path.resolve(extRoot, "..", "..");
 export const pandocIncludes = path.join(chezmoiRoot, "private_dot_local", "private_share", "pandoc", "includes");
 
+/**
+ * VSCodium must never appear on the user's screen. The scripts run it under
+ * xvfb-run; here Wayland is also taken away (Electron would otherwise prefer
+ * WAYLAND_DISPLAY over the virtual X server) and anything started outside
+ * xvfb-run is refused.
+ */
+export function ensureHeadless(): void {
+  delete process.env.WAYLAND_DISPLAY;
+  delete process.env.ELECTRON_OZONE_PLATFORM_HINT;
+  if (!/xvfb-run/.test(process.env.XAUTHORITY ?? "") && !process.env.TIKZ_ALLOW_REAL_DISPLAY) {
+    throw new Error("refusing to start VSCodium on the real display: run under xvfb-run (scripts/test-integration.sh, scripts/screenshot.sh)");
+  }
+}
+
+/** Electron flags that keep VSCodium on X11 (i.e. on the virtual display). */
+export const headlessFlags = ["--ozone-platform=x11", "--no-sandbox", "--disable-gpu"];
+
 export function codiumPath(): string {
   if (process.env.CODIUM) return process.env.CODIUM;
   return execFileSync(path.join(extRoot, "..", "scripts", "fetch-codium.sh"), { encoding: "utf8" }).trim();
@@ -44,7 +61,7 @@ export function makeWorkspace(settings: Record<string, unknown> = {}): string {
 export function launchArgs(opts: { workspaceTrust?: boolean } = {}): string[] {
   const userData = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-user-"));
   const extDir = fs.mkdtempSync(path.join(os.tmpdir(), "tikz-exts-"));
-  const args = ["--no-sandbox", "--disable-gpu", "--user-data-dir", userData, "--extensions-dir", extDir, "--skip-welcome", "--skip-release-notes"];
+  const args = [...headlessFlags, "--user-data-dir", userData, "--extensions-dir", extDir, "--skip-welcome", "--skip-release-notes"];
   if (!opts.workspaceTrust) args.push("--disable-workspace-trust");
   return args;
 }

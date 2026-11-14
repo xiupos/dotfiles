@@ -2,7 +2,7 @@
 import { spawn } from "child_process";
 import * as path from "path";
 import { runTests } from "@vscode/test-electron";
-import { codiumPath, extRoot, launchArgs, makeWorkspace } from "./workspace";
+import { codiumPath, ensureHeadless, extRoot, launchArgs, makeWorkspace } from "./workspace";
 
 const extensionTestsPath = path.join(extRoot, "out", "test", "suite", "index.js");
 
@@ -27,6 +27,7 @@ function runUntrusted(exe: string, ws: string): Promise<void> {
 }
 
 async function main() {
+  ensureHeadless();
   const exe = codiumPath();
   const only = process.argv[2];
 
