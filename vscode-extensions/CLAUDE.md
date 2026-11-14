@@ -7,8 +7,7 @@
 ## 守ること
 
 - `chezmoi apply` は実行しない（ホームディレクトリが書き換わる）。確認は `chezmoi diff` / `chezmoi apply --dry-run` まで。
-- この中と `.chezmoiignore`、`.chezmoiscripts/` の追加スクリプト以外を変えるときは、理由を添えて先に確認を取る。
-- コミットはマイルストーンごと、接頭辞は `vscode-extensions:`（Pandoc の設定なら `pandoc:`）。push はしない。
+- コミットの接頭辞は `vscode-extensions:`（Pandoc の設定なら `pandoc:`）。
 - 実行時の依存は Node の標準モジュールだけ。esbuild で1ファイルにバンドルし、`vsce package --no-dependencies` で包む。
 - 依存の区分（ルートの `package.json`）：
   - `dependencies`：ビルドとパッケージに要るもの（esbuild、vsce）。`install.sh` は `npm ci --omit=dev` でこれだけを入れる。
@@ -20,7 +19,7 @@
 - **統合テスト**（普段はこれで回す）：`scripts/test-integration.sh [拡張名] [trusted|untrusted]`
   - VSCodium を `scripts/fetch-codium.sh` が**バージョン固定の URL** から `.cache/` に取得する（最新版の問い合わせはしない）。
     上げるときは `VERSION` を手で書き換える。
-  - **VSCodium をユーザーの画面に出さない。** ユーザーは Wayland で作業しており、Electron は `WAYLAND_DISPLAY` があると
+  - **VSCodium を実画面に出さない。** Wayland のセッションでは、Electron は `WAYLAND_DISPLAY` があると
     `xvfb-run` の下でも実画面に出る。スクリプトは `WAYLAND_DISPLAY` と `ELECTRON_OZONE_PLATFORM_HINT` を外して
     `xvfb-run` で起動し、VSCodium には `--ozone-platform=x11` を付ける。`runTest.js` / `screenshot.js` は
     `xvfb-run` の外で直接起動すると中止する（`test/workspace.ts` の `ensureHeadless`）。必ずスクリプト経由で実行する。
@@ -32,7 +31,6 @@
 - **スクリーンショット**（節目ごと。1回に1分ほどかかる）：`scripts/screenshot.sh <拡張> [出力先]`（Playwright の `_electron.launch`）。
   既定の出力先は `<拡張>/screenshots/`（git では無視）。
   撮った PNG は Read で目で確かめる。
-- 最終確認はユーザーが手元の VS Code 本体で行う。
 
 ## 拡張を追加する手順
 

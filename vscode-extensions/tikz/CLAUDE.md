@@ -14,12 +14,12 @@
 
 - **記法は Pandoc フィルタと一致させる。** 記法を変えるときは、chezmoi ソースの
   `private_dot_local/private_share/pandoc/filters/tikz.lua` も同じに変え、両方を確かめる。
-  - Pandoc 側は、修論と同じ defaults（`-d book-ja -d zotero --lua-filter ja-spacing.lua`）で `test/fixtures/` を PDF にし、
+  - Pandoc 側は、実際の文書と同じ defaults（例：`-d book-ja -d zotero --lua-filter ja-spacing.lua`）で `test/fixtures/` を PDF にし、
     `pdftotext` で図番号と参照、`pdftoppm` で見た目を確かめる。ホームではなく chezmoi ソースの設定で動かすには：
     ソースの `pandoc/` を一時ディレクトリの `pandoc/` にコピーし（`include-files.lua` はホームから）、`XDG_DATA_HOME` をその
     一時ディレクトリにして、mise の pandoc / pandoc-crossref の**実体**を PATH の先頭に置いて実行する。
     `--data-dir` だけだと defaults の継承先がホームから読まれる。`XDG_DATA_HOME` を変えたまま `mise exec` を呼ぶと mise がツールを入れ直す。
-  - ラベルなしの ` ```tikz ` の出力は、以前の `codeblock.lua` と同じでなければならない。
+  - ラベルなしの ` ```tikz ` の出力（`\begin{figure}\centering … \end{figure}`）は変えない。既存の文書が使っている。
 - `test/fixtures/` は Pandoc と拡張のテストで共有する。dotfiles は公開リポジトリなので、未公開の原稿をコピーしない。
 - テストのプリアンブルは chezmoi **ソース**の `pandoc/includes/` を使う（`test/workspace.ts`）。ホームの適用済みのコピーに依存しない。
 - キャッシュの参照は render の段階で行う（VS Code はトークンを文書のバージョンごとにキャッシュするため、parse の段階では古くなる）。

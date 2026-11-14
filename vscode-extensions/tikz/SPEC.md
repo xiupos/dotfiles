@@ -22,12 +22,13 @@ pdflatex で描いた SVG にする。記法は両者で共通。
 
 ## 2. Pandoc（`filters/tikz.lua`）
 
-- 番号なし：RawBlock `\begin{figure}\centering … \end{figure}`（以前の `codeblock.lua` と同一の出力）。
+- 番号なし：RawBlock `\begin{figure}\centering … \end{figure}`。
 - 番号付き：`Figure` 要素（中身は RawBlock、キャプションは Markdown の AST）。番号と `\label` は pandoc-crossref が付け、`[@fig:…]` は `\cref` になる。
 - 位置指定（`[htbp]`）は付けない。
 - `common-base.yaml` の `filters` で `include-files.lua` の直後に置く。`unicode-math.lua` より前（キャプションの `$α$` を変換させるため）、
   `pandoc-crossref` より前（番号を振らせるため）。
-- pandoc 3.13 では `Figure` の中身が `\hypertarget` で包まれないので、tikz-cd の `&` はそのまま通る（3.1.3 では壊れた。再発したら `lrbox` で figure の外に組む）。
+- `Figure` の中身は図の環境に直接入る。pandoc が中身を `\hypertarget{…}{…}` の引数に包むと tikz-cd の `&` が壊れるので、
+  そうなる版の pandoc では TikZ を `lrbox` で figure の外に組み、中で `\usebox` する。
 
 ## 3. プレビュー
 
