@@ -5,7 +5,7 @@
 ## 構成
 
 - `src/attrs.ts`：Pandoc 風の属性の解釈。
-- `src/markdown.ts`：markdown-it への組み込み（`fence` の差し替え、div 形式の block rule `tikz_div`、`renderer.render` の包み）。
+- `src/markdown.ts`：markdown-it への組み込み（`fence` の差し替え、`renderer.render` の包み）。
 - `src/preamble.ts`：プレビュー用プリアンブル。`src/tex.ts`：pdflatex / pdftocairo、フォーマットのダンプ、ログの解析。
 - `src/renderer.ts`：キャッシュと debounce 付きのキュー。`src/svg.ts`：id の接頭辞。`media/preview.css`：見た目とテーマ対応。
 - `src/extension.ts`：VS Code とつなぐ部分（設定、Diagnostics、コマンド、HTML）。`vscode` を使うのはここだけ。
@@ -25,4 +25,4 @@
 ## 検証
 
 - 普段：`../scripts/test-integration.sh tikz`（`npm test` でも同じ）。型検査は `npm run typecheck`。
-- 節目：`../scripts/screenshot.sh tikz` で `screenshots/` に撮り、ライト・ダーク、エラー表示、div 形式のキャプションを目で確かめる。
+- 節目：`../scripts/screenshot.sh tikz` で `screenshots/` に撮り、ライト・ダーク、エラー表示、キャプションを目で確かめる。

@@ -2,7 +2,7 @@
   "name": "tikz",
   "displayName": "TikZ Markdown Preview",
   "description": "Render ```tikz code blocks in the built-in Markdown preview with real pdflatex (Pandoc-compatible figure syntax).",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "xiupos",
   "private": true,
   "license": "MIT",

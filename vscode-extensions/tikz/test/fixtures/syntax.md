@@ -1,6 +1,6 @@
 # TikZ の記法
 
-[@fig:circle] は属性形式，[@fig:cd] は div 形式の図である．
+[@fig:circle] と [@fig:cd] はキャプション付きの図である．
 [@fig:nocap] はキャプションのない番号付きの図である．
 
 ```{.tikz #fig:circle caption="半径 $r$ の円．$α$ は **Unicode** で書いた角度"}
@@ -12,18 +12,12 @@
 \end{tikzpicture}
 ```
 
-::: {#fig:cd}
-```tikz
+```{.tikz #fig:cd caption="可換図式．$h \circ f = k \circ g$ が成り立つ．**強調**も書ける．"}
 \begin{tikzcd}
   A \arrow[r, "f"] \arrow[d, "g"'] & B \arrow[d, "h"] \\
   C \arrow[r, "k"'] & D
 \end{tikzcd}
 ```
-
-可換図式．$h \circ f = k \circ g$ が成り立つ．**強調**も書ける．
-
-2段落目のキャプション．
-:::
 
 ```{.tikz #fig:nocap}
 \begin{tikzpicture}

@@ -98,7 +98,7 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
       const adapt = vscode.workspace.getConfiguration("tikz", doc).get<boolean>("preview.adaptToTheme", true);
       const scale = vscode.workspace.getConfiguration("tikz", doc).get<number>("preview.scale", 1.3);
       const fig = (state: string, body: string) =>
-        `<figure class="tikz-figure code-line${adapt ? " tikz-adapt" : ""}" data-line="${block.startLine}" data-tikz-state="${state}"${block.id ? ` id="${escapeHtml(block.id)}"` : ""}>` +
+        `<figure class="tikz-figure code-line${adapt ? " tikz-adapt" : ""}" data-line="${block.fenceLine}" data-tikz-state="${state}"${block.id ? ` id="${escapeHtml(block.id)}"` : ""}>` +
         `<div class="tikz-body">${body}</div>${caption}</figure>\n`;
 
       if (!vscode.workspace.isTrusted) {
@@ -192,10 +192,15 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
 }
 
 function renderCaption(block: TikzBlock, env: any, md: MarkdownIt): string {
-  if (!block.caption || !block.caption.src.trim()) return "";
-  const html = block.caption.kind === "inline" ? md.renderInline(block.caption.src, env) : md.render(block.caption.src, env);
-  // Line numbers inside the caption refer to the caption source, not the document.
-  return `<figcaption>${String(html).replace(/ data-line="\d+"/g, "").trim()}</figcaption>`;
+  if (!block.caption?.trim()) return "";
+  const html = md.renderInline(block.caption, env);
+  const clean = String(html)
+    // Line numbers inside the caption refer to the caption source, not the document.
+    .replace(/ data-line="\d+"/g, "")
+    // Other plugins (e.g. the built-in Mermaid one) emit per-render markers with fixed ids.
+    .replace(/<span id="markdown-mermaid"[^>]*><\/span>/g, "")
+    .trim();
+  return `<figcaption>${clean}</figcaption>`;
 }
 
 function errorBox(errors: TexError[], block?: TikzBlock): string {

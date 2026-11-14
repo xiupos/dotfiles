@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import { api, figures, renderDoc, renderSettled, wsFile } from "./helpers";
 
 describe("render", () => {
-  it("renders the three syntaxes with SVG and captions", async () => {
+  it("renders captioned and plain figures with SVG and captions", async () => {
     const doc = await vscode.workspace.openTextDocument(wsFile("syntax.md"));
     const html = await renderSettled(doc);
     const figs = figures(html);
@@ -18,28 +18,25 @@ describe("render", () => {
     );
     for (const f of figs) assert.match(f.html, /<svg[\s\S]*<\/svg>/);
 
-    // Attribute form: inline Markdown caption, math rendered by the built-in KaTeX plugin.
+    // Inline Markdown caption, math rendered by the built-in KaTeX plugin.
     assert.match(figs[0].caption!, /半径/);
     assert.match(figs[0].caption!, /class="katex/);
     assert.match(figs[0].caption!, /<strong>Unicode<\/strong>/);
 
-    // Div form: block caption with two paragraphs, no ::: left over.
-    assert.match(figs[1].caption!, /<p[^>]*>可換図式．/);
+    assert.match(figs[1].caption!, /^可換図式．/);
     assert.match(figs[1].caption!, /<strong>強調<\/strong>/);
-    assert.match(figs[1].caption!, /2段落目のキャプション/);
-    assert.ok(!/:::\s*\{#fig:cd\}/.test(html), "div fence must not be shown");
 
     // No caption for #fig:nocap and the legacy block.
     assert.strictEqual(figs[2].caption, undefined);
     assert.strictEqual(figs[3].caption, undefined);
 
-    // Unrelated divs are left alone.
+    // Divs are not touched.
     assert.match(html, /::: \{\.proof\}/);
 
     // data-line points at the opening line (scroll sync).
     const lines = doc.getText().split("\n");
     assert.match(lines[figs[0].line], /^```\{\.tikz #fig:circle/);
-    assert.match(lines[figs[1].line], /^::: \{#fig:cd\}/);
+    assert.match(lines[figs[1].line], /^```\{\.tikz #fig:cd/);
 
     // Ids are prefixed per figure so that glyphs do not collide.
     assert.ok(!/id="glyph-/.test(html));
@@ -92,5 +89,8 @@ describe("render", () => {
     const figs = figures(await renderSettled(doc));
     assert.strictEqual(figs.length, 7);
     for (const f of figs) assert.strictEqual(f.state, "ok", `${f.id}: ${f.html.slice(0, 300)}`);
+    // ~~~ fence: the caption attribute may contain backticks.
+    assert.strictEqual(figs[0].id, "fig:multiplet");
+    assert.match(figs[0].caption!, /<code>align=center<\/code>/);
   });
 });

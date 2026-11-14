@@ -12,13 +12,9 @@ Pandoc（`~/.local/share/pandoc/filters/tikz.lua`）と同じ記法で、キャ�
 \end{tikzpicture}
 ```
 
-::: {#fig:cd}
-```tikz
-\begin{tikzcd} A \arrow[r] & B \end{tikzcd}
+```{.tikz #fig:cd caption="可換図式．$h \circ f = k \circ g$．引用 [@key] も書ける．"}
+\begin{tikzcd} A \arrow[r, "f"] & B \end{tikzcd}
 ```
-
-長いキャプション．$A \to B$ や **強調**、引用 [@key] も書ける．
-:::
 
 ```tikz
 \begin{tikzpicture} \draw (0,0) -- (1,1); \end{tikzpicture}
@@ -28,7 +24,8 @@ Pandoc（`~/.local/share/pandoc/filters/tikz.lua`）と同じ記法で、キャ�
 ````
 
 - 中身は環境（`tikzpicture`、`tikzcd`、`\xymatrix{…}` など）だけを書く。プリアンブルや `\begin{document}` は書かない。
-- 属性形式の `caption` と div 形式の残りの段落は Markdown として扱われる。
+- `caption` は Markdown として扱われる（数式、強調、引用）。
+- `caption` にインラインコード（`` ` ``）を書くときは、フェンスを `~~~{.tikz …}` にする（VS Code のプレビューは ```` ``` ```` の行にバッククォートを許さない）。
 - ラベルもキャプションもない ` ```tikz ` は、PDF では番号なしの図になる（以前と同じ）。
 - Pandoc では `#fig:` の図に pandoc-crossref が番号を振り、`[@fig:…]` が `\cref` になる。
   **プレビューでは図番号を出さず、`[@fig:…]` も解決しない。**

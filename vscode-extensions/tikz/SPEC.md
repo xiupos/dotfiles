@@ -48,25 +48,12 @@ Pandoc と拡張で共通。ブロックの中身は環境（`tikzpicture`、`ti
 - `caption="…"`：任意。中身は **Markdown** として解釈する（数式、強調、引用 `[@key]` も可）。
   引用符の中では、ASCII 記号の前のバックスラッシュだけがエスケープになる（`\"` → `"`、`\\` → `\`、`\$` → `$`）。
   `\alpha` はそのまま残る。pandoc 3.13 の挙動に合わせてある。
-- id か caption のどちらかがあれば番号付きの図、どちらもなければ 1.3 と同じ扱い。
+- id か caption のどちらかがあれば番号付きの図、どちらもなければ 1.2 と同じ扱い。
+- caption にインラインコード（バッククォート）を書くときは、チルダのフェンス `~~~{.tikz …}` を使う。
+  CommonMark（VS Code のプレビュー）では、バッククォートのフェンスの情報文字列にバッククォートを書けないため。
+  Pandoc はどちらのフェンスでも受け付ける。
 
-### 1.2 div 形式
-
-````md
-::: {#fig:cd}
-```tikz
-\begin{tikzcd} A \arrow[r] & B \end{tikzcd}
-```
-
-長いキャプション．$A \to B$ や **強調**、引用 [@key] も書ける．
-:::
-````
-
-- 条件：div の id が `fig:` で始まり、かつ div の**最初のブロック**が tikz のフェンス（` ```tikz ` でも `{.tikz}` でもよい。フェンス側の id や caption 属性は無視する）。
-- 残りのブロック（段落いくつでも）がキャプションになる。
-- 条件を満たさない div（`.proof` など）には何もしない。
-
-### 1.3 従来の形式
+### 1.2 従来の形式
 
 ````md
 ```tikz
@@ -82,8 +69,8 @@ Pandoc と拡張で共通。ブロックの中身は環境（`tikzpicture`、`ti
 
 | 記法 | 出力 |
 |---|---|
-| 1.3 従来形式 | RawBlock：`\begin{figure}` `\centering` 中身 `\end{figure}`（図番号なし） |
-| 1.1 / 1.2 | Pandoc の `Figure` 要素（中身は RawBlock の LaTeX、キャプションは Markdown の AST、id はそのまま）。番号付けと `\label` は pandoc-crossref に任せる |
+| 1.2 従来形式 | RawBlock：`\begin{figure}` `\centering` 中身 `\end{figure}`（図番号なし） |
+| 1.1 属性形式 | Pandoc の `Figure` 要素（中身は RawBlock の LaTeX、キャプションは Markdown の AST、id はそのまま）。番号付けと `\label` は pandoc-crossref に任せる |
 
 - `[@fig:…]` は pandoc-crossref が解決する（`cref: true` なら `\cref{…}`）。
 - id はあるがキャプションがない場合：番号付きの図で、キャプションは空（PDF では「図3」とだけ出る）。
@@ -110,7 +97,7 @@ tikz-cd を含む文書が PDF まで通るので、**`lrbox` は使わない**�
 - `test/fixtures/syntax.md` と `samples.md`（＋キャプション中の引用）を、修論と同じ
   `-d book-ja -d zotero --lua-filter ja-spacing.lua` と `-d article-ja …` で PDF にした。
   図1〜11 の番号、`\cref` による参照（「図 1 と 11」）、キャプション中の `α` の変換、キャプション中の natbib 引用、
-  div 形式の複数段落のキャプション、tikz-cd / pgfplots / tikz-feynhand / braids / xy-pic がすべて正しく出た。
+  `~~~` フェンスのキャプション中のコード、tikz-cd / pgfplots / tikz-feynhand / braids / xy-pic がすべて正しく出た。
 - `\xymatrix` を単独で書くと、`\centering` があっても左寄せになる（従来形式でも同じ。TeX の挙動）。
 - 確認方法：chezmoi のソースの `pandoc/` を一時ディレクトリの `pandoc/` にコピーし（`include-files.lua` はホームから）、
   `XDG_DATA_HOME` をその一時ディレクトリにして、mise の pandoc / pandoc-crossref の実体を PATH の先頭に置いて実行する。
@@ -137,12 +124,13 @@ tikz-cd を含む文書が PDF まで通るので、**`lrbox` は使わない**�
   10pt の文字が本文（14px）より小さく見えるため。SVG の `width` / `height` だけを書き換え、`viewBox` はそのまま。
   描画時に掛けるので、キャッシュは倍率に依存しない。
 - 図番号は表示しない。`[@fig:…]` は解決しない（本文でもキャプションでもテキストのまま）。
-- キャプション：属性形式は `md.renderInline`、div 形式は `md.render`。標準プレビューの数式（KaTeX）がキャプションにも効く。
-  キャプションの中の `data-line` は消す（キャプションのソース内の行番号なので、スクロール同期を乱す）。
-- `data-line` は図の最初の行（フェンス、または div の `:::`）。`class="code-line"` と合わせてスクロール同期に使われる。
+- キャプション：`md.renderInline` で描く。標準プレビューの数式（KaTeX）がキャプションにも効く。
+  キャプションの中の `data-line`（キャプションのソース内の行番号なので、スクロール同期を乱す）と、
+  組み込みの Mermaid 拡張が描画ごとに差し込む空の `<span id="markdown-mermaid">`（id が重複する）は消す。
+- `data-line` はフェンスの行。`class="code-line"` と合わせてスクロール同期に使われる。
 - SVG は**インラインで埋め込む**。標準プレビューは HTML をサニタイズしないことを VSCodium 1.143 のソースと実画面で確認した。
   `pdftocairo` の SVG は `glyph-0-1`、`clip-0` のような id を使うので、`tikz-<キーの先頭10桁>-` を接頭辞に付けて衝突を防ぐ。
-- 1.2 の div 形式は自前の block rule（`tikz_div`）で処理し、`:::` の行はプレビューに出さない。条件を満たさない div には触れない。
+- `:::` の div には触れない。
 
 ### 3.2 状態ごとの表示（`data-tikz-state`）
 
@@ -192,7 +180,7 @@ SVG 自体は書き換えないので、キャッシュはテーマに依存し�
 
 VS Code の Markdown エンジンは文書のバージョンごとにトークンをキャッシュするので、
 キャッシュの参照は parse の段階ではなく render の段階（`renderer.rules`）で行う。
-1回の描画の開始と終了は `md.renderer.render` を包んで知る（キャプションの描画による入れ子の呼び出しは数えない）。
+1回の描画の開始と終了は `md.renderer.render` を包んで知る（キャプションの `renderInline` による入れ子の呼び出しは数えない）。
 
 実行時の依存は Node の標準モジュールのみ（`child_process`、`fs`、`crypto`、`path`、`os`）。esbuild で1ファイルにバンドルする。
 外部コマンドとして `pdflatex`（mylatexformat、bxcjkjatype を含む TeX Live）と `pdftocairo`（poppler）を使う。
@@ -269,6 +257,9 @@ Pandoc の `-d article-ja` / `-d book-ja` の出力に近づける：
 - ` ```{=latex} ` の raw ブロックの中の `tikzpicture` のプレビュー
 - `width=` などの大きさの属性（Pandoc 側でも未対応）
 - subfig（1つの図に複数の TikZ）
+- div 形式（`::: {#fig:x}` の中に tikz のフェンスとキャプションの段落を書く形）。一度実装したが、属性形式の caption も
+  Markdown として解釈されるので不要と判断して削除した。`::: {#fig:…}` で囲んでも、Pandoc では div のまま
+  pandoc-crossref に渡り（中身が画像でないので図にならない）、プレビューでは `:::` の行がそのまま出る
 
 ---
 
@@ -277,6 +268,6 @@ Pandoc の `-d article-ja` / `-d book-ja` の出力に近づける：
 - `test/fixtures/`：Pandoc と拡張で共有するサンプル（`syntax.md` は記法、`samples.md` は和文ノード・pgfplots・tikz-feynhand・braids・xy-pic など、`error.md` はエラー）。
   修論に TikZ がないため自作。
 - 統合テスト（`scripts/test-integration.sh tikz`）：VSCodium + `@vscode/test-electron`。`markdown.api.render` の HTML を検査する。
-  記法3種、キャッシュ、`tikz {#fig:x}`、エラー表示と Diagnostics、サンプル全部、直前の SVG を薄く表示、debounce、
+  キャプション付きの図と従来の図、`~~~` フェンス、キャッシュ、`tikz {#fig:x}`、エラー表示と Diagnostics、サンプル全部、直前の SVG を薄く表示、debounce、
   エラーからの回復、キャッシュの削除、フォーマットなしの行番号換算、信頼されていないワークスペース。
 - スクリーンショット（`scripts/screenshot.sh tikz`）：Playwright で実際のプレビューをライト・ダークで撮る。

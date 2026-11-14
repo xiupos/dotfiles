@@ -1,9 +1,9 @@
 # 自作サンプル
 
 実際の文書でよく使う構造を真似た図．
+caption にインラインコードを書く図は `~~~` のフェンスにする（`` ``` `` の情報文字列にはバッククォートを書けない）．
 
-::: {#fig:multiplet}
-```tikz
+~~~{.tikz #fig:multiplet caption="多重項の成分と変換の関係（和文ノード，`align=center` での改行）．"}
 \begin{tikzpicture}[>=Stealth, node distance=10mm]
   \node[draw, rounded corners, minimum width=28mm, minimum height=10mm] (a) {スカラー $\phi$};
   \node[draw, rounded corners, minimum width=28mm, minimum height=10mm, right=of a] (b) {スピノル $\psi_\alpha$};
@@ -14,10 +14,7 @@
   \draw[->, bend left=18] (c) to node[below] {$\bar Q$} (b);
   \node[below=10mm of b, align=center] {殻外では $2+4+2$ 自由度\\殻上では $2+2$ 自由度};
 \end{tikzpicture}
-```
-
-多重項の成分と変換の関係（和文ノード，`align=center` での改行）．
-:::
+~~~
 
 ```{.tikz #fig:bound caption="質量 $m$ と中心電荷 $|Z|$ の関係"}
 \begin{tikzpicture}[x=0.9cm, y=0.6cm, >=Stealth]
