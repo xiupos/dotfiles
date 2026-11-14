@@ -6,3 +6,6 @@ docs/**
 .gitignore
 
 .chezmoidata/secrets-example.env.yaml
+
+vscode-extensions
+vscode-extensions/**
