@@ -131,7 +131,7 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
       }
       if (result && !result.ok) {
         for (const e of result.errors) st.diags.push(diag(block, e));
-        return fig("error", errorBox(result.errors) + stale());
+        return fig("error", errorBox(result.errors, block) + stale());
       }
 
       const delay = vscode.workspace.getConfiguration("tikz", doc).get<number>("render.delay", 500);
@@ -197,15 +197,32 @@ function renderCaption(block: TikzBlock, env: any, md: MarkdownIt): string {
   return `<figcaption>${String(html).replace(/ data-line="\d+"/g, "").trim()}</figcaption>`;
 }
 
-function errorBox(errors: TexError[]): string {
+function errorBox(errors: TexError[], block?: TikzBlock): string {
   return errors
-    .map(
-      (e) =>
+    .map((e) => {
+      const excerpt = cleanExcerpt(e, block);
+      return (
         `<div class="tikz-error"><div class="tikz-error-title">TikZ: ${escapeHtml(e.message)}</div>` +
-        (e.excerpt && e.excerpt !== `! ${e.message}` ? `<pre>${escapeHtml(e.excerpt)}</pre>` : "") +
-        `</div>`,
-    )
+        (excerpt ? `<pre>${escapeHtml(excerpt)}</pre>` : "") +
+        `</div>`
+      );
+    })
     .join("");
+}
+
+/**
+ * Drop the line repeated in the title and TeX's boilerplate, and rewrite
+ * `l.<n>` to the line number in the Markdown file.
+ */
+function cleanExcerpt(e: TexError, block?: TikzBlock): string {
+  const lines = e.excerpt.split("\n");
+  if (lines[0]?.replace(/^!\s*/, "") === e.message) lines.shift();
+  return lines
+    .filter((l) => !/^(See the .* documentation for explanation\.|Type {1,2}H <return> {1,2}for immediate help\.|\s*\.\.\.\s*)$/.test(l))
+    .map((l) => (block && e.codeLine !== undefined ? l.replace(/^l\.\d+/, `l.${block.codeLine + e.codeLine + 1}`) : l))
+    .join("\n")
+    .replace(/\n{2,}/g, "\n")
+    .trim();
 }
 
 export function deactivate(): void {}

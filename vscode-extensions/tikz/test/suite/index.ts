@@ -8,6 +8,7 @@ export function run(): Promise<void> {
   } else {
     require("./attrs.test");
     require("./render.test");
+    require("./edit.test");
   }
   return new Promise((resolve, reject) => mocha.run((failures) => (failures ? reject(new Error(`${failures} tests failed`)) : resolve())));
 }

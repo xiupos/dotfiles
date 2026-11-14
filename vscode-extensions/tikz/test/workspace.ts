@@ -5,8 +5,13 @@ import * as fs from "fs";
 import * as os from "os";
 import * as path from "path";
 
-/** vscode-extensions/tikz */
-export const extRoot = path.resolve(__dirname, "..", "..");
+/** vscode-extensions/tikz (found upwards, since bundles live at different depths under out/) */
+export const extRoot = (() => {
+  for (let d = __dirname; d !== path.dirname(d); d = path.dirname(d)) {
+    if (fs.existsSync(path.join(d, "esbuild.mjs"))) return d;
+  }
+  throw new Error(`extension root not found above ${__dirname}`);
+})();
 /** chezmoi source directory */
 export const chezmoiRoot = path.resolve(extRoot, "..", "..");
 export const pandocIncludes = path.join(chezmoiRoot, "private_dot_local", "private_share", "pandoc", "includes");

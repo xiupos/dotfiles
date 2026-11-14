@@ -73,6 +73,9 @@ describe("render", () => {
     assert.match(figs[0].html, /class="tikz-error"/);
     assert.match(figs[0].html, /Undefined control sequence/);
     assert.match(figs[0].caption!, /壊れた図/);
+    // l.<n> in the excerpt is the Markdown line (1-based), TeX boilerplate is dropped.
+    assert.match(figs[0].html, /<pre>l\.6 +\\undefinedmacro/);
+    assert.ok(!/immediate help/.test(figs[1].html));
 
     const diags = vscode.languages.getDiagnostics(doc.uri).filter((d) => d.source === "tikz");
     assert.strictEqual(diags.length, 2);
