@@ -119,7 +119,7 @@
   "scripts": {
     "build": "node esbuild.mjs",
     "typecheck": "tsc -p . && tsc -p test",
-    "test": "npm run build && node esbuild.mjs --tests && node out/test/runTest.js",
-    "package": "npm run build && vsce package --no-dependencies --allow-missing-repository -o dist/tikz.vsix"
+    "test": "../scripts/test-integration.sh tikz",
+    "package": "npm run build && vsce package --no-dependencies --skip-license -o dist/tikz.vsix"
   }
 }
