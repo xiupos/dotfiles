@@ -96,12 +96,13 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
       const slot = `${doc?.toString() ?? "<string>"}#${st.index++}`;
       const caption = renderCaption(block, env, md);
       const adapt = vscode.workspace.getConfiguration("tikz", doc).get<boolean>("preview.adaptToTheme", true);
+      const scale = vscode.workspace.getConfiguration("tikz", doc).get<number>("preview.scale", 1.3);
       const fig = (state: string, body: string) =>
         `<figure class="tikz-figure code-line${adapt ? " tikz-adapt" : ""}" data-line="${block.startLine}" data-tikz-state="${state}"${block.id ? ` id="${escapeHtml(block.id)}"` : ""}>` +
         `<div class="tikz-body">${body}</div>${caption}</figure>\n`;
 
       if (!vscode.workspace.isTrusted) {
-        return fig("untrusted", `<div class="tikz-untrusted"><div class="tikz-placeholder">TikZ: このワークスペースは信頼されていないため描画しません</div><pre><code>${escapeHtml(block.code)}</code></pre></div>`);
+        return fig("untrusted", `<div class="tikz-untrusted"><div class="tikz-placeholder">TikZ: not rendered in an untrusted workspace</div><pre><code>${escapeHtml(block.code)}</code></pre></div>`);
       }
 
       if (!st.preamble) {
@@ -125,7 +126,7 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
       };
       const result = cache.get(key);
       if (result?.ok) {
-        const svg = prepareSvg(result.svg, prefix);
+        const svg = prepareSvg(result.svg, prefix, scale);
         lastGood.set(slot, svg);
         return fig("ok", svg);
       }
@@ -138,7 +139,7 @@ export function activate(context: vscode.ExtensionContext): TikzApi {
       const dirs = [workspaceFolder(doc), doc?.scheme === "file" ? path.dirname(doc.fsPath) : undefined].filter((d): d is string => !!d);
       const cfg = texConfig(doc);
       scheduler.request(slot, key, delay, () => compile(block.code, preamble, formats, cfg, { dirs }, log));
-      return fig("pending", stale() || `<div class="tikz-placeholder">TikZ を描画中…</div>`);
+      return fig("pending", stale() || `<div class="tikz-placeholder">Rendering TikZ…</div>`);
     },
   };
 

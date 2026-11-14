@@ -25,3 +25,16 @@ describe("attrs", () => {
     assert.ok(!isTikz(parseInfo("")));
   });
 });
+
+import { prepareSvg } from "../../src/svg";
+
+describe("svg", () => {
+  const svg = '<?xml version="1.0"?>\n<svg width="100pt" height="20.5pt" viewBox="0 0 100 20.5"><use href="#glyph-0-1"/><g id="glyph-0-1" clip-path="url(#clip-0)"/></svg>';
+  it("scales width/height but not the viewBox, and prefixes ids", () => {
+    const out = prepareSvg(svg, "p", 1.5);
+    assert.match(out, /^<svg width="150pt" height="30.75pt" viewBox="0 0 100 20.5">/);
+    assert.match(out, /href="#p-glyph-0-1"/);
+    assert.match(out, /id="p-glyph-0-1"/);
+    assert.match(out, /url\(#p-clip-0\)/);
+  });
+});

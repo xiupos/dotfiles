@@ -56,6 +56,7 @@ Pandoc（`~/.local/share/pandoc/filters/tikz.lua`）と同じ記法で、キャ�
 | `tikz.preamble.extra` | `""` | 追加の LaTeX |
 | `tikz.preamble.japanese` | `true` | `bxcjkjatype` を読み込む（和文用） |
 | `tikz.preview.adaptToTheme` | `true` | ダークテーマに合わせて黒と白を置き換える |
+| `tikz.preview.scale` | `1.3` | 図の表示倍率（PDF での大きさに対して）。プレビューの幅より大きくはならない |
 | `tikz.render.delay` | `500` | 最後の編集から描画までの待ち時間（ms） |
 | `tikz.render.timeout` | `20000` | pdflatex を止めるまでの時間（ms） |
 | `tikz.render.concurrency` | `2` | 同時にコンパイルする図の数 |

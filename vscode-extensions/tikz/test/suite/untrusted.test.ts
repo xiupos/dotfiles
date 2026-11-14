@@ -13,7 +13,7 @@ describe("untrusted workspace", () => {
     assert.strictEqual(figs.length, 4);
     for (const f of figs) {
       assert.strictEqual(f.state, "untrusted");
-      assert.match(f.html, /信頼されていない/);
+      assert.match(f.html, /untrusted workspace/);
     }
     assert.strictEqual(a.compiledCount(), 0);
   });

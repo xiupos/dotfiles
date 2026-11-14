@@ -132,7 +132,10 @@ tikz-cd を含む文書が PDF まで通るので、**`lrbox` は使わない**�
 </figure>
 ```
 
-- 見た目は Markdown の画像と同程度。中央寄せ、はみ出す場合は縮小（`max-width: 100%`）。大きさは TeX の pt のまま（1pt = 1.333px）。
+- 見た目は Markdown の画像と同程度。中央寄せ、はみ出す場合は縮小（`max-width: 100%`）。
+  大きさは PDF での大きさの `tikz.preview.scale` 倍（既定 1.3）。TeX の pt をそのまま CSS の pt にすると（1pt = 1.333px）、
+  10pt の文字が本文（14px）より小さく見えるため。SVG の `width` / `height` だけを書き換え、`viewBox` はそのまま。
+  描画時に掛けるので、キャッシュは倍率に依存しない。
 - 図番号は表示しない。`[@fig:…]` は解決しない（本文でもキャプションでもテキストのまま）。
 - キャプション：属性形式は `md.renderInline`、div 形式は `md.render`。標準プレビューの数式（KaTeX）がキャプションにも効く。
   キャプションの中の `data-line` は消す（キャプションのソース内の行番号なので、スクロール同期を乱す）。
@@ -146,10 +149,10 @@ tikz-cd を含む文書が PDF まで通るので、**`lrbox` は使わない**�
 | 状態 | 表示 |
 |---|---|
 | `ok` | SVG + キャプション |
-| `pending`（初回） | プレースホルダー「TikZ を描画中…」+ キャプション |
+| `pending`（初回） | プレースホルダー「Rendering TikZ…」+ キャプション |
 | `pending`（2回目以降） | 同じブロックで最後に成功した SVG を薄く（`opacity: 0.4`）表示 + キャプション |
 | `error` | 枠付きのエラー表示（5 節）+ 直前の SVG を薄く + キャプション |
-| `untrusted` | 「このワークスペースは信頼されていないため描画しません」+ ソースを `<pre>` で |
+| `untrusted` | 「TikZ: not rendered in an untrusted workspace」+ ソースを `<pre>` で |
 
 「同じブロック」は、文書の URI とブロックの出現順（何番目の tikz ブロックか）で識別する。
 
@@ -233,6 +236,7 @@ Pandoc の `-d article-ja` / `-d book-ja` の出力に近づける：
 | `tikz.preamble.extra` | `""` | 追加の LaTeX |
 | `tikz.preamble.japanese` | `true` | `bxcjkjatype` を読み込む。`font-ja.sty` は `\setminchofont` があるときだけ効くので組みで使う |
 | `tikz.preview.adaptToTheme` | `true` | 3.3 |
+| `tikz.preview.scale` | `1.3` | 3.1 |
 | `tikz.render.delay` | `500`（ms） | 4 節の 5 |
 | `tikz.render.timeout` | `20000`（ms） | |
 | `tikz.render.concurrency` | `2` | |
