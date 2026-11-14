@@ -2,7 +2,7 @@
 //
 // markdown-it types are not a dependency; the few members used are typed here.
 
-import { isTikz, parseInfo } from "./attrs";
+import { isTikz, parseInfo } from "../../shared/pandoc-attrs";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type MarkdownIt = any;

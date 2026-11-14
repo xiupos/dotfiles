@@ -14,7 +14,8 @@ exts=("${1:-}")
 
 for ext in "${exts[@]}"; do
   echo "=== ${ext}"
-  (cd "${ext}" && npm run build --silent && node esbuild.mjs --tests \
+  # Packaging first catches manifest errors that only vsce checks.
+  (cd "${ext}" && npm run package --silent >/dev/null && node esbuild.mjs --tests \
     && env -u WAYLAND_DISPLAY -u ELECTRON_OZONE_PLATFORM_HINT \
       xvfb-run -a -s "-screen 0 1600x1200x24 -nolisten tcp" node out/test/runTest.js ${2:+"$2"})
 done

@@ -46,7 +46,8 @@ if ! command -v npm &>/dev/null; then
 fi
 
 mkdir -p "${CACHE}"
-shared_hash="$(cat "${ROOT}/package.json" "${ROOT}/package-lock.json" "${ROOT}/tsconfig.base.json" | sha256sum | cut -d' ' -f1)"
+# Everything an extension build depends on besides its own directory.
+shared_hash="$( (cat "${ROOT}/package.json" "${ROOT}/package-lock.json" "${ROOT}/tsconfig.base.json"; "${ROOT}/scripts/source-hash.sh" "${ROOT}/shared") | sha256sum | cut -d' ' -f1)"
 mapfile -t names < <(node -p 'require(process.argv[1]).workspaces.join("\n")' "${ROOT}/package.json")
 
 has_ext() { # target id version

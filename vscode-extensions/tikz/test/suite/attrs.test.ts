@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { isTikz, parseInfo } from "../../src/attrs";
+import { isTikz, parseInfo } from "../../../shared/pandoc-attrs";
 
 describe("attrs", () => {
   it("parses plain and attribute info strings like Pandoc", () => {

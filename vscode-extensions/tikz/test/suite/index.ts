@@ -3,7 +3,7 @@ import Mocha from "mocha";
 export function run(): Promise<void> {
   const mocha = new Mocha({ ui: "bdd", timeout: 180000, color: true });
   mocha.suite.emit("pre-require", globalThis, "suite", mocha);
-  if (process.env.TIKZ_TEST_MODE === "untrusted") {
+  if (process.env.TEST_MODE === "untrusted") {
     require("./untrusted.test");
   } else {
     require("./attrs.test");

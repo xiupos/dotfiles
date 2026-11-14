@@ -29,7 +29,7 @@ function unescape(s: string): string {
 }
 
 /** Parse the inside of `{...}`. Returns undefined if it is not valid. */
-function parseAttrBlock(src: string): Attr | undefined {
+export function parseAttrBlock(src: string): Attr | undefined {
   const attr: Attr = { id: "", classes: [], attrs: {} };
   let i = 0;
   const n = src.length;
