@@ -41,6 +41,9 @@ HISTCONTROL = "ignoredups:erasedups"
 JULIA_HEAP_SIZE_HINT = "50%"
 JULIA_NUM_THREADS = "auto"
 
+# refdir
+REFDIR = "{{env.HOME}}/Documents/Refdir"
+
 # tex
 TEXMFHOME = "{{env.HOME}}/.local/share/texmf"
 
