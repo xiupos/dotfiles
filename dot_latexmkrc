@@ -27,7 +27,7 @@ $args = $latexargs; # $latexsilentargs or $latexsargs
 $refdir = ' && { b="%Y%R"; if grep -qs -- "-refdir.bib</bcf:datasource>" "$b.bcf"'
         . ' || grep -qs "bibdata{.*-refdir[,}]" "$b.aux"; then'
         . ' r="$(command -v refdir || echo "$HOME/.cargo/bin/refdir")";'
-        . ' "$r" --library "${REFDIR:-$HOME/Documents/Refdir}" bib "$b.aux" > "$b-refdir.bib"'
+        . ' "$r" --library "${REFDIR:-$HOME/Literature}" bib "$b.aux" > "$b-refdir.bib"'
         . ' || echo "refdir: some cited keys were not found"; fi; true; }';
 
 # ここで指定を行わないと自動保管される(defolt値は変更されず-no-shell-escapeで実行される)
