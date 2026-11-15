@@ -39,6 +39,9 @@
   breaklines=true, breakatwhitespace=true, tabsize=3
 }
 
+% refdir
+\addbibresource{\jobname-refdir.bib}
+
 % cleveref
 \AddToHook{begindocument/before}{\usepackage{cleveref}}
 \AddToHook{package/cleveref/after}{\creflabelformat{equation}{#2#1#3}}

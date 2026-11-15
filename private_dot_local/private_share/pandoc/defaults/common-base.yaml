@@ -2,7 +2,7 @@ standalone: true
 
 from: markdown+raw_tex
 to: latex
-pdf-engine: pdflatex
+pdf-engine: latexmk
 
 variables:
   lang: en-GB
@@ -10,6 +10,8 @@ variables:
   graphics: true
   linkcolor: blue
   indent: true
+  biblio-style: hepja
+  biblatexoptions: [language=english]
 
 number-sections: true
 shift-heading-level-by: -1
@@ -22,10 +24,9 @@ filters:
   - tikz.lua  # before unicode-math.lua and pandoc-crossref
   - unicode-math.lua
   - pandoc-crossref
-  - citeproc
   - fenced-divs.lua
   - url-encode.lua
   # - numbered.lua
   - dedupe-table-label.lua
 
-csl: JHEP
+cite-method: biblatex

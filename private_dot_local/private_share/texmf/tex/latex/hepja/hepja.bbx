@@ -1,0 +1,243 @@
+% hepja: JHEP-like, with Japanese entries (langid = japanese)
+\ProvidesFile{hepja.bbx}[2026/11/15 hepja: JHEP-like, with Japanese entries by langid]
+\RequireBibliographyStyle{numeric}
+
+\ExecuteBibliographyOptions{
+  sorting=none, giveninits=true, maxbibnames=10, minbibnames=1,
+  date=year, isbn=false, url=false, doi=false, eprint=false}
+
+% biblatex has no Japanese
+\DeclareLanguageMapping{japanese}{english}
+
+\newif\ifhepja@ja
+\AtEveryBibitem{\iffieldequalstr{langid}{japanese}{\hepja@jatrue}{\hepja@jafalse}}
+
+% kana (E3...): given・family; kanji: familygiven
+\ExplSyntaxOn
+\prg_new_conditional:Npnn \hepja_if_kana:n #1 { TF }
+  {
+    \str_if_eq:eeTF { \str_head:n {#1} } { \char_generate:nn { "E3 } { 12 } }
+      { \prg_return_true: } { \prg_return_false: }
+  }
+\cs_new_protected:Npn \hepja@ifkana #1 { \exp_args:No \hepja_if_kana:nTF {#1} }
+\prg_new_conditional:Npnn \hepja_if_cjk:n #1 { TF }
+  {
+    \str_case_e:nnTF { \str_head:n {#1} }
+      {
+        { \char_generate:nn { "E3 } { 12 } } { } { \char_generate:nn { "E4 } { 12 } } { }
+        { \char_generate:nn { "E5 } { 12 } } { } { \char_generate:nn { "E6 } { 12 } } { }
+        { \char_generate:nn { "E7 } { 12 } } { } { \char_generate:nn { "E8 } { 12 } } { }
+        { \char_generate:nn { "E9 } { 12 } } { }
+      }
+      { \prg_return_true: } { \prg_return_false: }
+  }
+\cs_new_protected:Npn \hepja@ifcjk #1 { \exp_args:No \hepja_if_cjk:nTF {#1} }
+\ExplSyntaxOff
+
+\newcommand*{\hepja@janame}{%
+  \usebibmacro{name:delim}{\namepartfamily}%
+  \hepja@ifkana{\namepartfamily}
+    {\ifdefvoid{\namepartgiven}{}
+       {\namepartgiven\hepja@ifkana{\namepartgiven}{・}{\addspace}}%
+     \namepartfamily}
+    {\namepartfamily\namepartgiven}}
+
+\DeclareNameFormat{default}{%
+  \ifboolexpr{bool {hepja@ja} and test {\hepja@ifcjk{\namepartfamily}}}
+    {\hepja@janame}
+  {%
+    \usebibmacro{name:given-family}
+      {\namepartfamily}{\namepartgiveni}{\namepartprefix}{\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
+
+\renewcommand*{\bibinitdelim}{}   % J.H. Schwarz
+\DeclareDelimFormat{multinamedelim}{\addcomma\space}
+\DeclareDelimFormat{finalnamedelim}{%
+  \ifhepja@ja\addcomma\space\else\addspace and\space\fi}
+\renewbibmacro*{name:andothers}{%
+  \ifboolexpr{
+    test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+    and test \ifmorenames}
+    {\ifhepja@ja\printtext{ほか}\else\printtext{\addspace et~al\adddot}\fi}
+    {}}
+
+\newbibmacro*{hepja:names}{%
+  \ifnameundef{author}
+    {\ifnameundef{editor}{}
+       {\printnames{editor}%
+        \setunit{\ifhepja@ja\addspace\else\addcomma\space\fi}%
+        \ifhepja@ja\printtext{編}\else\hepja@eds\fi}}
+    {\printnames{author}}}
+\newcommand*{\hepja@eds}{\printtext{\ifnumgreater{\value{editor}}{1}{eds}{ed}\adddot}}
+
+\newif\ifhepja@link
+\newcommand*{\hepja@href}[1]{%
+  \ifhepja@link
+    \iffieldundef{doi}
+      {\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}}
+      {\href{https://doi.org/\thefield{doi}}{#1}}%
+  \else#1\fi}
+% {}: without it, a space follows 』
+\DeclareFieldFormat*{title}{%
+  \ifhepja@ja
+    \ifboolexpr{test {\ifentrytype{article}} or test {\ifentrytype{inproceedings}}
+                or test {\ifentrytype{incollection}} or test {\ifentrytype{inbook}}
+                or test {\ifentrytype{thesis}}}
+      {「{\hepja@href{#1}}」}{『{\hepja@href{#1}}』}%
+  \else\mkbibemph{\hepja@href{#1}}\fi}
+\DeclareFieldFormat*{booktitle}{\ifhepja@ja『{#1}』\else\mkbibemph{#1}\fi}
+\DeclareFieldFormat*{journaltitle}{\ifhepja@ja『{#1}』\else#1\fi}
+\DeclareFieldFormat*{volume}{#1}
+\DeclareFieldFormat[article]{volume}{\ifhepja@ja#1\else\mkbibbold{#1}\fi}
+\DeclareFieldFormat*{number}{#1}
+\DeclareFieldFormat*{pages}{#1}
+\DeclareFieldFormat[article]{pages}{\mkfirstpage{#1}}
+\DeclareFieldFormat*{edition}{%
+  \ifinteger{#1}
+    {\ifhepja@ja 第#1版\else\hepja@ordinal{#1}~ed\adddot\fi}
+    {#1}}
+\newcommand*{\hepja@ordinal}[1]{#1%
+  \ifboolexpr{test {\ifnumequal{#1}{11}} or test {\ifnumequal{#1}{12}} or test {\ifnumequal{#1}{13}}}
+    {th}{\ifcase\numexpr#1-10*(#1/10)\relax th\or st\or nd\or rd\else th\fi}}
+
+\DeclareFieldFormat{hepja:doilink}{%
+  \iffieldundef{doi}{#1}{\href{https://doi.org/\thefield{doi}}{#1}}}
+
+\newbibmacro*{hepja:title}{\hepja@linktrue\printfield{title}\hepja@linkfalse}
+\newbibmacro*{hepja:plaintitle}{\printfield{title}}
+
+\newbibmacro*{hepja:translator}{%
+  \ifnameundef{translator}{}
+    {\ifhepja@ja
+       \printnames{translator}\printtext{\addspace 訳}%
+     \else
+       \printtext{translated by\addspace}\printnames{translator}%
+     \fi}}
+
+\newbibmacro*{hepja:series}{%
+  \iffieldundef{series}
+    {\iffieldundef{volume}{}
+       {\ifhepja@ja\else\printtext{vol\adddot\addnbspace}\fi\printfield{volume}}}
+    {\ifhepja@ja
+       \printfield{series}%
+       \setunit{\addspace}%
+       \iffieldundef{volume}{\printfield{number}}{\printfield{volume}}%
+     \else
+       \iffieldundef{volume}
+         {\iffieldundef{number}{}
+            {\printtext{vol\adddot\addnbspace}\printfield{number}\printtext{\addspace of\addspace}}}
+         {\printtext{vol\adddot\addnbspace}\printfield{volume}\printtext{\addspace of\addspace}}%
+       \printfield{series}%
+     \fi}}
+
+\newbibmacro*{hepja:year}{\printtext[parens]{\printdate}}
+
+\newbibmacro*{hepja:publisher+year}{%
+  \printlist{publisher}%
+  \ifhepja@ja\else\setunit{\addcomma\space}\printlist{location}\fi
+  \setunit{\addspace}%
+  \usebibmacro{hepja:year}}
+
+\newbibmacro*{hepja:eprint}{%
+  \iffieldundef{eprint}{}
+    {\printtext[brackets]{%
+       \href{https://arxiv.org/abs/\thefield{eprint}}{\texttt{\thefield{eprint}}}}}}
+
+\newbibmacro*{hepja:journal}{%
+  \printtext[hepja:doilink]{%
+    \printfield{journaltitle}%
+    \setunit{\addspace}\printfield{volume}%
+    \setunit{\addspace}\usebibmacro{hepja:year}%
+    \setunit{\addspace}\printfield{pages}}}
+
+\renewcommand*{\finentrypunct}{\ifhepja@ja 。\else\addperiod\fi}
+
+\defbibheading{bibliography}[\ifdefined\chapter\bibname\else\refname\fi]{%
+  \ifdefined\chapter
+    \chapter*{#1}\addcontentsline{toc}{chapter}{#1}%
+  \else
+    \section*{#1}%
+  \fi
+  \markboth{#1}{#1}}
+
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{hepja:names}%
+  \setunit{\addcomma\space}%
+  \iffieldundef{journaltitle}
+    {\usebibmacro{hepja:title}%
+     \setunit{\addcomma\space}\printfield{note}%
+     \iffieldundef{eprint}
+       {\setunit{\addspace}\usebibmacro{hepja:year}}
+       {\setunit{\addcomma\space}%
+        \printtext{\href{https://arxiv.org/abs/\thefield{eprint}}{\texttt{\thefield{eprint}}}}}}
+    {\usebibmacro{hepja:plaintitle}%
+     \setunit{\addcomma\space}\usebibmacro{hepja:journal}%
+     \setunit{\addcomma\space}\printfield{note}%
+     \setunit{\addspace}\usebibmacro{hepja:eprint}}%
+  \usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{hepja:names}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:title}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:translator}%
+  \setunit{\addcomma\space}\iffieldequalstr{edition}{1}{}{\printfield{edition}}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:series}%
+  \setunit{\addcomma\space}\printfield{note}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:publisher+year}%
+  \setunit{\addspace}\usebibmacro{hepja:eprint}%
+  \usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{incollection}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{hepja:names}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:title}%
+  \setunit{\addcomma\space}%
+  \iffieldundef{booktitle}{}
+    {\ifhepja@ja\else\printtext{in\addspace}\fi\printfield{booktitle}}%
+  \ifnameundef{editor}{}
+    {\setunit{\addcomma\space}\printnames{editor}%
+     \setunit{\ifhepja@ja\addspace\else\addcomma\space\fi}%
+     \ifhepja@ja\printtext{編}\else\hepja@eds\fi}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:series}%
+  \setunit{\addcomma\space}\printfield{pages}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:publisher+year}%
+  \setunit{\addspace}\usebibmacro{hepja:eprint}%
+  \usebibmacro{finentry}}
+\DeclareBibliographyAlias{inproceedings}{incollection}
+\DeclareBibliographyAlias{inbook}{incollection}
+
+\DeclareBibliographyDriver{thesis}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{hepja:names}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:title}%
+  \setunit{\addcomma\space}%
+  \iffieldequalstr{type}{phdthesis}
+    {\ifhepja@ja\printtext{博士論文}\else\printtext{Ph.D.\ thesis}\fi}
+    {\iffieldequalstr{type}{mathesis}
+       {\ifhepja@ja\printtext{修士論文}\else\printtext{Master's thesis}\fi}
+       {\printfield{type}}}%
+  \setunit{\addcomma\space}\printlist{institution}%
+  \setunit{\addspace}\usebibmacro{hepja:year}%
+  \setunit{\addspace}\usebibmacro{hepja:eprint}%
+  \usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{misc}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{hepja:names}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:title}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:translator}%
+  \setunit{\addcomma\space}\printfield{howpublished}%
+  \setunit{\addcomma\space}\printfield{note}%
+  \setunit{\addcomma\space}\printlist{organization}%
+  \setunit{\addcomma\space}\usebibmacro{hepja:publisher+year}%
+  \setunit{\addspace}\usebibmacro{hepja:eprint}%
+  \usebibmacro{finentry}}
+\DeclareBibliographyAlias{online}{misc}
+\DeclareBibliographyAlias{unpublished}{misc}
+\DeclareBibliographyAlias{report}{misc}
+\DeclareBibliographyAlias{manual}{misc}
+\DeclareBibliographyAlias{software}{misc}
+
+\endinput

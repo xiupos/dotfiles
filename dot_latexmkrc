@@ -22,18 +22,15 @@ $args = $latexargs; # $latexsilentargs or $latexsargs
 # -----------------------------------------------------------------------------
 # latex
 
-# Refdir: \bibliography{<job>-refdir}(pandocの-d refdir)の文書では、latexの各回の後に
-# Refdirから引用分を<job>-refdir.bibに書き出す。ライブラリにないキーはINSPIREのtexkeyとして
-# 追加される。bibtexの前にしないのは、latexmkが.bibの揃わないbibtexを実行しないため($bibtex_use=1)。
-# GUIから起動されるとmiseの環境が無いことがあるので、ライブラリとrefdirの場所に既定値を置く。
-# (%Y%Rはaux側のjob名。latexmkは%を置換するため、シェルの${x%y}は使えない)
-$refdir = ' && { b="%Y%R"; if grep -q "bibdata{.*-refdir[,}]" "$b.aux" 2>/dev/null; then'
+# <job>-refdir.bibを読む文書では、latexの各回の後にRefdirから引用分を書き出す
+# (biber/bibtexの前だと.bibが無く実行されない)
+$refdir = ' && { b="%Y%R"; if grep -qs -- "-refdir.bib</bcf:datasource>" "$b.bcf"'
+        . ' || grep -qs "bibdata{.*-refdir[,}]" "$b.aux"; then'
         . ' r="$(command -v refdir || echo "$HOME/.cargo/bin/refdir")";'
         . ' "$r" --library "${REFDIR:-$HOME/Documents/Refdir}" bib "$b.aux" > "$b-refdir.bib"'
         . ' || echo "refdir: some cited keys were not found"; fi; true; }';
 
 # ここで指定を行わないと自動保管される(defolt値は変更されず-no-shell-escapeで実行される)
-# (%O %Sは$refdirを後ろに付けるため明示する。無いとlatexmkが末尾に足す)
 $latex    = 'platex  -synctex=1';
 $uplatex  = 'uplatex  -kanji=utf8  -no-guess-input-enc'.$args.' %O %S'.$refdir;
 $pdflatex = 'pdflatex'.$args.' %O %S'.$refdir;

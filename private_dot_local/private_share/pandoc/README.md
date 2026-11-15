@@ -12,12 +12,10 @@ pandoc -d book test.md -o test.pdf
 pandoc -d book-ja test.md -o test.pdf
 ```
 
-### Zotero文献の引用
+### 文献の引用
 
-Better BibTeX の auto-export 先 (`~/Zotero/better-bibtex/my-library.bib`) を natbib+JHEP.bst で引用。
-`-d zotero` は必ず最後に指定すること！
+`[@Kugo:1989]` のようにキーを書くだけで、Refdir のライブラリ (`$REFDIR`、なければ `~/Documents/Refdir`) から引用される。
+biblatex + biber で、スタイルは `hepja` (`~/.local/share/texmf/tex/latex/hepja`)：JHEP 風の引用順の番号で、`langid = {japanese}` の文献は和文の書き方 (姓名、『書名』、訳者) になる。
 
-```bash
-pandoc -d article -d zotero test.md -o test.pdf
-pandoc -d book-ja -d zotero test.md -o test.pdf
-```
+latexmk が LaTeX の各回の後に `refdir bib` で引用分を `<job>-refdir.bib` に書き出す (`~/.latexmkrc`)。
+ライブラリにないキーは INSPIRE の texkey として Refdir に追加される。

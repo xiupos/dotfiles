@@ -16,7 +16,7 @@
 - **TikZ の記法は Pandoc フィルタと一致させる。** 変えるときは chezmoi ソースの
   `private_dot_local/private_share/pandoc/filters/tikz.lua` も同じに変え、両方を確かめる。
   ラベルなしの ` ```tikz ` の出力（`\begin{figure}\centering … \end{figure}`）は既存の文書が使っているので変えない。
-- Pandoc 側の確認：実際の文書と同じ defaults（例：`-d book-ja -d zotero --lua-filter ja-spacing.lua`）で `test/fixtures/` を PDF にし、
+- Pandoc 側の確認：実際の文書と同じ defaults（例：`-d book-ja --lua-filter ja-spacing.lua`）で `test/fixtures/` を PDF にし、
   `pdftotext` で図番号と参照、`pdftoppm` で見た目を確かめる。ホームではなく chezmoi ソースの設定で動かすには、ソースの `pandoc/` を
   一時ディレクトリの `pandoc/` にコピーし（`include-files.lua` はホームから）、`XDG_DATA_HOME` をその一時ディレクトリにして、
   mise の pandoc / pandoc-crossref の**実体**を PATH の先頭に置く。`--data-dir` だけだと defaults の継承先がホームから読まれる。
