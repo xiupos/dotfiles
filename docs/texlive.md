@@ -22,8 +22,3 @@ sudo perl ./install-tl -no-gui -no-interaction -repository http://mirror.ctan.or
 sudo /usr/local/texlive/????/bin/*/tlmgr path add
 cd .. && rm -rf install-tl-*
 ```
-
-### Pandoc
-
-```bash
-```
