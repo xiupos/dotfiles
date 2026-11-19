@@ -39,8 +39,8 @@
   breaklines=true, breakatwhitespace=true, tabsize=3
 }
 
-% refdir
-\addbibresource{\jobname-refdir.bib}
+% refdir (only with biblatex: not loaded in the TikZ preview of pandoc-preview)
+\ifdefined\addbibresource\addbibresource{\jobname-refdir.bib}\fi
 
 % cleveref
 \AddToHook{begindocument/before}{\usepackage{cleveref}}
