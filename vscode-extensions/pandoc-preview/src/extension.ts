@@ -2,6 +2,7 @@ import * as path from "node:path";
 import * as vscode from "vscode";
 import { ResultCache, Scheduler } from "./cache.ts";
 import { figurePlugin } from "./figure.ts";
+import { footnotePlugin } from "./footnote.ts";
 import { tikzPlugin, type TikzBlock } from "./tikz.ts";
 import { buildPreamble, compile, Formats, sha256, type Preamble, type RenderResult } from "./tex.ts";
 
@@ -118,6 +119,7 @@ export function activate(context: vscode.ExtensionContext) {
     extendMarkdownIt(md: any) {
       tikzPlugin(md, (block, env) => renderFigure(block, env, md));
       figurePlugin(md);
+      footnotePlugin(md);
       return md;
     },
   };

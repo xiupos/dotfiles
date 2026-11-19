@@ -9,6 +9,7 @@
 - `src/tex.ts`：プリアンブル、フォーマットのダンプ、pdflatex → pdftocairo、ログからのエラーの抜き出し。
 - `src/cache.ts`：結果のキャッシュ（メモリと globalStorage）と、debounce・同時実行数つきのキュー。
 - `src/figure.ts`：画像の図の markdown-it のプラグイン（core rule で決めて `meta` に書き、renderer で `<figure>` にする）。
+- `src/footnote.ts`：脚注を節の終わりに移す markdown-it のプラグイン（markdown-it-footnote のトークンを並べ替える。core rule は `push` で最後に置く）。
 - `media/preview.css`：見た目とテーマ対応。`test/`：`node:test` とサンプル。
 
 ## 守ること
