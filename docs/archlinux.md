@@ -249,7 +249,7 @@ systemctl --user enable --now syncthing
 ## keybase
 
 ```bash
-yay -S keybase
+yay -S keybase-bin
 ```
 
 ## uxplay

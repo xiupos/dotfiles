@@ -74,6 +74,6 @@ logout & login
 ## apps
 
 ```bash
-yay -S discord keybase keybase-gui
+yay -S discord keybase-bin
 yay -Rc firefox manjaro-hello manjaro-settings-manager manjaro-settings-manager-notifier pamac-cli pamac-gnome-integration pamac-gtk
 ```
