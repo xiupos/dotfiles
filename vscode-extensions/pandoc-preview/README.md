@@ -25,6 +25,7 @@ VS Code 標準の Markdown プレビューを、Pandoc（`-d article-ja` / `-d b
 - `#id`（参照するなら `fig:` で始める）か `caption` があれば番号付きの図、どちらもなければ番号なしの図。
 - `caption` は Markdown（数式、強調、引用 `[@key]`）。引用符の中で `\` がエスケープになるのは ASCII 記号の前だけ（`\alpha` はそのまま。Pandoc と同じ）。
   バッククォートを書くときはフェンスを `~~~{.tikz …}` にする（CommonMark は ```` ``` ```` の行にバッククォートを許さない）。
+- エディタでは、これらのフェンスの中身を LaTeX として色付けする（`syntaxes/tikz-fence.tmLanguage.json` の文法注入）。
 
 **Pandoc では**（`~/.local/share/pandoc/filters/tikz.lua`）、番号付きの図は `Figure` 要素になり、pandoc-crossref が番号を振って `[@fig:…]` を `\cref` にする。
 番号なしの図は `\begin{figure}\centering … \end{figure}`。フィルタは `common-base.yaml` で `include-files.lua` の直後、
