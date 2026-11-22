@@ -40,20 +40,6 @@ git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. &&
 printf '[zram0]\nzram-size = ram * 2\n' | sudo tee /etc/systemd/zram-generator.conf
 ```
 
-## disk cleanup
-
-```bash
-# snapper retention
-sudo sed -i -e 's/^TIMELINE_LIMIT_MONTHLY=.*/TIMELINE_LIMIT_MONTHLY="2"/' -e 's/^TIMELINE_LIMIT_YEARLY=.*/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/{root,home}
-# pacman cache
-sudo pacman -S pacman-contrib
-sudo systemctl enable --now paccache.timer
-# nix, uv, npm, julia (user units in dotfiles)
-systemctl --user start nix-gc.timer cache-cleanup.timer
-# occasionally
-sudo btrfs balance start -dusage=50 -musage=50 /
-```
-
 ## thinkpad
 
 - fan: leave it to EC firmware (`level auto`); no thinkfan, since the EC `CPU` sensor can freeze after resume and keep the fan off
@@ -234,6 +220,20 @@ chezmoi init --apply xiupos
 
 reopen chrome
 
+## disk cleanup
+
+```bash
+# snapper retention
+sudo sed -i -e 's/^TIMELINE_LIMIT_MONTHLY=.*/TIMELINE_LIMIT_MONTHLY="2"/' -e 's/^TIMELINE_LIMIT_YEARLY=.*/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/configs/{root,home}
+# pacman cache
+sudo pacman -S pacman-contrib
+sudo systemctl enable --now paccache.timer
+# nix, uv, npm, julia (user units in dotfiles)
+systemctl --user start nix-gc.timer cache-cleanup.timer
+# occasionally
+sudo btrfs balance start -dusage=50 -musage=50 /
+```
+
 ## GitHub
 
 ```bash
@@ -255,7 +255,7 @@ logout & login
 ## apps
 
 ```bash
-yay -S discord steam obsidian zotero syncthing
+yay -S discord steam obsidian syncthing
 yay -Rc gnome-tour gnome-software epiphany yelp
 systemctl --user enable --now syncthing
 ```
