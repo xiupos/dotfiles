@@ -6,10 +6,13 @@ import { test } from "node:test";
 import MarkdownIt from "markdown-it";
 import { tikzFence, tikzPlugin, type TikzBlock } from "../src/tikz.ts";
 import { buildPreamble, compile, Formats } from "../src/tex.ts";
+import { loadUnicodeMath } from "../src/unicode.ts";
 
 const fixtures = path.join(import.meta.dirname, "fixtures");
 // The preamble files from the chezmoi source, not the copy applied to ~.
-const includes = path.resolve(import.meta.dirname, "../../../private_dot_local/private_share/pandoc/includes");
+const pandoc = path.resolve(import.meta.dirname, "../../../private_dot_local/private_share/pandoc");
+const includes = path.join(pandoc, "includes");
+const unicodeMath = loadUnicodeMath(path.join(pandoc, "filters/unicode-math.lua"));
 
 /** The tikz blocks of a fixture, as the preview sees them. */
 function blocks(file: string): TikzBlock[] {
@@ -37,11 +40,16 @@ test("tikz fences reach the renderer with caption and line", () => {
   assert.match(bs[0].code, /^\\begin\{tikzpicture\}/);
 });
 
+test("Unicode math symbols are converted like unicode-math.lua", () => {
+  assert.ok(unicodeMath.size > 1000);
+  assert.equal(unicodeMath.convert('$α⊗λx$ "ℱ" 𝔸 番号'), '$\\alpha\\otimes \\lambda x$ "\\mathscr{F}" \\mathbb{A} 番号');
+});
+
 test("the fixtures compile with pdflatex, and errors are reported", async () => {
   const preamble = buildPreamble({ files: [`${includes}/common.sty`, `${includes}/font-ja.sty`], extra: "", japanese: true }, undefined);
   const formats = new Formats(fs.mkdtempSync(path.join(os.tmpdir(), "tikz-test-")), () => {});
   const cfg = { pdflatex: "pdflatex", pdftocairo: "pdftocairo", timeout: 60000 };
-  const run = (b: TikzBlock) => compile(b.code, preamble, formats, cfg, []);
+  const run = (b: TikzBlock) => compile(unicodeMath.convert(b.code), preamble, formats, cfg, []);
 
   for (const r of await Promise.all([...blocks("syntax.md"), ...blocks("samples.md")].map(run))) {
     assert.ok(r.ok, r.ok ? "" : `${r.message}\n${r.detail}`);

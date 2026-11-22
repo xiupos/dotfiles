@@ -40,6 +40,14 @@ export interface Preamble {
   dirs: string[];
 }
 
+/** A path from the settings (`~`, `${workspaceFolder}`, relative to the workspace) of an existing file, or throws. */
+export function resolvePath(file: string, workspace: string | undefined, what: string): string {
+  let p = file.replace(/\$\{workspaceFolder\}/g, workspace ?? "").replace(/^~(?=\/|$)/, os.homedir());
+  if (!path.isAbsolute(p) && workspace) p = path.join(workspace, p);
+  if (!path.isAbsolute(p) || !fs.existsSync(p)) throw new Error(`${what} not found: ${p}`);
+  return p;
+}
+
 /** Close to the head of Pandoc's LaTeX template for -d article-ja / book-ja. */
 export function buildPreamble(cfg: PreambleConfig, workspace: string | undefined): Preamble {
   const lines = [
@@ -54,9 +62,7 @@ export function buildPreamble(cfg: PreambleConfig, workspace: string | undefined
   const contents: string[] = [];
   const dirs = new Set<string>();
   for (const f of cfg.files) {
-    let p = f.replace(/\$\{workspaceFolder\}/g, workspace ?? "").replace(/^~(?=\/|$)/, os.homedir());
-    if (!path.isAbsolute(p) && workspace) p = path.join(workspace, p);
-    if (!path.isAbsolute(p) || !fs.existsSync(p)) throw new Error(`preamble file not found: ${p}`);
+    const p = resolvePath(f, workspace, "preamble file");
     contents.push(fs.readFileSync(p, "utf8"));
     dirs.add(path.dirname(p));
     lines.push(`\\input{${p}}`);

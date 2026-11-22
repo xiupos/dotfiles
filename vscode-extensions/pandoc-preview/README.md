@@ -25,11 +25,14 @@ VS Code 標準の Markdown プレビューを、Pandoc（`-d article-ja` / `-d b
 - `#id`（参照するなら `fig:` で始める）か `caption` があれば番号付きの図、どちらもなければ番号なしの図。
 - `caption` は Markdown（数式、強調、引用 `[@key]`）。引用符の中で `\` がエスケープになるのは ASCII 記号の前だけ（`\alpha` はそのまま。Pandoc と同じ）。
   バッククォートを書くときはフェンスを `~~~{.tikz …}` にする（CommonMark は ```` ``` ```` の行にバッククォートを許さない）。
+- 中身の Unicode の数学記号（`α`、`⊗`、`ℋ` など）は、数式と同じく `unicode-math.lua` の表で LaTeX のコマンドに変える（`$α$` → `$\alpha$`、
+  tikz-cd のラベル `"Φ"` も）。中身全体が対象なので、数式の外に書いた `α` も変わる。
 - エディタでは、これらのフェンスの中身を LaTeX として色付けする（`syntaxes/tikz-fence.tmLanguage.json` の文法注入）。
 
 **Pandoc では**（`~/.local/share/pandoc/filters/tikz.lua`）、番号付きの図は `Figure` 要素になり、pandoc-crossref が番号を振って `[@fig:…]` を `\cref` にする。
 番号なしの図は `\begin{figure}\centering … \end{figure}`。フィルタは `common-base.yaml` で `include-files.lua` の直後、
 `unicode-math.lua`（キャプションの `$α$` を変換させるため）と `pandoc-crossref` より前に置く。
+中身は生の LaTeX になって `unicode-math.lua` には届かないので、`tikz.lua` が隣の `unicode-math.lua` を読み込んで変換する。
 
 **プレビューでは**、図ごとに pdflatex → pdftocairo で SVG を作って埋め込む。
 
@@ -49,6 +52,7 @@ VS Code 標準の Markdown プレビューを、Pandoc（`-d article-ja` / `-d b
 | `tikz.preamble.files` | `~/.local/share/pandoc/includes/` の `common.sty`、`font-ja.sty` | `\input` するファイル。`~`、`${workspaceFolder}`、ワークスペースからの相対パス。プロジェクト独自の `.sty` はワークスペース設定で足す |
 | `tikz.preamble.extra` | `""` | 追加の LaTeX |
 | `tikz.preamble.japanese` | `true` | `bxcjkjatype` を読み込む |
+| `tikz.unicodeMath` | `~/.local/share/pandoc/filters/unicode-math.lua` | Unicode の記号の表を読むフィルタ（Pandoc と同じファイル）。空なら変換しない |
 | `tikz.preview.adaptToTheme` | `true` | ダークテーマに合わせて黒と白を置き換える |
 | `tikz.preview.scale` | `1.3` | PDF での大きさに対する表示倍率 |
 | `tikz.render.delay` / `timeout` / `concurrency` | `500` / `20000` / `2` | 描画までの待ち（ms）、pdflatex を止めるまで（ms）、同時に描く数 |

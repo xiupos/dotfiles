@@ -7,6 +7,7 @@
 - `src/extension.ts`：VS Code とつなぐ部分（設定、TikZ の図の HTML、コマンド）。`vscode` を使うのはここだけ。
 - `src/tikz.ts`：` ```tikz ` のフェンスを描画関数に渡す markdown-it のプラグインと、Pandoc の属性 `{#id .class key=value}` の解釈。
 - `src/tex.ts`：プリアンブル、フォーマットのダンプ、pdflatex → pdftocairo、ログからのエラーの抜き出し。
+- `src/unicode.ts`：図の中身の Unicode の記号の変換。表は Pandoc フィルタ `unicode-math.lua` そのものから読む（`is_alpha_num` は移植）。
 - `src/cache.ts`：結果のキャッシュ（メモリと globalStorage）と、debounce・同時実行数つきのキュー。
 - `src/figure.ts`：画像の図の markdown-it のプラグイン（core rule で決めて `meta` に書き、renderer で `<figure>` にする）。
 - `src/footnote.ts`：脚注を節の終わりに移す markdown-it のプラグイン（markdown-it-footnote のトークンを並べ替える。core rule は `push` で最後に置く）。

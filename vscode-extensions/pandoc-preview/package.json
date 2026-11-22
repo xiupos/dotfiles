@@ -2,7 +2,7 @@
   "name": "pandoc-preview",
   "displayName": "Pandoc Preview",
   "description": "Make the built-in Markdown preview closer to Pandoc output: ```tikz figures rendered with pdflatex, and images alone in a paragraph shown as figures with Markdown captions, and footnotes at the end of each section.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "publisher": "xiupos",
   "private": true,
   "type": "module",
@@ -92,6 +92,11 @@
           "type": "boolean",
           "default": true,
           "markdownDescription": "Load `bxcjkjatype` so that Japanese text in figures compiles with pdflatex (needed by `font-ja.sty`)."
+        },
+        "tikz.unicodeMath": {
+          "type": "string",
+          "default": "~/.local/share/pandoc/filters/unicode-math.lua",
+          "markdownDescription": "The Pandoc filter `unicode-math.lua` whose table converts Unicode math symbols in the code of figures to LaTeX commands (`α` → `\\alpha`), as `tikz.lua` does in Pandoc. `~`, `${workspaceFolder}` and paths relative to the workspace folder are accepted. Empty: no conversion."
         },
         "tikz.preview.adaptToTheme": {
           "type": "boolean",

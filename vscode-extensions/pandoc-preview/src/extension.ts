@@ -1,10 +1,12 @@
+import * as fs from "node:fs";
 import * as path from "node:path";
 import * as vscode from "vscode";
 import { ResultCache, Scheduler } from "./cache.ts";
 import { figurePlugin } from "./figure.ts";
 import { footnotePlugin } from "./footnote.ts";
 import { tikzPlugin, type TikzBlock } from "./tikz.ts";
-import { buildPreamble, compile, Formats, sha256, type Preamble, type RenderResult } from "./tex.ts";
+import { loadUnicodeMath, type UnicodeMath } from "./unicode.ts";
+import { buildPreamble, compile, resolvePath, Formats, sha256, type Preamble, type RenderResult } from "./tex.ts";
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -31,6 +33,15 @@ export function activate(context: vscode.ExtensionContext) {
   /** Last successful SVG per figure (document + fence line), shown faded while re-rendering. */
   const lastGood = new Map<string, string>();
   let notified = false;
+  /** unicode-math.lua, read again when its path or mtime changes. */
+  let unicodeMath: { key: string; um: UnicodeMath } | undefined;
+  function getUnicodeMath(file: string, workspace: string | undefined): UnicodeMath | undefined {
+    if (!file.trim()) return undefined;
+    const p = resolvePath(file, workspace, "unicode-math filter (setting tikz.unicodeMath)");
+    const key = `${p}:${fs.statSync(p).mtimeMs}`;
+    if (unicodeMath?.key !== key) unicodeMath = { key, um: loadUnicodeMath(p) };
+    return unicodeMath.um;
+  }
 
   let refreshTimer: NodeJS.Timeout | undefined;
   const refresh = () => {
@@ -67,14 +78,16 @@ export function activate(context: vscode.ExtensionContext) {
     }
     const workspace = (doc && vscode.workspace.getWorkspaceFolder(doc)?.uri.fsPath) ?? vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     let preamble: Preamble;
+    let code = block.code;
     try {
       preamble = buildPreamble({ files: c.get("preamble.files", []), extra: c.get("preamble.extra", ""), japanese: c.get("preamble.japanese", true) }, workspace);
+      code = getUnicodeMath(c.get("unicodeMath", ""), workspace)?.convert(code) ?? code;
     } catch (e) {
       return figure("error", errorHtml({ message: String((e as Error).message), detail: "" }));
     }
 
     const slot = `${doc ?? ""}#${block.line}`;
-    const key = sha256(version, preamble.hash, block.code);
+    const key = sha256(version, preamble.hash, code);
     const result = cache.get(key);
     if (result?.ok) {
       const svg = prepareSvg(result.svg, `tikz-${key.slice(0, 10)}`, c.get("preview.scale", 1.3));
@@ -86,7 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const tex = { pdflatex: c.get("path.pdflatex", "pdflatex"), pdftocairo: c.get("path.pdftocairo", "pdftocairo"), timeout: c.get("render.timeout", 20000) };
     const dirs = [workspace, doc?.scheme === "file" ? path.dirname(doc.fsPath) : undefined].filter((d) => d !== undefined);
-    scheduler.request(slot, key, c.get("render.delay", 500), () => compile(block.code, preamble, formats, tex, dirs));
+    scheduler.request(slot, key, c.get("render.delay", 500), () => compile(code, preamble, formats, tex, dirs));
     return figure("pending", stale || `<div class="tikz-placeholder">Rendering TikZ…</div>`);
   }
 

@@ -71,3 +71,10 @@ caption にインラインコードを書く図は `~~~` のフェンスにす�
 ```{.tikz #fig:xy caption="xy-pic"}
 \xymatrix{ A \ar[r]^f \ar[d]_g & B \ar[d]^h \\ C \ar[r]_k & D }
 ```
+
+```{.tikz #fig:unicode caption="Unicode の記号（$α$ と同じく unicode-math.lua で変換）"}
+\begin{tikzcd}
+  ℋ ⊗ ℋ \arrow[r, "Φ"] \arrow[d, "ρ"'] & ℂ \\
+  ℝ^{n} \arrow[ur, "λx"'] &
+\end{tikzcd}
+```
