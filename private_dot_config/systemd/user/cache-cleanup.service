@@ -1,0 +1,13 @@
+[Unit]
+Description=Clean uv, npm and Julia caches
+
+[Service]
+Type=oneshot
+Environment=PATH=%h/.local/share/mise/shims:/usr/local/bin:/usr/bin
+# uv may be locked by MCP servers
+Environment=UV_LOCK_TIMEOUT=60
+ExecStart=-uv cache clean
+ExecStart=-npm cache clean --force
+ExecStart=-julia --startup-file=no -e "using Pkg, Dates; Pkg.gc(collect_delay=Day(7))"
+Nice=19
+IOSchedulingClass=idle

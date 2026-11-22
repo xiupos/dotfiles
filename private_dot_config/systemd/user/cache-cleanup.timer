@@ -1,0 +1,10 @@
+[Unit]
+Description=Monthly uv/npm/Julia cache cleanup
+
+[Timer]
+OnCalendar=monthly
+Persistent=true
+RandomizedDelaySec=1h
+
+[Install]
+WantedBy=timers.target
