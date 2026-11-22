@@ -38,6 +38,13 @@ bindkey -M menuselect '^[[Z' up-line-or-history
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^F' autosuggest-accept
+bindkey '^[[3~' delete-char
+bindkey '^[[H' beginning-of-line '^[OH' beginning-of-line '^[[1~' beginning-of-line
+bindkey '^[[F' end-of-line '^[OF' end-of-line '^[[4~' end-of-line
+bindkey '^[[2~' overwrite-mode
+bindkey '^[[5~' history-beginning-search-backward
+bindkey '^[[6~' history-beginning-search-forward
+bindkey '^[[1;5D' backward-word '^[[1;5C' forward-word
 
 # import ~/.config/shell/*.sh, ~/.zsh.d/*.zsh
 for f in ~/.config/shell/*.sh(N) ~/.zsh.d/*.zsh(N); do source $f; done
