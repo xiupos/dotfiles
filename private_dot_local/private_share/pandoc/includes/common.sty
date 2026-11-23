@@ -2,6 +2,16 @@
 
 % math and physics
 \usepackage{mathtools, amsthm, bm, mathrsfs, arydshln, nicematrix}
+% arydshln が消す longtable (v4.24~) の表のリンク先を戻す
+\usepackage{etoolbox}
+\makeatletter
+\AtBeginDocument{%
+  \ifdefined\LTcaptype
+    \patchcmd\LT@start{\copy\ifvoid\LT@firsthead}%
+      {\ifx\LTcaptype\@empty\MakeLinkTarget{LT@tables}\else\MakeLinkTarget{\LTcaptype}\fi
+       \copy\ifvoid\LT@firsthead}{}{}%
+  \fi}
+\makeatother
 \AtBeginDocument{\usepackage{physics}}
 \usepackage{siunitx, mhchem}
 
@@ -18,6 +28,7 @@
 
 % layout
 \usepackage{tcolorbox, longtable, booktabs, subfig, caption, multicol, pdfpages}
+\captionsetup[figure]{margin=2em}
 \usepackage{mdframed, colortbl, sidecap}
 \renewcommand{\baselinestretch}{1.08}
 \providecommand{\inhibitglue}{}

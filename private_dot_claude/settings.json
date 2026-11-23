@@ -14,6 +14,10 @@
     ]
   },
   "model": "opus",
+  "enabledPlugins": {
+    "codex@openai-codex": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
   "extraKnownMarketplaces": {
     "openai-codex": {
       "source": {
@@ -24,8 +28,5 @@
   },
   "effortLevel": "high",
   "theme": "auto",
-  "autoCompact": true,
-  "enabledPlugins": {
-    "codex@openai-codex": true
-  }
+  "autoCompact": true
 }
