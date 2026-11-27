@@ -199,6 +199,7 @@ login [github](https://github.com/)
 
 ```bash
 yay -S zsh tmux-git foot
+yay -S jq rsync meson
 
 chsh -s $(which zsh)
 ```
